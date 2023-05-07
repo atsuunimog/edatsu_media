@@ -16,9 +16,11 @@ class Oppty extends Model
         'user_role',
         'title',
         'description',
+        'deadline',
         'source_url',
         'region', 
-        'country'
+        'country',
+        'continent'
     ];
 
 }

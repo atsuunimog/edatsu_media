@@ -4,18 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Events;
+use Illuminate\Support\Carbon;
 
 class Event extends Controller
 {
 
 //
 function show(){
-    $ev_posts = Events::where('deleted', 0)->orderByDesc('id')->paginate(2);
+    $ev_posts = Events::where('deleted', 0)->orderByDesc('id')->paginate(10);
     return view("admin.event_page", ["ev_posts" => $ev_posts]);
 }
 
 function edit(Request $request, $id){
-    $ev_posts = Events::where('deleted', 0)->orderByDesc('id')->paginate(2);
+    $ev_posts = Events::where('deleted', 0)->orderByDesc('id')->paginate(10);
     $edits = Events::select('*')->where('id', '=', $id)->where('u_id', '=', $request->user()->id)->get();
     return view("admin.event_page", ["ev_posts" => $ev_posts, "edits"=> $edits]);
 }
@@ -42,12 +43,14 @@ function store(Request $request){
         'country'=> ['required', 'max:191'],
     ]);
 
+    //prevent users from backdating job post
+    $current_date = Carbon::now();  
+    $event_date = Carbon::parse($request->event_date);
 
-    $current_date = date('d/m/y');
-    $event_date = date('d/m/y', strtotime($request->event_date));
-    if($current_date >= $event_date){
-        return back()->withErrors(["error_msg"=>"Invalid event date"])->withInput($request->input());
+    if (!$event_date->greaterThanOrEqualTo($current_date)) {
+    return back()->withErrors(["error_msg"=>"Invalid event date"])->withInput($request->input());
     }
+     
 
     //store the data in the data base
     Events::create([
@@ -83,9 +86,15 @@ function update(Request $request, $id){
             'location' => ['required'],
             'event_date' => ['required'],
             'reference'=> ['required', 'url', 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', 'active_url'],
-            'region'=> ['required', 'max:191'],
+            'region'=> [ 'max:191'],
             'country'=> ['required', 'max:191'],
         ]);
+
+        $current_date = date('D/M/Y');
+        $event_date = date('D/M/Y', strtotime($request->event_date));
+        if($current_date >= $event_date){
+            return back()->withErrors(["error_msg"=>"Invalid event date"])->withInput($request->input());
+        }
 
     //store the data in the data base
     Events::where('id', $id)

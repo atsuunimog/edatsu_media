@@ -1,4 +1,4 @@
-<option selected="selected" disabled>Select Country</option> 
+<option  selected="selected" value="">Select Country</option> 
 <option value="Afghanistan">Afghanistan</option> 
 <option value="Albania">Albania</option> 
 <option value="Algeria">Algeria</option> 

@@ -1,0 +1,15 @@
+fix dates function 
+Multiple XML News feed
+truncate longer text
+change family font to something similar to Venture Africa
+multi option selection
+indication for online and offline events
+notification
+    push notification
+text-editor
+instant share button
+PWA Features (instant installation);
+add company directory 
+add job opportunities
+indicator for online events
+search filters

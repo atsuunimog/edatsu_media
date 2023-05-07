@@ -63,15 +63,21 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class='fw-bold'>Reference URL</label>
-                                <input type="text" name="reference" class="form-control" 
-                                placeholder="Enter title"  value="{{ isset($edits[0]->source_url)? $edits[0]->source_url : old('reference')}}">
+                                <label class='fw-bold'>Deadline</label>
+                                <input type="date" name="deadline" class="form-control" 
+                                placeholder="Enter Deadline"  value="{{ isset($edits[0]->deadline)? $edits[0]->deadline : old('deadline')}}">
                             </div>
 
                             <div class="mb-3">
-                                <label class='fw-bold'>Region</label>
+                                <label class='fw-bold'>Reference URL</label>
+                                <input type="text" name="reference" class="form-control" 
+                                placeholder="Enter source url"  value="{{ isset($edits[0]->source_url)? $edits[0]->source_url : old('reference')}}">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class='fw-bold'>Region - Optional</label>
                                 <select class="form-select" name="region">
-                                    <option selected="selected" disabled>Select Region</option>
+                                    <option  selected="selected" value="">Select Region--</option>
                                     <option value="northern_africa">Northern Africa</option>
                                     <option value="eastern_africa">Eastern Africa</option>
                                     <option value="western_africa">Western  Africa</option>
@@ -81,9 +87,22 @@
                             </div>
                             
                             <div class="mb-3">
-                                <label class='fw-bold'>Country</label>
+                                <label class='fw-bold'>Country - Optional</label>
                                 <select class="form-select" name="country">
                                     @include('layouts.countrylist')
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class='fw-bold'>Continent - Optional</label>
+                                <select class="form-select" name="continent">
+                                    <option selected="selected" value="global">Select Continent--</option>
+                                    <option value="asia">Asia</option>
+                                    <option value="africa">Africa</option>
+                                    <option value="north_america">North America</option>
+                                    <option value="south_america">South America</option>
+                                    <option value="europe">Europe</option>
+                                    <option value="australia">Australia</option>
                                 </select>
                             </div>
 
@@ -103,6 +122,7 @@
                             <ul>
                                 <li>{{$posts->region}}</li>
                                 <li>{{$posts->country}}</li>
+                                <li>{{$posts->continent}}</li>
                             </ul>
                             <a class='d-block text-decoration-none mb-3' 
                             target="_blank"
