@@ -6,9 +6,11 @@ use App\Http\Controllers\Opportunity;
 use App\Http\Controllers\Event;
 use App\Http\Controllers\App;
 use App\Http\Controllers\Directory;
+use App\Http\Controllers\FeedsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Str;
 // use Carbon\Carbon;
 
 /*
@@ -24,6 +26,11 @@ use Illuminate\Support\Facades\Request;
 
 Route::get('/', [App::class, 'displayOpp']);
 Route::get('/events', [App::class, 'displayEvents']);
+Route::get('/feeds', [FeedsController::class, 'displayFeeds'])->name("find.feeds");
+// Route::post('/feeds', [FeedsController::class, 'getCurrentFeeds']);
+Route::get('op/{id}/{title}', [App::class, 'readOpportunity'])->name('read.blog');
+Route::get('ev/{id}/{title}', [App::class, 'readEvent'])->name('read.ev');
+
 
 Route::get('/dashboard', [Dashboard::class, "accessControl"]);
 

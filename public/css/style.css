@@ -46,4 +46,36 @@ body{
     transition:.5s;
 }
 
+.btn-orange:hover{
+    background-color:#f2a28d;
+    color:#F8F9FA !important;
+    transition:.5s;
+}
+
 .feed-panel{background-color:#fff;}
+
+ul.share-icons{
+    margin:0px;
+    padding:0px;
+}
+
+ul.share-icons > li{
+    display:inline-block;
+    margin:10px;
+}
+
+.text-gray{color:#264653 !important;}
+
+.data-labels{
+    background-color:#b2967d;
+    padding:5px 20px;
+    color:white;
+    font-size:.9em;
+    border-radius:3px;
+}
+
+ul.label-list li{
+    display:inline-block !important;
+    margin-right:5px;
+    margin-bottom:15px;
+}

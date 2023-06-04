@@ -1,15 +1,45 @@
-fix dates function 
+
 Multiple XML News feed
-truncate longer text
-change family font to something similar to Venture Africa
+fix date problems for updates
 multi option selection
 indication for online and offline events
 notification
-    push notification
-text-editor
-instant share button
+push notification
 PWA Features (instant installation);
 add company directory 
 add job opportunities
-indicator for online events
 search filters
+quick ajx search for content
+start forums/community  based off news titles
+binance and jumia affilate marketing
+admin login rate limiter
+show total number of feeds and events not expired
+
+
+EVENTS PAGE
+regions in events should 
+be continent
+
+users can select multiple region or 
+country for an event. 
+
+country field and region field should be 
+optional 
+
+country field should have a global option selector
+
+country field should be filterable
+
+indicator for online/offline
+
+deadline should be optional for some opportunites like open fundings
+
+
+OPP PAGE
+
+
+features 
+vids
+jobs
+news
+community

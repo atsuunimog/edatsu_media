@@ -46,39 +46,52 @@
             @forelse($ev_posts as $posts)
                 <div class='col-sm-12 mb-3'>
                     <div class='px-3 py-3 border rounded feed-panel'>
-                        <h5 class='fw-bold m-0 p-0'>{{$posts->title}}</h5>
+                        <a class='text-decoration-none text-gray' href='{{route('read.ev', ['id'=> $posts->id, 'title'=> Str::slug($posts->title, '-')])}}'>
+                            <h5 class='fw-bold m-0 p-0'>{{$posts->title}}</h5>
+                        </a>
+    
                         <small class="my-2 d-block text-sm text-secondary">Posted on: {{ date('D, M Y', strtotime($posts->created_at))}} 
                             <span></span>
                         </small>
-                        <p class='mb-2 '>{{$posts->description}}</p>
-                        <p class='mb-2 '><span class='fw-bold'>Venue:</span> {{$posts->location}}</p>
-                        <p class='my-3 p-0 text-danger fw-bold'>Event Date: {{ date('d, M Y', strtotime($posts->event_date))}}</p>
 
+                        <div class="overflow-hidden truncate mb-3">
+                            {!! $truncated_text = Str::limit(strip_tags($posts->description), 200); !!}
+                           {{-- <span class='text-truncate bg-danger' style='min-width:500px;'>{!! $posts->description !!}</span> --}}
+                        </div>
+
+                        <p class='text-secondary'><i class="icon ion-android-pin align-middle " style='font-size:1.1em;'></i> {{$posts->location}}</p>
+
+                        {{-- <p class='my-3 p-0 text-danger fw-bold'>Event Date: {{ date('d, M Y', strtotime($posts->event_date))}}</p> --}}
+
+                        @isset($posts->event_date)
+                        <p class='p-0 fw-bold'>{!! get_days_left($posts->event_date) !!}</p>
+                        @endisset
 
                         <ul class="my-2 p-0 list-inline">
-                            <li class="list-inline-item"><i class="icon ion-android-globe align-middle" style='font-size:1.1em;'></i> 
-                                {{ucwords(str_replace("_", " ", $posts->region));}}
+                            @isset( $posts->region)
+                            <li class="mb-2">
+                                <span class='data-labels'>
+                                    {{ucwords(str_replace("_", " ", $posts->region));}}
+                                </span>
                             </li>
-                            <li class="list-inline-item"><i class="icon ion-android-pin align-middle" style='font-size:1.1em;'></i> {{$posts->country}}</li>
+                            @endisset
+
+                            @isset( $posts->country)
+                            <li class="mb-2">
+                                <span class='data-labels'>
+                                    {{ucwords(str_replace("_", " ", $posts->country));}}
+                                </span>
+                            </li>
+                            @endisset
                         </ul>
 
                         <div class="d-flex justify-content-end">
-                            <!--add margin-end:3-- when share btn is added--->
                             <div class=''>
                                 <a class='text-decoration-none bprder-0 btn btn-gray border-0 px-4 py-2 shadow-sm' 
-                                    target="_blank"
-                                    href='{{$posts->source_url}}'>
-                                    Apply
+                                    href='{{route('read.ev', ['id'=> $posts->id, 'title'=> Str::slug($posts->title, '-')])}}'>
+                                    Event Details
                                 </a>
                              </div>
-    
-                             {{-- <div>
-                                <a class='text-decoration-none bprder-0 btn btn-orange border-0 px-4 py-2 shadow-sm' 
-                                    target="_blank"
-                                    href='{{$posts->source_url}}'>
-                                    Share
-                                </a>
-                             </div> --}}
                         </div>
                     </div>
                 </div>

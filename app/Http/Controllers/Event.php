@@ -90,11 +90,13 @@ function update(Request $request, $id){
             'country'=> ['required', 'max:191'],
         ]);
 
-        $current_date = date('D/M/Y');
-        $event_date = date('D/M/Y', strtotime($request->event_date));
-        if($current_date >= $event_date){
-            return back()->withErrors(["error_msg"=>"Invalid event date"])->withInput($request->input());
-        }
+    //prevent users from backdating job post
+    $current_date = Carbon::now();  
+    $event_date = Carbon::parse($request->event_date);
+
+    if (!$event_date->greaterThanOrEqualTo($current_date)) {
+    return back()->withErrors(["error_msg"=>"Invalid event date"])->withInput($request->input());
+    }
 
     //store the data in the data base
     Events::where('id', $id)

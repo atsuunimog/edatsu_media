@@ -80,16 +80,13 @@ class Opportunity extends Controller
             'reference'=> ['required', 'url', 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', 'active_url'],
         ]);
 
+        //prevent users from backdating job post
+        $current_date = Carbon::now();  
+        $deadline = Carbon::parse($request->deadline);
 
-
-        if(isset($request->deadline)){
-            $current_date = date('D/M/Y');
-            $deadline = date('D/M/Y', strtotime($request->deadline));
-            // dd(($current_date > $deadline));
-            if($current_date > $deadline){
-                return back()->withErrors(["error_msg"=>"Invalid date"])->withInput($request->input());
-            };
-        };
+        if (!$deadline->greaterThanOrEqualTo($current_date)) {
+        return back()->withErrors(["error_msg"=>"Invalid date"])->withInput($request->input());
+        }
 
         //store the data in the data base
         Oppty::where('id', $id)

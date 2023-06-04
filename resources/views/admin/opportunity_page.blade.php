@@ -3,22 +3,21 @@
     <div class="px border row mb-3">
         <div class="col-sm-12">
             <div class="px-3 py-3">
-                <h3 class="fw-bold text-center">Opportunity Dashbord</h3>
+                <h3 class="fw-bold text-center">Post Opportunities</h3>
             </div>
         </div>
     </div>
     <!--banner-->
 
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-2">
             <!--menu list-->
             @include('layouts.admin_side_menu')
              <!--menu list-->
         </div>
-        <div class="col-sm-9">
+
+        <div class="col-sm-5">
             <!--content-->
-            <div class="row">
-                <div class="col-sm-4">
                     <!--page alert notice-->
                     @if(isset($edits))
                     <div class="alert alert-warning">
@@ -28,7 +27,7 @@
                     @endif
 
                     <!--post form-->
-                    <div class="border px-3 py-3">
+                    <div class="border px-3 py-3 rounded bg-white">
                         @if($errors->any())
                                 @foreach($errors->all() as $err)
                                 <div class='alert alert-danger'>
@@ -57,9 +56,10 @@
                                 <input type="text" name="title" class="form-control" 
                                 placeholder="Enter title" value="{{ isset($edits[0]->title)? $edits[0]->title : old('title')}}">
                             </div>
+
                             <div class="mb-3">
                                 <label class='fw-bold'>Description</label>
-                                <textarea name="description" class='d-block form-control' id="description">{{ isset($edits[0]->description)? $edits[0]->description : old('description')}}</textarea>
+                                <textarea name="description" class='form-control' id="description" rows="3">{{ isset($edits[0]->description)? $edits[0]->description : old('description')}}</textarea>
                             </div>
 
                             <div class="mb-3">
@@ -106,50 +106,69 @@
                                 </select>
                             </div>
 
-                            <button class="btn btn-primary fw-bold w-100 d-block">Create Opportunity</button>
+                            <button class="btn btn-primary py-3 w-100 d-block">Create Opportunity</button>
                         </form>
                     </div>
                     <!---post form-->
                 </div>
-                <div class="col-sm-8">
-                    <!--post content-->
+                <div class="col-sm-5">
+                    <!--side menu-->
+                    <div class="px-3 py-3 bg-white rounded border">
+                        <!--post content-->
                     <div class="row">
-                    @foreach($opp_posts as $posts)
-                        <div class='col-sm-12 mb-3'>
-                        <div class='px-3 py-3 border rounded'>
-                            <p class='fw-bold m-0 p-0'>{{$posts->title}}</p>
-                            <p>{{$posts->description}}</p>
-                            <ul>
-                                <li>{{$posts->region}}</li>
-                                <li>{{$posts->country}}</li>
-                                <li>{{$posts->continent}}</li>
-                            </ul>
-                            <a class='d-block text-decoration-none mb-3' 
-                            target="_blank"
-                            href='{{$posts->source_url}}'>{{$posts->source_url}}</a>
+                        @foreach($opp_posts as $posts)
+                            <div class='col-sm-12 mb-3'>
+                            <div class='px-3 py-3 border rounded'>
+                                <p class='fw-bold m-0 p-0'>{{$posts->title}}</p>
+                                <p>{!! $posts->description !!}</p>
+                                
+                                <ul>
+                                    <li>{{$posts->region}}</li>
+                                    <li>{{$posts->country}}</li>
+                                    <li>{{$posts->continent}}</li>
+                                </ul>
 
-                            <ul class='list-inline'>
-                                <li class='list-inline-item'><a href='{{route('admin.edit.opp', ['id'=> $posts->id])}}'>Edit</a></li>
-                                <li class='list-inline-item'><a href='{{route('admin.delete.opp', ['id'=> $posts->id])}}'>Delete</a></li>
-                            </ul>
+                                <a class='d-block text-decoration-none mb-3' 
+                                target="_blank"
+                                href='{{$posts->source_url}}'>{{$posts->source_url}}</a>
+    
+                                <ul class='list-inline'>
+                                    <li class='list-inline-item'><a href='{{route('admin.edit.opp', ['id'=> $posts->id])}}'>Edit</a></li>
+                                    <li class='list-inline-item'><a href='{{route('admin.delete.opp', ['id'=> $posts->id])}}'>Delete</a></li>
+                                </ul>
+                            </div>
+                            </div>
+                        @endforeach
+    
+                        <!--pagination-->
+                        <div class="row">
+                            <div class="col-sm-12">
+                            {{$opp_posts->links()}}
+                            </div>
                         </div>
-                        </div>
-                    @endforeach
-
-                    <!--pagination-->
-                    <div class="row">
-                        <div class="col-sm-12">
-                    {{$opp_posts->links()}}
-                        </div>
+                        <!--pagination-->
                     </div>
-                    <!--pagination-->
-
-                    </div>
-                    
-                    <!--post content-->
+                    <!--side menu-->
                 </div>
-            </div>
             <!--content-->
-        </div>
     </div>
 </x-app-layout>
+<script>
+    //summernote  
+$('#description').summernote({
+    placeholder: 'About us...',
+    tabsize: 2,
+    height: 120,
+    fontNames: ['Montserrat'],
+    toolbar: [
+      ['style', ['style']],
+      ['font', ['bold', 'underline', 'clear']],
+      ['color', ['color']],
+      ['para', ['ul', 'ol', 'paragraph']],
+      // ['table', ['table']],
+      // ['insert', ['link', 'picture', 'video']],
+      ['insert', ['link']],
+      // ['view', ['fullscreen', 'codeview', 'help']]
+    ]
+  });
+</script>

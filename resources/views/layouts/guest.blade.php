@@ -21,11 +21,20 @@
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
-        <title>{{ config('app.name', 'Edatsu Media') }}</title>
+
+        <title>Tech Opportunities, News, Events| Edatsu Media</title>
+        <meta name="description" content="Find the latest tech news, events, job opportunities, and company directory on edatsu media. Stay up-to-date with the latest trends and advancements in the tech industry.">
+        <meta name="keywords" content="tech opportunities, tech events, tech news, company directory, technology jobs, innovation, startups">
+        <meta name="robots" content="index, follow">
+        <link rel="canonical" href="https://media.edatsu.com/">
+
+
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" 
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+       
         <!--icons ionicons-->
         <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

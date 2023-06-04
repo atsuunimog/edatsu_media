@@ -10,7 +10,7 @@
     <!--banner-->
 
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-2">
             <!--menu list-->
             @include('layouts.admin_side_menu')
              <!--menu list-->
@@ -18,7 +18,7 @@
         <div class="col-sm-9">
             <!--content-->
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                        <!--page alert notice-->
                        @if(isset($edits))
                        <div class="alert alert-warning">
@@ -28,7 +28,7 @@
                        @endif
    
                        <!--post form-->
-                       <div class="border px-3 py-3">
+                       <div class="border px-3 py-3 rounded bg-white">
                            @if($errors->any())
                                    @foreach($errors->all() as $err)
                                    <div class='alert alert-danger'>
@@ -62,7 +62,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class='fw-bold'>Description</label>
-                                <textarea name="description" class='d-block form-control' id="description">{{ isset($edits[0]->description)? $edits[0]->description : old('description')}}</textarea>
+                                <textarea name="description" class='form-control' id="description">{{ isset($edits[0]->description)? $edits[0]->description : old('description')}}</textarea>
                             </div>
 
                             <div class="mb-3">
@@ -107,14 +107,14 @@
                     </div>
                     <!---post form-->
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-6">
                      <!--post content-->
                      <div class="row">
                         @foreach($ev_posts as $posts)
                             <div class='col-sm-12 mb-3'>
-                            <div class='px-3 py-3 border rounded'>
+                            <div class='px-3 py-3 border rounded bg-white'>
                                 <p class='fw-bold m-0 p-0'>{{$posts->title}}</p>
-                                <p>{{$posts->description}}</p>
+                                <p>{!! $posts->description !!}</p>
                                 <ul>
                                     <li>{{$posts->region}}</li>
                                     <li>{{$posts->country}}</li>
@@ -148,3 +148,22 @@
         </div>
     </div>
 </x-app-layout>
+<script>
+//summernote  
+$('#description').summernote({
+    placeholder: 'About us...',
+    tabsize: 2,
+    height: 120,
+    fontNames: ['Montserrat'],
+    toolbar: [
+      ['style', ['style']],
+      ['font', ['bold', 'underline', 'clear']],
+      ['color', ['color']],
+      ['para', ['ul', 'ol', 'paragraph']],
+      // ['table', ['table']],
+      // ['insert', ['link', 'picture', 'video']],
+      ['insert', ['link']],
+      // ['view', ['fullscreen', 'codeview', 'help']]
+    ]
+  });
+</script>

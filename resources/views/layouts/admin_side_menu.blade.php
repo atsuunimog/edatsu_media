@@ -1,9 +1,7 @@
-<div class='mb-3 border px-3 py-3 '>
-    <ul>
-        <li><a href="{{url('/')}}">Feeds</a>
-        <li><a href="{{route('admin.dashboard')}}">Dashboard</a>
-        <li><a href="{{route('admin.opp')}}">Opportunites</a>
-        <li><a href="{{route('admin.ev')}}">Events</a>
-        <li><a href="{{route('admin.directory')}}">Directory</a>
-    </ul>
- </div>
+<ul class='list-group'>
+    <li class='list-group-item'><a href="{{url('/')}}" class='text-decoration-none'>Feeds</a>
+    <li class='list-group-item'><a href="{{route('admin.dashboard')}}" class='text-decoration-none'>Dashboard</a>
+    <li class='list-group-item'><a href="{{route('admin.opp')}}" class='text-decoration-none'>Opportunites</a>
+    <li class='list-group-item'><a href="{{route('admin.ev')}}" class='text-decoration-none'>Events</a>
+    <li class='list-group-item'><a href="{{route('admin.directory')}}" class='text-decoration-none'>Directory</a>
+</ul>
