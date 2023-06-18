@@ -1,53 +1,53 @@
 body{
     font-family: 'Montserrat', sans-serif;
     background-color:#F8F9FA;
-    color:#264653 !important;
+    color:#252422 !important;
 }
 .header, .footer{
-    background-color:#264653;
+    background-color:#252422;
     color:#F8F9FA;
 }
 .bg-green{
-    background-color:#2a9d8f;
+    background-color:#FB5607;
     
 }
 .bg-gray{
-    background-color:#264653;
+    background-color:#252422;
     color:#F8F9FA;
 }
 
 .btn-green{
-    background-color:#2a9d8f !important;
+    background-color:#eb5e28 !important;
     color:#F8F9FA !important;
     transition:.5s;
 }
 
 .btn-green:hover{
-    background-color:#6EC6BF !important;
+    background-color:#ff6b35 !important;
     color:#F8F9FA !important;
     transition:.5s;
 }
 
 .btn-gray{
-    background-color:#264653!important;
+    background-color:#252422!important;
     color:#F8F9FA !important;
     transition:.5s;
 }
 
 .btn-gray:hover{
-    background-color:#607D8B !important;
+    background-color:#403d39 !important;
     color:#F8F9FA !important;
     transition:.5s;
 }
 
 .btn-orange{
-    background-color:#e76f51;
+    background-color:#FB5607;
     color:#F8F9FA !important;
     transition:.5s;
 }
 
 .btn-orange:hover{
-    background-color:#f2a28d;
+    background-color:#eb5e28;
     color:#F8F9FA !important;
     transition:.5s;
 }
@@ -64,15 +64,16 @@ ul.share-icons > li{
     margin:10px;
 }
 
-.text-gray{color:#264653 !important;}
+.text-gray{color:#252422 !important;}
 
 .data-labels{
-    background-color:#b2967d;
-    padding:5px 20px;
-    color:white;
+    background-color:#ccc5b9;
+    padding:5px 30px;
     font-size:.9em;
     border-radius:3px;
 }
+
+.fs-9{font-size:.9em;}
 
 ul.label-list li{
     display:inline-block !important;

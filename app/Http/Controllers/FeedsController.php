@@ -11,18 +11,21 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Promise;
 use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Psr7\Uri;
+use Exception;
+use Illuminate\Support\Facades\URL;
+
 
 
 
 class FeedsController extends Controller
 {
 
-
-  
     
     public function displayFeeds(Request $request)
     {
         $feeds = [];
+    
+        // https://www.opportunitiesforafricans.com/feed/
     
         if ($request->has("feeder") && $request->feeder !== null) {
             $url = $request->input("feeder");
@@ -61,33 +64,49 @@ class FeedsController extends Controller
                     continue;
                 }
     
-                $xml = simplexml_load_string($response->getBody());
-    
-                $uri = new Uri($response->getHeaderLine('X-Guzzle-Redirect-History'));
-                $domainName = $uri->getHost();
-    
-                foreach ($xml->channel->item as $item) {
-                    $pubDate = strtotime((string) $item->pubDate);
-                    $today = strtotime('today');
-    
-                    if ($pubDate < $today) {
+                try {
+                    $xml = simplexml_load_string($response->getBody());
+                    if ($xml === false) {
+                        // Handle invalid XML
                         continue;
                     }
+
+                    $feedUrl = $response->getHeaderLine('X-Guzzle-Redirect-History');
+                    $parsedUrl = parse_url($feedUrl);
+                    $domainName = $parsedUrl['host'] ?? '';
+            
+                    if (empty($domainName)) {
+                        $request = $response->getHeaderLine('X-Guzzle-Redirect-Request');
+                        $feedUrl = $request ? (string) $request->getUri() : '';
+                        $domainName = (new Uri($feedUrl))->getHost();
+                    }
+
+                    foreach ($xml->channel->item as $item) {
+                        $pubDate = strtotime((string) $item->pubDate);
+                        $today = strtotime('today');
     
-                    $title = (string) $item->title;
-                    $description = (string) $item->description;
-                    $link = (string) $item->link;
-                    $date = date('jS M, Y', $pubDate);
+                        if ($pubDate < $today) {
+                            continue;
+                        }
     
-                    $description = strlen($description) > 120 ? substr($description, 0, 120) . "..." : $description;
+                        $title = (string) $item->title;
+                        $description = (string) $item->description;
+                        $link = (string) $item->link;
+                        $date = date('jS M, Y', $pubDate);
     
-                    $data[] = [
-                        'title' => $title,
-                        'description' => $description,
-                        'link' => $link,
-                        'date' => $date,
-                        'domain_name' => $domainName
-                    ];
+                        $description = strlen($description) >= 200 ? substr($description, 0, 200) . "..." : $description;
+    
+                        $data[] = [
+                            'title' => $title,
+                            'description' => $description,
+                            'link' => $link,
+                            'date' => $date,
+                            'domain_name' => $domainName
+                        ];
+                    }
+                } catch (Exception $e) {
+                    // Handle any exceptions that occur during parsing
+                    continue;
                 }
             }
     
@@ -96,8 +115,8 @@ class FeedsController extends Controller
                 Cache::put($cacheKey, $data, 60); // Cache the data for 60 minutes
             } else {
                 $data[] = [
-                    'title' => 'No content found',
-                    'description' => 'No content found for today',
+                    'title' => 'Oops! No post yet',
+                    'description' => 'Please check back later',
                     'link' => '',
                     'date' => '',
                     'domain_name' => ''
@@ -107,6 +126,7 @@ class FeedsController extends Controller
     
         return view('feeds')->with('data', $data)->render();
     }
+    
     
     
     

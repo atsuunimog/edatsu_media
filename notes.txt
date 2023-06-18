@@ -15,6 +15,10 @@ binance and jumia affilate marketing
 admin login rate limiter
 show total number of feeds and events not expired
 
+monetisation of event post (paid subscription)
+
+create a live schedule for people  want to host group based on a topic
+
 
 EVENTS PAGE
 regions in events should 

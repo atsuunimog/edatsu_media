@@ -2,8 +2,13 @@
 <div class="row">
     <div class="col-sm-12 text-center">
         <div class="py-5">
-           <h1 class='fw-bold'>Tech Opportunities</h1>
-           <p class='lead m-0 text-secondary'>Discover the Latest Financing Opportunities in African Tech</p>
+            <!--logo-->
+            <a href='./'>
+            <img src="{{ asset('img/logo/trans/logo_trans_1.png')}}" width="90" class="img-fluid" alt="logo">
+            </a>
+            <!--logo-->
+            <h1 class='fw-bold'>Tech Opportunities</h1>
+            <p class='lead m-0 text-secondary'>Discover the Latest Financing Opportunities in African Tech</p>
         </div>  
     </div>
 </div>
@@ -14,17 +19,17 @@
             <?php $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';?>
 
             <li class="list-inline-item"><a href='{{url('feeds')}}' 
-                class='text-decoration-none btn  btn-gray border-0 px-4 py-2 shadow-sm mb-2'
+                class='text-decoration-none btn fs-9  btn-gray border-0 px-4 py-2 shadow-sm mb-2'
                 {{(url()->current() == $protocol.$_SERVER['HTTP_HOST'].'/feeds')? 'bg-green' : 'bg-gray'}}'>News Feed</a>
             </li>
 
             <li class="list-inline-item"><a href='{{url('/')}}' 
-                class='text-decoration-none bprder-0 btn btn-green border-0 px-4  text-light py-2 shadow-sm mb-2'
+                class='text-decoration-none fs-9 bprder-0 btn btn-green border-0 px-4  text-light py-2 shadow-sm mb-2'
                 {{(url()->current() == $protocol.$_SERVER['HTTP_HOST'])? 'bg-green' : 'bg-gray'}}'>Tech Opportunites</a>
             </li>
 
             <li class="list-inline-item "><a href='{{url('events')}}' 
-                class='text-decoration-none btn  btn-gray border-0 px-4 py-2 shadow-sm mb-2
+                class='text-decoration-none btn fs-9 btn-gray border-0 px-4 py-2 shadow-sm mb-2
                 {{(url()->current() == $protocol.$_SERVER['HTTP_HOST'].'/events')? 'bg-green' : 'bg-gray'}}'>Tech Events
             </a></li>
 
@@ -102,9 +107,12 @@
 
                     <div class="d-flex justify-content-end">
                         <div class=''>
-                            <a class='text-decoration-none bprder-0 btn btn-gray border-0 px-4 py-2 shadow-sm' 
+                            <a class='text-decoration-none bprder-0 btn btn-gray fs-9 border-0 px-4 py-2 shadow-sm' 
                                 href='{{route('read.blog', ['id'=> $posts->id, 'title'=> Str::slug($posts->title, '-')])}}'>
                                 Read More
+                                <span class="material-symbols-outlined align-middle">
+                                    read_more
+                                </span>
                             </a>
                          </div>
                     </div>
