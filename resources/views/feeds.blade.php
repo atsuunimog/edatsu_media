@@ -87,6 +87,8 @@ Select News Channels
 </form>
 <!--news filter-->
 
+<div id="site-metadata" data-meta="{{$data[0]['domain_name']}}"></div>
+
 <!--content-->
 @foreach($data as $item)
     <div class='px-3 py-3 bg-white border rounded mb-3'>
@@ -94,9 +96,13 @@ Select News Channels
         @if($item['date'] !== '')
         <p class='text-secondary p-0 m-0 my-3'>Posted on: {{ $item['date'] }}</p>
         @endif
-        <p class='text-secondary p-0 m-0 my-3'>{!! $truncated_text = Str::limit(strip_tags($item['description']), 200); !!}</p>
+        <p class=' p-0 m-0 my-3'>{!! $truncated_text = Str::limit(strip_tags($item['description']), 200); !!}</p>
       
-        <p class='p-0 m-0 my-3'>{{ $item['domain_name'] }}</p>
+        <p class='p-0 m-0 my-3 fw-bold' style='color:#457b9d'>
+          <span class="material-symbols-outlined align-middle">
+            full_coverage
+          </span>
+          {{ $item['domain_name'] }}</p>
 
         <div class="d-flex justify-content-end">
           <div class=''>
@@ -136,7 +142,68 @@ Select News Channels
 
 <div id="pagination-container"></div>
 
-<script>
+<script defer>
+// window.addEventListener('load', function(){
+//   const meta_data = document.getElementById("site-meta-data");
+//   const domainName = meta_data.innerHTML;
+//   console.log(domainName);
+//   const domain_info = getDomainInformation(domainName)
+//   console.log(domain_info);
+// })
+
+// function getDomainInformation(domainName) {
+//   var domainInfo = {};
+
+//   switch (domainName) {
+//     case 'disrupt-africa.com':
+//       domainInfo.domain = 'Disrupt Africa';
+//       domainInfo.logo = '';
+//       domainInfo.description = '';
+//       break;
+//     case 'techpoint.africa':
+//       domainInfo.domain = 'Techpoint Africa';
+//       domainInfo.logo = '';
+//       domainInfo.description = '';
+//       break;
+//     case 'techcabal.com':
+//       domainInfo.domain = 'TechCabal';
+//       domainInfo.logo = '';
+//       domainInfo.description = '';
+//       break;
+//     case 'technext24.com':
+//       domainInfo.domain = 'Tech Next';
+//       domainInfo.logo = '';
+//       domainInfo.description = '';
+//       break;
+//     case 'ventureburn.com':
+//       domainInfo.domain = 'Venture Burn';
+//       domainInfo.logo = '';
+//       domainInfo.description = '';
+//       break;
+//     case 'cointelegraph.com':
+//       domainInfo.domain = 'Coin Telegraph';
+//       domainInfo.logo = '';
+//       domainInfo.description = '';
+//       break;
+//     case 'coindesk.com':
+//       domainInfo.domain = 'Coin Desk';
+//       domainInfo.logo = '';
+//       domainInfo.description = '';
+//       break;
+//     case 'techcrunch.com':
+//       domainInfo.domain = 'Tech Crunch';
+//       domainInfo.logo = '';
+//       domainInfo.description = '';
+//       break;
+//     default:
+//       domainInfo.domain = 'Unknown Domain';
+//       domainInfo.logo = '';
+//       domainInfo.description = '';
+//       break;
+//   }
+
+//   return domainInfo;
+// }
 
 </script>
 </x-guest-layout>

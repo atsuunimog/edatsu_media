@@ -75,14 +75,27 @@
                 @endisset
 
                 <div class="d-flex justify-content-end">
-                    <div class='me-3'>
-                        <!-- Button trigger modal -->
-                        <button type="button" class='text-decoration-none bprder-0 btn btn-orange border-0 px-4 py-2 shadow-sm' 
-                        data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <div class='position-relative'>
+                        <div class="position-absolute share-panel border rounded shadow d-none">
+                            <ul>
+                                <li><a  class='text-decoration-none text-dark' href="https://api.whatsapp.com/send?text={{route('read.blog', ['id'=> $ev_posts->id, 'title'=> Str::slug($ev_posts->title, '-')])}}"
+                                ><img width="30" src="{{asset('img/gif/icons8-whatsapp.gif')}}" alt="whatsapp" > Whatapp</a></li>
+                                
+                                <li><a  class='text-decoration-none text-dark' href="https://t.me/share/url?url={{route('read.blog', ['id'=> $ev_posts->id, 'title'=> Str::slug($ev_posts->title, '-')])}}"
+                                ><img width="30" src="{{asset('img/gif/icons8-telegram.gif')}}" alt="telegram" > Telegram</a></li>
+                                
+                                {{-- <li><img width="30" src="{{asset('img/gif/icons8-linkedin.gif')}}" alt="linkedin" > Linkedin</li>
+                                <li><img width="30" src="{{asset('img/gif/icons8-twitter.gif')}}" alt="twitter" > Twitter</li>
+                                <li><img width="30" src="{{asset('img/gif/icons8-facebook.gif')}}" alt="facebook" > Facebook</li> --}}
+                            </ul>
+                        </div>
+                        <button class='me-3 text-decoration-none bprder-0 btn fs-9 border px-4 py-2 shadow-sm'onClick="console.log(this.previousElementSibling.classList.toggle('d-none'))">
                             Share
-                         </button>
-                        <!-- Button trigger modal -->
-                    </div>
+                            <span class="material-symbols-outlined align-middle">
+                                share
+                            </span>
+                        </button>
+                     </div>
 
                      <div class=''>
                         <a class='text-decoration-none bprder-0 btn btn-gray border-0 px-4 py-2 shadow-sm' 

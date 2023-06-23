@@ -1,5 +1,9 @@
 
 Multiple XML News feed
+
+add languge support 
+adding images to post (optional but available)
+add affiliate links ads/ other ads than google analytics
 fix date problems for updates
 multi option selection
 indication for online and offline events
@@ -11,13 +15,20 @@ add job opportunities
 search filters
 quick ajx search for content
 start forums/community  based off news titles
-binance and jumia affilate marketing
+binance and jumia affiliate marketing
 admin login rate limiter
 show total number of feeds and events not expired
 
-monetisation of event post (paid subscription)
+add gender to opportunites filter
+filter opportuntites by country
+
+admin should be able to select multiple countries
+
+monetization of event post (paid subscription)
 
 create a live schedule for people  want to host group based on a topic
+
+add google language
 
 
 EVENTS PAGE
@@ -38,8 +49,31 @@ indicator for online/offline
 
 deadline should be optional for some opportunites like open fundings
 
+add event time 
+some events might not have a website so make ref url optional 
+
+some events have multiple dates
+regison and country should be optional but warn users that they will not be found in filters
+
+cancel event 
+
+state whether an event is free or paid
+
+sync to calender
+
+use google map for event location
+
+book marking revents and reminder
+notification when event is deleted
+
+Boost ticket sales with afiliate marketing
+
+rate events so we can give feedback and prioritse events internally (event feedback loop)
+
 
 OPP PAGE
+
+cancel opportunites 
 
 
 features 

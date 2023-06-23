@@ -19,7 +19,15 @@ use Illuminate\Support\Facades\URL;
 
 class FeedsController extends Controller
 {
+    
 
+    /**get domain name */
+    function getDomainName($url) {
+        $parsedUrl = parse_url($url);
+        $domain = explode(':', $parsedUrl['host'])[0];
+        return $domain;
+    }
+    
     
     public function displayFeeds(Request $request)
     {
@@ -31,13 +39,18 @@ class FeedsController extends Controller
             $url = $request->input("feeder");
             $feeds[] = $url;
             Cache::forget('feeds_data'); // Clear the cached data
+            $parsedUrl = parse_url($url);
         } else {
             $feeds = [
                 "https://disrupt-africa.com/feed/",
                 "https://techpoint.africa/feed/",
                 "https://techcabal.com/feed/",
                 "https://technext24.com/feed/",
+                "https://ventureburn.com/feed/",
+                "https://www.coindesk.com/arc/outboundfeeds/rss/",
+                "https://techcrunch.com/feed/",
             ];
+            Cache::forget('feeds_data'); // Clear the cached data
         }
     
         $cacheKey = 'feeds_data';
@@ -71,16 +84,6 @@ class FeedsController extends Controller
                         continue;
                     }
 
-                    $feedUrl = $response->getHeaderLine('X-Guzzle-Redirect-History');
-                    $parsedUrl = parse_url($feedUrl);
-                    $domainName = $parsedUrl['host'] ?? '';
-            
-                    if (empty($domainName)) {
-                        $request = $response->getHeaderLine('X-Guzzle-Redirect-Request');
-                        $feedUrl = $request ? (string) $request->getUri() : '';
-                        $domainName = (new Uri($feedUrl))->getHost();
-                    }
-
                     foreach ($xml->channel->item as $item) {
                         $pubDate = strtotime((string) $item->pubDate);
                         $today = strtotime('today');
@@ -101,7 +104,7 @@ class FeedsController extends Controller
                             'description' => $description,
                             'link' => $link,
                             'date' => $date,
-                            'domain_name' => $domainName
+                            'domain_name' => $this->getDomainName($link)
                         ];
                     }
                 } catch (Exception $e) {

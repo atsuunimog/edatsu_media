@@ -8,7 +8,7 @@
             </a>
             <!--logo-->
             <h1 class='fw-bold'>Tech Opportunities</h1>
-            <p class='lead m-0 text-secondary'>Discover the Latest Financing Opportunities in African Tech</p>
+            <p class='lead m-0 text-secondary'>Discover the Latest Tech & Financing Opportunities in Africa</p>
         </div>  
     </div>
 </div>
@@ -106,6 +106,28 @@
                         @endisset
 
                     <div class="d-flex justify-content-end">
+                        <div class='position-relative'>
+                            <div class="position-absolute share-panel border rounded shadow d-none">
+                                <ul>
+                                    <li><a  class='text-decoration-none text-dark' href="https://api.whatsapp.com/send?text={{route('read.blog', ['id'=> $posts->id, 'title'=> Str::slug($posts->title, '-')])}}"
+                                    ><img width="30" src="{{asset('img/gif/icons8-whatsapp.gif')}}" alt="whatsapp" > Whatapp</a></li>
+                                    
+                                    <li><a  class='text-decoration-none text-dark' href="https://t.me/share/url?url={{route('read.blog', ['id'=> $posts->id, 'title'=> Str::slug($posts->title, '-')])}}"
+                                    ><img width="30" src="{{asset('img/gif/icons8-telegram.gif')}}" alt="telegram" > Telegram</a></li>
+                                    
+                                    {{-- <li><img width="30" src="{{asset('img/gif/icons8-linkedin.gif')}}" alt="linkedin" > Linkedin</li>
+                                    <li><img width="30" src="{{asset('img/gif/icons8-twitter.gif')}}" alt="twitter" > Twitter</li>
+                                    <li><img width="30" src="{{asset('img/gif/icons8-facebook.gif')}}" alt="facebook" > Facebook</li> --}}
+                                </ul>
+                            </div>
+                            <button class='me-3 text-decoration-none bprder-0 btn fs-9 border px-4 py-2 shadow-sm'onClick="console.log(this.previousElementSibling.classList.toggle('d-none'))">
+                                Share
+                                <span class="material-symbols-outlined align-middle">
+                                    share
+                                </span>
+                            </button>
+                         </div>
+
                         <div class=''>
                             <a class='text-decoration-none bprder-0 btn btn-gray fs-9 border-0 px-4 py-2 shadow-sm' 
                                 href='{{route('read.blog', ['id'=> $posts->id, 'title'=> Str::slug($posts->title, '-')])}}'>
@@ -175,6 +197,27 @@
 
         </div>
         <!--aside menu-->
+
+
+        <!--aside-->
+        <div class='px-3 py-3 rounded border my-3 bg-white'>
+            <!--logo-->
+            <a href='./'>
+            <img src="{{ asset('img/logo/trans/logo_trans_1.png')}}" width="90" class="img-fluid d-block mx-auto" alt="logo">
+            </a>
+            <!--logo-->
+            <h4 class='fw-bold'>Submit Opportunites</h4>
+            <p>
+                Let's unlock opportunities together! Share helpful tech and entrepreneurial prospects. 
+                Collaboration amplifies our impact
+            </p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSd-1Nwy3SUnsjvseBtjmQQSxTEobuMDu2_CXWPMDpxWz2n4mQ/viewform?usp=sf_link" 
+            target="_blank"
+            class='btn btn-dark w-100 fs-9 py-3 my-3'>Submit</a>
+        </div>
+        <!--aside-->
+
+
     </div>
 </div>
 <!--body-->

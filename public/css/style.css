@@ -67,11 +67,22 @@ ul.share-icons > li{
 .text-gray{color:#252422 !important;}
 
 .data-labels{
-    background-color:#ccc5b9;
+    background-color:#edede9;
     padding:5px 30px;
     font-size:.9em;
     border-radius:3px;
 }
+
+.share-panel{
+    width:200px;
+    background-color:white;
+    /* top:-270px; */
+    top:-130px;
+    padding:15px;
+}
+
+.share-panel ul{margin:0px; padding:0px; list-style: none;}
+.share-panel li{margin-bottom:15px;}
 
 .fs-9{font-size:.9em;}
 
