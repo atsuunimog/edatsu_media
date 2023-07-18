@@ -151,19 +151,31 @@
 <script>
 //summernote  
 $('#description').summernote({
-    placeholder: 'About us...',
-    tabsize: 2,
-    height: 120,
-    fontNames: ['Montserrat'],
-    toolbar: [
-      ['style', ['style']],
-      ['font', ['bold', 'underline', 'clear']],
-      ['color', ['color']],
-      ['para', ['ul', 'ol', 'paragraph']],
-      // ['table', ['table']],
-      // ['insert', ['link', 'picture', 'video']],
-      ['insert', ['link']],
-      // ['view', ['fullscreen', 'codeview', 'help']]
-    ]
-  });
+  placeholder: 'About us...',
+  tabsize: 2,
+  height: 120,
+  fontNames: ['Montserrat'],
+  toolbar: [
+    ['style', ['style']],
+    ['font', ['bold', 'underline', 'clear']],
+    ['color', ['color']],
+    ['para', ['ul', 'ol', 'paragraph']],
+    ['insert', ['link']],
+  ],
+  callbacks: {
+    onPaste: function (e) {
+     // Get the pasted content as plain text
+     var pastedText = (e.originalEvent || e).clipboardData.getData('text/plain');
+
+    // Convert the pasted content to HTML with the desired font style
+    var convertedHtml = '<span style="font-family: Poppins;">' + pastedText + '</span>';
+
+    // Insert the converted content into the editor
+    $(this).summernote('pasteHTML', convertedHtml);
+
+    // Prevent the default paste behavior
+    e.preventDefault();
+    }
+  }
+});
 </script>

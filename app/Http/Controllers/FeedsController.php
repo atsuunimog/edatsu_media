@@ -13,27 +13,27 @@ use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Psr7\Uri;
 use Exception;
 use Illuminate\Support\Facades\URL;
-
+use Illuminate\Pagination\LengthAwarePaginator;
 
 
 
 class FeedsController extends Controller
 {
     
-
     /**get domain name */
     function getDomainName($url) {
         $parsedUrl = parse_url($url);
         $domain = explode(':', $parsedUrl['host'])[0];
         return $domain;
     }
+
+    public function displayFeeds(){
+        return view('feeds');
+    }
     
-    
-    public function displayFeeds(Request $request)
+    public function fetchFeeds(Request $request)
     {
         $feeds = [];
-    
-        // https://www.opportunitiesforafricans.com/feed/
     
         if ($request->has("feeder") && $request->feeder !== null) {
             $url = $request->input("feeder");
@@ -42,13 +42,14 @@ class FeedsController extends Controller
             $parsedUrl = parse_url($url);
         } else {
             $feeds = [
-                "https://disrupt-africa.com/feed/",
+                // "https://disrupt-africa.com/feed/",
                 "https://techpoint.africa/feed/",
                 "https://techcabal.com/feed/",
                 "https://technext24.com/feed/",
+                "https://www.techcityng.com/feed/",
+                "https://techcrunch.com/feed/",
                 "https://ventureburn.com/feed/",
                 "https://www.coindesk.com/arc/outboundfeeds/rss/",
-                "https://techcrunch.com/feed/",
             ];
             Cache::forget('feeds_data'); // Clear the cached data
         }
@@ -97,6 +98,7 @@ class FeedsController extends Controller
                         $link = (string) $item->link;
                         $date = date('jS M, Y', $pubDate);
     
+                        $description = strip_tags($description);
                         $description = strlen($description) >= 200 ? substr($description, 0, 200) . "..." : $description;
     
                         $data[] = [
@@ -114,7 +116,7 @@ class FeedsController extends Controller
             }
     
             if (count($data) > 0) {
-                shuffle($data);
+                // shuffle($data);
                 Cache::put($cacheKey, $data, 60); // Cache the data for 60 minutes
             } else {
                 $data[] = [
@@ -126,98 +128,36 @@ class FeedsController extends Controller
                 ];
             }
         }
-    
-        return view('feeds')->with('data', $data)->render();
-    }
-    
-    
-    
-    
-    
-    
-    
-    
 
+        /**
+         * Pagination Handle
+         */
+        $perPage = 10; // Number of items per page
+        $currentPage = $request->input('page', 1); // Get the current page from the request, default to 1 if not provided
     
-
-    //feeds
-    public function getCurrentFeeds(Request $request)
-    {
-        $perPage = $request->input('per_page', 10);
-        
-        $currentPage = $request->input('page', 1);
-
+        // Calculate the starting index of the items based on the current page
         $startIndex = ($currentPage - 1) * $perPage;
-
-        $currentDate = new DateTime();
-
-        $feedUrls = $request->input('feed_urls', []);
-
-        $currentFeeds = [];
-
-        foreach ($feedUrls as $url) {
-            
-            try {
-                $client = new Client();
-                $response = $client->get($url);
-
-                if ($response->getStatusCode() == 200) {
-                    $xmlContent = $response->getBody()->getContents();
-                    $xml = simplexml_load_string($xmlContent);
-
-                    // Handle different XML structures
-                    if (isset($xml->channel) && isset($xml->channel->item)) {
-                        // Standard XML structure
-                        $items = $xml->channel->item;
-                    } elseif (isset($xml->entry)) {
-                        // Different XML structure with "entry" instead of "item"
-                        $items = $xml->entry;
-                    } else {
-                        // Unknown XML structure, log a warning and continue to the next URL
-                        Log::warning("Unknown XML structure for feed from URL: {$url}");
-                        continue;
-                    }
-                
-                    foreach ($items as $item) {
-                        $feedTitle = (string) $item->title;
-                        $feedDate = new DateTime($item->pubDate);
-                        $feedLink = (string) $item->link;
-                        $feedContent = (string) $item->description;
-
-                        // Check if the feed date matches the current date
-                        if ($feedDate->format('Y-m-d') == $currentDate->format('Y-m-d')) {
-                            $truncatedContent = Str::words($feedContent, 200, '...');
-
-                            $currentFeeds[] = [
-                                'title' => $feedTitle,
-                                'date' => $feedDate->format('Y-m-d'),
-                                'url' => $feedLink,
-                                'content' => $truncatedContent,
-                            ];
-                        }
-                    }
-                }
-            } catch (\Exception $e) {
-                // Handle the exception as per your needs
-                // You can log the error or return an error response
-                
-                error_log("Error occurred while fetching feeds from {$url}: " . $e->getMessage());
-            }
-        }
-
-        $totalFeeds = count($currentFeeds);
-        $paginatedFeeds = array_slice($currentFeeds, $startIndex, $perPage);
-
-        $paginationData = [
-            'total' => $totalFeeds,
-            'per_page' => $perPage,
-            'current_page' => $currentPage,
-            'last_page' => ceil($totalFeeds / $perPage),
-            'data' => $paginatedFeeds,
-        ];
-
-        //return response()->json($paginationData);
-
-        return view('feeds', ['data' => $paginationData]);
+        $paginatedData = array_slice($data, $startIndex, $perPage);
+    
+        // Create a Paginator instance with the paginated data
+        $paginator = new LengthAwarePaginator($paginatedData, count($data), $perPage, $currentPage);
+    
+        // Customize the pagination links
+        $paginator->withPath('/feeds')->appends($request->all());
+    
+        return response()->json([
+            'data' => $paginator->items(),
+            'links' => [
+                'first_page_url' => $paginator->url(1),
+                'last_page_url' => $paginator->url($paginator->lastPage()),
+                'next_page_url' => $paginator->nextPageUrl(),
+                'prev_page_url' => $paginator->previousPageUrl(),
+            ],
+            'current_page' => $paginator->currentPage(),
+            'last_page' => $paginator->lastPage(),
+        ]);
+    
     }
+    
+    
 }

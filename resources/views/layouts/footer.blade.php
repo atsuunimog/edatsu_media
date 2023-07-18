@@ -5,7 +5,7 @@
         <div class="pt-3 px-3 border-top">
 
         <h1 class='fw-bold'>Follow Us</h1>
-        <p class='lead m-0 p-0'>Follow our social media page to stay connected</p>
+        <p class=' m-0 p-0'>Follow our social media page to stay connected</p>
         
         <ul class="share-icons m-0 p-0">
             <li>

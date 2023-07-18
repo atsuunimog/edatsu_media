@@ -76,34 +76,42 @@
 
                             <div class="mb-3">
                                 <label class='fw-bold'>Region - Optional</label>
-                                <select class="form-select" name="region">
-                                    <option  selected="selected" value="">Select Region--</option>
+                                <select class="form-select" id="region">
+                                    {{-- onchange="updateInputField(this)" --}}
+                                    <option value="">Select Region--</option>
                                     <option value="northern_africa">Northern Africa</option>
                                     <option value="eastern_africa">Eastern Africa</option>
                                     <option value="western_africa">Western  Africa</option>
                                     <option value="central_africa">Central Africa</option>
                                     <option value="southern_africa">Southern Africa</option>
                                 </select>
+                                <input type="text" name="region" id="selectedRegions" value="{{ isset($edits[0]->region)? $edits[0]->region : old('region')}}" readonly>
+                                <div id="outputRegionsList"></div>
                             </div>
                             
                             <div class="mb-3">
                                 <label class='fw-bold'>Country - Optional</label>
-                                <select class="form-select" name="country">
-                                    @include('layouts.countrylist')
+                                <select class="form-select" id="country" >
+                                    @include('components.countrylist')
                                 </select>
+                                <input type="text" name="country" id="selectedCountries" value="{{ isset($edits[0]->country)? $edits[0]->country : old('country')}}" readonly>
+                                <div id="outputCountriesList"></div>
                             </div>
 
                             <div class="mb-3">
                                 <label class='fw-bold'>Continent - Optional</label>
-                                <select class="form-select" name="continent">
+                                <select class="form-select" id="continent" >
                                     <option selected="selected" value="global">Select Continent--</option>
-                                    <option value="asia">Asia</option>
                                     <option value="africa">Africa</option>
-                                    <option value="north_america">North America</option>
-                                    <option value="south_america">South America</option>
+                                    <option value="antarctica">Antarctica</option>
+                                    <option value="asia">Asia</option>
                                     <option value="europe">Europe</option>
-                                    <option value="australia">Australia</option>
+                                    <option value="north_america">North America</option>
+                                    <option value="australia">Australia (or Oceania/Australasia)</option>
+                                    <option value="south_america">South America</option>
                                 </select>
+                                <input type="text" name="continent" id="selectedContinents" value="{{ isset($edits[0]->continent)? $edits[0]->continent : old('continent')}}" readonly>
+                                <div id="outputContinentsList"></div>
                             </div>
 
                             <button class="btn btn-primary py-3 w-100 d-block">Create Opportunity</button>
@@ -156,19 +164,89 @@
 <script>
     //summernote  
 $('#description').summernote({
-    placeholder: 'About us...',
-    tabsize: 2,
-    height: 120,
-    fontNames: ['Montserrat'],
-    toolbar: [
-      ['style', ['style']],
-      ['font', ['bold', 'underline', 'clear']],
-      ['color', ['color']],
-      ['para', ['ul', 'ol', 'paragraph']],
-      // ['table', ['table']],
-      // ['insert', ['link', 'picture', 'video']],
-      ['insert', ['link']],
-      // ['view', ['fullscreen', 'codeview', 'help']]
-    ]
-  });
+  placeholder: 'About us...',
+  tabsize: 2,
+  height: 120,
+  fontNames: ['Montserrat'],
+  toolbar: [
+    ['style', ['style']],
+    ['font', ['bold', 'underline', 'clear']],
+    ['color', ['color']],
+    ['para', ['ul', 'ol', 'paragraph']],
+    ['insert', ['link']],
+  ],
+  callbacks: {
+    onPaste: function (e) {
+     // Get the pasted content as plain text
+     var pastedText = (e.originalEvent || e).clipboardData.getData('text/plain');
+
+    // Convert the pasted content to HTML with the desired font style
+    var convertedHtml = '<span style="font-family: Poppins, sans-serif;">' + pastedText + '</span>';
+
+    // Insert the converted content into the editor
+    $(this).summernote('pasteHTML', convertedHtml);
+
+    // Prevent the default paste behavior
+    e.preventDefault();
+    }
+  }
+});
+
+
+//
+function initializeSelect(selectId, inputId, outputId) {
+    const selectElement = document.getElementById(selectId);
+    const inputField = document.getElementById(inputId);
+    const outputList = document.getElementById(outputId);
+
+
+    function updateInputField() {
+        console.log('works');
+        const selectedOptions = Array.from(selectElement.selectedOptions).map(option => option.value);
+        const existingValues = inputField.value.split(',').map(value => value.trim());
+        const uniqueValues = [...new Set([...existingValues, ...selectedOptions])];
+        inputField.value = uniqueValues.filter(Boolean).join(', ');
+        updateOutputList(uniqueValues);
+    }
+
+    function updateOutputList(values) {
+        outputList.innerHTML = '';
+
+        values.forEach(value => {
+            const trimmedValue = value.trim();
+
+            if (trimmedValue !== '') {
+                const listItem = document.createElement('div');
+                listItem.textContent = trimmedValue;
+
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.addEventListener('click', () => {
+                    removeItem(trimmedValue);
+                    listItem.remove();
+                });
+
+                listItem.appendChild(deleteButton);
+                outputList.appendChild(listItem);
+            }
+        });
+    }
+
+    function removeItem(value) {
+        const existingValues = inputField.value.split(',').map(val => val.trim());
+        const updatedValues = existingValues.filter(val => val !== value);
+        inputField.value = updatedValues.join(', ');
+        updateOutputList(updatedValues);
+
+        // Set the selectId to a default option
+        selectElement.selectedIndex = 0;
+    }
+
+    selectElement.addEventListener('change', updateInputField);
+}
+
+// Example usage
+initializeSelect('region', 'selectedRegions', 'outputRegionsList');
+initializeSelect('country', 'selectedCountries', 'outputCountriesList');
+initializeSelect('continent', 'selectedContinents', 'outputContinentsList');
 </script>

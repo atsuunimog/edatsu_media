@@ -26,8 +26,8 @@ use Illuminate\Support\Str;
 
 Route::get('/', [App::class, 'displayOpp']);
 Route::get('/events', [App::class, 'displayEvents']);
-Route::get('/feeds', [FeedsController::class, 'displayFeeds'])->name("find.feeds");
-// Route::post('/feeds', [FeedsController::class, 'getCurrentFeeds']);
+Route::get('/feeds', [FeedsController::class, 'fetchFeeds'])->name("find.feeds");
+Route::get('/news-feed', [FeedsController::class, 'displayFeeds'])->name("daily.feeds");
 Route::get('op/{id}/{title}', [App::class, 'readOpportunity'])->name('read.blog');
 Route::get('ev/{id}/{title}', [App::class, 'readEvent'])->name('read.ev');
 
