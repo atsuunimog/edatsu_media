@@ -21,9 +21,14 @@ class App extends Controller
     }
 
     //display all opportunites
-    function displayOpp(){
+    function displayOpp(Request $request){
+        return view("welcome");
+    }
+
+      //display all opportunites
+      function getOppFeed(Request $request){
         $opp_posts = Oppty::where('deleted', 0)->orderByDesc('id')->paginate(10);
-        return view("welcome", ["opp_posts" => $opp_posts]);
+        return response()->json($opp_posts);
     }
 
     //display all events

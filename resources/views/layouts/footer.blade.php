@@ -2,10 +2,10 @@
 <div class="row bg-white mt-5">
     <div class="col-sm-12 text-center">
         <!--list-->
-        <div class="pt-3 px-3 border-top">
+        <div class="py-2 px-3 border-top">
 
-        <h1 class='fw-bold'>Follow Us</h1>
-        <p class=' m-0 p-0'>Follow our social media page to stay connected</p>
+        <h1 class='fw-bold mb-3'>Follow Us</h1>
+        <p class=' mb-2 p-0'>Follow our social media page to stay connected</p>
         
         <ul class="share-icons m-0 p-0">
             <li>

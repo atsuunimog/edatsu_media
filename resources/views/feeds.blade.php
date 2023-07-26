@@ -9,7 +9,7 @@
             <!--logo-->
            <h1 class='fw-bold'>Daily News Feed</h1>
            <p class=' m-0 text-secondary p-0'>
-            Stay Up-to-Date with the Latest Tech News!
+            Stay Up-to-Date with the Latest Tech and Business News!
           </p>
         </div>  
     </div>
@@ -27,7 +27,7 @@
 
             <li class="list-inline-item"><a href='{{url('/')}}' 
                 class='text-decoration-none btn  btn-gray border-0 fs-9 px-4  py-2 shadow-sm mb-2
-                {{(url()->current() == $protocol.$_SERVER['HTTP_HOST'])? 'bg-green' : 'bg-gray'}}'>Tech Opportunites</a>
+                {{(url()->current() == $protocol.$_SERVER['HTTP_HOST'])? 'bg-green' : 'bg-gray'}}'>Opportunites</a>
             </li>
 
             <li class="list-inline-item ">
@@ -68,17 +68,30 @@ Select News Channels
   <div class="col-sm-9">
     <select class="form-select py-3 mb-3" name="feeder" aria-label="Select News">
       <option selected value='' class='py-3'>All Channnels</option>
-      {{-- <option value="https://disrupt-africa.com/feed/">Disrupt Africa</option> --}}
-      <option value="https://techpoint.africa/feed/">
-        Techpoint Africa - Nigeria
-      </option>
-      <option value="https://techcabal.com/feed/">TechCabal - Nigeria</option>
-      <option value="https://technext24.com/feed/">Tech Next - Nigeria</option>
-      <option value=" https://www.techcityng.com/feed/">Tech City - Nigeria</option>
-      <option value="https://ventureburn.com/feed/">Venture Burn - SouthAfrica</option>
-      <option value="https://cointelegraph.com/rss">Coin Telegraph - USA</option>
-      <option value="https://www.coindesk.com/arc/outboundfeeds/rss/">Coin Desk - USA</option>
-      <option value="https://techcrunch.com/feed/">Tech Crunch - USA</option>
+      <option value="https://techpoint.africa/feed/">Techpoint Africa</option>
+      <option value="https://techcabal.com/feed/">TechCabal</option>
+      <option value="https://technext24.com/feed/">Tech Next</option>
+      <option value="https://www.techcityng.com/feed/">Tech City</option>
+      <option value="https://www.benjamindada.com/rss/">Benjamindada</option>
+      <option value="https://nairametrics.com/feed/">Nairametrics</option>
+      <option value="https://businessday.ng/feed/">Business Day</option>
+      <option value="https://techmoran.com/feed/">Tech Moran</option>
+      <option value="https://www.itnewsafrica.com/feed/">IT News Africa</option>
+      <option value="https://ventureburn.com/feed/">Venture Burn</option>
+      <option value="https://africa.businessinsider.com/rss">Business Insider Africa</option>
+      <option value="https://www.appsafrica.com/feed/">AppsAfrica</option>
+      <option value="https://technovagh.com/feed/">TechNova</option>
+      <option value="https://kenyanwallstreet.com/feed/">Kenya Wallstreet</option>
+      <option value="https://www.paymentsdive.com/feeds/news/">Payments Dive</option>
+      <option value="https://techcrunch.com/feed/">Tech Crunch</option>
+      <option value="https://www.wired.com/feed/">Wired</option>
+      <option value="https://www.zdnet.com/news/rss.xml">ZDNet</option>
+      <option value="https://cointelegraph.com/rss">Coin Telegraph</option>
+      <option value="https://www.coindesk.com/arc/outboundfeeds/rss/">Coin Desk</option>
+
+
+      {{-- <option value="https://www.opportunitiesforafricans.com/feed/">Opportunities Africa</option>
+      <option value="https://opportunitydesk.org/feed/">Opportunity Desk</option> --}}
     </select>
   </div>
   <div class="col-sm-3">
