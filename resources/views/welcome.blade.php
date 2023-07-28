@@ -67,11 +67,11 @@
     <div class="col-sm-6 col-12">
 
     <!--news filter-->
-        <form class="" method="GET" id="search_keyword">
+        <form class="" method="GET" id="search_keyword" onsubmit='submitSearchQuery()'>
             <div class="row">
                 <div class="col-sm-9 col-12">
                     <div class='mb-3'>
-                    <input type='text' class="form-control py-3 fs-9 text-secondary" name="keyword" placeholder="Search Keywords" id="keyword">
+                    <input type='text' class="form-control py-3 fs-9 text-secondary" name="search_keyword" placeholder="Search Keywords" id="keyword">
                     </div>
                 </div>
                 <div class="col-sm-3 col-12">
@@ -83,7 +83,7 @@
 
             <div  class="py-3 px-3 border mb-3 bg-white rounded d-flex justify-content-between">
                 <span class="fs-9 text-dark d-block">
-                    Use filters to improve search
+                Use filters to improve search
                 </span>
                 <span class="material-symbols-outlined cursor d-block align-middle" 
                 style='cursor:pointer' id="filter-toggle" onclick="toggleContent()">
@@ -100,15 +100,14 @@
             </span>
             <div class="row">
                 <div class="col-sm-6">
-                    <select class="form-select py-3 mb-3 text-secondary fs-9" name="opp_status" aria-label="Opportunity Status">
+                    {{-- <select class="form-select py-3 mb-3 text-secondary fs-9" name="opp_status" aria-label="Opportunity Status">
                         <option selected value=''>Select Status</option>
                         <option value='active'>Active</option>
-                        <option value='expired'>Expired</option>
-                    </select>
+                    </select> --}}
                 </div>
 
                 <div class="col-sm-6">
-                    <select class="form-select py-3 mb-3 text-secondary fs-9" id="region" name="feeder" aria-label="Select News">
+                    <select class="form-select py-3 mb-3 text-secondary fs-9" id="region" name="region" aria-label="Select News">
                         <option value="">Select Region</option>
                         <option value="northern_africa">Northern Africa</option>
                         <option value="eastern_africa">Eastern Africa</option>
@@ -149,7 +148,7 @@
 
             <div class="row">
                 <div class="col-sm-6">
-                    <select class="form-select py-3 mb-3 text-secondary fs-9" name="feeder" aria-label="Select News">
+                    <select class="form-select py-3 mb-3 text-secondary fs-9" name="month" aria-label="Select News">
                         <option selected value="">Select Month</option>
                         <option value="january">January</option>
                         <option value="february">February</option>
@@ -167,7 +166,7 @@
                 </div>
 
                 <div class="col-sm-6">
-                    <select class="form-select py-3 mb-3 text-secondary fs-9" name="feeder" aria-label="Select News">
+                    <select class="form-select py-3 mb-3 text-secondary fs-9" name="year" aria-label="Select News">
                         <option value="">Year</option>
                         @php
                             $currentYear = date("Y");
@@ -358,8 +357,44 @@ return `<li class=""><span class='data-labels fs-9 fw-bold'>${titleCasedData}</s
 return '';
 }
 
+/**
+ * Submit search Query
+    */
 
+function submitSearchQuery(){
+   document.getElementById("pagination").innerHTML = "";
+   event.preventDefault();
+   let search_form = document.getElementById("search_keyword");
+   let form_data = new FormData(search_form);
 
+    // Create a URLSearchParams object and append the FormData entries
+  const urlParams = new URLSearchParams();
+  for (const [key, value] of form_data.entries()) {
+    urlParams.append(key, value);
+  }
+
+  // Construct the URL with the parameters
+  const url = `search-opportunities?${urlParams.toString()}`
+
+   fetch(url).then((r)=> {
+        document.querySelector('#opportunity-feeds').innerHTML = '';
+        // console.log(r);
+        return r.json();
+    })
+    .then((d)=>{
+        // console.log(d);
+         if(d.total > 0){
+            /**display pagination**/
+            displayPagination(d, "#pagination");
+            /**display profile**/
+            displayProfile(d,"#opportunity-feeds");   
+         }else{
+            document.getElementById("pagination").innerHTML = "<h4 class='fw-bold text-center my-5'>Oops... No content found!</h4>";
+         }
+    })
+    .catch((e)=> console.log(e));
+
+}
 
 /**Display profile**/
 function displayProfile(d, elem){
@@ -466,11 +501,12 @@ function toggleContent() {
   var element = document.getElementById("filter-toggle");
   var toggle_btn = document.getElementById("filter-panel");
   toggle_btn.classList.toggle('d-none');
-  if (element.innerHTML === "toggle_off") {
-    console.log('toggle-on');
+  console.log(element.innerHTML);
+  if (element.innerHTML.trim() === "toggle_off") {
+    // console.log('toggle-on');
     element.innerHTML = "toggle_on";
   } else {
-    console.log('toggle-off')
+    // console.log('toggle-off')
     element.innerHTML = "toggle_off";
   }
 }

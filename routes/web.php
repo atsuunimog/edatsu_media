@@ -31,6 +31,7 @@ Route::get('/feeds', [FeedsController::class, 'fetchFeeds'])->name("find.feeds")
 Route::get('/news-feed', [FeedsController::class, 'displayFeeds'])->name("daily.feeds");
 Route::get('op/{id}/{title}', [App::class, 'readOpportunity'])->name('read.blog');
 Route::get('ev/{id}/{title}', [App::class, 'readEvent'])->name('read.ev');
+Route::get('/search-opportunities', [App::class, 'searchOpportunities']);
 
 Route::get('/dashboard', [Dashboard::class, "accessControl"]);
 
