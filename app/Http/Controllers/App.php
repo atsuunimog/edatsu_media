@@ -27,7 +27,7 @@ class App extends Controller
     }
 
       //display all opportunites
-      function getOppFeed(Request $request){
+    function getOppFeed(Request $request){
         $opp_posts = Oppty::where('deleted', 0)
         ->orderByRaw('ABS(DATEDIFF(deadline, CURDATE()))')
         ->orderByDesc('id')
@@ -47,12 +47,13 @@ function searchOpportunities(Request $request)
 {
     // Get the input values from the request
     $searchKeyword = $request->input('search_keyword');
-    $oppStatus = $request->input('opp_status');
     $regions = $request->input('region');
     $countries = $request->input('country');
     $continents = $request->input('continent');
     $month = $request->input('month');
     $year = $request->input('year');
+    $eventStatus = $request->input('event_status');
+    $datePosted = $request->input('date_posted');
 
     // Convert searchKeyword to lowercase (case-insensitive search)
     $searchKeyword = strtolower($searchKeyword);
@@ -60,24 +61,26 @@ function searchOpportunities(Request $request)
     // Start building the query
     $query = Oppty::query();
 
+    // Check if all input search parameters are empty
+    $allParamsEmpty = empty($searchKeyword) && empty($regions) && empty($countries) && empty($continents)
+    && empty($month) && empty($year) && empty($eventStatus) && empty($datePosted);
+
+    // If all search parameters are empty, return the default pagination
+    if ($allParamsEmpty) {
+        $defaultPagination = Oppty::where('deleted', 0)
+            ->orderByDesc('id')
+            ->paginate(20);
+
+        return response()->json($defaultPagination);
+    }
+
     // Add conditions based on input values
     if ($searchKeyword) {
         $query->where(function ($query) use ($searchKeyword) {
             $query->whereRaw('LOWER(title) LIKE ?', ['%' . $searchKeyword . '%'])
-                ->orWhereRaw('LOWER(description) LIKE ?', ['%' . $searchKeyword . '%'])
-                // Add more fields as needed
-                // ->orWhereRaw('LOWER(field3) LIKE ?', ['%' . $searchKeyword . '%'])
-                // ...
-                ;
+                ->orWhereRaw('LOWER(description) LIKE ?', ['%' . $searchKeyword . '%']);
         });
     }
-
-    // if ($oppStatus === 'active') {
-    //     $today = Carbon::today();
-    //     $query->where('deadline', '>', $today);
-    // } elseif ($oppStatus) {
-    //     $query->where('opp_status', $oppStatus);
-    // }
 
     if ($regions) {
         $query->where(function ($query) use ($regions) {
@@ -115,11 +118,26 @@ function searchOpportunities(Request $request)
         $query->whereYear('created_at', $year);
     }
 
+
+    if ($eventStatus === 'on_going') {
+        $query->whereDate('deadline', '>=', now()); // Assuming 'deadline' is the field that represents the event deadline
+    }
+
+
+    if ($datePosted === 'one_day') {
+        $query->whereDate('created_at', '>=', now()->subDay());
+    } elseif ($datePosted === 'one_week') {
+        $query->whereDate('created_at', '>=', now()->subWeek());
+    } elseif ($datePosted === 'two_weeks') {
+        $query->whereDate('created_at', '>=', now()->subWeeks(2));
+    } elseif ($datePosted === 'one_month') {
+        $query->whereDate('created_at', '>=', now()->subMonth());
+    }
+
     // Execute the query and get the results
     $opp_filter = $query->where('deleted', 0)
-        ->orderByRaw('ABS(DATEDIFF(deadline, CURDATE()))')
-        ->orderByDesc('id')
-        ->paginate(10);
+    ->orderByDesc('id')
+    ->paginate(20)->withQueryString();
 
     return response()->json($opp_filter);
 }

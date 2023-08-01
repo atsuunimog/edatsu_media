@@ -33,7 +33,10 @@ Route::get('op/{id}/{title}', [App::class, 'readOpportunity'])->name('read.blog'
 Route::get('ev/{id}/{title}', [App::class, 'readEvent'])->name('read.ev');
 Route::get('/search-opportunities', [App::class, 'searchOpportunities']);
 
-Route::get('/dashboard', [Dashboard::class, "accessControl"]);
+Route::get('/subscribe', function(){return view('subscribe');});
+Route::get('/feedback',  function(){return view('feedback');});
+
+// Route::get('/dashboard', [Dashboard::class, "accessControl"]);
 
 /**admin routes */
 Route::middleware(['auth', 'role:admin'])->group(function(){

@@ -1,61 +1,78 @@
 body{
     /* font-family: 'Montserrat', sans-serif; */
     font-family: 'Poppins', sans-serif;
-    background-color:#F8F9FA;
+    /* background-color:#F8F9FA; */
     color:#252422 !important;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
 }
+
 .header, .footer{
     background-color:#252422;
     color:#F8F9FA;
 }
-.bg-green{
+
+ul.menu-list li{
+   border-right:1px solid gray;
+}
+ul.menu-list li:nth-child(3){
+    border-right:0px;
+ }
+.text-orange{color:#FB5607;}
+.text-light-orange{color:#f4a261;}
+/* .bg-green{
     background-color:#FB5607;
     
 }
 .bg-gray{
     background-color:#252422;
     color:#F8F9FA;
-}
+} */
 
 .link-color{
     color:#457b9d;
 }
 
+/* 
 .btn-green{
     background-color:#eb5e28 !important;
     color:#F8F9FA !important;
     transition:.5s;
-}
+} */
 
-.btn-green:hover{
+/* .btn-green:hover{
     background-color:#ff6b35 !important;
     color:#F8F9FA !important;
     transition:.5s;
-}
+} */
 
-.btn-gray{
+/* .btn-gray{
     background-color:#252422!important;
     color:#F8F9FA !important;
     transition:.5s;
-}
+} */
 
-.btn-gray:hover{
+/* .btn-gray:hover{
     background-color:#403d39 !important;
     color:#F8F9FA !important;
     transition:.5s;
-}
+} */
 
-.btn-orange{
+/* .btn-orange{
     background-color:#FB5607;
     color:#F8F9FA !important;
     transition:.5s;
-}
+} */
 
-.btn-orange:hover{
+/* .btn-orange:hover{
     background-color:#eb5e28;
     color:#F8F9FA !important;
     transition:.5s;
-}
+} */
 
 .feed-panel{background-color:#fff;}
 
@@ -72,7 +89,11 @@ ul.share-icons > li{
 .text-gray{color:#252422 !important;}
 
 .data-labels{
-    font-size:.9em;
+    background-color:#F2F2F2;
+   font-size:.8em;
+   padding:3px 10px;
+   border-radius:6px;
+   /* border:1px solid gray; */
 }
 
 .share-panel{
@@ -80,6 +101,7 @@ ul.share-icons > li{
     background-color:white;
     /* top:-270px; */
     top:-130px;
+    left:-50px;
     padding:15px;
 }
 
@@ -87,6 +109,7 @@ ul.share-icons > li{
 .share-panel li{margin:13px;}
 
 .fs-9{font-size:.9em;}
+.fs-8{font-size:.8em;}
 
 ul.label-list li{
     display:inline-block !important;
@@ -98,4 +121,14 @@ ul.label-list li{
 ul.label-list{
     padding:0px;
     display:block !important;
+}
+
+.fixed-footer-bar{
+    background-color:#252422;
+    color:#F8F9FA;
+    position:fixed;
+    bottom:15px; 
+    padding:15px;
+    left:15px; 
+    right:15px;
 }

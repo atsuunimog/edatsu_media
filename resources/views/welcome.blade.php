@@ -7,60 +7,28 @@
             <img src="{{ asset('img/logo/trans/logo_trans_1.png')}}" width="90" class="img-fluid" alt="logo">
             </a>
             <!--logo-->
-            <h1 class='fw-bold'>Opportunities</h1>
-            <p class=' m-0 text-secondary'>Discover the Latest Tech & Business Financing Opportunities in Africa</p>
+            <h1 class='fw-bold mb-3'>Opportunities</h1>
+            <p class=''>Discover the Latest Tech & Business Financing Opportunities in Africa</p>
         </div>  
     </div>
 </div>
 
-<div class="row">
-    <div class="col-sm-12">
-        <ul class='list-inline m-0 py-3'>
-            <?php $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';?>
 
-            <li class="list-inline-item"><a href='{{url('news-feed')}}' 
-                class='text-decoration-none btn fs-9  btn-gray border-0 px-4 py-2 shadow-sm mb-2'
-                {{(url()->current() == $protocol.$_SERVER['HTTP_HOST'].'/news-feed')? 'bg-green' : 'bg-gray'}}>News Feed</a>
-            </li>
-
-            <li class="list-inline-item"><a href='{{url('/')}}' 
-                class='text-decoration-none fs-9 bprder-0 btn btn-green border-0 px-4  text-light py-2 shadow-sm mb-2'
-                {{(url()->current() == $protocol.$_SERVER['HTTP_HOST'])? 'bg-green' : 'bg-gray'}}>Opportunites</a>
-            </li>
-
-            <li class="list-inline-item "><a href='{{url('events')}}' 
-                class='text-decoration-none btn fs-9 btn-gray border-0 px-4 py-2 shadow-sm mb-2
-                {{(url()->current() == $protocol.$_SERVER['HTTP_HOST'].'/events')? 'bg-green' : 'bg-gray'}}'>Tech Events
-            </a></li>
-
-            <li class="list-inline-item">
-                    @if (isset(Auth::user()->role))
-                    <a href="{{ url('/dashboard') }}" class="text-decoration-none">Dashboard</a>
-                @else
-                    @auth
-                    <a href="{{ route('login') }}" class="text-decoration-none">Login</a>
-                    @endauth
-                @endif
-        </li>
-        </ul>
-    </div>
-</div>
+@include('components/custom_nav')
 
 <!--body-->
 <div class="row">
     <div class="col-sm-3 col-12">
-        <div class="py-3 px-3 bg-white border rounded mb-3">
+
+        {{-- <div class="py-3 px-3 bg-white border rounded mb-3">
             <h5 class="fw-bold m-0 mb-3">
                 <span class="material-symbols-outlined align-middle ">
                     local_fire_department
                 </span>
                 Trending 
             </h5>
-            <p>Top trending opportunites</p>
-            <ul class="list-unstyled">
-                {{-- <li>Trending opportunites..</li> --}}
-            </ul>
-        </div>
+            <p class="fs-9">Top trending opportunites</p>
+        </div> --}}
     </div>
 
 
@@ -76,7 +44,7 @@
                 </div>
                 <div class="col-sm-3 col-12">
                     <div class='mb-3'>
-                    <button class="text-decoration-none btn btn-gray border-0 px-4 py-3 shadow-sm w-100">Search</button>
+                    <button class="text-decoration-none btn btn-dark border-0 px-4 py-3 shadow-sm w-100">Search</button>
                     </div>
                 </div>
             </div>
@@ -99,13 +67,23 @@
                 All search filter values are optional
             </span>
             <div class="row">
-                <div class="col-sm-6">
-                    {{-- <select class="form-select py-3 mb-3 text-secondary fs-9" name="opp_status" aria-label="Opportunity Status">
-                        <option selected value=''>Select Status</option>
-                        <option value='active'>Active</option>
-                    </select> --}}
+                <div class="col-sm-12">
+                    <select class="form-select py-3 mb-3 text-secondary fs-9" id="event_status" name="event_status"  aria-label="Select News">
+                        <option value="">All Opportunites</option>
+                        <option value="on_going">Ongoing Opportunites</option>
+                    </select>
                 </div>
-
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <select class="form-select py-3 mb-3 text-secondary fs-9" id="date_posted" name="date_posted" aria-label="Select News">
+                        <option value="">Date Posted</option>
+                        <option value="one_day">24 hours Ago</option>
+                        <option value="one_week">1 Week Ago</option>
+                        <option value="two_weeks">2 Weeks Ago</option>
+                        <option value="one_month">1 Month Ago</option>
+                    </select>
+                </div>
                 <div class="col-sm-6">
                     <select class="form-select py-3 mb-3 text-secondary fs-9" id="region" name="region" aria-label="Select News">
                         <option value="">Select Region</option>
@@ -177,13 +155,25 @@
                     </select>
                 </div>
             </div>
+            <button class="text-decoration-none btn btn-dark border-0 px-4 py-3 shadow-sm w-100">Search</button>
             </div>
         </form>
         <!--news filter-->
+
+        {{-- <div class="row">
+            <div class='col-sm-12'>
+                <div class="text-center">
+                    <button class="btn btn-white bg-white fs-9  py-3 px-4 border mb-3" onclick='alert()'>Refresh Feeds
+                    </button>
+                </div>
+            </div>
+        </div> --}}
         
         <!--main content-->
         <div class="row">
             <div class="col-sm-12">
+                <span id="search-result"></span>
+                <span id="filter-entries"></span>
                 <div id="opportunity-feeds"></div>
                 <div id="pagination"></div>
             </div>
@@ -193,12 +183,12 @@
     <div class="col-sm-3 col-12">
 
     <!--aside-->
-    <div class="px-3 py-3 border rounded mb-3 bg-white">
+    {{-- <div class="px-3 py-3 border rounded mb-3 bg-white">
         <small class="text-secondary d-block mb-3">Advertisement</small>
         <a href="https://kol.jumia.com/api/click/link/d85c6dd6-5eec-47e9-b103-577be07cf3f6/0c7c436a-7891-435c-a9fc-3881f7125b11">
         <img src="{{asset('img/ads_img/oraimo_stores.png')}}" width="100%" class='img-fluid' alt="oraimo">
         </a>
-    </div>
+    </div> --}}
     <!--aside-->
       
     <!--aside-->
@@ -210,7 +200,7 @@
         <!--logo-->
         <h5 class='fw-bold m-0 mb-3'>Submit Opportunities</h5>
         <p class='fs-9 text-secondary'>
-            Let's unlock opportunities together! Share helpful tech and entrepreneurial opportunities. It's free.
+         Submit tech and entrepreneurial opportunities. It's free.
         </p>
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSd-1Nwy3SUnsjvseBtjmQQSxTEobuMDu2_CXWPMDpxWz2n4mQ/viewform?usp=sf_link" 
         target="_blank"
@@ -234,17 +224,17 @@
     <small class="text-secondary d-block mb-3">Advertisement</small>
     <!--google ads-->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7365396698208751"
-       crossorigin="anonymous"></script>
-  <!-- edatsu side nav -->
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-7365396698208751"
-       data-ad-slot="6157758086"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>
-       (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
+    crossorigin="anonymous"></script>
+<!-- Square Ads -->
+<ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client="ca-pub-7365396698208751"
+    data-ad-slot="1848837203"
+    data-ad-format="auto"
+    data-full-width-responsive="true"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
     <!--google ads-->
   </div>
   <!--aside-->
@@ -252,24 +242,40 @@
     </div>
 </div>
 <!--body-->
+
+
+
+@include('components/fixed_mobile_menu')
+
+
 <script>
+
+function removeUnderscore(str) {
+  if (typeof str !== 'string') {
+  return str;
+  }
+  return str.replace(/_/g, ' ');
+}
+
+
+
 const imageSrc = '{{ asset('img/gif/cube_loader.gif') }}';
 
 //fetch api to access data 
 window.addEventListener("load", function(){
     document.querySelector('#opportunity-feeds').innerHTML = `<img src="${imageSrc}" class="img-fluid d-block mx-auto my-5" alt="loading..." />`;
-    fetch('/opp-feeds')
+    fetch('/search-opportunities')
     .then((r)=> {
         document.querySelector('#opportunity-feeds').innerHTML = '';
-        console.log(r);
         return r.json();
     })
     .then((d)=>{
-        console.log(d);
         /**display pagination**/
-        displayPagination(d, "#pagination");
+        if(d.total > 10){
+            displayPagination(d, "#pagination");
+        }
         /**display profile**/
-        displayProfile(d,"#opportunity-feeds");   
+        displayResult(d,"#opportunity-feeds");   
     })
     .catch((e)=> console.log(e));
 })
@@ -341,20 +347,77 @@ function getDaysLeft(deadline) {
   }
 }
 
-//append list items
-function generateListItem(data) {
-    if (data !== undefined && data !== null && typeof data === 'string' && data.trim() !== ''){
-// Convert 'data' to title case
-const titleCasedData = data
-    .replace(/_/g, ' ')
-    .replace(/\w\S*/g, (word) => word.charAt(0).toUpperCase() + word.slice(1));
+function generateListItems(data) {
+  // Check if 'data' is a non-empty string
+  if (typeof data === 'string' && data.trim() !== '') {
+    // Split 'data' by commas to get individual items
+    const items = data.split(',');
 
-// Create and return the list item as a string
-return `<li class=""><span class='data-labels fs-9 fw-bold'>${titleCasedData}</span></li>`;
+    // Generate list items for each item and join them together
+    const listItems = items
+      .map((item) => {
+        // Convert 'item' to title case
+        const titleCasedItem = item
+          .trim()
+          .replace(/_/g, ' ')
+          .replace(/\w\S*/g, (word) => word.charAt(0).toUpperCase() + word.slice(1));
+
+        // Create and return the list item as a string
+        return `<li class="list-item"><span class="data-labels">${titleCasedItem}</span></li>`;
+      })
+      .join('');
+
+    // Return the concatenated list items
+    return listItems;
+  } else {
+    // Return an empty string if 'data' is not a valid string
+    return '';
+  }
 }
 
-  // Return an empty string if there is no data
-return '';
+
+/**
+ * clear search filters
+ * */
+
+function clearFilters(){
+     // Clear the search keyword input
+     document.getElementById("keyword").value = "";
+
+    // Clear the selected option in each select element
+    var selectElements = document.getElementsByTagName("select");
+    for (var i = 0; i < selectElements.length; i++) {
+        selectElements[i].selectedIndex = 0;
+    }
+
+    // Clear the output divs for regions, countries, and continents
+    document.getElementById("outputRegionsList").innerHTML = "";
+    document.getElementById("outputCountriesList").innerHTML = "";
+    document.getElementById("outputContinentsList").innerHTML = "";
+
+    // Clear the hidden input fields for regions, countries, and continents
+    document.getElementById("selectedRegions").value = "";
+    document.getElementById("selectedCountries").value = "";
+    document.getElementById("selectedContinents").value = "";
+
+    document.getElementById('filter-entries').innerHTML = "";
+    document.getElementById("search-result").innerHTML = "";
+
+    document.querySelector('#opportunity-feeds').innerHTML = `<img src="${imageSrc}" class="img-fluid d-block mx-auto my-5" alt="loading..." />`;
+    fetch('/search-opportunities')
+    .then((r)=> {
+        document.querySelector('#opportunity-feeds').innerHTML = '';
+        return r.json();
+    })
+    .then((d)=>{
+        /**display pagination**/
+        if(d.total > 10){
+            displayPagination(d, "#pagination");
+        }
+        /**display profile**/
+        displayResult(d,"#opportunity-feeds");   
+    })
+    .catch((e)=> console.log(e));
 }
 
 /**
@@ -373,6 +436,27 @@ function submitSearchQuery(){
     urlParams.append(key, value);
   }
 
+// Check if any of the values in urlParams is not empty
+const nonEmptyValuesSet = new Set();
+for (const value of urlParams.values()) {
+  if (value !== "") {
+    nonEmptyValuesSet.add(value);
+  }
+}
+
+const nonEmptyValue = Array.from(nonEmptyValuesSet);
+document.getElementById('filter-entries').innerHTML = "";
+
+  //set output if search quries are set
+  if(nonEmptyValue.length > 0){
+    document.getElementById('filter-entries').innerHTML ="<span class='d-inline-block mb-3 me-1'>Filters: <span>";
+    for (let i = 0; i < nonEmptyValue.length; i++) {
+        const value = nonEmptyValue[i];
+        document.getElementById('filter-entries').innerHTML += `<span class='fs-9 d-inline-block me-3 text-secondary'> ${removeUnderscore(value)}</span>`;
+    }
+    document.getElementById('filter-entries').innerHTML += `<button class='btn btn-dark fs-8 mb-1' onclick='clearFilters()'>Clear filter</button>`;
+  }
+
   // Construct the URL with the parameters
   const url = `search-opportunities?${urlParams.toString()}`
 
@@ -382,22 +466,31 @@ function submitSearchQuery(){
         return r.json();
     })
     .then((d)=>{
-        // console.log(d);
-         if(d.total > 0){
+        console.log(d);
+        /**display profile**/
+
+        if(nonEmptyValue.length > 0){
+            document.getElementById("search-result").innerHTML =   `<span class='d-block fs-9 mb-3'>${d.total} result found</span>`;
+        }else{
+            document.getElementById("search-result").innerHTML = '';
+        }
+
+        displayResult(d,"#opportunity-feeds");   
+        if(d.total > 10){
             /**display pagination**/
-            displayPagination(d, "#pagination");
-            /**display profile**/
-            displayProfile(d,"#opportunity-feeds");   
-         }else{
+            displayPagination(d, "#pagination", url);
+        }else if(d.total > 0){
+            document.getElementById("pagination").innerHTML = "";
+        }else{
             document.getElementById("pagination").innerHTML = "<h4 class='fw-bold text-center my-5'>Oops... No content found!</h4>";
-         }
+        }
     })
     .catch((e)=> console.log(e));
 
 }
 
 /**Display profile**/
-function displayProfile(d, elem){
+function displayResult(d, elem){
     d.data.map((o)=>{
     document.querySelector(elem)
     .innerHTML += `<div class='col-sm-12 mb-3'>
@@ -413,13 +506,13 @@ function displayProfile(d, elem){
         </div>
         <ul class="mb-2 p-0 label-list">
         ${
-            generateListItem(o.continent)
+            generateListItems(o.continent)
         }
         ${
-            generateListItem(o.region)
+            generateListItems(o.region)
         }
         ${
-            generateListItem(o.country)
+            generateListItems(o.country)
         }
         </ul>
         ${
@@ -430,7 +523,7 @@ function displayProfile(d, elem){
         
         <div class="d-flex justify-content-end">
         <div class='position-relative'>
-        <div class="position-absolute share-panel border rounded shadow d-none">
+        <div class="position-absolute share-panel border rounded d-none">
             <ul class='m-0 p-0 fs-9'>
                 <li><a  class='text-decoration-none text-dark' href="https://api.whatsapp.com/send?text=${pageLink(o.title, o.id)}"
                 ><img width="30" src="{{asset('img/gif/icons8-whatsapp.gif')}}" alt="whatsapp" > Whatapp</a></li>
@@ -459,14 +552,15 @@ function displayProfile(d, elem){
 function displayPagination(d, elem){
 d.links.map((p)=>{
     // let active = "#FCCD29";
-    let active_bg = (p.active)? "#FB5607" : '';
+    let active_bg =  (p.active)? "#FB5607" : '';
     let active_txt = (p.active)? "#252422" : '';
-    if(p.url !== null){
+    console.log(p);
+        if(p.url !== null){
         document.querySelector(elem)
-        .innerHTML +=  ` <a id='${p.url}' class='btn btn-dark border-0 me-3 mb-3 px-3 fw-bold text-light shadow' 
+        .innerHTML +=  ` <a id='${p.url}' class='btn btn-dark border-0 me-2 mb-2 px-3  text-light' 
         style='background-color:${active_bg}; color:${active_txt}'
         onclick='callPagination(this.id);'>${p.label}</button> `;
-    }
+        }  
 })
 }
 
@@ -486,9 +580,10 @@ function callPagination(url){
         })
         .then((d)=>{
             /**display pagination**/
+            console.log(d);
             displayPagination(d, "#pagination");
             /**display profile**/
-            displayProfile(d,"#opportunity-feeds");   
+            displayResult(d,"#opportunity-feeds");   
         })
         .catch((e)=> console.log(e));
     }

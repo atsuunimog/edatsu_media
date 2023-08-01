@@ -2,38 +2,26 @@
     <div class="row">
         <div class="col-sm-12 text-center">
             <div class="py-5">
-               <h1 class='fw-bold'>Tech Opportunities</h1>
-               <p class='lead m-0 text-secondary'>
-                Discover the Latest Financing Opportunities in African Tech
+               <h1 class='fw-bold'>Event</h1>
+               <p class=''>
+               Event Details
                </p>
             </div>  
         </div>
     </div>
 
+    @include('components/custom_nav')
+
     <div class="row">
         <div class="col-sm-12">
             <ul class='list-inline m-0 py-3'>
-                <?php $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';?>
-                          
-                <li class="list-inline-item"><a href='{{url('events')}}' 
-                    class='text-decoration-none bprder-0 btn btn-green border-0 px-4  text-light py-2 shadow-sm mb-2
-                    {{(url()->current() == $protocol.$_SERVER['HTTP_HOST'])? 'bg-green' : 'bg-gray'}}'>Go Back</a>
-                </li>
-    
-                <li class="list-inline-item"><a href='{{url('/')}}' 
-                    class='text-decoration-none bprder-0 btn btn-gray border-0 px-4  text-light py-2 shadow-sm mb-2
-                    {{(url()->current() == $protocol.$_SERVER['HTTP_HOST'])? 'bg-green' : 'bg-gray'}}'>Tech Opportunites</a>
-                </li>
-    
                 <li class="list-inline-item">
-                    @if (isset(Auth::user()->role))
-                    <a href="{{ url('/dashboard') }}" class="text-decoration-none">Dashboard</a>
-                    @else
-                        @auth
-                        <a href="{{ route('login') }}" class="text-decoration-none">Login</a>
-                        @endauth
-                    @endif
-            </li>
+                    <button class="btn fs-9 text-primary fw-bold px-4" onclick="window.history.back();">
+                        <span class="material-symbols-outlined align-middle">
+                            undo
+                        </span>
+                        Go Back</button>
+                </li>
             </ul>
         </div>
     </div>
@@ -44,9 +32,16 @@
                 <!--main content-->
                 <h5 class='fw-bold m-0 p-0'>{{$ev_posts->title}}</h5>
 
-                <small class="mt-2 d-block text-sm text-secondary">Posted on: {{ date('D, M Y', strtotime($ev_posts->created_at))}}</small>
+                <span class="mt-2 d-block text-sm text-secondary fs-9">Posted on: {{ date('D, M Y', strtotime($ev_posts->created_at))}}</span>
                
                 <p class='my-3'>{!! $ev_posts->description !!}</p>
+
+                <p class='mb-3 fs-9 fw-bold' style='color:#457b9d'>
+                    <span class="material-symbols-outlined align-middle">
+                        pin_drop
+                    </span>
+                    {{$ev_posts->location}}
+                </p>
 
                 <ul class=" p-0 list-inline mb-3">
                     @isset( $ev_posts->region)
@@ -67,7 +62,7 @@
                 </ul>
 
                 @isset($ev_posts->event_date)
-                <p class='my-2 p-0 fw-bold text-dark'>Deadline: {{ date('d, M Y', strtotime($ev_posts->event_date))}}</p>
+                <p class='my-2 p-0 fw-bold text-dark'>Event Date: {{ date('d, M Y', strtotime($ev_posts->event_date))}}</p>
                 @endisset
 
                 @isset($ev_posts->event_date)
@@ -76,7 +71,7 @@
 
                 <div class="d-flex justify-content-end">
                     <div class='position-relative'>
-                        <div class="position-absolute share-panel border rounded shadow d-none">
+                        <div class="position-absolute share-panel border fs-9 rounded d-none">
                             <ul>
                                 <li><a  class='text-decoration-none text-dark' href="https://api.whatsapp.com/send?text={{route('read.blog', ['id'=> $ev_posts->id, 'title'=> Str::slug($ev_posts->title, '-')])}}"
                                 ><img width="30" src="{{asset('img/gif/icons8-whatsapp.gif')}}" alt="whatsapp" > Whatapp</a></li>
@@ -89,7 +84,7 @@
                                 <li><img width="30" src="{{asset('img/gif/icons8-facebook.gif')}}" alt="facebook" > Facebook</li> --}}
                             </ul>
                         </div>
-                        <button class='me-3 text-decoration-none bprder-0 btn fs-9 border px-4 py-2 shadow-sm'onClick="console.log(this.previousElementSibling.classList.toggle('d-none'))">
+                        <button class='me-3 text-decoration-none bprder-0 btn fs-9  px-4 py-2 'onClick="console.log(this.previousElementSibling.classList.toggle('d-none'))">
                             Share
                             <span class="material-symbols-outlined align-middle">
                                 share
@@ -98,7 +93,7 @@
                      </div>
 
                      <div class=''>
-                        <a class='text-decoration-none bprder-0 btn btn-gray border-0 px-4 py-2 shadow-sm' 
+                        <a class='text-decoration-none  btn  px-4 py-2 fw-bold text-primary fs-9 ' 
                         href='{{$ev_posts->source_url}}' target='_blank'>
                         Apply
                         </a>
