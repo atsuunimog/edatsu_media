@@ -15,7 +15,12 @@ class Dashboard extends Controller
             //display total number of events and opp posted
             $total_oppty = Oppty::all();
             $total_events = Events::all();
-            return view('admin.dashboard', ['total_events'=> count($total_events), 'total_oppty' => count($total_oppty)]);
+            return view('admin.dashboard', 
+                [
+                'total_events'=> count($total_events),
+                'total_oppty' => count($total_oppty)
+                ]
+            );
         }elseif(Auth::user()->role == 'subscriber'){
             return view('subscriber.dashboard');
         }

@@ -21,8 +21,20 @@
 
 <div class="row">
 <div class="col-sm-3">
-  <div class="px-3 py-3">
-  </div>
+  <!--subscribe-->
+    {{-- <div class="pb-3 d-none d-sm-block d-md-block d-lg-block">
+     <div class="subs-banner"></div>
+     <form>
+        <h5 class="fw-bold">Subscribe</h5>
+        <p class='fs-9 text-secondary mb-2'>🚀 Stay ahead in tech and business. Don't miss any opportunities! 💼🌐 #TechBusinessInsights </p>
+        <label for="full_name" class="form-label fs-9">Full Name</label>
+          <input type="text" id="full_name" class="form-control mb-2 fs-9" placeholder="Enter your fullname">
+        <label for="email" class="form-label fs-9">Email</label>
+          <input type="email" id="email" class="form-control mb-2 fs-9" placeholder="Enter your email">
+          <button class='btn btn-dark w-100 fs-9 py-3 mb-3'>Subscribe</button>
+     </form>
+    </div> --}}
+  <!--subscribe-->
 </div>
 
 <div class="col-sm-6">
@@ -34,6 +46,7 @@
   <div class="col-sm-9">
     <select class="form-select py-3 mb-3" name="feeder" aria-label="Select News">
       <option selected value='' class='py-3'>All Channnels</option>
+      <option value="https://disrupt-africa.com/feed/">Disrupt Africa</option>
       <option value="https://techpoint.africa/feed/">Techpoint Africa</option>
       <option value="https://techcabal.com/feed/">TechCabal</option>
       <option value="https://technext24.com/feed/">Tech Next</option>
@@ -70,7 +83,7 @@
   </span>
   </p>
   <p class='m-0 px-3'>
-  We have restricted the number of visible channel feeds at a time. Utilize the channel filter to discover more channels.
+  We have restricted the number of visible channel feeds at a time. Use the channel filter to find channels.
   </p>
 </div>
 
@@ -142,199 +155,7 @@
 @include('components/fixed_mobile_menu')
 
 <script>
-
   const imageSrc = '{{ asset('img/gif/cube_loader.gif') }}';
-
-  const showLoadingIndicator = () => {
-    const loadingMarkup = `<img src="${imageSrc}" class="img-fluid d-block mx-auto my-5" alt="loading..." />`;
-    document.querySelector("#news-feed").innerHTML = loadingMarkup;
-  };
-
-  /*reusable call*/
-  const fetchData = async (page = 1) => {
-    
-  try {
-    showLoadingIndicator();
-
-    const response = await fetch(`/feeds?page=${page}`);
-    const data = await response.json();
-
-    return data;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    throw error;
-  }
-};
-
-// Function to handle the fetched data and update the UI
-const handleData = (data, singleFeed, feeder_url = '') => {
-  const feeds = data.data; // Array of feed items
-
-  // Process and display the feed items
-  const newsFeedElement = document.querySelector("#news-feed");
-  newsFeedElement.innerHTML = '';
-
-  feeds.forEach(feed => {
-    // Display each feed item in the UI
-
-    const dateMarkup = feed.date ? `<p class="text-secondary fs-9 p-0 m-0 my-2">Posted on: ${feed.date}</p>` : '';
-    const feedMarkup = `
-      <div class="px-3 py-3 bg-white border rounded mb-3">
-        <h5 class="fw-bold">${feed.title}</h5>
-        ${dateMarkup}
-        <p class="p-0 m-0 my-2 fs-9 text-secondary d-block">
-        ${feed.description}
-        </p>
-        <p class="p-0 m-0 fw-bold link-color">
-          <span class="material-symbols-outlined align-middle">full_coverage</span>
-          ${feed.domain_name}
-        </p>
-        <div class="d-flex justify-content-end">
-          <div>
-            <a href="${feed.link}" target="_blank" class="text-decoration-none btn p-0 fs-9 px-3 py-1 mb-2">
-              Read more
-            </a>
-          </div>
-        </div>
-      </div>
-    `;
-
-    newsFeedElement.innerHTML += feedMarkup;
-  });
-
-  // Handle pagination links
-  const paginationLinks = data.links; // Pagination links
-  const currentPage = data.current_page; // Current page
-  const lastPage = data.last_page; // Last page
-
-  // Update the UI with pagination links
-  const paginationElement = document.querySelector("#pagination-container");
-  paginationElement.innerHTML = '';
-
-  console.log(currentPage);
-
-  let bg_color = "background-color:#252422; color:white;";
-
-  if(singleFeed == 0){
-    //gagination for all feeds
-    for (let i = 1; i <= lastPage; i++) {
-      bg_color = (currentPage === i) ? 'background-color:#FB5607; color:white;' : 'background-color:#252422; color:white;';
-      const pageLink = `<a  
-      class="pagination-link btn px-3  me-2  mb-2" style='${bg_color}' id='${i}' 
-      onClick="nextFeed(${i});">${i}</a>`;
-      paginationElement.innerHTML += pageLink;
-    }
-  }else{
-    //pagination for single feed
-    for (let i = 1; i <= lastPage; i++) {
-      bg_color = (currentPage === i) ? 'background-color:#FB5607; color:white;' : 'background-color:#252422; color:white;';
-      const pageLink = `<a  
-      class="pagination-link btn px-3 me-2  mb-2" style='${bg_color}' id='${i}' 
-      onClick="nextSingleFeed(${i}, '${feeder_url}')">${i}</a>`;
-      paginationElement.innerHTML += pageLink;
-    }
-  }
-
-
-};
-
-//Example usage: Fetch data for the first page
-const fetchAndHandleData = async (page = 1) => {
-  showLoadingIndicator();
-  try {
-    const data = await fetchData(page);
-    handleData(data, 0);
-  } catch (error) {
-    const errorMarkup = `
-      <div class="px-3 py-3 bg-white border rounded mb-3 text-center">
-        <h5 class="fw-bold">Oops! Something went wrong</h5>
-        <p class="text-secondary fs-9">Try refreshing your feeds or checking your internet connection</p>
-        <button class="btn btn-dark px-4 fw-bold" onClick='window.location.reload()'>Refresh Feed</button>
-      </div>
-    `;
-    document.querySelector("#news-feed").innerHTML = errorMarkup;
-  }
-};
-
-// Example usage: Fetch data for the first page
-fetchAndHandleData();
-
-
-// paginate to the next feed
-const nextFeed = async (page = 1) => {
-  showLoadingIndicator();
-  event.preventDefault();
-  try {
-    const data = await fetchData(page);
-    handleData(data, 0);
-  } catch (error) {
-    const errorMarkup = `
-      <div class="px-3 py-3 bg-white border rounded mb-3 text-center">
-        <h5 class="fw-bold">Oops! Something went wrong</h5>
-        <p class="text-secondary fs-9">Try refreshing your feeds or checking your internet connection</p>
-        <button class="btn btn-dark px-4 fw-bold" onClick='window.location.reload()'>Refresh Feed</button>
-      </div>
-    `;
-    document.querySelector("#news-feed").innerHTML = errorMarkup;
-  }
-};
-
-// paginate to the next feed
-const nextSingleFeed = async (page = 1, feeder_url) => {
-  showLoadingIndicator();
-  event.preventDefault();
-  try {
-    // const data = await fetchData(`/feeds?page=${page}&feeder=${feeder_url}`);
-   
-    const response = await fetch(`/feeds?page=${page}&feeder=${feeder_url}`);
-    const data = await response.json();
-    // Handle data 
-    handleData(data, 1, feeder_url);
-  } catch (error) {
-    const errorMarkup = `
-      <div class="px-3 py-3 bg-white border rounded mb-3 text-center">
-        <h5 class="fw-bold">Oops! Something went wrong</h5>
-        <p class="text-secondary fs-9">Try refreshing your feeds or checking your internet connection</p>
-        <button class="btn btn-dark px-4 fw-bold" onClick='window.location.reload()'>Refresh Feed</button>
-      </div>
-    `;
-    document.querySelector("#news-feed").innerHTML = errorMarkup;
-  }
-};
-
-/**
- * get single feed
- * */
-const fetchSingleFeed = async (page=1) => {
-  showLoadingIndicator();
-  event.preventDefault();
-  const selectElement = document.querySelector("select[name='feeder']");
-  const selectedValue = selectElement.value;
-  try {
-
-    const response = await fetch(`/feeds?page=${page}&feeder=${selectedValue}`);
-    const data = await response.json();
-    // Handle data 
-    if(selectedValue == ''){
-      handleData(data, 0, selectedValue);
-    }else{
-      handleData(data, 1, selectedValue);
-    }
-    // Handle the data as needed
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    const errorMarkup = `
-      <div class="px-3 py-3 bg-white border rounded mb-3 text-center">
-        <h5 class="fw-bold">Oops! Something went wrong</h5>
-        <p class="text-secondary fs-9">Try refreshing your feeds or checking your internet connection</p>
-        <button class="btn btn-dark px-4 fw-bold" onClick='window.location.reload()'>Refresh Feed</button>
-      </div>
-    `;
-    document.querySelector("#news-feed").innerHTML = errorMarkup;
-  }
-};
-
-
-
 </script>
+<script defer src='../js/minified-feeds.js'></script>
 </x-guest-layout>

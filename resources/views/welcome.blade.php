@@ -20,6 +20,21 @@
 <div class="row">
     <div class="col-sm-3 col-12">
 
+        <!--subscribe-->
+        {{-- <div class="pb-3 d-none d-sm-block d-md-block d-lg-block">
+            <div class="subs-banner"></div>
+            <form id="subscription-form">
+            <h5 class="fw-bold">Subscribe</h5>
+            <p class='fs-9 text-secondary mb-2'>🚀 Stay ahead in tech and business. Don't miss any opportunities! 💼🌐 #TechBusinessInsights </p>
+            <label for="full_name" class="form-label fs-9">Full Name</label>
+                <input type="text" id="full_name" class="form-control mb-2 fs-9" placeholder="Enter your fullname">
+            <label for="email" class="form-label fs-9">Email</label>
+                <input type="email" id="email" class="form-control mb-2 fs-9" placeholder="Enter your email">
+                <button class='btn btn-dark w-100 fs-9 py-3 mb-3'>Subscribe</button>
+            </form>
+        </div> --}}
+        <!--subscribe-->
+
         {{-- <div class="py-3 px-3 bg-white border rounded mb-3">
             <h5 class="fw-bold m-0 mb-3">
                 <span class="material-symbols-outlined align-middle ">
@@ -67,11 +82,19 @@
                 All search filter values are optional
             </span>
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <select class="form-select py-3 mb-3 text-secondary fs-9" id="event_status" name="event_status"  aria-label="Select News">
                         <option value="">All Opportunites</option>
                         <option value="on_going">Ongoing Opportunites</option>
+                        <option value="up_coming">Upcoming Opportunites</option>
                     </select>
+                </div>
+                <div class="col-sm-6">
+                    <select class="form-select py-3 mb-3 text-secondary fs-9" id="category">
+                        @include('components.categorylist')
+                    </select>
+                    <input type="hidden" name="category" id="selectedCategories" readonly>
+                    <div id="outputCategoryList"></div>
                 </div>
             </div>
             <div class="row">
@@ -109,7 +132,7 @@
 
                 <div class="col-sm-6">
                     <select class="form-select py-3 mb-3 text-secondary fs-9" id="continent" >
-                        <option selected="selected" value="">Select Continent</option>
+                        <option value="">Select Continent</option>
                         <option value="global">Global</option>
                         <option value="africa">Africa</option>
                         <option value="antarctica">Antarctica</option>
@@ -127,7 +150,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <select class="form-select py-3 mb-3 text-secondary fs-9" name="month" aria-label="Select News">
-                        <option selected value="">Select Month</option>
+                        <option value="">Select Month</option>
                         <option value="january">January</option>
                         <option value="february">February</option>
                         <option value="march">March</option>
@@ -318,10 +341,16 @@ function truncateText(text, limit) {
 
 //return page url 
 function pageLink(title, id) {
+  // Convert title to lowercase and replace spaces with hyphens
+  const formattedTitle = title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-zA-Z0-9'-]/g, '').replace(/--+/g, '-').replace(/^-|-$/g, '').trim();
+  
   // Implement the logic to generate the post link
-  let link = `op/${id}/${encodeURIComponent(title)}`;
+  let link = `op/${id}/${encodeURIComponent(formattedTitle)}`;
   return link;
 }
+
+
+
 
 function getDaysLeft(deadline) {
   const deadlineTimestamp = new Date(deadline).getTime();
@@ -438,6 +467,7 @@ function submitSearchQuery(){
 
 // Check if any of the values in urlParams is not empty
 const nonEmptyValuesSet = new Set();
+
 for (const value of urlParams.values()) {
   if (value !== "") {
     nonEmptyValuesSet.add(value);
@@ -513,6 +543,9 @@ function displayResult(d, elem){
         }
         ${
             generateListItems(o.country)
+        }
+        ${
+            generateListItems(o.category)
         }
         </ul>
         ${
@@ -631,10 +664,12 @@ function initializeSelect(selectId, inputId, outputId) {
 
             if (trimmedValue !== '') {
                 const listItem = document.createElement('div');
-                listItem.textContent = trimmedValue;
+                listItem.classList.add('filter-label');
+                listItem.textContent = trimmedValue.replaceAll('_', ' ');
 
                 const deleteButton = document.createElement('button');
-                deleteButton.textContent = 'Delete';
+                deleteButton.classList.add('filter-label-delete');
+                deleteButton.textContent = 'x';
                 deleteButton.addEventListener('click', () => {
                     removeItem(trimmedValue);
                     listItem.remove();
@@ -660,6 +695,7 @@ function initializeSelect(selectId, inputId, outputId) {
 }
 
 // Example usage
+initializeSelect('category', 'selectedCategories', 'outputCategoryList');
 initializeSelect('region', 'selectedRegions', 'outputRegionsList');
 initializeSelect('country', 'selectedCountries', 'outputCountriesList');
 initializeSelect('continent', 'selectedContinents', 'outputContinentsList');

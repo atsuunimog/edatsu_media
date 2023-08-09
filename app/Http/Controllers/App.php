@@ -48,6 +48,7 @@ function searchOpportunities(Request $request)
     // Get the input values from the request
     $searchKeyword = $request->input('search_keyword');
     $regions = $request->input('region');
+    $category = $request->input('category');
     $countries = $request->input('country');
     $continents = $request->input('continent');
     $month = $request->input('month');
@@ -63,7 +64,8 @@ function searchOpportunities(Request $request)
 
     // Check if all input search parameters are empty
     $allParamsEmpty = empty($searchKeyword) && empty($regions) && empty($countries) && empty($continents)
-    && empty($month) && empty($year) && empty($eventStatus) && empty($datePosted);
+    && empty($month) && empty($year) && empty($eventStatus) && empty($datePosted)
+    && empty($category);
 
     // If all search parameters are empty, return the default pagination
     if ($allParamsEmpty) {
@@ -96,6 +98,15 @@ function searchOpportunities(Request $request)
             $countriesArray = explode(',', $countries);
             foreach ($countriesArray as $country) {
                 $query->orWhere('country', 'LIKE', '%' . trim($country) . '%');
+            }
+        });
+    }
+
+    if ($category) {
+        $query->where(function ($query) use ($category) {
+            $categoryArray = explode(',', $category);
+            foreach ($categoryArray as $cat) {
+                $query->orWhere('category', 'LIKE', '%' . trim($cat) . '%');
             }
         });
     }

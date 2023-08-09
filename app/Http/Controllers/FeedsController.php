@@ -38,26 +38,16 @@ class FeedsController extends Controller
         if ($request->has("feeder") && $request->feeder !== null) {
             $url = $request->input("feeder");
             $feeds[] = $url;
-            Cache::forget('feeds_data'); // Clear the cached data
+            Cache::forget('feeds_data');
             $parsedUrl = parse_url($url);
         } else {
             $feeds = [
+                "https://disrupt-africa.com/feed/",
                 "https://techpoint.africa/feed/",
                 "https://techcabal.com/feed/",
                 "https://technext24.com/feed/",
                 "https://www.techcityng.com/feed/",
                 "https://www.benjamindada.com/rss/",
-                //"https://nairametrics.com/feed/",
-                //"https://businessday.ng/feed/",
-                //"https://techmoran.com/feed/",
-                //"https://www.itnewsafrica.com/feed/",
-                "https://ventureburn.com/feed/",
-                //"https://africa.businessinsider.com/rss",
-                "https://techcrunch.com/feed/",
-                //"https://www.wired.com/feed/",
-                //"https://www.zdnet.com/news/rss.xml",
-                //"https://cointelegraph.com/rss",
-                "https://www.coindesk.com/arc/outboundfeeds/rss/"
             ];
             Cache::forget('feeds_data'); // Clear the cached data
         }

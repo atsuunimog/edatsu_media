@@ -36,7 +36,8 @@ Route::get('/search-opportunities', [App::class, 'searchOpportunities']);
 Route::get('/subscribe', function(){return view('subscribe');});
 Route::get('/feedback',  function(){return view('feedback');});
 
-// Route::get('/dashboard', [Dashboard::class, "accessControl"]);
+/**Login access control */
+Route::get('/dashboard', [Dashboard::class, "accessControl"]);
 
 /**admin routes */
 Route::middleware(['auth', 'role:admin'])->group(function(){

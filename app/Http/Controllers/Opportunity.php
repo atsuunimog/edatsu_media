@@ -22,6 +22,7 @@ class Opportunity extends Controller
     }
 
     function store(Request $request){
+
         //capture values 
         $title = $request->title;
         $description = $request->description;
@@ -30,6 +31,7 @@ class Opportunity extends Controller
         $country = $request->country;
         $continent = $request->continent;  
         $deadline = $request->deadline;
+        $category = $request->category;
 
         //validate the data 
         $request->validate([
@@ -54,6 +56,7 @@ class Opportunity extends Controller
             'description'=> $description,
             'deadline'=> $request->deadline,
             'source_url' => $reference,
+            'category' => $category,
             'region'=> $region,
             'country'=> $country,
             'continent'=> $continent
@@ -68,11 +71,12 @@ class Opportunity extends Controller
         $title = $request->title;
         $description = $request->description;
         $reference = $request->reference;
+        $category = $request->category;
         $region = $request->region;
         $country = $request->country;  
         $continent = $request->continent;
         $deadline = $request->deadline;
-
+      
         //validate the data 
         $request->validate([
             'title' => ['required', 'max:191'],
@@ -99,6 +103,7 @@ class Opportunity extends Controller
             'description'=> $description,
             'deadline' => $request->deadline,
             'source_url' => $reference,
+            'category' => $category,
             'region'=> $region,
             'country'=> $country,
             'continent'=> $continent

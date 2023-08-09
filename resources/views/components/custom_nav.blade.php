@@ -1,6 +1,5 @@
-<div class="container d-none d-sm-block d-md-block d-lg-block">
-    <div class="row">
-        <div class="col-sm-12">
+<div class="row d-none d-sm-block d-md-block d-lg-block">
+        <div class="col-sm-12 text-center">
             <!--nav-->
             <ul class='menu-list mb-3 d-block'>
                 <li class="d-inline-block me-3 mb-3 pe-3">
@@ -13,6 +12,10 @@
 
                 <li class="d-inline-block me-3 mb-3 pe-3">
                     <a href="{{ url('events') }}" class="text-decoration-none {{ getHighlightClass('/events', 'text-orange fw-bold', 'text-secondary') }}">Events</a>
+                </li>
+
+                <li class="d-inline-block me-3 mb-3 pe-3">
+                    <a href="{{ url('subscribe') }}" class="text-decoration-none {{ getHighlightClass('/subscribe', 'text-orange fw-bold', 'text-secondary') }}">Subscribe</a>
                 </li>
 
                 <li class="d-inline-block me-3">
@@ -28,4 +31,4 @@
             <!--nav-->
         </div>
     </div><!-- Close the div tag for "row" -->
-</div><!-- Close the div tag for "container" -->
+

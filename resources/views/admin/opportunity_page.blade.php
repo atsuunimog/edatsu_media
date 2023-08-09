@@ -1,8 +1,8 @@
 <x-app-layout>
     <!--banner-->
-    <div class="px border row mb-3">
+    <div class="px border row">
         <div class="col-sm-12">
-            <div class="px-3 py-3">
+            <div class="px-3 py-5">
                 <h3 class="fw-bold text-center">Post Opportunities</h3>
             </div>
         </div>
@@ -20,14 +20,14 @@
             <!--content-->
                     <!--page alert notice-->
                     @if(isset($edits))
-                    <div class="alert alert-warning">
+                    <div class="alert alert-warning my-3">
                         <span class='d-block mb-2'>You're currently in edit mode</span>
                         <a href="{{route('admin.opp')}}" class="btn btn-dark fw-bold">Create new post</a>
                     </div>
                     @endif
 
                     <!--post form-->
-                    <div class="border px-3 py-3 rounded bg-white">
+                    <div class="px-3 pb-3 bg-white my-3">
                         @if($errors->any())
                                 @foreach($errors->all() as $err)
                                 <div class='alert alert-danger'>
@@ -42,7 +42,7 @@
                             </div>
                         @endif
 
-                        <h5 class='fw-bold mb-3'>Create Opportunites</h5>
+                        <h5 class='fw-bold mb-3'>Create Opportunities</h5>
                         <form 
                         @if(isset($edits))
                         action="{{route('admin.update.opp', ['id'=> $edits[0]->id])}}" 
@@ -52,99 +52,137 @@
                         method="POST">
                             @csrf
                             <div class="mb-3">
-                                <label class='fw-bold'>Title</label>
+                                <label class='mb-2'>Title</label>
                                 <input type="text" name="title" class="form-control" 
                                 placeholder="Enter title" value="{{ isset($edits[0]->title)? $edits[0]->title : old('title')}}">
                             </div>
 
                             <div class="mb-3">
-                                <label class='fw-bold'>Description</label>
+                                <label class=''>Description</label>
+                                <span class='d-block text-secondary mb-2 fs-9'>Provide detailed description for this opportunity</span>
                                 <textarea name="description" class='form-control' id="description" rows="3">{{ isset($edits[0]->description)? $edits[0]->description : old('description')}}</textarea>
                             </div>
 
                             <div class="mb-3">
-                                <label class='fw-bold'>Deadline</label>
-                                <input type="date" name="deadline" class="form-control" 
+                                <label class=''>Deadline</label>
+                                <span class='d-block text-secondary mb-2 fs-9'>Add a deadline for this opportunity *</span>
+                                <input type="date" name="deadline" class="form-control fs-9" 
                                 placeholder="Enter Deadline"  value="{{ isset($edits[0]->deadline)? $edits[0]->deadline : old('deadline')}}">
                             </div>
 
                             <div class="mb-3">
-                                <label class='fw-bold'>Reference URL</label>
+                                <label class=''>URL/Reference Link</label>
+                                <span class='d-block text-secondary mb-2 fs-9'>Provide a link to learn more or apply for this opportunity</span>
                                 <input type="text" name="reference" class="form-control" 
                                 placeholder="Enter source url"  value="{{ isset($edits[0]->source_url)? $edits[0]->source_url : old('reference')}}">
+                                {{-- <small class='my-1 d-block text-danger'>
+                                Optional in future: allow business to cerate events page to apply directly on the platform. Use a url shortner or 
+                                improve the url validation to accept querys
+                                </small> --}}
                             </div>
 
-                            <div class="mb-3">
-                                <label class='fw-bold'>Region - Optional</label>
-                                <select class="form-select" id="region">
-                                    {{-- onchange="updateInputField(this)" --}}
-                                    <option value="">Select Region--</option>
-                                    <option value="northern_africa">Northern Africa</option>
-                                    <option value="eastern_africa">Eastern Africa</option>
-                                    <option value="western_africa">Western  Africa</option>
-                                    <option value="central_africa">Central Africa</option>
-                                    <option value="southern_africa">Southern Africa</option>
-                                </select>
-                                <input type="text" name="region" id="selectedRegions" value="{{ isset($edits[0]->region)? $edits[0]->region : old('region')}}" readonly>
-                                <div id="outputRegionsList"></div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="mb-3">
+                                        <label class=''>Categories</label>
+                                        <span class='d-block text-secondary mb-2 fs-9'>Add categories</span>
+                                        <select class="form-select fs-9" id="category">
+                                            @include('components.categorylist')
+                                        </select>
+                                        <input type="hidden" name="category" id="selectedCategories" value="{{ isset($edits[0]->category)? $edits[0]->category : old('category')}}" readonly>
+                                        <div id="outputCategoryList"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mb-3">
+                                        <label class=''>Region</label>
+                                        <span class='d-block text-secondary mb-2 fs-9'>Select a region</span>
+                                        <select class="form-select fs-9" id="region">
+                                            <option value="">Select Region</option>
+                                            <option value="north_africa">North Africa</option>
+                                            <option value="west_africa">West Africa</option>
+                                            <option value="central_africa">Central Africa</option>
+                                            <option value="east_africa">East Africa</option>
+                                            <option value="southern_africa">Southern Africa</option>
+                                            <option value="sahel_region">Sahel Region</option>
+                                        </select>
+                                        <input type="hidden" name="region" id="selectedRegions" value="{{ isset($edits[0]->region)? $edits[0]->region : old('region')}}" readonly>
+                                        <div id="outputRegionsList"></div>
+                                    </div>
+                                </div>
                             </div>
-                            
-                            <div class="mb-3">
-                                <label class='fw-bold'>Country - Optional</label>
-                                <select class="form-select" id="country" >
-                                    @include('components.countrylist')
-                                </select>
-                                <input type="text" name="country" id="selectedCountries" value="{{ isset($edits[0]->country)? $edits[0]->country : old('country')}}" readonly>
-                                <div id="outputCountriesList"></div>
+                           
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="mb-3">
+                                        <label class=''>Country</label>
+                                        <span class='d-block text-secondary mb-2 fs-9'>Select a country</span>
+                                        <select class="form-select fs-9" id="country" >
+                                            @include('components.countrylist')
+                                        </select>
+                                        <input type="hidden" name="country" id="selectedCountries" value="{{ isset($edits[0]->country)? $edits[0]->country : old('country')}}" readonly>
+                                        <div id="outputCountriesList"></div>
+                                    </div>        
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mb-3">
+                                        <label class=''>Continent</label>
+                                        <span class='d-block text-secondary mb-2 fs-9'>Select a continent</span>
+                                        <select class="form-select fs-9" id="continent" >
+                                            <option selected="" value="global">Select Continent</option>
+                                            <option value="africa">Africa</option>
+                                            <option value="antarctica">Antarctica</option>
+                                            <option value="asia">Asia</option>
+                                            <option value="europe">Europe</option>
+                                            <option value="north_america">North America</option>
+                                            <option value="oceania">Oceania</option>
+                                            <option value="south_america">South America</option>
+                                        </select>
+                                        <input type="hidden" name="continent" id="selectedContinents" value="{{ isset($edits[0]->continent)? $edits[0]->continent : old('continent')}}" readonly>
+                                        <div id="outputContinentsList"></div>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="mb-3">
-                                <label class='fw-bold'>Continent - Optional</label>
-                                <select class="form-select" id="continent" >
-                                    <option selected="selected" value="global">Select Continent--</option>
-                                    <option value="africa">Africa</option>
-                                    <option value="antarctica">Antarctica</option>
-                                    <option value="asia">Asia</option>
-                                    <option value="europe">Europe</option>
-                                    <option value="north_america">North America</option>
-                                    <option value="australia">Australia (or Oceania/Australasia)</option>
-                                    <option value="south_america">South America</option>
-                                </select>
-                                <input type="text" name="continent" id="selectedContinents" value="{{ isset($edits[0]->continent)? $edits[0]->continent : old('continent')}}" readonly>
-                                <div id="outputContinentsList"></div>
-                            </div>
-
-                            <button class="btn btn-primary py-3 w-100 d-block">Create Opportunity</button>
+                            <button class="btn btn-dark py-3 w-100 d-block">Create Opportunity</button>
                         </form>
                     </div>
                     <!---post form-->
                 </div>
                 <div class="col-sm-5">
-                    <!--side menu-->
-                    <div class="px-3 py-3 bg-white rounded border">
+                    <!--search filter-->
+                    <form class="pt-3" method="GET" id="search_keyword" onsubmit='submitSearchQuery()'>
+                        <div class="row">
+                            <div class="col-sm-9 col-12">
+                                <div class='mb-3'>
+                                <input type='text' class="form-control py-3 fs-9 text-secondary" name="search_keyword" placeholder="Search Keywords" id="keyword">
+                                </div>
+                            </div>
+                            <div class="col-sm-3 col-12">
+                                <div class='mb-3'>
+                                <button class="text-decoration-none btn btn-dark border-0 px-4 py-3 shadow-sm w-100">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
                         <!--post content-->
                     <div class="row">
                         @foreach($opp_posts as $posts)
                             <div class='col-sm-12 mb-3'>
-                            <div class='px-3 py-3 border rounded'>
+                            <div class='px-3 pt-3 border rounded mb-3'>
                                 <p class='fw-bold m-0 p-0'>{{$posts->title}}</p>
-                                <p>{!! $posts->description !!}</p>
-                                
-                                <ul>
-                                    <li>{{$posts->region}}</li>
-                                    <li>{{$posts->country}}</li>
-                                    <li>{{$posts->continent}}</li>
-                                </ul>
-
-                                <a class='d-block text-decoration-none mb-3' 
+                
+                                <a class='d-block text-decoration-none fs-9 mb-3' 
                                 target="_blank"
                                 href='{{$posts->source_url}}'>{{$posts->source_url}}</a>
     
                                 <ul class='list-inline'>
-                                    <li class='list-inline-item'><a href='{{route('admin.edit.opp', ['id'=> $posts->id])}}'>Edit</a></li>
-                                    <li class='list-inline-item'><a href='{{route('admin.delete.opp', ['id'=> $posts->id])}}'>Delete</a></li>
+                                    <li class='list-inline-item'><a class='btn btn-dark fs-9  px-3 text-decoration-none' href='{{route('admin.edit.opp', ['id'=> $posts->id])}}'>Edit</a></li>
+                                    <li class='list-inline-item'><a class='btn btn-dark fs-9  px-3 text-decoration-none' href='{{route('admin.delete.opp', ['id'=> $posts->id])}}'>Delete</a></li>
+                                    <li class='list-inline-item'>views 0</li>
+                                    <li class='list-inline-item'>reach 0</li>
                                 </ul>
-                            </div>
                             </div>
                         @endforeach
     
@@ -246,6 +284,7 @@ function initializeSelect(selectId, inputId, outputId) {
 }
 
 // Example usage
+initializeSelect('category', 'selectedCategories', 'outputCategoryList');
 initializeSelect('region', 'selectedRegions', 'outputRegionsList');
 initializeSelect('country', 'selectedCountries', 'outputCountriesList');
 initializeSelect('continent', 'selectedContinents', 'outputContinentsList');

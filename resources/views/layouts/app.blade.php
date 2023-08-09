@@ -21,11 +21,13 @@
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
-        <title>Tech Opportunities, News, Events| Edatsu Media</title>
-        <meta name="description" content="Find the latest tech news, events, job opportunities, and company directory on edatsu media. Stay up-to-date with the latest trends and advancements in the tech industry.">
-        <meta name="keywords" content="tech opportunities, tech events, tech news, company directory, technology jobs, innovation, startups">
+        <title>Edatsu Media | Tech, Entrepreneurial Opportunities, News, and Events</title>
+        <meta name="description" content="Stay updated on the latest in technology, explore entrepreneurial opportunities, and stay informed with the latest news and events. Join us on an exciting journey at the forefront of innovation and business.">
+        <meta name="keywords" content="Tech media, Entrepreneurial opportunities, Tech news, Events updates, Business innovations, Technology trends, Startup ventures, Innovation events, Entrepreneurship news, Technology insights, Business networking, Startup resources, Tech updates, Entrepreneurial ecosystem, Business conferences">
         <meta name="robots" content="index, follow">
         <link rel="canonical" href="https://media.edatsu.com/">
+        {{-- google icons --}}
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" 
         rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" 
@@ -36,14 +38,10 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
        
-        <!--icons ionicons-->
-        <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-        
-        <!-- Fonts -->
+        <!-- Poppins Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
         <link href={{asset('css/style.css')}} rel="stylesheet">
         <link href={{asset('css/summernote_reset.css')}} rel="stylesheet">
 

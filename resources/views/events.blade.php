@@ -174,5 +174,7 @@
 
     </div>
 </div>
+
+@include('components/fixed_mobile_menu')
 <!--body-->
 </x-guest-layout>

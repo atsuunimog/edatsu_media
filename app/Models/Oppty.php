@@ -18,6 +18,7 @@ class Oppty extends Model
         'description',
         'deadline',
         'source_url',
+        'category',
         'region', 
         'country',
         'continent'
