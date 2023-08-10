@@ -8,7 +8,7 @@
                 </a>
             <!--logo-->
             <h1 class='fw-bold mb-3'>Events</h1>
-            <p class=''>Discover the Latest Tech & Entrepreneurial Events in Africa</p>
+            <p class=''>Discover the Latest Events in Africa</p>
         </div>  
     </div>
 </div>
@@ -20,9 +20,156 @@
 <!--body-->
 <div class="row">
     <div class="col-sm-3 col-12">
+         <!--trending-->
+    <div class="py-3 px-3 bg-white border rounded mb-3">
+        <h5 class="fw-bold m-0 mb-3">
+            <span class="material-symbols-outlined align-middle ">
+                local_fire_department
+            </span>
+            Trending 
+        </h5>
+        <p class="fs-9">Top trending Events</p>
+    </div>
+    <!--trending-->
     </div>
 
     <div class="col-sm-6 col-12">
+
+            <!--news filter-->
+            <form class="" method="GET" id="search_keyword" onsubmit='submitSearchQuery()'>
+                <div class="row">
+                    <div class="col-sm-9 col-12">
+                        <div class='mb-3'>
+                        <input type='text' class="form-control py-3 fs-9 text-secondary" name="search_keyword" placeholder="Search Keywords" id="keyword">
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-12">
+                        <div class='mb-3'>
+                        <button class="text-decoration-none btn btn-dark border-0 px-4 py-3 shadow-sm w-100">Search</button>
+                        </div>
+                    </div>
+                </div>
+    
+                <div  class="py-3 px-3 border mb-3 bg-white rounded d-flex justify-content-between">
+                    <span class="fs-9 text-dark d-block">
+                    Use filters to improve search
+                    </span>
+                    <span class="material-symbols-outlined cursor d-block align-middle" 
+                    style='cursor:pointer' id="filter-toggle" onclick="toggleContent()">
+                    toggle_off
+                    </span>
+                </div>
+    
+                <div  id="filter-panel" class="bg-white border rounded px-3 py-3 mb-3 d-none">
+                <span class="fs-9 text-primary d-block my-3">
+                    <span class="material-symbols-outlined align-middle">
+                        info
+                    </span>
+                    All search filter values are optional
+                </span>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <select class="form-select py-3 mb-3 text-secondary fs-9" id="event_status" name="event_status"  aria-label="Select News">
+                            <option value="">All Opportunites</option>
+                            <option value="on_going">Ongoing</option>
+                            <option value="up_coming">Upcoming</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <select class="form-select py-3 mb-3 text-secondary fs-9" id="category">
+                            @include('components.categorylist')
+                        </select>
+                        <input type="hidden" name="category" id="selectedCategories" readonly>
+                        <div id="outputCategoryList"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <select class="form-select py-3 mb-3 text-secondary fs-9" id="date_posted" name="date_posted" aria-label="Select News">
+                            <option value="">Date Posted</option>
+                            <option value="one_day">24 hours Ago</option>
+                            <option value="one_week">1 Week Ago</option>
+                            <option value="two_weeks">2 Weeks Ago</option>
+                            <option value="one_month">1 Month Ago</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <select class="form-select py-3 mb-3 text-secondary fs-9" id="region" name="region" aria-label="Select News">
+                            <option value="">Select Region</option>
+                            <option value="northern_africa">Northern Africa</option>
+                            <option value="eastern_africa">Eastern Africa</option>
+                            <option value="western_africa">Western  Africa</option>
+                            <option value="central_africa">Central Africa</option>
+                            <option value="southern_africa">Southern Africa</option>
+                        </select>
+                        <input type="hidden" name="region" id="selectedRegions" readonly>
+                        <div id="outputRegionsList"></div>
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="col-sm-6">
+                        <select class="form-select py-3 mb-3 text-secondary fs-9" id="country" >
+                            @include('components.countrylist')
+                        </select>
+                        <input type="hidden" name="country" id="selectedCountries" readonly>
+                        <div id="outputCountriesList"></div>
+                    </div>
+    
+                    <div class="col-sm-6">
+                        <select class="form-select py-3 mb-3 text-secondary fs-9" id="continent" >
+                            <option value="">Select Continent</option>
+                            <option value="global">Global</option>
+                            <option value="africa">Africa</option>
+                            <option value="antarctica">Antarctica</option>
+                            <option value="asia">Asia</option>
+                            <option value="europe">Europe</option>
+                            <option value="north_america">North America</option>
+                            <option value="australia">Australia (or Oceania/Australasia)</option>
+                            <option value="south_america">South America</option>
+                        </select>
+                        <input type="hidden" name="continent" id="selectedContinents" readonly>
+                        <div id="outputContinentsList"></div>
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="col-sm-6">
+                        <select class="form-select py-3 mb-3 text-secondary fs-9" name="month" aria-label="Select News">
+                            <option value="">Select Month</option>
+                            <option value="january">January</option>
+                            <option value="february">February</option>
+                            <option value="march">March</option>
+                            <option value="april">April</option>
+                            <option value="may">May</option>
+                            <option value="june">June</option>
+                            <option value="july">July</option>
+                            <option value="august">August</option>
+                            <option value="september">September</option>
+                            <option value="october">October</option>
+                            <option value="november">November</option>
+                            <option value="december">December</option>
+                        </select>
+                    </div>
+    
+                    <div class="col-sm-6">
+                        <select class="form-select py-3 mb-3 text-secondary fs-9" name="year" aria-label="Select News">
+                            <option value="">Year</option>
+                            @php
+                                $currentYear = date("Y");
+                            @endphp
+                            @for ($i = $currentYear; $i <= $currentYear + 5; $i++)
+                                <option value="{{ $i }}">{{ $i }}</option>
+                            @endfor
+                        </select>
+                    </div>
+                </div>
+                <button class="text-decoration-none btn btn-dark border-0 px-4 py-3 shadow-sm w-100">Search</button>
+                </div>
+            </form>
+            <!--news filter-->
+
+
         <!--main content-->
         <div class="row position-relative">
             @forelse($ev_posts as $posts)

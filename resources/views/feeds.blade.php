@@ -9,7 +9,7 @@
             <!--logo-->
            <h1 class='fw-bold mb-3'>Daily News Feed</h1>
            <p class=''>
-            Stay Up-to-Date with the Latest Tech and Business News!
+            Stay Up-to-Date with the Latest News!
           </p>
         </div>  
     </div>
@@ -21,20 +21,17 @@
 
 <div class="row">
 <div class="col-sm-3">
-  <!--subscribe-->
-    {{-- <div class="pb-3 d-none d-sm-block d-md-block d-lg-block">
-     <div class="subs-banner"></div>
-     <form>
-        <h5 class="fw-bold">Subscribe</h5>
-        <p class='fs-9 text-secondary mb-2'>🚀 Stay ahead in tech and business. Don't miss any opportunities! 💼🌐 #TechBusinessInsights </p>
-        <label for="full_name" class="form-label fs-9">Full Name</label>
-          <input type="text" id="full_name" class="form-control mb-2 fs-9" placeholder="Enter your fullname">
-        <label for="email" class="form-label fs-9">Email</label>
-          <input type="email" id="email" class="form-control mb-2 fs-9" placeholder="Enter your email">
-          <button class='btn btn-dark w-100 fs-9 py-3 mb-3'>Subscribe</button>
-     </form>
-    </div> --}}
-  <!--subscribe-->
+<!--trending-->
+<div class="py-3 px-3 bg-white border rounded mb-3">
+  <h5 class="fw-bold m-0 mb-3">
+      <span class="material-symbols-outlined align-middle ">
+          local_fire_department
+      </span>
+      Trending 
+  </h5>
+  <p class="fs-9">Top trending News</p>
+</div>
+<!--trending-->
 </div>
 
 <div class="col-sm-6">

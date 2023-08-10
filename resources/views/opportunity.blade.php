@@ -58,11 +58,9 @@
                 </h5>
                 <p>Top trending opportunites</p>
                 <ul class="list-unstyled">
-                    {{-- <li>Trending opportunites..</li> --}}
                 </ul>
             </div>
         </div>
-    
     
         <div class="col-sm-6 col-12">
     

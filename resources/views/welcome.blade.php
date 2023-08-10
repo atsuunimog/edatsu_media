@@ -8,7 +8,7 @@
             </a>
             <!--logo-->
             <h1 class='fw-bold mb-3'>Opportunities</h1>
-            <p class=''>Discover the Latest Tech & Business Financing Opportunities in Africa</p>
+            <p class=''>Discover the Latest Opportunities in Africa</p>
         </div>  
     </div>
 </div>
@@ -19,33 +19,18 @@
 <!--body-->
 <div class="row">
     <div class="col-sm-3 col-12">
-
-        <!--subscribe-->
-        {{-- <div class="pb-3 d-none d-sm-block d-md-block d-lg-block">
-            <div class="subs-banner"></div>
-            <form id="subscription-form">
-            <h5 class="fw-bold">Subscribe</h5>
-            <p class='fs-9 text-secondary mb-2'>🚀 Stay ahead in tech and business. Don't miss any opportunities! 💼🌐 #TechBusinessInsights </p>
-            <label for="full_name" class="form-label fs-9">Full Name</label>
-                <input type="text" id="full_name" class="form-control mb-2 fs-9" placeholder="Enter your fullname">
-            <label for="email" class="form-label fs-9">Email</label>
-                <input type="email" id="email" class="form-control mb-2 fs-9" placeholder="Enter your email">
-                <button class='btn btn-dark w-100 fs-9 py-3 mb-3'>Subscribe</button>
-            </form>
-        </div> --}}
-        <!--subscribe-->
-
-        {{-- <div class="py-3 px-3 bg-white border rounded mb-3">
-            <h5 class="fw-bold m-0 mb-3">
-                <span class="material-symbols-outlined align-middle ">
-                    local_fire_department
-                </span>
-                Trending 
-            </h5>
-            <p class="fs-9">Top trending opportunites</p>
-        </div> --}}
+    <!--trending-->
+    <div class="py-3 px-3 bg-white border rounded mb-3">
+        <h5 class="fw-bold m-0 mb-3">
+            <span class="material-symbols-outlined align-middle ">
+                local_fire_department
+            </span>
+            Trending 
+        </h5>
+        <p class="fs-9">Top trending Opportunites</p>
     </div>
-
+    <!--trending-->
+    </div>
 
     <div class="col-sm-6 col-12">
 
@@ -85,8 +70,8 @@
                 <div class="col-sm-6">
                     <select class="form-select py-3 mb-3 text-secondary fs-9" id="event_status" name="event_status"  aria-label="Select News">
                         <option value="">All Opportunites</option>
-                        <option value="on_going">Ongoing Opportunites</option>
-                        <option value="up_coming">Upcoming Opportunites</option>
+                        <option value="on_going">Ongoing</option>
+                        <option value="up_coming">Upcoming</option>
                     </select>
                 </div>
                 <div class="col-sm-6">
@@ -182,15 +167,6 @@
             </div>
         </form>
         <!--news filter-->
-
-        {{-- <div class="row">
-            <div class='col-sm-12'>
-                <div class="text-center">
-                    <button class="btn btn-white bg-white fs-9  py-3 px-4 border mb-3" onclick='alert()'>Refresh Feeds
-                    </button>
-                </div>
-            </div>
-        </div> --}}
         
         <!--main content-->
         <div class="row">
@@ -529,7 +505,7 @@ function displayResult(d, elem){
         <h5 class='fw-bold m-0 p-0'>${o.title}</h5>
         </a>
         <p class="my-2 d-block fs-9 text-sm text-secondary">
-        Posted on: ${formatDate(o.created_at)}
+        ${formatDate(o.created_at)}
         </p>
         <div class="overflow-hidden truncate mb-2">
         <p class='m-0 fs-9 text-secondary'>${truncateText(o.description, 200)}</p>

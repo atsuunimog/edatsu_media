@@ -131,9 +131,12 @@ function searchOpportunities(Request $request)
 
 
     if ($eventStatus === 'on_going') {
-        $query->whereDate('deadline', '>=', now()); // Assuming 'deadline' is the field that represents the event deadline
+        $query->whereDate('deadline', '>=', now());
+    } elseif ($eventStatus === 'up_coming') {
+        $query->whereDate('deadline', '>', now());
+        // Order events by the difference between 'deadline' and current date
+        $query->orderBy('deadline', 'asc');
     }
-
 
     if ($datePosted === 'one_day') {
         $query->whereDate('created_at', '>=', now()->subDay());
