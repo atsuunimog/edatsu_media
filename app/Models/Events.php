@@ -18,6 +18,7 @@ class Events extends Model
         'description',
         'location',
         'event_date',
+        'event_time',
         'source_url',
         'region', 
         'country'

@@ -1,27 +1,29 @@
 <x-guest-layout>
-<div class="row">
+<div class="row d-sm-none d-md-none d-lg-none">
     <div class="col-sm-12 text-center">
-        <div class="py-5">
+        <div class="py-5 ">
              <!--logo-->
              <a href='./'>
                 <img src="{{ asset('img/logo/trans/logo_trans_1.png')}}" width="90" class="img-fluid" alt="logo">
                 </a>
             <!--logo-->
-            <h1 class='fw-bold mb-3'>Events</h1>
+            <h1 class='fw-bold mb-3'>Discover Events</h1>
             <p class=''>Discover the Latest Events in Africa</p>
         </div>  
     </div>
 </div>
 
-<!--menu-->
+{{-- <!--menu-->
 @include('components/custom_nav')
-<!--menu-->
+<!--menu--> --}}
+
+<div class="container">
 
 <!--body-->
 <div class="row">
     <div class="col-sm-3 col-12">
          <!--trending-->
-    <div class="py-3 px-3 bg-white border rounded mb-3">
+    <div class="py-3 px-3 bg-white border rounded mb-3 d-none d-sm-block d-md-block d-lg-block">
         <h5 class="fw-bold m-0 mb-3">
             <span class="material-symbols-outlined align-middle ">
                 local_fire_department
@@ -31,6 +33,16 @@
         <p class="fs-9">Top trending Events</p>
     </div>
     <!--trending-->
+
+    <!--aside-->
+    <div class="px-3 py-3 border rounded mb-3 bg-white d-none d-sm-block d-md-block d-lg-block">
+        <small class="text-secondary d-block mb-3">Advertisement</small>
+        <a href="https://kol.jumia.com/api/click/link/d85c6dd6-5eec-47e9-b103-577be07cf3f6/0c7c436a-7891-435c-a9fc-3881f7125b11">
+        <img src="{{asset('img/ads_img/oraimo_stores.png')}}" width="100%" class='img-fluid' alt="oraimo">
+        </a>
+    </div>
+    <!--aside-->
+
     </div>
 
     <div class="col-sm-6 col-12">
@@ -40,7 +52,7 @@
                 <div class="row">
                     <div class="col-sm-9 col-12">
                         <div class='mb-3'>
-                        <input type='text' class="form-control py-3 fs-9 text-secondary" name="search_keyword" placeholder="Search Keywords" id="keyword">
+                        <input type='text' disabled class="form-control py-3 fs-9 text-secondary" name="search_keyword" placeholder="Coming soon!" id="keyword">
                         </div>
                     </div>
                     <div class="col-sm-3 col-12">
@@ -170,6 +182,17 @@
             <!--news filter-->
 
 
+            <div class="alert alert-danger fs-9 d-flex  align-items-center" role="alert">
+                <p class='m-0'>
+                <span class="material-symbols-outlined align-middle">
+                info
+                </span>
+                </p>
+                <p class='m-0 px-3'>
+                <strong>Good news!</strong> We're working hard to fine-tune our event search filters. It'll be up in 48 hours
+                </p>
+              </div>
+
         <!--main content-->
         <div class="row position-relative">
             @forelse($ev_posts as $posts)
@@ -224,16 +247,19 @@
                             <div class='position-relative'>
                                 <div class="position-absolute share-panel border rounded d-none">
                                     <ul class='fs-9'>
-                                        <li><a  class='text-decoration-none text-dark' href="https://api.whatsapp.com/send?text={{route('read.blog', ['id'=> $posts->id, 'title'=> Str::slug($posts->title, '-')])}}"
-                                        ><img width="30" src="{{asset('img/gif/icons8-whatsapp.gif')}}" alt="whatsapp" > Whatapp</a></li>
+                                        <li><a class='text-decoration-none text-dark' href="https://api.whatsapp.com/send?text={{route('read.blog', ['id'=> $posts->id, 'title'=> Str::slug($posts->title, '-')])}}"
+                                            ><img width="30" src="{{asset('img/gif/icons8-whatsapp.gif')}}" alt="whatsapp"> WhatsApp</a></li>
+                                    
+                                        <li><a class='text-decoration-none text-dark' href="https://t.me/share/url?url={{route('read.blog', ['id'=> $posts->id, 'title'=> Str::slug($posts->title, '-')])}}"
+                                            ><img width="30" src="{{asset('img/gif/icons8-telegram.gif')}}" alt="telegram"> Telegram</a></li>
                                         
-                                        <li><a  class='text-decoration-none text-dark' href="https://t.me/share/url?url={{route('read.blog', ['id'=> $posts->id, 'title'=> Str::slug($posts->title, '-')])}}"
-                                        ><img width="30" src="{{asset('img/gif/icons8-telegram.gif')}}" alt="telegram" > Telegram</a></li>
+                                        <li><a class='text-decoration-none text-dark' href="https://twitter.com/intent/tweet?url={{route('read.blog', ['id'=> $posts->id, 'title'=> Str::slug($posts->title, '-')])}}"
+                                            target="_blank"><img width="30" src="{{asset('img/gif/icons8-twitter.gif')}}" alt="twitter"> Twitter</a></li>
                                         
-                                        {{-- <li><img width="30" src="{{asset('img/gif/icons8-linkedin.gif')}}" alt="linkedin" > Linkedin</li>
-                                        <li><img width="30" src="{{asset('img/gif/icons8-twitter.gif')}}" alt="twitter" > Twitter</li>
-                                        <li><img width="30" src="{{asset('img/gif/icons8-facebook.gif')}}" alt="facebook" > Facebook</li> --}}
+                                        <li><a class='text-decoration-none text-dark' href="https://www.linkedin.com/sharing/share-offsite/?url={{route('read.blog', ['id'=> $posts->id, 'title'=> Str::slug($posts->title, '-')])}}"
+                                            target="_blank"><img width="30" src="{{asset('img/gif/icons8-linkedin.gif')}}" alt="linkedin"> LinkedIn</a></li>
                                     </ul>
+                                    
                                 </div>
                                 <button class='me-3 text-decoration-none bprder-0 btn fs-9  px-2 py-2 'onClick="console.log(this.previousElementSibling.classList.toggle('d-none'))">
                                     <span class="material-symbols-outlined align-middle">
@@ -320,6 +346,7 @@
         <!--aside-->
 
     </div>
+</div>
 </div>
 
 @include('components/fixed_mobile_menu')

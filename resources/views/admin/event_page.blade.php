@@ -29,7 +29,7 @@
                        @endif
    
                        <!--post form-->
-                       <div class="border px-3 py-3 my-3 rounded bg-white">
+                       <div class="px-3 py-3 my-3 bg-white">
                            @if($errors->any())
                                    @foreach($errors->all() as $err)
                                    <div class='alert alert-danger'>
@@ -83,8 +83,15 @@
                             <div class="mb-3">
                                 <label class='fw-bold'>Event Date</label>
                                 <small class="mb-2 text-secondary d-block">If event is more than 1 day, enter start date here</small>
-                                <input type="date" name="event_date" 
+                                <input type="date" class='form-control' name="event_date" 
                                 value="{{ isset($edits[0]->event_date)? $edits[0]->event_date : old('event_date')}}"
+                                class="form-control">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class='fw-bold'>Event Time</label>
+                                <input type="time" name="event_time" 
+                                value="{{ isset($edits[0]->event_time)? $edits[0]->event_time : old('event_date')}}"
                                 class="form-control">
                             </div>
 
@@ -95,7 +102,7 @@
                                 <div id="selectedDates" class="mt-2">
                                     <!-- Selected dates will be displayed here -->
                                 </div>
-                                <input type="text" name="alternate_dates" id="alternateDatesInput">
+                                <input type="hidden" name="alternate_dates" id="alternateDatesInput">
                             </div>
                             
 
@@ -112,7 +119,7 @@
                                 <select class="form-select fs-9" id="category">
                                     @include('components.categorylist')
                                 </select>
-                                <input type="text" name="category" id="selectedCategories" value="{{ isset($edits[0]->category)? $edits[0]->category : old('category')}}" readonly>
+                                <input type="hidden" name="category" id="selectedCategories" value="{{ isset($edits[0]->category)? $edits[0]->category : old('category')}}" readonly>
                                 <div id="outputCategoryList"></div>
                             </div>
 
@@ -146,7 +153,7 @@
                                         <label class=''>Continent</label>
                                         <span class='d-block text-secondary mb-2 fs-9'>Select a continent</span>
                                         <select class="form-select fs-9" id="continent" >
-                                            <option selected="" value="global">Select Continent</option>
+                                            <option value="global">Select Continent</option>
                                             <option value="africa">Africa</option>
                                             <option value="antarctica">Antarctica</option>
                                             <option value="asia">Asia</option>

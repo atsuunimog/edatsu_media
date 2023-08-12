@@ -1,5 +1,5 @@
 <x-guest-layout>
-<div class="row">
+<div class="row d-sm-none d-md-none d-lg-none">
     <div class="col-sm-12 text-center">
         <div class="py-5">
             <!--logo-->
@@ -14,13 +14,16 @@
 </div>
 
 
-@include('components/custom_nav')
+{{-- @include('components/custom_nav') --}}
+
+<div class="container">
+
 
 <!--body-->
 <div class="row">
     <div class="col-sm-3 col-12">
     <!--trending-->
-    <div class="py-3 px-3 bg-white border rounded mb-3">
+    <div class="py-3 px-3 bg-white border rounded mb-3 d-none d-sm-block d-md-block d-lg-block">
         <h5 class="fw-bold m-0 mb-3">
             <span class="material-symbols-outlined align-middle ">
                 local_fire_department
@@ -30,6 +33,15 @@
         <p class="fs-9">Top trending Opportunites</p>
     </div>
     <!--trending-->
+
+    <!--aside-->
+    <div class="px-3 py-3 border rounded mb-3 bg-white d-none d-sm-block d-md-block d-lg-block">
+        <small class="text-secondary d-block mb-3">Advertisement</small>
+        <a href="https://kol.jumia.com/api/click/link/d85c6dd6-5eec-47e9-b103-577be07cf3f6/0c7c436a-7891-435c-a9fc-3881f7125b11">
+        <img src="{{asset('img/ads_img/oraimo_stores.png')}}" width="100%" class='img-fluid' alt="oraimo">
+        </a>
+    </div>
+    <!--aside-->
     </div>
 
     <div class="col-sm-6 col-12">
@@ -95,11 +107,12 @@
                 <div class="col-sm-6">
                     <select class="form-select py-3 mb-3 text-secondary fs-9" id="region" name="region" aria-label="Select News">
                         <option value="">Select Region</option>
-                        <option value="northern_africa">Northern Africa</option>
-                        <option value="eastern_africa">Eastern Africa</option>
-                        <option value="western_africa">Western  Africa</option>
+                        <option value="north_africa">North Africa</option>
+                        <option value="west_africa">West Africa</option>
                         <option value="central_africa">Central Africa</option>
+                        <option value="east_africa">East Africa</option>
                         <option value="southern_africa">Southern Africa</option>
+                        <option value="sahel_region">Sahel Region</option>
                     </select>
                     <input type="hidden" name="region" id="selectedRegions" readonly>
                     <div id="outputRegionsList"></div>
@@ -167,6 +180,18 @@
             </div>
         </form>
         <!--news filter-->
+
+        <div class="alert alert-danger fs-9 d-flex  align-items-center" role="alert">
+            <p class='m-0'>
+            <span class="material-symbols-outlined align-middle">
+            info
+            </span>
+            </p>
+            <p class='m-0 px-3'>
+            <strong>Exciting News!</strong> Now you can easily discover *upcoming events* and explore by *category* using our advanced filters. 
+            Plus, we've fixed our share buttons to make sharing content a breeze! 
+            </p>
+          </div>
         
         <!--main content-->
         <div class="row">
@@ -239,6 +264,7 @@
   <!--aside-->
 
     </div>
+</div>
 </div>
 <!--body-->
 
@@ -412,6 +438,7 @@ function clearFilters(){
     fetch('/search-opportunities')
     .then((r)=> {
         document.querySelector('#opportunity-feeds').innerHTML = '';
+        document.querySelector('#pagination').innerHTML = '';
         return r.json();
     })
     .then((d)=>{
@@ -534,11 +561,17 @@ function displayResult(d, elem){
         <div class='position-relative'>
         <div class="position-absolute share-panel border rounded d-none">
             <ul class='m-0 p-0 fs-9'>
-                <li><a  class='text-decoration-none text-dark' href="https://api.whatsapp.com/send?text=${pageLink(o.title, o.id)}"
-                ><img width="30" src="{{asset('img/gif/icons8-whatsapp.gif')}}" alt="whatsapp" > Whatapp</a></li>
+                <li><a class='text-decoration-none text-dark' href="https://api.whatsapp.com/send?text=https://media.edatsu.com/${pageLink(o.title, o.id)}"
+                    target="_blank"><img width="30" src="{{asset('img/gif/icons8-whatsapp.gif')}}" alt="whatsapp"> WhatsApp</a></li>
+
+                <li><a class='text-decoration-none text-dark' href="https://t.me/share/url?url=https://media.edatsu.com/${pageLink(o.title, o.id)}"
+                    target="_blank"><img width="30" src="{{asset('img/gif/icons8-telegram.gif')}}" alt="telegram"> Telegram</a></li>
                 
-                <li><a  class='text-decoration-none text-dark' href="https://t.me/share/url?url=${pageLink(o.title, o.id)}"
-                ><img width="30" src="{{asset('img/gif/icons8-telegram.gif')}}" alt="telegram" > Telegram</a></li>
+                <li><a class='text-decoration-none text-dark' href="https://twitter.com/intent/tweet?url=https://media.edatsu.com/${pageLink(o.title, o.id)}"
+                    target="_blank"><img width="30" src="{{asset('img/gif/icons8-twitter.gif')}}" alt="twitter"> Twitter</a></li>
+                
+                <li><a class='text-decoration-none text-dark' href="https://www.linkedin.com/sharing/share-offsite/?url=https://media.edatsu.com/${pageLink(o.title, o.id)}"
+                    target="_blank"><img width="30" src="{{asset('img/gif/icons8-linkedin.gif')}}" alt="linkedin"> LinkedIn</a></li>
             </ul>
         </div>
         <button class='me-3 text-decoration-none bprder-0 btn fs-9 px-2 py-2' onClick="this.previousElementSibling.classList.toggle('d-none')">

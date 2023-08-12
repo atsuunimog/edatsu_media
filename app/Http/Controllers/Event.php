@@ -23,47 +23,82 @@ function edit(Request $request, $id){
 
 function store(Request $request){
 
+    //validate the data 
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'required|string',
+        'event_type' => 'required|string|max:50',
+        'location' => 'nullable|string|max:255',
+        'event_date' => 'required|date',
+        'event_time' => 'nullable',
+        'alternate_dates' => 'nullable',
+        'reference' => 'required|nullable|url|max:255',
+        'category' => 'nullable|string',
+        'country' => 'required|string',
+        'region' => 'nullable|string',
+        'continent' => 'nullable|string',
+    ]);
+
+
     //capture values 
     $title = $request->title;
     $description = $request->description;
+    $event_type = $request->event_type;
     $location = $request->location;
     $event_date = $request->event_date;
+    $event_time = $request->event_time;
+    $alternate_dates_input = $request->alternate_dates;
     $reference = $request->reference;
+    $category = $request->category;
+    $country = $request->country;
     $region = $request->region;
-    $country = $request->country;  
+    $continent = $request->continent;
 
-    //validate the data 
-    $request->validate([
-        'title' => ['required', 'max:191'],
-        'description'=> ['required'],
-        'location' => ['required'],
-        'event_date' => ['required'],
-        'reference'=> ['required', 'url', 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', 'active_url'],
-        'region'=> ['required', 'max:191'],
-        'country'=> ['required', 'max:191'],
-    ]);
+ 
+
 
     //prevent users from backdating job post
     $current_date = Carbon::now();  
     $event_date = Carbon::parse($request->event_date);
 
+
+
     if (!$event_date->greaterThanOrEqualTo($current_date)) {
     return back()->withErrors(["error_msg"=>"Invalid event date"])->withInput($request->input());
     }
-     
+
+   
+    //split alternative dates where they are delimited by comma
+    $alternate_dates = explode(',', $alternate_dates_input);
+
+
+
+    if(count($alternate_dates) > 0){
+        foreach ($alternate_dates as $value) {
+            $value = Carbon::parse($value);
+            if (!$value->greaterThanOrEqualTo($current_date)) {
+                return back()->withErrors(["error_msg"=>"Invalid alternative date"])->withInput($request->input());
+            }
+        }
+    };
 
     //store the data in the data base
-    Events::create([
-        'u_id' => $request->user()->id,
-        'user_role' => $request->user()->role,
-        'title' => $title,
-        'description'=> $description,
-        'location' => $location,
-        'event_date' => $event_date,
-        'source_url' => $reference,
-        'region'=> $region,
-        'country'=> $country
-    ]);
+    $event = new Events;
+    $event->u_id = $request->user()->id;
+    $event->user_role = $request->user()->role;
+    $event->title = $title;
+    $event->description = $description;
+    $event->event_type = $event_type;
+    $event->location = $location;
+    $event->event_date = $event_date;
+    $event->event_time = $event_time;
+    $event->alternate_dates = $alternate_dates_input;
+    $event->source_url = $reference;
+    $event->category = $category;
+    $event->country = $country;
+    $event->region = $region;
+    $event->continent = $continent;
+    $event->save();
 
     return redirect('admin-post-event')->with('status', 'Post Successful!');
 }

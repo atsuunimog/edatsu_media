@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="row">
+    <div class="row page-banner mb-3">
         <div class="col-sm-12 text-center">
             <div class="py-5">
                 <!--logo-->

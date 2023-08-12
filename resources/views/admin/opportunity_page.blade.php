@@ -129,13 +129,14 @@
                                         <label class=''>Continent</label>
                                         <span class='d-block text-secondary mb-2 fs-9'>Select a continent</span>
                                         <select class="form-select fs-9" id="continent" >
-                                            <option selected="" value="global">Select Continent</option>
+                                            <option value="">Select Continent</option>
+                                            <option value="global">Global</option>
                                             <option value="africa">Africa</option>
                                             <option value="antarctica">Antarctica</option>
                                             <option value="asia">Asia</option>
                                             <option value="europe">Europe</option>
                                             <option value="north_america">North America</option>
-                                            <option value="oceania">Oceania</option>
+                                            <option value="australia">Australia (or Oceania/Australasia)</option>
                                             <option value="south_america">South America</option>
                                         </select>
                                         <input type="hidden" name="continent" id="selectedContinents" value="{{ isset($edits[0]->continent)? $edits[0]->continent : old('continent')}}" readonly>

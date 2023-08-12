@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="row">
+    <div class="row d-sm-none d-md-none d-lg-none">
         <div class="col-sm-12 text-center">
             <div class="py-5">
                <h1 class='fw-bold'>Event</h1>
@@ -10,7 +10,9 @@
         </div>
     </div>
 
-    @include('components/custom_nav')
+    {{-- @include('components/custom_nav') --}}
+
+    <div class="container">
 
     <div class="row">
         <div class="col-sm-12">
@@ -28,7 +30,7 @@
     
     <div class="row">
         <div class="col-sm-8">
-            <div class="px-3 py-3 bg-white rounded border">
+            <div class="px-3 py-3 bg-white rounded border mb-3">
                 <!--main content-->
                 <h5 class='fw-bold m-0 p-0'>{{$ev_posts->title}}</h5>
 
@@ -73,19 +75,20 @@
                     <div class='position-relative'>
                         <div class="position-absolute share-panel border fs-9 rounded d-none">
                             <ul>
-                                <li><a  class='text-decoration-none text-dark' href="https://api.whatsapp.com/send?text={{route('read.blog', ['id'=> $ev_posts->id, 'title'=> Str::slug($ev_posts->title, '-')])}}"
-                                ><img width="30" src="{{asset('img/gif/icons8-whatsapp.gif')}}" alt="whatsapp" > Whatapp</a></li>
+                                <li><a class='text-decoration-none text-dark' href="https://api.whatsapp.com/send?text={{route('read.blog', ['id'=> $ev_posts->id, 'title'=> Str::slug($ev_posts->title, '-')])}}"
+                                    target="_blank"><img width="30" src="{{asset('img/gif/icons8-whatsapp.gif')}}" alt="whatsapp"> WhatsApp</a></li>
+                            
+                                <li><a class='text-decoration-none text-dark' href="https://t.me/share/url?url={{route('read.blog', ['id'=> $ev_posts->id, 'title'=> Str::slug($ev_posts->title, '-')])}}"
+                                    target="_blank"><img width="30" src="{{asset('img/gif/icons8-telegram.gif')}}" alt="telegram"> Telegram</a></li>
                                 
-                                <li><a  class='text-decoration-none text-dark' href="https://t.me/share/url?url={{route('read.blog', ['id'=> $ev_posts->id, 'title'=> Str::slug($ev_posts->title, '-')])}}"
-                                ><img width="30" src="{{asset('img/gif/icons8-telegram.gif')}}" alt="telegram" > Telegram</a></li>
+                                <li><a class='text-decoration-none text-dark' href="https://www.linkedin.com/sharing/share-offsite/?url={{route('read.blog', ['id'=> $ev_posts->id, 'title'=> Str::slug($ev_posts->title, '-')])}}"
+                                    target="_blank"><img width="30" src="{{asset('img/gif/icons8-linkedin.gif')}}" alt="linkedin"> LinkedIn</a></li>
                                 
-                                {{-- <li><img width="30" src="{{asset('img/gif/icons8-linkedin.gif')}}" alt="linkedin" > Linkedin</li>
-                                <li><img width="30" src="{{asset('img/gif/icons8-twitter.gif')}}" alt="twitter" > Twitter</li>
-                                <li><img width="30" src="{{asset('img/gif/icons8-facebook.gif')}}" alt="facebook" > Facebook</li> --}}
-                            </ul>
+                                <li><a class='text-decoration-none text-dark' href="https://twitter.com/intent/tweet?url={{route('read.blog', ['id'=> $ev_posts->id, 'title'=> Str::slug($ev_posts->title, '-')])}}"
+                                    target="_blank"><img width="30" src="{{asset('img/gif/icons8-twitter.gif')}}" alt="twitter"> Twitter</a></li>
+                            </ul>                            
                         </div>
                         <button class='me-3 text-decoration-none bprder-0 btn fs-9  px-4 py-2 'onClick="console.log(this.previousElementSibling.classList.toggle('d-none'))">
-                            Share
                             <span class="material-symbols-outlined align-middle">
                                 share
                             </span>
@@ -104,7 +107,8 @@
         </div>
 
         <div class="col-sm-4">
-            <div class="px-3 py-3 bg-white rounded border">
+            
+            <div class="px-3 py-3 bg-white rounded border mb-3">
                 <!--side content-->
                 <!--google ads-->            
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7365396698208751"
@@ -122,7 +126,18 @@
                 <!--google ads-->
                 <!--side content-->
             </div>
+
+                <!--aside-->
+                <div class="px-3 py-3 border rounded mb-3 bg-white">
+                    <small class="text-secondary d-block mb-3">Advertisement</small>
+                    <a href="https://kol.jumia.com/api/click/link/d85c6dd6-5eec-47e9-b103-577be07cf3f6/0c7c436a-7891-435c-a9fc-3881f7125b11">
+                    <img src="{{asset('img/ads_img/oraimo_stores.png')}}" width="100%" class='img-fluid' alt="oraimo">
+                    </a>
+                </div>
+                <!--aside-->
+
         </div>
+    </div>
     </div>
     @include('components/fixed_mobile_menu')
     </x-guest-layout>

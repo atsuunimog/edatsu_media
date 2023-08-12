@@ -56,9 +56,7 @@
     <body>
         @include('layouts.header')
         <div class="container-fluid">
-        <div class="container">
             {{ $slot }}
-        </div>
         @include('layouts.footer')
         </div>
     </body>

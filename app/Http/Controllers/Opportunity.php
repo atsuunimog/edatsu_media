@@ -23,6 +23,18 @@ class Opportunity extends Controller
 
     function store(Request $request){
 
+        //validate the data 
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'reference' => 'required|url|max:255',
+            'region' => 'nullable|string|max:50',
+            'country' => 'nullable|string|max:50',
+            'continent' => 'nullable|string|max:50',
+            'deadline' => 'nullable|date', // Adjust this rule based on your date format
+            'category' => 'nullable|string|max:50',
+        ]);
+
         //capture values 
         $title = $request->title;
         $description = $request->description;
@@ -32,13 +44,6 @@ class Opportunity extends Controller
         $continent = $request->continent;  
         $deadline = $request->deadline;
         $category = $request->category;
-
-        //validate the data 
-        $request->validate([
-            'title' => ['required', 'max:191'],
-            'description'=> ['required'],
-            'reference'=> ['required', 'url', 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', 'active_url'],
-        ]);
 
         //prevent users from backdating job post
         $current_date = Carbon::now();  

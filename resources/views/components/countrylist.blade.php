@@ -1,5 +1,4 @@
     <option value="">Select Country</option> 
-    <option value="non_african">Non-African</option>
     <option value="algeria">Algeria</option>
     <option value="angola">Angola</option>
     <option value="benin">Benin</option>

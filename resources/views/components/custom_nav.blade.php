@@ -1,20 +1,20 @@
-<div class="row d-none d-sm-block d-md-block d-lg-block">
-        <div class="col-sm-12 text-center">
+<div class="row d-none d-sm-block d-md-block d-lg-block d-none mb-5">
+        <div class="col-sm-12">
             <!--nav-->
-            <ul class='menu-list mb-3 d-block'>
-                <li class="d-inline-block me-3 mb-3 pe-3">
+            <ul class='menu-list d-block'>
+                <li class="d-inline-block me-3 pe-3 ps-0">
                     <a href="{{ url('news-feed') }}" class="text-decoration-none {{ getHighlightClass('/news-feed', 'text-orange fw-bold', 'text-secondary') }}">News Feed</a>
                 </li>
 
-                <li class="d-inline-block me-3 mb-3 pe-3">
+                <li class="d-inline-block me-3 pe-3">
                     <a href="{{ url('/') }}" class="text-decoration-none  {{ getHighlightClass('/', 'text-orange fw-bold', 'text-secondary') }}">Opportunities</a>
                 </li>
 
-                <li class="d-inline-block me-3 mb-3 pe-3">
+                <li class="d-inline-block me-3 pe-3">
                     <a href="{{ url('events') }}" class="text-decoration-none {{ getHighlightClass('/events', 'text-orange fw-bold', 'text-secondary') }}">Events</a>
                 </li>
 
-                <li class="d-inline-block me-3 mb-3 pe-3">
+                <li class="d-inline-block me-3  pe-3">
                     <a href="{{ url('subscribe') }}" class="text-decoration-none {{ getHighlightClass('/subscribe', 'text-orange fw-bold', 'text-secondary') }}">Subscribe</a>
                 </li>
 

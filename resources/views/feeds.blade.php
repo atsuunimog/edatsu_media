@@ -1,5 +1,5 @@
 <x-guest-layout>
-  <div class="row">
+  <div class="row d-sm-none d-md-none d-lg-none">
     <div class="col-sm-12 text-center">
         <div class="py-5">
             <!--logo-->
@@ -15,14 +15,17 @@
     </div>
 </div>
 
+
 <!--menu-->
-@include('components/custom_nav')
+{{-- @include('components/custom_nav') --}}
 <!--menu-->
+
+<div class="container">
 
 <div class="row">
 <div class="col-sm-3">
 <!--trending-->
-<div class="py-3 px-3 bg-white border rounded mb-3">
+<div class="py-3 px-3 bg-white border rounded mb-3  d-none d-sm-block d-md-block d-lg-block">
   <h5 class="fw-bold m-0 mb-3">
       <span class="material-symbols-outlined align-middle ">
           local_fire_department
@@ -32,6 +35,16 @@
   <p class="fs-9">Top trending News</p>
 </div>
 <!--trending-->
+
+
+    <!--aside-->
+    <div class="px-3 py-3 border rounded mb-3 bg-white d-none d-sm-block d-md-block d-lg-block">
+      <small class="text-secondary d-block mb-3">Advertisement</small>
+      <a href="https://kol.jumia.com/api/click/link/d85c6dd6-5eec-47e9-b103-577be07cf3f6/0c7c436a-7891-435c-a9fc-3881f7125b11">
+      <img src="{{asset('img/ads_img/oraimo_stores.png')}}" width="100%" class='img-fluid' alt="oraimo">
+      </a>
+  </div>
+  <!--aside-->
 </div>
 
 <div class="col-sm-6">
@@ -64,6 +77,7 @@
       <option value="https://www.zdnet.com/news/rss.xml">ZDNet</option>
       <option value="https://cointelegraph.com/rss">Coin Telegraph</option>
       <option value="https://www.coindesk.com/arc/outboundfeeds/rss/">Coin Desk</option>
+      <option value="https://restofworld.org/feed/latest">Rest of the World</option>
     </select>
   </div>
   <div class="col-sm-3">
@@ -146,6 +160,7 @@
   <!--google ads-->
 </div>
 <!--aside-->
+</div>
 </div>
 </div>
 
