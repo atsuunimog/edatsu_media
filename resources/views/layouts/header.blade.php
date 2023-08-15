@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg header mb-3">
+<nav class="navbar navbar-expand-lg header mb-3 fs-9">
     <div class="container">
         <!--logo-->
         <a href="https://media.edatsu.com">
@@ -15,7 +15,7 @@
             {{-- <button class="btn btn-outline-light" type="submit">Search</button> --}}
           </form>
 
-        <ul class="navbar-nav mb-2 mb-lg-0 fs-9">
+        <ul class="navbar-nav mb-2 mb-lg-0 ">
           <li class="nav-item">
             <a href="{{ url('news-feed') }}" class="nav-link text-decoration-none me-3  text-light {{ getHighlightClass('/news-feed', 'brand-link', 'text-secondary') }}">
               News Feed
@@ -34,16 +34,16 @@
 
           <li class="nav-item me-3">
             @if (isset(Auth::user()->role))
-            <a href="{{ url('/dashboard') }}" class="text-decoration-none text-light">Dashboard</a>
+            <a href="{{ url('/dashboard') }}" class="nav-link text-decoration-none text-light">Dashboard</a>
             @else
             @auth
-            <a href="{{ route('login') }}" class="text-decoration-none text-light">Login</a>
+            <a href="{{ route('login') }}" class="nav-link text-decoration-none text-light">Login</a>
             @endauth
             @endif
         </li>
 
           <li class="nav-item">
-            <a class="btn brand-color border-0 px-3" href="{{ url('subscribe') }}" >
+            <a class="btn brand-color border-0 px-3 inline-block fs-9 mt-1" href="{{ url('subscribe') }}" >
               Subscribe</a>
           </li>
 

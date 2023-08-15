@@ -26,12 +26,14 @@ use Illuminate\Support\Str;
 
 Route::get('/', [App::class, 'displayOpp']);
 Route::get('/opp-feeds', [App::class, 'getOppFeed']);
+Route::get('/event-feeds', [App::class, 'getEventFeed']);
 Route::get('/events', [App::class, 'displayEvents']);
 Route::get('/feeds', [FeedsController::class, 'fetchFeeds'])->name("find.feeds");
 Route::get('/news-feed', [FeedsController::class, 'displayFeeds'])->name("daily.feeds");
 Route::get('op/{id}/{title}', [App::class, 'readOpportunity'])->name('read.blog');
 Route::get('ev/{id}/{title}', [App::class, 'readEvent'])->name('read.ev');
 Route::get('/search-opportunities', [App::class, 'searchOpportunities']);
+Route::get('/search-events', [App::class, 'searchEvents']);
 
 Route::get('/subscribe', function(){return view('subscribe');});
 Route::get('/feedback',  function(){return view('feedback');});

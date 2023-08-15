@@ -13,46 +13,44 @@
     </div>
 </div>
 
-{{-- <!--menu-->
-@include('components/custom_nav')
-<!--menu--> --}}
+{{-- @include('components/custom_nav') --}}
 
 <div class="container">
 
-<!--body-->
-<div class="row">
-    <div class="col-sm-3 col-12">
-         <!--trending-->
-    <div class="py-3 px-3 bg-white border rounded mb-3 d-none d-sm-block d-md-block d-lg-block">
-        <h5 class="fw-bold m-0 mb-3">
-            <span class="material-symbols-outlined align-middle ">
-                local_fire_department
-            </span>
-            Trending 
-        </h5>
-        <p class="fs-9">Top trending Events</p>
-    </div>
-    <!--trending-->
 
-    <!--aside-->
-    <div class="px-3 py-3 border rounded mb-3 bg-white d-none d-sm-block d-md-block d-lg-block">
-        <small class="text-secondary d-block mb-3">Advertisement</small>
-        <a href="https://kol.jumia.com/api/click/link/d85c6dd6-5eec-47e9-b103-577be07cf3f6/0c7c436a-7891-435c-a9fc-3881f7125b11">
-        <img src="{{asset('img/ads_img/oraimo_stores.png')}}" width="100%" class='img-fluid' alt="oraimo">
-        </a>
-    </div>
-    <!--aside-->
-
-    </div>
-
-    <div class="col-sm-6 col-12">
-
-            <!--news filter-->
+    <!--body-->
+    <div class="row">
+        <div class="col-sm-3 col-12">
+        <!--trending-->
+        <div class="py-3 px-3 bg-white  mb-3 d-none d-sm-block d-md-block d-lg-block">
+            <h5 class="fw-bold m-0 mb-3">
+                <span class="material-symbols-outlined align-middle ">
+                    local_fire_department
+                </span>
+                Trending 
+            </h5>
+            <p class="fs-9">Top trending Opportunites</p>
+        </div>
+        <!--trending-->
+    
+        <!--aside-->
+        <div class="px-3 py-3 mb-3 bg-white d-none d-sm-block d-md-block d-lg-block">
+            {{-- <small class="text-secondary d-block mb-3">Advertisement</small> --}}
+            <a href="https://kol.jumia.com/api/click/link/d85c6dd6-5eec-47e9-b103-577be07cf3f6/0c7c436a-7891-435c-a9fc-3881f7125b11">
+            <img src="{{asset('img/ads_img/oraimo_stores.png')}}" width="100%" class='img-fluid' alt="oraimo">
+            </a>
+        </div>
+        <!--aside-->
+        </div>
+    
+        <div class="col-sm-6 col-12">
+    
+        <!--news filter-->
             <form class="" method="GET" id="search_keyword" onsubmit='submitSearchQuery()'>
                 <div class="row">
                     <div class="col-sm-9 col-12">
                         <div class='mb-3'>
-                        <input type='text' disabled class="form-control py-3 fs-9 text-secondary" name="search_keyword" placeholder="Coming soon!" id="keyword">
+                        <input type='text' class="form-control py-3 fs-9 text-secondary" name="search_keyword" placeholder="Search Keywords" id="keyword">
                         </div>
                     </div>
                     <div class="col-sm-3 col-12">
@@ -80,9 +78,19 @@
                     All search filter values are optional
                 </span>
                 <div class="row">
+                    <div class="col-sm-12">
+                        <select class="form-select py-3 mb-3 text-secondary fs-9" name="event_type" id="event_type">
+                            <option value="">Event Type</option>
+                            <option value="in_person">In-Person Gatherings</option>
+                            <option value="virtual">Virtual Gatherings</option>
+                            <option value="hybrid">Hybrid Events (Combining Online and Offline)</option>
+                        </select>  
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-sm-6">
                         <select class="form-select py-3 mb-3 text-secondary fs-9" id="event_status" name="event_status"  aria-label="Select News">
-                            <option value="">All Opportunites</option>
+                            <option value="">All Events</option>
                             <option value="on_going">Ongoing</option>
                             <option value="up_coming">Upcoming</option>
                         </select>
@@ -108,11 +116,12 @@
                     <div class="col-sm-6">
                         <select class="form-select py-3 mb-3 text-secondary fs-9" id="region" name="region" aria-label="Select News">
                             <option value="">Select Region</option>
-                            <option value="northern_africa">Northern Africa</option>
-                            <option value="eastern_africa">Eastern Africa</option>
-                            <option value="western_africa">Western  Africa</option>
+                            <option value="north_africa">North Africa</option>
+                            <option value="west_africa">West Africa</option>
                             <option value="central_africa">Central Africa</option>
+                            <option value="east_africa">East Africa</option>
                             <option value="southern_africa">Southern Africa</option>
+                            <option value="sahel_region">Sahel Region</option>
                         </select>
                         <input type="hidden" name="region" id="selectedRegions" readonly>
                         <div id="outputRegionsList"></div>
@@ -180,125 +189,33 @@
                 </div>
             </form>
             <!--news filter-->
-
-
-            <div class="alert alert-danger fs-9 d-flex  align-items-center" role="alert">
+    
+            <div class="alert alert-info fs-9 d-flex border-0 align-items-center" role="alert">
                 <p class='m-0'>
                 <span class="material-symbols-outlined align-middle">
                 info
                 </span>
                 </p>
-                <p class='m-0 px-3'>
-                <strong>Good news!</strong> We're working hard to fine-tune our event search filters. It'll be up in 48 hours
+                <p class='m-0 fs-9 px-3'>
+                <strong>Feedback</strong>
+                <span class='d-block'>To share your thoughts, no how we can improve your experience, please send us your feedback</span>
+                <a href='' class='btn btn-dark inline-block fs-9 my-1'>Send feedback</a>
                 </p>
               </div>
-
-        <!--main content-->
-        <div class="row position-relative">
-            @forelse($ev_posts as $posts)
-                <div class='col-sm-12 mb-3'>
-                    <div class='px-3 py-3 border rounded feed-panel'>
-                        <a class='text-decoration-none text-gray' href='{{route('read.ev', ['id'=> $posts->id, 'title'=> Str::slug($posts->title, '-')])}}'>
-                            <h5 class='fw-bold m-0 p-0'>{{$posts->title}}</h5>
-                        </a>
-    
-                        <small class="my-2 d-block text-sm text-secondary">Posted on: {{ date('D, M Y', strtotime($posts->created_at))}} 
-                            <span></span>
-                        </small>
-
-                        <div class="overflow-hidden truncate mb-2 text-secondary">
-                            <p class='m-0 fs-9'>{!! $truncated_text = Str::limit(strip_tags($posts->description), 200); !!}</p>
-                           {{-- <span class='text-truncate bg-danger' style='min-width:500px;'>{!! $posts->description !!}</span> --}}
-                        </div>
-
-                        <p class='mb-3 fs-9 fw-bold' style='color:#457b9d'>
-                            <span class="material-symbols-outlined align-middle">
-                                pin_drop
-                            </span>
-                            {{$posts->location}}
-                        </p>
-
-                        {{-- <p class='my-3 p-0 text-danger fw-bold'>Event Date: {{ date('d, M Y', strtotime($posts->event_date))}}</p> --}}
-
-                        <ul class="mb-2 p-0 label-list">
-                            @isset( $posts->region)
-                            <li class="mb-2">
-                                <span class='data-labels'>
-                                    {{ucwords(str_replace("_", " ", $posts->region));}},
-                                </span>
-                            </li>
-                            @endisset
-
-                            @isset( $posts->country)
-                            <li class="mb-2">
-                                <span class='data-labels'>
-                                    {{ucwords(str_replace("_", " ", $posts->country));}}
-                                </span>
-                            </li>
-                            @endisset
-                        </ul>
-
-                        
-                        @isset($posts->event_date)
-                        <p class='p-0 fw-bold fs-9'>{!! get_days_left($posts->event_date) !!}</p>
-                        @endisset
-
-                        <div class="d-flex justify-content-end">
-                            <div class='position-relative'>
-                                <div class="position-absolute share-panel border rounded d-none">
-                                    <ul class='fs-9'>
-                                        <li><a class='text-decoration-none text-dark' href="https://api.whatsapp.com/send?text={{route('read.blog', ['id'=> $posts->id, 'title'=> Str::slug($posts->title, '-')])}}"
-                                            ><img width="30" src="{{asset('img/gif/icons8-whatsapp.gif')}}" alt="whatsapp"> WhatsApp</a></li>
-                                    
-                                        <li><a class='text-decoration-none text-dark' href="https://t.me/share/url?url={{route('read.blog', ['id'=> $posts->id, 'title'=> Str::slug($posts->title, '-')])}}"
-                                            ><img width="30" src="{{asset('img/gif/icons8-telegram.gif')}}" alt="telegram"> Telegram</a></li>
-                                        
-                                        <li><a class='text-decoration-none text-dark' href="https://twitter.com/intent/tweet?url={{route('read.blog', ['id'=> $posts->id, 'title'=> Str::slug($posts->title, '-')])}}"
-                                            target="_blank"><img width="30" src="{{asset('img/gif/icons8-twitter.gif')}}" alt="twitter"> Twitter</a></li>
-                                        
-                                        <li><a class='text-decoration-none text-dark' href="https://www.linkedin.com/sharing/share-offsite/?url={{route('read.blog', ['id'=> $posts->id, 'title'=> Str::slug($posts->title, '-')])}}"
-                                            target="_blank"><img width="30" src="{{asset('img/gif/icons8-linkedin.gif')}}" alt="linkedin"> LinkedIn</a></li>
-                                    </ul>
-                                    
-                                </div>
-                                <button class='me-3 text-decoration-none bprder-0 btn fs-9  px-2 py-2 'onClick="console.log(this.previousElementSibling.classList.toggle('d-none'))">
-                                    <span class="material-symbols-outlined align-middle">
-                                        share
-                                    </span>
-                                </button>
-                            </div>
-
-                            <div class=''>
-                                <a   href='{{route('read.ev', ['id'=> $posts->id, 'title'=> Str::slug($posts->title, '-')])}}'
-                                class='text-decoration-none btn p-0 px-2 fs-9 py-2 mb-2 '>
-                                Details
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @empty 
-                <div class="col-sm-12">
-                    <div class="alert alert-warning text-center my-3">
-                        <span class="fw-bold">Oops! No content found</span>
-                    </div>
-                </div>
-            @endforelse
-
-            <!--pagination-->
+            
+            <!--main content-->
             <div class="row">
                 <div class="col-sm-12">
-            {{$ev_posts->links()}}
+                    <span id="search-result"></span>
+                    <span id="filter-entries"></span>
+                    <div id="opportunity-feeds"></div>
+                    <div id="pagination"></div>
                 </div>
             </div>
-            <!--pagination-->
-
-            </div>
-        <!--main content-->
-
-    </div>
-    <div class="col-sm-3 col-12">
-
+            <!--main content-->
+        </div>
+        <div class="col-sm-3 col-12">
+    
         <!--aside-->
         {{-- <div class="px-3 py-3 border rounded mb-3 bg-white">
             <small class="text-secondary d-block mb-3">Advertisement</small>
@@ -307,7 +224,7 @@
             </a>
         </div> --}}
         <!--aside-->
-
+          
         <!--aside-->
         <div class='px-3 py-3 rounded border mb-3 bg-white'>
             <!--logo-->
@@ -315,40 +232,493 @@
             <img src="{{ asset('img/logo/trans/logo_trans_1.png')}}" width="90" class="img-fluid d-block mx-auto" alt="logo">
             </a>
             <!--logo-->
-            <h5 class='fw-bold m-0 mb-3'>Submit Events</h5>
-            <p class="fs-9 text-secondary">
-            Submit a tech event. It's free.
+            <h5 class='fw-bold m-0 mb-3'>Submit Opportunities</h5>
+            <p class='fs-9 text-secondary'>
+             Submit tech and entrepreneurial opportunities. It's free.
             </p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfxDBVx1cxmooAkjjTaErpGuuaPPP1eoFUhgfQtHjtyz3IbaA/viewform?usp=sf_link" 
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSd-1Nwy3SUnsjvseBtjmQQSxTEobuMDu2_CXWPMDpxWz2n4mQ/viewform?usp=sf_link" 
             target="_blank"
             class='btn btn-dark w-100 fs-9 py-3 my-3'>Submit</a>
         </div>
         <!--aside-->
-
-        <!--aside-->
-        <div class="px-3 py-3 bg-white border rounded">
-            <small class="text-secondary d-block mb-3">Advertisement</small>
-            <!--google ads-->
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7365396698208751"
-            crossorigin="anonymous"></script>
-       <!-- Square Ads -->
-       <ins class="adsbygoogle"
-            style="display:block"
-            data-ad-client="ca-pub-7365396698208751"
-            data-ad-slot="1848837203"
-            data-ad-format="auto"
-            data-full-width-responsive="true"></ins>
-       <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-       </script>
-            <!--google ads-->
+    
+    <!--aside-->
+    {{-- <div class='px-3 py-3 rounded border mb-3 bg-white d-none'>
+        <!--logo-->
+        <p class='fw-bold m-0 mb-2'>Trending</p>
+        <p class='m-0 fs-9 text-secondary'>
+            Let's unlock opportunities together! Share helpful tech and entrepreneurial prospects. 
+            Collaboration amplifies our impact
+        </p>
+    </div> --}}
+    <!--aside-->
+    
+    <!--aside-->
+    <div class="px-3 py-3 bg-white">
+        <!--google ads-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7365396698208751"
+        crossorigin="anonymous"></script>
+    <!-- Square Ads -->
+    <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-7365396698208751"
+        data-ad-slot="1848837203"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+        <!--google ads-->
+      </div>
+      <!--aside-->
+    
         </div>
-        <!--aside-->
-
     </div>
-</div>
-</div>
-
-@include('components/fixed_mobile_menu')
-<!--body-->
-</x-guest-layout>
+    </div>
+    <!--body-->
+    
+    
+    
+    @include('components/fixed_mobile_menu')
+    
+    
+    <script>
+    
+    function removeUnderscore(str) {
+      if (typeof str !== 'string') {
+      return str;
+      }
+      return str.replace(/_/g, ' ');
+    }
+    
+    
+    
+    const imageSrc = '{{ asset('img/gif/cube_loader.gif') }}';
+    
+    //fetch api to access data 
+    window.addEventListener("load", function(){
+        document.querySelector('#opportunity-feeds').innerHTML = `<img src="${imageSrc}" class="img-fluid d-block mx-auto my-5" alt="loading..." />`;
+        fetch('/search-events')
+        .then((r)=> {
+            document.querySelector('#opportunity-feeds').innerHTML = '';
+            return r.json();
+        })
+        .then((d)=>{
+            /**display pagination**/
+            if(d.total > 10){
+                displayPagination(d, "#pagination");
+            }
+            /**display profile**/
+            displayResult(d,"#opportunity-feeds");   
+        })
+        .catch((e)=> console.log(e));
+    })
+    
+    function formatDate(inputDate) {
+      const date = new Date(inputDate);
+      // Format day with suffix (e.g., "1st", "2nd", "3rd", "4th", etc.)
+      const day = date.getDate();
+      const dayWithSuffix = day + (
+        (day === 1 || day === 21 || day === 31) ? "st" :
+        (day === 2 || day === 22) ? "nd" :
+        (day === 3 || day === 23) ? "rd" :
+        "th"
+      );
+      // Format month using its name
+      const monthNames = [
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+      ];
+      const month = monthNames[date.getMonth()];
+      // Format year
+      const year = date.getFullYear();
+      // Concatenate the formatted parts to get the final formatted date
+      const formattedDate = `${dayWithSuffix}, ${month} ${year}`;
+      return formattedDate;
+    }
+    
+    /**truncate text**/
+    function truncateText(text, limit) {
+      // Remove HTML tags from the text using a regular expression
+      const withoutTags = text.replace(/<\/?[^>]+(>|$)/g, '');
+      // Truncate the text to the specified limit
+      const truncatedText = withoutTags.substring(0, limit);
+      // Add "..." at the end if the original text exceeds the limit
+      if (withoutTags.length > limit) {
+        return truncatedText + '...';
+      }
+      return truncatedText;
+    }
+    
+    //return page url 
+    function pageLink(title, id) {
+      // Convert title to lowercase and replace spaces with hyphens
+      const formattedTitle = title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-zA-Z0-9'-]/g, '').replace(/--+/g, '-').replace(/^-|-$/g, '').trim();
+      
+      // Implement the logic to generate the post link
+      let link = `op/${id}/${encodeURIComponent(formattedTitle)}`;
+      return link;
+    }
+    
+    
+    
+    
+    function getDaysLeft(deadline) {
+      const deadlineTimestamp = new Date(deadline).getTime();
+      const nowTimestamp = Date.now();
+      const secondsLeft = Math.floor((deadlineTimestamp - nowTimestamp) / 1000);
+    
+      if (secondsLeft <= 0) {
+        return "<span style='color: #c1121f;'>Expired</span>";
+      } else {
+        const daysLeft = Math.floor(secondsLeft / (60 * 60 * 24));
+        if (daysLeft === 0) {
+          return "<span style='color: #c1121f;'>Last day</span>";
+        } else if (daysLeft === 1) {
+          return "<span style='color: #c1121f;'>1 Day Left</span>";
+        } else {
+          const daysText = daysLeft + (daysLeft > 1 ? ' days' : ' day');
+          if (daysLeft > 7) {
+            return "<span style='color: #2a9d8f;'>" + daysText + " Left</span>";
+          } else {
+            return "<span style='color: #c1121f;'>" + daysText + " Left</span>";
+          }
+        }
+      }
+    }
+    
+    function generateListItems(data) {
+      // Check if 'data' is a non-empty string
+      if (typeof data === 'string' && data.trim() !== '') {
+        // Split 'data' by commas to get individual items
+        const items = data.split(',');
+    
+        // Generate list items for each item and join them together
+        const listItems = items
+          .map((item) => {
+            // Convert 'item' to title case
+            const titleCasedItem = item
+              .trim()
+              .replace(/_/g, ' ')
+              .replace(/\w\S*/g, (word) => word.charAt(0).toUpperCase() + word.slice(1));
+    
+            // Create and return the list item as a string
+            return `<li class="list-item"><span class="data-labels">${titleCasedItem}</span></li>`;
+          })
+          .join('');
+    
+        // Return the concatenated list items
+        return listItems;
+      } else {
+        // Return an empty string if 'data' is not a valid string
+        return '';
+      }
+    }
+    
+    
+    /**
+     * clear search filters
+     * */
+    
+    function clearFilters(){
+         // Clear the search keyword input
+         document.getElementById("keyword").value = "";
+    
+        // Clear the selected option in each select element
+        var selectElements = document.getElementsByTagName("select");
+        for (var i = 0; i < selectElements.length; i++) {
+            selectElements[i].selectedIndex = 0;
+        }
+    
+        // Clear the output divs for regions, countries, and continents
+        document.getElementById("outputRegionsList").innerHTML = "";
+        document.getElementById("outputCountriesList").innerHTML = "";
+        document.getElementById("outputContinentsList").innerHTML = "";
+    
+        // Clear the hidden input fields for regions, countries, and continents
+        document.getElementById("selectedRegions").value = "";
+        document.getElementById("selectedCountries").value = "";
+        document.getElementById("selectedContinents").value = "";
+    
+        document.getElementById('filter-entries').innerHTML = "";
+        document.getElementById("search-result").innerHTML = "";
+    
+        document.querySelector('#opportunity-feeds').innerHTML = `<img src="${imageSrc}" class="img-fluid d-block mx-auto my-5" alt="loading..." />`;
+        fetch('/search-events')
+        .then((r)=> {
+            document.querySelector('#opportunity-feeds').innerHTML = '';
+            document.querySelector('#pagination').innerHTML = '';
+            return r.json();
+        })
+        .then((d)=>{
+            /**display pagination**/
+            if(d.total > 10){
+                displayPagination(d, "#pagination");
+            }
+            /**display profile**/
+            displayResult(d,"#opportunity-feeds");   
+        })
+        .catch((e)=> console.log(e));
+    }
+    
+    /**
+     * Submit search Query
+        */
+    
+    function submitSearchQuery(){
+       document.getElementById("pagination").innerHTML = "";
+       event.preventDefault();
+       let search_form = document.getElementById("search_keyword");
+       let form_data = new FormData(search_form);
+    
+        // Create a URLSearchParams object and append the FormData entries
+      const urlParams = new URLSearchParams();
+      for (const [key, value] of form_data.entries()) {
+        urlParams.append(key, value);
+      }
+    
+    // Check if any of the values in urlParams is not empty
+    const nonEmptyValuesSet = new Set();
+    
+    for (const value of urlParams.values()) {
+      if (value !== "") {
+        nonEmptyValuesSet.add(value);
+      }
+    }
+    
+    const nonEmptyValue = Array.from(nonEmptyValuesSet);
+    document.getElementById('filter-entries').innerHTML = "";
+    
+      //set output if search quries are set
+      if(nonEmptyValue.length > 0){
+        document.getElementById('filter-entries').innerHTML ="<span class='d-inline-block mb-3 me-1'>Filters: <span>";
+        for (let i = 0; i < nonEmptyValue.length; i++) {
+            const value = nonEmptyValue[i];
+            document.getElementById('filter-entries').innerHTML += `<span class='fs-9 d-inline-block me-3 text-secondary'> ${removeUnderscore(value)}</span>`;
+        }
+        document.getElementById('filter-entries').innerHTML += `<button class='btn btn-dark fs-8 mb-1' onclick='clearFilters()'>Clear filter</button>`;
+      }
+    
+      // Construct the URL with the parameters
+      const url = `search-events?${urlParams.toString()}`
+    
+       fetch(url).then((r)=> {
+            document.querySelector('#opportunity-feeds').innerHTML = '';
+            // console.log(r);
+            return r.json();
+        })
+        .then((d)=>{
+            console.log(d);
+            /**display profile**/
+    
+            if(nonEmptyValue.length > 0){
+                document.getElementById("search-result").innerHTML =   `<span class='d-block fs-9 mb-3'>${d.total} result found</span>`;
+            }else{
+                document.getElementById("search-result").innerHTML = '';
+            }
+    
+            displayResult(d,"#opportunity-feeds");   
+            if(d.total > 10){
+                /**display pagination**/
+                displayPagination(d, "#pagination", url);
+            }else if(d.total > 0){
+                document.getElementById("pagination").innerHTML = "";
+            }else{
+                document.getElementById("pagination").innerHTML = "<h4 class='fw-bold text-center my-5'>Oops... No content found!</h4>";
+            }
+        })
+        .catch((e)=> console.log(e));
+    
+    }
+    
+    /**Display profile**/
+    function displayResult(d, elem){
+        d.data.map((o)=>{
+        document.querySelector(elem)
+        .innerHTML += `<div class='col-sm-12 mb-3'>
+        <div class='px-3 py-3 border rounded feed-panel text-wrap w-100'>
+            <a class='text-decoration-none text-gray' href='${pageLink(o.title, o.id)}'>
+            <h5 class='fw-bold m-0 p-0'>${o.title}</h5>
+            </a>
+            <p class="my-2 d-block fs-9 text-sm text-secondary">
+            ${formatDate(o.created_at)}
+            </p>
+            <div class="overflow-hidden truncate mb-2">
+            <p class='m-0 fs-9 text-secondary'>${truncateText(o.description, 200)}</p>
+            </div>
+            <ul class="mb-2 p-0 label-list">
+            ${
+                generateListItems(o.continent)
+            }
+            ${
+                generateListItems(o.region)
+            }
+            ${
+                generateListItems(o.country)
+            }
+            ${
+                generateListItems(o.category)
+            }
+            </ul>
+            ${
+            o.deadline
+                ? `<p class='m-0 fw-bold fs-9'>${getDaysLeft(o.deadline)}</p>`
+                : ""
+            }
+            
+            <div class="d-flex justify-content-end">
+            <div class='position-relative'>
+            <div class="position-absolute share-panel border rounded d-none">
+                <ul class='m-0 p-0 fs-9'>
+                    <li><a class='text-decoration-none text-dark' href="https://api.whatsapp.com/send?text=https://media.edatsu.com/${pageLink(o.title, o.id)}"
+                        target="_blank"><img width="30" src="{{asset('img/gif/icons8-whatsapp.gif')}}" alt="whatsapp"> WhatsApp</a></li>
+    
+                    <li><a class='text-decoration-none text-dark' href="https://t.me/share/url?url=https://media.edatsu.com/${pageLink(o.title, o.id)}"
+                        target="_blank"><img width="30" src="{{asset('img/gif/icons8-telegram.gif')}}" alt="telegram"> Telegram</a></li>
+                    
+                    <li><a class='text-decoration-none text-dark' href="https://twitter.com/intent/tweet?url=https://media.edatsu.com/${pageLink(o.title, o.id)}"
+                        target="_blank"><img width="30" src="{{asset('img/gif/icons8-twitter.gif')}}" alt="twitter"> Twitter</a></li>
+                    
+                    <li><a class='text-decoration-none text-dark' href="https://www.linkedin.com/sharing/share-offsite/?url=https://media.edatsu.com/${pageLink(o.title, o.id)}"
+                        target="_blank"><img width="30" src="{{asset('img/gif/icons8-linkedin.gif')}}" alt="linkedin"> LinkedIn</a></li>
+                </ul>
+            </div>
+            <button class='me-3 text-decoration-none bprder-0 btn fs-9 px-2 py-2' onClick="this.previousElementSibling.classList.toggle('d-none')">
+                <span class="material-symbols-outlined align-middle">
+                    share
+                </span>
+            </button>
+            </div>
+            <div class=''>
+                <a class='text-decoration-none bprder-0 btn fs-9 px-2 py-2' href='${pageLink(o.title, o.id)}'>Read More</a>
+            </div>
+            </div>
+        </div>
+        </div>`;
+            })
+    }
+    
+    
+    /**display pagination**/
+    function displayPagination(d, elem){
+    d.links.map((p)=>{
+        // let active = "#FCCD29";
+        let active_bg =  (p.active)? "#FB5607" : '';
+        let active_txt = (p.active)? "#252422" : '';
+        console.log(p);
+            if(p.url !== null){
+            document.querySelector(elem)
+            .innerHTML +=  ` <a id='${p.url}' class='btn btn-dark border-0 me-2 mb-2 px-3  text-light' 
+            style='background-color:${active_bg}; color:${active_txt}'
+            onclick='callPagination(this.id);'>${p.label}</button> `;
+            }  
+    })
+    }
+    
+    
+    /***call pagination**/
+    function callPagination(url){
+        document.querySelector('#opportunity-feeds').innerHTML = "<i class='d-block mb-3'>Oops! No content found</i>";
+        if(url == 'null'){
+            return false;
+        }else{
+            document.querySelector('#opportunity-feeds').innerHTML =   `<img src="${imageSrc}" class="img-fluid d-block mx-auto my-5" alt="loading..." />`;
+            fetch(url)
+            .then((r)=> {
+                document.querySelector('#opportunity-feeds').innerHTML = '';
+                document.querySelector('#pagination').innerHTML = '';
+                return  r.json();
+            })
+            .then((d)=>{
+                /**display pagination**/
+                console.log(d);
+                displayPagination(d, "#pagination");
+                /**display profile**/
+                displayResult(d,"#opportunity-feeds");   
+            })
+            .catch((e)=> console.log(e));
+        }
+    }
+    
+    
+    //toggle search filter 
+    function toggleContent() {
+      console.log('click');
+      var element = document.getElementById("filter-toggle");
+      var toggle_btn = document.getElementById("filter-panel");
+      toggle_btn.classList.toggle('d-none');
+      console.log(element.innerHTML);
+      if (element.innerHTML.trim() === "toggle_off") {
+        // console.log('toggle-on');
+        element.innerHTML = "toggle_on";
+      } else {
+        // console.log('toggle-off')
+        element.innerHTML = "toggle_off";
+      }
+    }
+    
+    
+    /**select multiple options tags**/
+    function initializeSelect(selectId, inputId, outputId) {
+        const selectElement = document.getElementById(selectId);
+        const inputField = document.getElementById(inputId);
+        const outputList = document.getElementById(outputId);
+    
+    
+        function updateInputField() {
+            console.log('works');
+            const selectedOptions = Array.from(selectElement.selectedOptions).map(option => option.value);
+            const existingValues = inputField.value.split(',').map(value => value.trim());
+            const uniqueValues = [...new Set([...existingValues, ...selectedOptions])];
+            inputField.value = uniqueValues.filter(Boolean).join(', ');
+            updateOutputList(uniqueValues);
+        }
+    
+        function updateOutputList(values) {
+            outputList.innerHTML = '';
+    
+            values.forEach(value => {
+                const trimmedValue = value.trim();
+    
+                if (trimmedValue !== '') {
+                    const listItem = document.createElement('div');
+                    listItem.classList.add('filter-label');
+                    listItem.textContent = trimmedValue.replaceAll('_', ' ');
+    
+                    const deleteButton = document.createElement('button');
+                    deleteButton.classList.add('filter-label-delete');
+                    deleteButton.textContent = 'x';
+                    deleteButton.addEventListener('click', () => {
+                        removeItem(trimmedValue);
+                        listItem.remove();
+                    });
+    
+                    listItem.appendChild(deleteButton);
+                    outputList.appendChild(listItem);
+                }
+            });
+        }
+    
+        function removeItem(value) {
+            const existingValues = inputField.value.split(',').map(val => val.trim());
+            const updatedValues = existingValues.filter(val => val !== value);
+            inputField.value = updatedValues.join(', ');
+            updateOutputList(updatedValues);
+    
+            // Set the selectId to a default option
+            selectElement.selectedIndex = 0;
+        }
+    
+        selectElement.addEventListener('change', updateInputField);
+    }
+    
+    // Example usage
+    initializeSelect('category', 'selectedCategories', 'outputCategoryList');
+    initializeSelect('region', 'selectedRegions', 'outputRegionsList');
+    initializeSelect('country', 'selectedCountries', 'outputCountriesList');
+    initializeSelect('continent', 'selectedContinents', 'outputContinentsList');
+    
+    </script>
+    
+    </x-guest-layout>
+    
