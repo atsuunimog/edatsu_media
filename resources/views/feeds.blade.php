@@ -15,17 +15,12 @@
     </div>
 </div>
 
-
-<!--menu-->
-{{-- @include('components/custom_nav') --}}
-<!--menu-->
-
 <div class="container">
 
 <div class="row">
 <div class="col-sm-3">
 <!--trending-->
-<div class="py-3 px-3 bg-white border rounded mb-3  d-none d-sm-block d-md-block d-lg-block">
+<div class="py-3 px-3 bg-white  mb-3 border rounded d-none d-sm-block d-md-block d-lg-block">
   <h5 class="fw-bold m-0 mb-3">
       <span class="material-symbols-outlined align-middle ">
           local_fire_department
@@ -38,8 +33,7 @@
 
 
     <!--aside-->
-    <div class="px-3 py-3 border rounded mb-3 bg-white d-none d-sm-block d-md-block d-lg-block">
-      <small class="text-secondary d-block mb-3">Advertisement</small>
+    <div class="mb-3 bg-white d-none d-sm-block d-md-block d-lg-block">
       <a href="https://kol.jumia.com/api/click/link/d85c6dd6-5eec-47e9-b103-577be07cf3f6/0c7c436a-7891-435c-a9fc-3881f7125b11">
       <img src="{{asset('img/ads_img/oraimo_stores.png')}}" width="100%" class='img-fluid' alt="oraimo">
       </a>
@@ -87,13 +81,13 @@
 </form>
 <!--news filter-->
 
-<div class="alert alert-info fs-9 d-flex  align-items-center" role="alert">
+<div class="alert alert-info fs-9 d-flex  align-items-center border-0" role="alert">
   <p class='m-0'>
   <span class="material-symbols-outlined align-middle">
   info
   </span>
   </p>
-  <p class='m-0 px-3'>
+  <p class='m-0 px-3 fs-9'>
   We have restricted the number of visible channel feeds at a time. Use the channel filter to find channels.
   </p>
 </div>
@@ -142,8 +136,7 @@
 <!--aside-->
 
 <!--aside-->
-<div class="px-3 py-3 bg-white border rounded">
-  <small class="text-secondary d-block mb-3">Advertisement</small>
+<div class="bg-white">
   <!--google ads-->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7365396698208751"
   crossorigin="anonymous"></script>
@@ -169,5 +162,5 @@
 <script>
   const imageSrc = '{{ asset('img/gif/cube_loader.gif') }}';
 </script>
-<script defer src='../js/minified-feeds.js'></script>
+<script defer src='../js/feeds.js'></script>
 </x-guest-layout>

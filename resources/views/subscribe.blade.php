@@ -12,10 +12,8 @@
             </div>  
         </div>
     </div>
-    
-    <!--menu-->
-    @include('components/custom_nav')
-    <!--menu-->
+
+    <div class="container">
     
     <!--body-->
     <div class="row">
@@ -31,7 +29,7 @@
                   /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
                      We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
           </style>
-          <div id="mc_embed_signup">
+          <div id="mc_embed_signup" class="px-3 py-3 border rounded">
               <form action="https://edatsu.us18.list-manage.com/subscribe/post?u=ce5edb3afeca14d1d47a046bf&amp;id=873d67a43e&amp;f_id=007d96e6f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
                   <div id="mc_embed_signup_scroll"><h2>Subscribe</h2>
                       <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
@@ -47,7 +45,7 @@
               </div>
                   <div class="optionalParent">
                       <div class="clear foot">
-                          <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="btn border-0 fs-9 py-3 btn-dark w-100 d-block mx-auto" value="Subscribe">
+                          <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="btn border-0 py-3 btn-dark w-100 d-block mx-auto" value="Subscribe">
                       </div>
                   </div>
               </div>
@@ -76,6 +74,7 @@
         </div>
         <!--aside-->
         </div>
+    </div>
     </div>
     <!--body-->
     @include('components/fixed_mobile_menu')

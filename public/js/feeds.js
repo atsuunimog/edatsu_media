@@ -33,7 +33,7 @@ const handleData = (data, singleFeed, feeder_url = '') => {
     const dateMarkup = feed.date ? `<p class="text-secondary fs-9 p-0 m-0 my-2">Posted on: ${feed.date}</p>` : '';
     const feedMarkup = `
       <div class="px-3 py-3 bg-white border rounded mb-3">
-        <h5 class="fw-bold">${feed.title}</h5>
+        <h6 class="fw-bold">${feed.title}</h6>
         ${dateMarkup}
         <p class="p-0 m-0 my-2 fs-9 text-secondary d-block">
         ${feed.description}

@@ -21,20 +21,21 @@
     <!--body-->
     <div class="row">
         <div class="col-sm-3 col-12">
+
         <!--trending-->
-        <div class="py-3 px-3 bg-white  mb-3 d-none d-sm-block d-md-block d-lg-block">
+        <div class="py-3 px-3 bg-white border rounded mb-3 d-none d-sm-block d-md-block d-lg-block">
             <h5 class="fw-bold m-0 mb-3">
                 <span class="material-symbols-outlined align-middle ">
                     local_fire_department
                 </span>
                 Trending 
             </h5>
-            <p class="fs-9">Top trending Opportunites</p>
+            <p class="fs-9">Top trending Events</p>
         </div>
         <!--trending-->
     
         <!--aside-->
-        <div class="px-3 py-3 mb-3 bg-white d-none d-sm-block d-md-block d-lg-block">
+        <div class="mb-3 bg-white d-none d-sm-block d-md-block d-lg-block">
             {{-- <small class="text-secondary d-block mb-3">Advertisement</small> --}}
             <a href="https://kol.jumia.com/api/click/link/d85c6dd6-5eec-47e9-b103-577be07cf3f6/0c7c436a-7891-435c-a9fc-3881f7125b11">
             <img src="{{asset('img/ads_img/oraimo_stores.png')}}" width="100%" class='img-fluid' alt="oraimo">
@@ -201,7 +202,7 @@
                 <span class='d-block'>To share your thoughts, no how we can improve your experience, please send us your feedback</span>
                 <a href='' class='btn btn-dark inline-block fs-9 my-1'>Send feedback</a>
                 </p>
-              </div>
+            </div>
             
             <!--main content-->
             <div class="row">
@@ -225,18 +226,18 @@
         </div> --}}
         <!--aside-->
           
-        <!--aside-->
-        <div class='px-3 py-3 rounded border mb-3 bg-white'>
+         <!--aside-->
+         <div class='px-3 py-3 rounded border mb-3 bg-white'>
             <!--logo-->
             <a href='./'>
             <img src="{{ asset('img/logo/trans/logo_trans_1.png')}}" width="90" class="img-fluid d-block mx-auto" alt="logo">
             </a>
             <!--logo-->
-            <h5 class='fw-bold m-0 mb-3'>Submit Opportunities</h5>
-            <p class='fs-9 text-secondary'>
-             Submit tech and entrepreneurial opportunities. It's free.
+            <h5 class='fw-bold m-0 mb-3'>Submit Events</h5>
+            <p class="fs-9 text-secondary">
+            Submit a tech event. It's free.
             </p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSd-1Nwy3SUnsjvseBtjmQQSxTEobuMDu2_CXWPMDpxWz2n4mQ/viewform?usp=sf_link" 
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfxDBVx1cxmooAkjjTaErpGuuaPPP1eoFUhgfQtHjtyz3IbaA/viewform?usp=sf_link" 
             target="_blank"
             class='btn btn-dark w-100 fs-9 py-3 my-3'>Submit</a>
         </div>
@@ -254,7 +255,7 @@
     <!--aside-->
     
     <!--aside-->
-    <div class="px-3 py-3 bg-white">
+    <div class="bg-white">
         <!--google ads-->
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7365396698208751"
         crossorigin="anonymous"></script>
@@ -538,15 +539,15 @@
         .innerHTML += `<div class='col-sm-12 mb-3'>
         <div class='px-3 py-3 border rounded feed-panel text-wrap w-100'>
             <a class='text-decoration-none text-gray' href='${pageLink(o.title, o.id)}'>
-            <h5 class='fw-bold m-0 p-0'>${o.title}</h5>
+            <h6 class='fw-bold m-0 mb-1 p-0'>${o.title}</h6>
             </a>
-            <p class="my-2 d-block fs-9 text-sm text-secondary">
-            ${formatDate(o.created_at)}
+            <p class="m-0 mb-1 d-block fs-9 text-sm text-secondary">
+            Posted on: ${formatDate(o.created_at)}
             </p>
-            <div class="overflow-hidden truncate mb-2">
-            <p class='m-0 fs-9 text-secondary'>${truncateText(o.description, 200)}</p>
+            <div class="overflow-hidden truncate">
+            <p class='m-0 mb-1 md-block fs-9 text-sm text-secondary'>${truncateText(o.description, 200)}</p>
             </div>
-            <ul class="mb-2 p-0 label-list">
+            <ul class="m-0 mb-1 p-0 label-list">
             ${
                 generateListItems(o.continent)
             }
@@ -561,8 +562,8 @@
             }
             </ul>
             ${
-            o.deadline
-                ? `<p class='m-0 fw-bold fs-9'>${getDaysLeft(o.deadline)}</p>`
+            o.event_date
+                ? `<p class='m-0 fw-bold fs-9'>${getDaysLeft(o.event_date)}</p>`
                 : ""
             }
             

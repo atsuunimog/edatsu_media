@@ -23,7 +23,7 @@
 <div class="row">
     <div class="col-sm-3 col-12">
     <!--trending-->
-    <div class="py-3 px-3 bg-white border rounded mb-3 d-none d-sm-block d-md-block d-lg-block">
+    <div class="py-3 px-3 bg-white mb-3 border rounded d-none d-sm-block d-md-block d-lg-block">
         <h5 class="fw-bold m-0 mb-3">
             <span class="material-symbols-outlined align-middle ">
                 local_fire_department
@@ -35,8 +35,7 @@
     <!--trending-->
 
     <!--aside-->
-    <div class="px-3 py-3 border rounded mb-3 bg-white d-none d-sm-block d-md-block d-lg-block">
-        <small class="text-secondary d-block mb-3">Advertisement</small>
+    <div class=" mb-3 bg-white d-none d-sm-block d-md-block d-lg-block">
         <a href="https://kol.jumia.com/api/click/link/d85c6dd6-5eec-47e9-b103-577be07cf3f6/0c7c436a-7891-435c-a9fc-3881f7125b11">
         <img src="{{asset('img/ads_img/oraimo_stores.png')}}" width="100%" class='img-fluid' alt="oraimo">
         </a>
@@ -181,17 +180,18 @@
         </form>
         <!--news filter-->
 
-        <div class="alert alert-danger fs-9 d-flex  align-items-center" role="alert">
+        <div class="alert alert-info fs-9 d-flex border-0 align-items-center" role="alert">
             <p class='m-0'>
             <span class="material-symbols-outlined align-middle">
             info
             </span>
             </p>
-            <p class='m-0 px-3'>
-            <strong>Exciting News!</strong> Now you can easily discover *upcoming events* and explore by *category* using our advanced filters. 
-            Plus, we've fixed our share buttons to make sharing content a breeze! 
+            <p class='m-0 fs-9 px-3'>
+            <strong>Feedback</strong>
+            <span class='d-block'>To share your thoughts, no how we can improve your experience, please send us your feedback</span>
+            <a href='' class='btn btn-dark inline-block fs-9 my-1'>Send feedback</a>
             </p>
-          </div>
+        </div>
         
         <!--main content-->
         <div class="row">
@@ -244,8 +244,7 @@
 <!--aside-->
 
 <!--aside-->
-<div class="px-3 py-3 bg-white border rounded">
-    <small class="text-secondary d-block mb-3">Advertisement</small>
+<div class="bg-white">
     <!--google ads-->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7365396698208751"
     crossorigin="anonymous"></script>
@@ -529,7 +528,7 @@ function displayResult(d, elem){
     .innerHTML += `<div class='col-sm-12 mb-3'>
     <div class='px-3 py-3 border rounded feed-panel text-wrap w-100'>
         <a class='text-decoration-none text-gray' href='${pageLink(o.title, o.id)}'>
-        <h5 class='fw-bold m-0 p-0'>${o.title}</h5>
+        <h6 class='fw-bold m-0 p-0'>${o.title}</h6>
         </a>
         <p class="my-2 d-block fs-9 text-sm text-secondary">
         ${formatDate(o.created_at)}
