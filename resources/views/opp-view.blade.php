@@ -8,7 +8,31 @@
         </div>
     </div>
 
-    {{-- @include('components/custom_nav') --}}
+@php
+function processCountries($countriesString) {
+    $countries = explode(',', $countriesString);
+    $cleanedCountries = array_map('trim', $countries);
+
+    if (count($cleanedCountries) === 1) {
+        echo"
+            <li class=''>
+                        <span class='data-labels'>
+                            ".ucwords(str_replace("_", " ", $cleanedCountries[0]))."
+                        </span>
+            </li>";
+    } else {
+        foreach ($cleanedCountries as $country) {
+            echo"
+            <li class=''>
+                        <span class='data-labels'>
+                            ".ucwords(str_replace("_", " ", $country))."
+                        </span>
+            </li>";
+        }
+    }
+}
+
+@endphp
 
     <div class="container">
 
@@ -30,43 +54,40 @@
         <div class="col-sm-8">
             <div class="px-3 py-3 bg-white rounded border mb-3">
                 <!--main content-->
-                <h5 class='fw-bold m-0 p-0'>{{$opp_posts->title}}</h5>
-                <small class="my-2 d-block text-sm text-secondary">Posted on: {{ date('D, M Y', strtotime($opp_posts->created_at))}}</small>
-                <p class='mt-0 mb-3'>{!! $opp_posts->description !!}</p>
+                <h5 class='fw-bold m-0 mb-1'>{{$opp_posts->title}}</h5>
+                <span class="mb-2 d-block text-sm text-secondary fs-9">Posted on: {{ date('D, M Y', strtotime($opp_posts->created_at))}}</span>
+                <p class='m-0'>{!! $opp_posts->description !!}</p>
 
                 <ul class="m-0 p-0 label-list mb-2">
                     @isset( $opp_posts->continent)
-                    <li class="">
-                        <span class='data-labels'>
-                            {{ucwords(str_replace("_", " ", $opp_posts->continent));}}
-                        </span>
-                    </li>
+                    {{processCountries($opp_posts->continent)}}
                     @endisset
 
                     @isset( $opp_posts->region)
-                    <li class="">
-                        <span class='data-labels'>
-                        {{ucwords(str_replace("_", " ", $opp_posts->region));}}
-                        </span>
-                    </li>
+                    {{processCountries($opp_posts->region)}}
                     @endisset
 
                     @isset($opp_posts->country)
-                    <li class="">
-                        <span class='data-labels'>
-                        {{$opp_posts->country}}
-                        </span>
-                    </li>
+                    {{processCountries($opp_posts->country)}}
+                    @endisset
+
+                    @isset($opp_posts->category)
+                    {{processCountries($opp_posts->category)}}
                     @endisset
                 </ul>
 
-                @isset($opp_posts->deadline)
-                <p class='my-2 p-0 fw-bold text-dark'>Deadline: {{ date('d, M Y', strtotime($opp_posts->deadline))}}</p>
-                @endisset
-
-                @isset($opp_posts->deadline)
-                <p class='p-0 fw-bold'>{!! get_days_left($opp_posts->deadline) !!}</p>
-                @endisset
+                <div class="row">
+                    <div class="col-sm-4">
+                        @isset($opp_posts->deadline)
+                        <p class='p-0 my-2 fs-9'>{!! get_days_left($opp_posts->deadline) !!}</p>
+                        @endisset
+                        </div>
+                    <div class="col-sm-8">
+                        @isset($opp_posts->deadline)
+                        <p class='my-2 p-0 fs-9 text-dark'>Deadline: {{ date('d, M Y', strtotime($opp_posts->deadline))}}</p>
+                        @endisset
+                    </div>
+                </div>
 
                 <div class="d-flex justify-content-end">
                     <div class='position-relative'>
@@ -97,14 +118,18 @@
                         href='{{$opp_posts->source_url}}' target='_blank'>
                         Apply
                         </a>
-                         </div>
+                     </div>
                 </div>
                 <!--main content-->
+
+                <!--add disqus here-->
+                <div id="disqus_thread" class="mt-5"></div>
+                <!--add disqus here-->
             </div>
         </div>
 
         <div class="col-sm-4">
-            <div class="px-3 py-3 bg-white rounded border mb-3">
+            <div class=" bg-white mb-3">
                 <!--side content-->
                 <!--google ads-->            
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7365396698208751"
@@ -124,8 +149,7 @@
             </div>
 
              <!--aside-->
-             <div class="px-3 py-3 border rounded mb-3 bg-white">
-                <small class="text-secondary d-block mb-3">Advertisement</small>
+             <div class=" mb-3 bg-white">
                 <a href="https://kol.jumia.com/api/click/link/d85c6dd6-5eec-47e9-b103-577be07cf3f6/0c7c436a-7891-435c-a9fc-3881f7125b11">
                 <img src="{{asset('img/ads_img/oraimo_stores.png')}}" width="100%" class='img-fluid' alt="oraimo">
                 </a>
@@ -135,6 +159,28 @@
         </div>
     </div>
     </div>
-    @include('components/fixed_mobile_menu')
-    </x-guest-layout>
+
+ 
+  
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://media-edatsu-com.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+@include('components/fixed_mobile_menu')
+</x-guest-layout>
     

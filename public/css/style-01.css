@@ -143,8 +143,9 @@ ul.share-icons > li{
 .data-labels{
     background-color:#F2F2F2;
    font-size:.8em;
-   padding:3px 10px;
-   border-radius:6px;
+   padding:5px 15px;
+   border:1px solid gray;
+   border-radius:10px;
    /* border:1px solid gray; */
 }
 
@@ -154,7 +155,7 @@ ul.share-icons > li{
     /* top:-270px; */
     top:-220px;
     right:-50px;
-    padding:15px;
+    /* padding:15px; */
 }
 
 .share-panel ul{margin:0px; padding:0px; list-style: none;}

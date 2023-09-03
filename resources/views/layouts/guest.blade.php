@@ -46,7 +46,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
-        <link href={{asset('css/style.css')}} rel="stylesheet">
+        <link href={{asset('css/style-01.css')}} rel="stylesheet">
         <!-- Scripts -->
         {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
         <!-- Google tag (gtag.js) -->
@@ -62,7 +62,8 @@
         @include('layouts.header')
         <div class="container-fluid">
             {{ $slot }}
-        @include('layouts.footer')
+        @include('layouts.social-footer')
         </div>
+        @include('layouts.footer')
     </body>
 </html>

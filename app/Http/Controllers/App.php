@@ -11,12 +11,15 @@ class App extends Controller
 {
     //display  opp content
     function readOpportunity(Request $request, $id){
+        //add view counter
+        Oppty::where('id', $id)->increment('views');
         $opp_posts = Oppty::where('id', $id)->first();
         return view("opp-view", ["opp_posts" => $opp_posts]);
     }
 
     //display events 
     function readEvent(Request $request, $id){
+        Events::where('id', $id)->increment('views');
         $ev_posts = Events::where('id', $id)->first();
         return view("ev-view", ["ev_posts" => $ev_posts]);
     }
@@ -193,8 +196,8 @@ function searchEvents(Request $request){
    // If all search parameters are empty, return the default pagination
    if ($allParamsEmpty) {
        $defaultPagination = Events::where('deleted', 0)
-           ->orderByDesc('id')
-           ->paginate(20);
+        ->orderByDesc('id')
+        ->paginate(20);
 
        return response()->json($defaultPagination);
    }
@@ -216,7 +219,7 @@ function searchEvents(Request $request){
         $query->where('event_type', 'hybrid');
     }
 
-    
+
    if ($regions) {
        $query->where(function ($query) use ($regions) {
            $regionsArray = explode(',', $regions);
@@ -264,11 +267,11 @@ function searchEvents(Request $request){
 
 
    if ($eventStatus === 'on_going') {
-       $query->whereDate('deadline', '>=', now());
+       $query->whereDate('event_date', '>=', now());
    } elseif ($eventStatus === 'up_coming') {
-       $query->whereDate('deadline', '>', now());
+       $query->whereDate('event_date', '>', now());
        // Order events by the difference between 'deadline' and current date
-       $query->orderBy('deadline', 'asc');
+       $query->orderBy('event_date', 'asc');
    }
 
    if ($datePosted === 'one_day') {

@@ -188,8 +188,8 @@
             </p>
             <p class='m-0 fs-9 px-3'>
             <strong>Feedback</strong>
-            <span class='d-block'>To share your thoughts, no how we can improve your experience, please send us your feedback</span>
-            <a href='' class='btn btn-dark inline-block fs-9 my-1'>Send feedback</a>
+            <span class='d-block'>To share your thoughts, no how we can improve your experience, send us your feedback</span>
+            <a href={{route('feedback')}} class='btn btn-dark inline-block fs-9 my-1'>Send feedback</a>
             </p>
         </div>
         
@@ -271,22 +271,22 @@
 
 @include('components/fixed_mobile_menu')
 
+<script id="dsq-count-scr" src="https://media-edatsu-com.disqus.com/count.js" async></script>
 
 <script>
 
 function removeUnderscore(str) {
-  if (typeof str !== 'string') {
-  return str;
-  }
+  if (typeof str !== 'string') {return str;}
   return str.replace(/_/g, ' ');
 }
-
-
 
 const imageSrc = '{{ asset('img/gif/cube_loader.gif') }}';
 
 //fetch api to access data 
 window.addEventListener("load", function(){
+    //reset disqus comment 
+    DISQUSWIDGETS.getCount({reset: true});
+
     document.querySelector('#opportunity-feeds').innerHTML = `<img src="${imageSrc}" class="img-fluid d-block mx-auto my-5" alt="loading..." />`;
     fetch('/search-opportunities')
     .then((r)=> {
@@ -527,16 +527,27 @@ function displayResult(d, elem){
     document.querySelector(elem)
     .innerHTML += `<div class='col-sm-12 mb-3'>
     <div class='px-3 py-3 border rounded feed-panel text-wrap w-100'>
-        <a class='text-decoration-none text-gray' href='${pageLink(o.title, o.id)}'>
-        <h6 class='fw-bold m-0 p-0'>${o.title}</h6>
+        <a class='text-decoration-none text-gray' href='${pageLink(o.title, o.id)}#disqus_thread'>
+        <h6 class='fw-bold m-0 mb-1 p-0'>${o.title}</h6>
         </a>
-        <p class="my-2 d-block fs-9 text-sm text-secondary">
-        ${formatDate(o.created_at)}
-        </p>
-        <div class="overflow-hidden truncate mb-2">
-        <p class='m-0 fs-9 text-secondary'>${truncateText(o.description, 200)}</p>
+
+        <ul class="list-unstyled my-2  d-block fs-9 text-sm text-secondary">
+        <li class='d-inline-block me-3'>
+            Posted on: ${formatDate(o.created_at)}
+        </li>
+        <li class='d-inline-block'> 
+        ${
+        o.deadline
+            ? `${getDaysLeft(o.deadline)}`
+            : ""
+        }
+        </li>
+        </ul>
+
+        <div class="overflow-hidden truncate">
+        <p class='m-0 mb-2 fs-9 text-secondary'>${truncateText(o.description, 200)}</p>
         </div>
-        <ul class="mb-2 p-0 label-list">
+        <ul class="mb-2 d-block p-0 label-list">
         ${
             generateListItems(o.continent)
         }
@@ -550,13 +561,32 @@ function displayResult(d, elem){
             generateListItems(o.category)
         }
         </ul>
-        ${
-        o.deadline
-            ? `<p class='m-0 fw-bold fs-9'>${getDaysLeft(o.deadline)}</p>`
-            : ""
-        }
-        
-        <div class="d-flex justify-content-end">
+       
+        <div class="d-flex justify-content-end fs-9">
+        <div class=''>
+            <button class='me-2 text-decoration-none border-0 btn px-2 py-2'>
+                <span class="material-symbols-outlined">
+                add_comment
+                </span>
+            </button>
+        </div>
+
+        <div class=''>
+            <button class='me-2 text-decoration-none border-0 btn px-2 py-2'>
+                <span class="material-symbols-outlined">
+                bookmark_add
+                </span>
+            </button>
+        </div>
+
+        <div class=''>
+            <button class='me-2 text-decoration-none border-0 btn px-2 py-2'>
+                <span class="material-symbols-outlined">
+                thumb_up
+                </span>
+            </button>
+        </div>
+
         <div class='position-relative'>
         <div class="position-absolute share-panel border rounded d-none">
             <ul class='m-0 p-0 fs-9'>
@@ -573,14 +603,18 @@ function displayResult(d, elem){
                     target="_blank"><img width="30" src="{{asset('img/gif/icons8-linkedin.gif')}}" alt="linkedin"> LinkedIn</a></li>
             </ul>
         </div>
-        <button class='me-3 text-decoration-none bprder-0 btn fs-9 px-2 py-2' onClick="this.previousElementSibling.classList.toggle('d-none')">
+        <button class='me-2 text-decoration-none border-0 btn px-2 py-2' onClick="this.previousElementSibling.classList.toggle('d-none')">
             <span class="material-symbols-outlined align-middle">
                 share
             </span>
         </button>
         </div>
         <div class=''>
-            <a class='text-decoration-none bprder-0 btn fs-9 px-2 py-2' href='${pageLink(o.title, o.id)}'>Read More</a>
+            <button class='me-2 text-decoration-none border-0 btn px-2 py-2' href='${pageLink(o.title, o.id)}'>
+                <span class="material-symbols-outlined">
+                arrow_forward
+                </span>
+            </button>
         </div>
         </div>
     </div>
@@ -708,6 +742,10 @@ initializeSelect('region', 'selectedRegions', 'outputRegionsList');
 initializeSelect('country', 'selectedCountries', 'outputCountriesList');
 initializeSelect('continent', 'selectedContinents', 'outputContinentsList');
 
+
+
+
 </script>
+
 
 </x-guest-layout>

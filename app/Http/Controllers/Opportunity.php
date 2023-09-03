@@ -28,11 +28,11 @@ class Opportunity extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'reference' => 'required|url|max:255',
-            'region' => 'nullable|string|max:50',
-            'country' => 'nullable|string|max:50',
-            'continent' => 'nullable|string|max:50',
+            'region' => 'nullable|string',
+            'country' => 'nullable|string',
+            'continent' => 'nullable|string',
             'deadline' => 'nullable|date', // Adjust this rule based on your date format
-            'category' => 'nullable|string|max:50',
+            'category' => 'nullable|string',
         ]);
 
         //capture values 

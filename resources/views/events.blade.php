@@ -200,7 +200,7 @@
                 <p class='m-0 fs-9 px-3'>
                 <strong>Feedback</strong>
                 <span class='d-block'>To share your thoughts, no how we can improve your experience, please send us your feedback</span>
-                <a href='' class='btn btn-dark inline-block fs-9 my-1'>Send feedback</a>
+                <a href={{route('feedback')}} class='btn btn-dark inline-block fs-9 my-1'>Send feedback</a>
                 </p>
             </div>
             
@@ -284,6 +284,17 @@
     
     
     <script>
+
+function formatString(input) {
+    if (typeof input !== 'string' || input.trim().length === 0) {
+        return '';
+    }
+
+    let formatted = input.replace(/_/g, ' ');
+    formatted = formatted.charAt(0).toUpperCase() + formatted.slice(1);
+    formatted = formatted.replace(/\s/g, '');
+    return formatted;
+}
     
     function removeUnderscore(str) {
       if (typeof str !== 'string') {
@@ -357,7 +368,7 @@
       const formattedTitle = title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-zA-Z0-9'-]/g, '').replace(/--+/g, '-').replace(/^-|-$/g, '').trim();
       
       // Implement the logic to generate the post link
-      let link = `op/${id}/${encodeURIComponent(formattedTitle)}`;
+      let link = `ev/${id}/${encodeURIComponent(formattedTitle)}`;
       return link;
     }
     
@@ -541,13 +552,15 @@
             <a class='text-decoration-none text-gray' href='${pageLink(o.title, o.id)}'>
             <h6 class='fw-bold m-0 mb-1 p-0'>${o.title}</h6>
             </a>
-            <p class="m-0 mb-1 d-block fs-9 text-sm text-secondary">
+            <p class="m-0 mb-2 d-block fs-9 text-sm text-secondary">
             Posted on: ${formatDate(o.created_at)}
             </p>
+
             <div class="overflow-hidden truncate">
-            <p class='m-0 mb-1 md-block fs-9 text-sm text-secondary'>${truncateText(o.description, 200)}</p>
+            <p class='m-0 mb-2 md-block fs-9 text-sm text-secondary'>${truncateText(o.description, 200)}</p>
             </div>
-            <ul class="m-0 mb-1 p-0 label-list">
+
+            <ul class="m-0 mb-2 d-block p-0 label-list">
             ${
                 generateListItems(o.continent)
             }
@@ -561,12 +574,38 @@
                 generateListItems(o.category)
             }
             </ul>
-            ${
-            o.event_date
-                ? `<p class='m-0 fw-bold fs-9'>${getDaysLeft(o.event_date)}</p>`
-                : ""
-            }
-            
+
+            <div class='row fs-9'>
+                <div class='col-sm-4'>
+                    <div class='my-2'>
+                        <span class="material-symbols-outlined align-middle">
+                        face
+                        </span>
+                        ${formatString(o.event_type)}
+                    </div>
+                </div>
+
+                <div class='col-sm-8'>
+                    <div class='my-2'>
+                        <span class='' style='color:#457b9d'>
+                            <span class="material-symbols-outlined align-middle">
+                                pin_drop
+                            </span>
+                        ${((o.location == null)? '' : o.location)}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class='mt-2'>
+                ${
+                o.event_date
+                    ? `<p class='m-0 fs-9'>${getDaysLeft(o.event_date)}</p>`
+                    : ""
+                }
+            </div>
+           
+
             <div class="d-flex justify-content-end">
             <div class='position-relative'>
             <div class="position-absolute share-panel border rounded d-none">

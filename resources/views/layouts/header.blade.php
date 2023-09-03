@@ -14,7 +14,6 @@
             {{-- <input class="form-control me-2 border-0 fs-9" type="search" placeholder="Search" aria-label="Search"> --}}
             {{-- <button class="btn btn-outline-light" type="submit">Search</button> --}}
           </form>
-
         <ul class="navbar-nav mb-2 mb-lg-0 ">
           <li class="nav-item">
             <a href="{{ url('news-feed') }}" class="nav-link text-decoration-none me-3  text-light {{ getHighlightClass('/news-feed', 'brand-link', 'text-secondary') }}">
@@ -28,27 +27,36 @@
           </li>
           <li class="nav-item">
             <a href="{{ url('events') }}" class="nav-link text-decoration-none me-3 text-light {{ getHighlightClass('/events', 'brand-link', 'text-secondary') }}">
-             Discover Events
+            Discover Events
             </a>
           </li>
 
-          <li class="nav-item me-3">
-            @if (isset(Auth::user()->role))
-            <a href="{{ url('/dashboard') }}" class="nav-link text-decoration-none text-light">Dashboard</a>
-            @else
-            @auth
-            <a href="{{ route('login') }}" class="nav-link text-decoration-none text-light">Login</a>
-            @endauth
-            @endif
-        </li>
-
           <li class="nav-item">
-            <a class="btn brand-color border-0 px-3 inline-block fs-9 mt-1" href="{{ url('subscribe') }}" >
-              Subscribe</a>
+            <a href="{{ url('subscribe') }}" class="nav-link text-decoration-none me-3 text-light {{ getHighlightClass('/subscribe', 'brand-link', 'text-secondary') }}">
+            Subscribe
+            </a>
           </li>
 
-          
-
+          @if (Auth::check())
+            @auth
+            <li class="nav-item me-3">
+              <a href="{{ url('/dashboard') }}" class="nav-link text-decoration-none text-light">Dashboard</a>
+            </li>
+            @endauth
+          @else
+            <li class="nav-item">
+              <a class="btn brand-color border-0 px-3 inline-block fs-9 mt-1 me-3" 
+              href="{{ route('login') }}" >
+              Login</a>
+            </li>
+    
+            <li class="nav-item">
+              <a class="btn brand-color border-0 px-3 inline-block fs-9 mt-1" href="{{ route('subscriber-register') }}" >
+              Sign Up</a>
+              {{-- <a class="btn brand-color border-0 px-3 inline-block fs-9 mt-1" href="{{ route('admin-register') }}" >
+                Admin Sign up</a> --}}
+            </li>
+          @endif
           {{-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Support
@@ -59,7 +67,8 @@
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
-          </li> --}}
+          </li> 
+          --}}
         </ul>
       </div>
       </div>

@@ -203,7 +203,7 @@
                                 <ul class='list-inline'>
                                     <li class='list-inline-item'><a class='btn btn-dark fs-9' href='{{route('admin.edit.ev', ['id'=> $posts->id])}}'>Edit</a></li>
                                     <li class='list-inline-item'><a class='btn btn-dark fs-9' href='{{route('admin.delete.ev', ['id'=> $posts->id])}}'>Delete</a></li>
-                                    <li class='list-inline-item'>0</li>
+                                    <li class='list-inline-item'>{{$posts->views}}</li>
                                 </ul>
                             </div>
                             </div>

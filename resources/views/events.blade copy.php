@@ -13,9 +13,6 @@
     </div>
 </div>
 
-{{-- <!--menu-->
-@include('components/custom_nav')
-<!--menu--> --}}
 
 <div class="container">
 

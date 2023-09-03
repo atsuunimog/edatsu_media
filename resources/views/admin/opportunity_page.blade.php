@@ -181,8 +181,7 @@
                                 <ul class='list-inline'>
                                     <li class='list-inline-item'><a class='btn btn-dark fs-9  px-3 text-decoration-none' href='{{route('admin.edit.opp', ['id'=> $posts->id])}}'>Edit</a></li>
                                     <li class='list-inline-item'><a class='btn btn-dark fs-9  px-3 text-decoration-none' href='{{route('admin.delete.opp', ['id'=> $posts->id])}}'>Delete</a></li>
-                                    <li class='list-inline-item'>views 0</li>
-                                    <li class='list-inline-item'>reach 0</li>
+                                    <li class='list-inline-item'>views {{$posts->views}}</li>
                                 </ul>
                             </div>
                         @endforeach

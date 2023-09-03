@@ -36,7 +36,7 @@ Route::get('/search-opportunities', [App::class, 'searchOpportunities']);
 Route::get('/search-events', [App::class, 'searchEvents']);
 
 Route::get('/subscribe', function(){return view('subscribe');});
-Route::get('/feedback',  function(){return view('feedback');});
+Route::get('/feedback',  function(){return view('feedback');})->name('feedback');
 
 /**Login access control */
 Route::get('/dashboard', [Dashboard::class, "accessControl"]);
