@@ -23,7 +23,7 @@
 <div class="row">
     <div class="col-sm-3 col-12">
     <!--trending-->
-    <div class="py-3 px-3 bg-white mb-3 border rounded d-none d-sm-block d-md-block d-lg-block">
+    {{-- <div class="py-3 px-3 bg-white mb-3 border rounded d-none d-sm-block d-md-block d-lg-block">
         <h5 class="fw-bold m-0 mb-3">
             <span class="material-symbols-outlined align-middle ">
                 local_fire_department
@@ -31,7 +31,7 @@
             Trending 
         </h5>
         <p class="fs-9">Top trending Opportunites</p>
-    </div>
+    </div> --}}
     <!--trending-->
 
     <!--aside-->
@@ -535,11 +535,12 @@ function displayResult(d, elem){
         <li class='d-inline-block me-3'>
             Posted on: ${formatDate(o.created_at)}
         </li>
-        <li class='d-inline-block'> 
+        <li class='d-inline-block '> 
+        Deadline:
         ${
         o.deadline
-            ? `${getDaysLeft(o.deadline)}`
-            : ""
+            ? `<span class=''>${getDaysLeft(o.deadline)}</span>`
+            : "<span class=''>Unspecified</span>"
         }
         </li>
         </ul>
@@ -560,16 +561,14 @@ function displayResult(d, elem){
         ${
             generateListItems(o.category)
         }
+
+
+
+        
         </ul>
        
         <div class="d-flex justify-content-end fs-9">
-        <div class=''>
-            <button class='me-2 text-decoration-none border-0 btn px-2 py-2'>
-                <span class="material-symbols-outlined">
-                add_comment
-                </span>
-            </button>
-        </div>
+   
 
         <div class=''>
             <button class='me-2 text-decoration-none border-0 btn px-2 py-2'>

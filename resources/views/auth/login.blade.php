@@ -6,7 +6,9 @@
         {{-- <div class="border px-3 py-3"></div> --}}
     </div>
     <div class="col-sm-4">
-        <div class="border px-3 py-5 rounded my-5 bg-white">
+        <div class="border px-3 py-3 rounded my-5 bg-white">
+            <h3 class='fw-bold mb-3'>Login</h3>
+
             <!--login form-->
             <x-auth-session-status class="mb-4" :status="session('status')" />
             <form method="POST" action="{{ route('login') }}">
@@ -41,6 +43,8 @@
                         <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
                     </label>
                 </div>
+
+                <p>Add Recaptcha</p>
         
                 <div class="flex items-center justify-end mt-4">
                     @if (Route::has('password.request'))
@@ -50,16 +54,11 @@
                     @endif
         
                     <input type="submit" value="Login" class="btn btn-dark py-3 rounded w-100 d-block mt-3 mb-3 border-0 px-5">
-
-                    <small class="text-secondary d-block fs-8 mb-3">
-                        By signing up for edatsu medai, you agree to edatsu's 
-                        <a href='#' class="text-decoration-none">Terms of Service</a> & 
-                        <a href='#' class="text-decoration-none" >Privacy Policy</a>.
-                    </small>
                 </div>
             </form>
             <!--login form-->
 
+            <p class='fs-9'>Login using social account</p>
             <!--social login-->
             <div class='d-flex'>
                 <div class='border px-2 py-2 me-3 rounded'>

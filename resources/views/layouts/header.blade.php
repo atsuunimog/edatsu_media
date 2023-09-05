@@ -40,7 +40,9 @@
           @if (Auth::check())
             @auth
             <li class="nav-item me-3">
-              <a href="{{ url('/dashboard') }}" class="nav-link text-decoration-none text-light">Dashboard</a>
+              <a href="{{ url('/dashboard') }}" class="nav-link text-decoration-none text-light">
+               {{ Auth::user()->name}}
+              </a>
             </li>
             @endauth
           @else

@@ -27,7 +27,7 @@
                 </a>
                 </li>
                 <li>
-                    <a href="https://twitter.com/edatsu_inc" target="_blank">
+                    <a href="https://twitter.com/edatsu_media" target="_blank">
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAADFklEQVR4nO1ZS0vjUBTOD5mBXJtWRFs3Yg10UVAXBd3YKl20C920iH9AsBTXbnzWhT9A+qCCoHRVsUW6bSmKdNOHC0E6pY74AB9nOGcmmaidcZrBJIscOIvc3LTfl3u+e74kHGeGGWaYYdiwWCxfeZ5P8Tz/nTEGWib/8z/3eJ7vVQ2eMfZNa+DsfbYQS9cE8M4bADz8yoQaApqXDftzOV13TUBv0OxNmgSYuQLMOCUkCAIUi0XoFIlE4p8Azc3NwdPTE2SzWfo9zTUwPj4O9/f38PLyAplMBg4ODqBcLhOJcDj812snJyfh9vaW5vf39+sn4mg0SoBXV1fp2OFwwMXFBbRaLXA6nR2vEUURLi8vKUVR1HcX6unpgaOjIyoFr9dLY9PT03Scy+XovHK+3W6H8/NzuLm5AY/HY4xtdGhoCJrNJtTrdRgYGKCx7e1tWplIJCLPs1qtkM/n4fHxEYLBoL4iZm8yFAoR4N3dXRlsqVSCu7s7GBsbo5VIJpM0Z2lpqWvwTItGJgGcn59/JXIU6traGp3b2tpSBZ5pQQB3k1qtRgIeHh6mseXlZXl73d/ff6cJZiQCmD6fjwR8fHxMYDFPTk5oqw0EAqrBMy29UCwWe1XrIyMjtCqNRkMWuaEJCIIAp6en8PDwQAJWijwejxufQF9fH5ydnVHZoIBtNltHkRuSgMViIVuB4NPpNAHe2NiQRV6tVl+JnBmNwM7ODoFeWVmRu/Tz8zP4/X46j91aKXJmJAKLi4sEHktFGlMKGG0Ejm1ubqpqaNxnEpidnaU7WygU5JqXUhKwREyy4tilR0dH9ScwMTFB1rhSqcDg4GDHOalUikgsLCzQsdvtlu201WrVjwCWCNriq6srcLlcH3bpdrstW2g0ehjr6+v6EMCmhNsl+p2pqakPAczMzFCZ4Urhw8/h4SE5U6UV14wA1jH6fdxhPnr6UqZks99GXWHFdRGxFsmZBJi5AqBpCfHGernbVqOBPb2Bs98ZV7MCvfhxwQDgm4IgfOH+4ytNAt/P61A213jnVYM3wwwzzOC0iB9GnyQ6otH+2wAAAABJRU5ErkJggg==">
                     </a>
                 </li>
@@ -37,7 +37,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="https://twitter.com/edatsu_inc" target="_blank">
+                    <a href="https://www.youtube.com/channel/UCwIxkgCrdzsL3ApDjVgRLCQ" target="_blank">
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACQ0lEQVR4nO2Yu2sUURjFTyImwSKSCGJja6GoRUDU+b4kapMiYiFpLCyiEV9gaSdCRA2xyT+QIo9GsVGiATHgu1C08IGPShK08RVxCUbYI3fcWXRJnJnM3Z0ZvT84sAyz3z2HOzP33g9wOBwOh+N/gLuwih4208NuKo5TMUDBGAUTFNyn4AUF76j45EswRwV9/fodXDf3PKfgnv9fxSgF56g45tc2Y2xFa3LDQD0FfRRMUVEom6mdCqWxDxKoi2d+PRoomEzBNBfRNbZhefQAggsZMM0KDUQz34EmCr5kwDArNMs2rAgP4KEzA2a5oNqxI0qA3tSN6iIS9EV5/vtTN6oJ3gMKxhMN8vAGuX9DtWbgcpQAtxINYvgxT14aIrtW2g7xJEqAx4kDBMx+IIdOkB31tgLMhAdQvLIWIODlI/LIdhsBvoeuyial9QCGYpGcukjuXZssRBcawx6hz1UJEDD3jRw+Te5sXFr9LWgOm4H5qgYImHlDnuqJX38bVmcjwPRr8mR3/PqCljw/QkX2YFl6L/HkCLlnzdJrK77+1XzmP6OC6douZB/fk4OH7C1kgqc13ko02zGuZd2t/mbuwQS5b51t4yzNwHi+t9OC/nwfaDz05vtI6aHz3z/UGygYzIBhVug8YjW2FNczYJq+TAsyTmPLDwHUUXEg5dbiTf+jEre1uGAgQQvbsZGCbioOU3GGihEqrlBw26ySVLwtN3H/DF347bq55xkVd6i4WmrunqXgqF9bsMlKc9fhcDgcDuSAn9VThUlTulWSAAAAAElFTkSuQmCC">
                     </a>
                 </li>

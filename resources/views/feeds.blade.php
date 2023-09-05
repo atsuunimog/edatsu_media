@@ -20,7 +20,7 @@
 <div class="row">
 <div class="col-sm-3">
 <!--trending-->
-<div class="py-3 px-3 bg-white  mb-3 border rounded d-none d-sm-block d-md-block d-lg-block">
+{{-- <div class="py-3 px-3 bg-white  mb-3 border rounded d-none d-sm-block d-md-block d-lg-block">
   <h5 class="fw-bold m-0 mb-3">
       <span class="material-symbols-outlined align-middle ">
           local_fire_department
@@ -28,7 +28,7 @@
       Trending 
   </h5>
   <p class="fs-9">Top trending News</p>
-</div>
+</div> --}}
 <!--trending-->
 
 
@@ -138,9 +138,8 @@
 <!--aside-->
 <div class="bg-white">
   <!--google ads-->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7365396698208751"
+  {{-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7365396698208751"
   crossorigin="anonymous"></script>
-<!-- Square Ads -->
 <ins class="adsbygoogle"
   style="display:block"
   data-ad-client="ca-pub-7365396698208751"
@@ -149,7 +148,7 @@
   data-full-width-responsive="true"></ins>
 <script>
   (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+</script> --}}
   <!--google ads-->
 </div>
 <!--aside-->
@@ -162,5 +161,5 @@
 <script>
   const imageSrc = '{{ asset('img/gif/cube_loader.gif') }}';
 </script>
-<script defer src='../js/feeds.js'></script>
+<script defer src='../js/minified-feeds.js'></script>
 </x-guest-layout>
