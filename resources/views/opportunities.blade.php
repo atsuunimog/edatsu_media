@@ -1,26 +1,26 @@
 <x-guest-layout>
-<div class="row d-sm-none d-md-none d-lg-none">
-    <div class="col-sm-12 text-center">
-        <div class="py-5 ">
-             <!--logo-->
-             <a href='./'>
+    <div class="row d-sm-none d-md-none d-lg-none">
+        <div class="col-sm-12 text-center">
+            <div class="py-5">
+                <!--logo-->
+                <a href='./'>
                 <img src="{{ asset('img/logo/trans/logo_trans_1.png')}}" width="90" class="img-fluid" alt="logo">
                 </a>
-            <!--logo-->
-            <h1 class='fw-bold mb-3'>Discover Events</h1>
-            <p class=''>Discover the Latest Events in Africa</p>
-        </div>  
+                <!--logo-->
+                <h1 class='fw-bold mb-3'>Opportunities</h1>
+                <p class=''>Discover the Latest Opportunities in Africa</p>
+            </div>  
+        </div>
     </div>
-</div>
-
-{{-- @include('components/custom_nav') --}}
-
-<div class="container">
-
-
+    
+    
+    {{-- @include('components/custom_nav') --}}
+    
+    <div class="container">
+    
+    
     <!--body-->
     <div class="row">
-       
     
         <div class="col-sm-8 col-12 mt-3">
     
@@ -57,19 +57,9 @@
                     All search filter values are optional
                 </span>
                 <div class="row">
-                    <div class="col-sm-12">
-                        <select class="form-select py-3 mb-3 text-secondary fs-9" name="event_type" id="event_type">
-                            <option value="">Event Type</option>
-                            <option value="in_person">In-Person Gatherings</option>
-                            <option value="virtual">Virtual Gatherings</option>
-                            <option value="hybrid">Hybrid Events (Combining Online and Offline)</option>
-                        </select>  
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col-sm-6">
                         <select class="form-select py-3 mb-3 text-secondary fs-9" id="event_status" name="event_status"  aria-label="Select News">
-                            <option value="">All Events</option>
+                            <option value="">All Opportunites</option>
                             <option value="on_going">Ongoing</option>
                             <option value="up_coming">Upcoming</option>
                         </select>
@@ -177,18 +167,18 @@
                 </p>
                 <p class='m-0 fs-9 px-3'>
                 <strong>Feedback</strong>
-                <span class='d-block'>To share your thoughts, no how we can improve your experience, please send us your feedback</span>
+                <span class='d-block'>To share your thoughts, no how we can improve your experience, send us your feedback</span>
                 <a href={{route('feedback')}} class='btn btn-dark inline-block fs-9 my-1'>Send feedback</a>
                 </p>
             </div>
-
-
-            {{-- <a href="https://kol.jumia.com/api/click/link/d85c6dd6-5eec-47e9-b103-577be07cf3f6/2ff2cad3-caeb-4f66-9ca2-eb53ff24190f">
-                <img src="https://kol.jumia.com/banners/YOZIEcc1lB0Omt0fkjsZoLZ6OMxQ5X9dzyVA2Iin.jpg" 
-                width="100%" 
-                class="mb-3 rounded"
-                alt="MOBILE ACCESSORIES"/></a> --}}
-            
+    
+            {{-- <a href="https://kol.jumia.com/api/click/link/d85c6dd6-5eec-47e9-b103-577be07cf3f6/06d49d75-c115-46b5-9403-df23b742d6e4">
+                <img src="https://kol.jumia.com/banners/SlYicgKXyngk4rjQEKm26EShl3i0oPU304THtV0s.jpg" 
+                class="mb-3 rounded img-fluid"
+                width="100%"
+                alt="KIDS CATEGORY"/>
+            </a>
+             --}}
             <!--main content-->
             <div class="row">
                 <div class="col-sm-12">
@@ -203,33 +193,24 @@
         <div class="col-sm-4 col-12">
     
         <!--aside-->
-        {{-- <div class="px-3 py-3 border rounded mb-3 bg-white">
-            <small class="text-secondary d-block mb-3">Advertisement</small>
-            <a href="https://kol.jumia.com/api/click/link/d85c6dd6-5eec-47e9-b103-577be07cf3f6/0c7c436a-7891-435c-a9fc-3881f7125b11">
-            <img src="{{asset('img/ads_img/oraimo_stores.png')}}" width="100%" class='img-fluid' alt="oraimo">
+        <div class='px-3 py-3 rounded border mb-3 bg-white mt-3'>
+            <!--logo-->
+            <a href='./'>
+            <img src="{{ asset('img/logo/trans/logo_trans_1.png')}}" width="90" class="img-fluid d-block mx-auto" alt="logo">
             </a>
-        </div> --}}
+            <!--logo-->
+            <h5 class='fw-bold m-0 mb-3'>Submit Opportunities</h5>
+            <p class='fs-9 text-secondary'>
+            Submit tech and entrepreneurial opportunities. It's free.
+            </p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSd-1Nwy3SUnsjvseBtjmQQSxTEobuMDu2_CXWPMDpxWz2n4mQ/viewform?usp=sf_link" 
+            target="_blank"
+            class='btn btn-dark w-100 fs-9 py-3 my-3'>Submit</a>
+        </div>
         <!--aside-->
-
-
-    <!--aside-->
-    <div class='px-3 py-3 rounded border mb-3 bg-white mt-3'>
-        <!--logo-->
-        <a href='./'>
-        <img src="{{ asset('img/logo/trans/logo_trans_1.png')}}" width="90" class="img-fluid d-block mx-auto" alt="logo">
-        </a>
-        <!--logo-->
-        <h5 class='fw-bold m-0 mb-3'>Submit Events</h5>
-        <p class="fs-9 text-secondary">
-        Submit a tech event. It's free.
-        </p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfxDBVx1cxmooAkjjTaErpGuuaPPP1eoFUhgfQtHjtyz3IbaA/viewform?usp=sf_link" 
-        target="_blank"
-        class='btn btn-dark w-100 fs-9 py-3 my-3'>Submit</a>
-    </div>
-    <!--aside-->
-
-            <!--aside-->
+    
+    
+        <!--aside-->
     <div class="bg-white mb-3 border rounded">
         <!--google ads-->
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7365396698208751"
@@ -247,10 +228,9 @@
         <!--google ads-->
       </div>
       <!--aside-->
-
-
-          
-
+    
+      
+    
     
     <!--aside-->
     {{-- <div class='px-3 py-3 rounded border mb-3 bg-white d-none'>
@@ -263,7 +243,7 @@
     </div> --}}
     <!--aside-->
     
-
+    
     
         </div>
     </div>
@@ -274,35 +254,24 @@
     
     @include('components/fixed_mobile_menu')
     
+    <script id="dsq-count-scr" src="https://media-edatsu-com.disqus.com/count.js" async></script>
     
     <script>
-
-function formatString(input) {
-    if (typeof input !== 'string' || input.trim().length === 0) {
-        return '';
-    }
-
-    let formatted = input.replace(/_/g, ' ');
-    formatted = formatted.charAt(0).toUpperCase() + formatted.slice(1);
-    formatted = formatted.replace(/\s/g, '');
-    return formatted;
-}
     
     function removeUnderscore(str) {
-      if (typeof str !== 'string') {
-      return str;
-      }
+      if (typeof str !== 'string') {return str;}
       return str.replace(/_/g, ' ');
     }
-    
-    
     
     const imageSrc = '{{ asset('img/gif/cube_loader.gif') }}';
     
     //fetch api to access data 
     window.addEventListener("load", function(){
+        //reset disqus comment 
+        DISQUSWIDGETS.getCount({reset: true});
+    
         document.querySelector('#opportunity-feeds').innerHTML = `<img src="${imageSrc}" class="img-fluid d-block mx-auto my-5" alt="loading..." />`;
-        fetch('/search-events')
+        fetch('/search-opportunities')
         .then((r)=> {
             document.querySelector('#opportunity-feeds').innerHTML = '';
             return r.json();
@@ -357,10 +326,16 @@ function formatString(input) {
     //return page url 
     function pageLink(title, id) {
       // Convert title to lowercase and replace spaces with hyphens
-      const formattedTitle = title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-zA-Z0-9'-]/g, '').replace(/--+/g, '-').replace(/^-|-$/g, '').trim();
+      const formattedTitle = title
+        .toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(/[^a-zA-Z0-9'-]/g, '') // Allow letters, numbers, hyphens, and apostrophes
+        .replace(/--+/g, '-')
+        .replace(/^-|-$/g, '')
+        .trim();
       
       // Implement the logic to generate the post link
-      let link = `ev/${id}/${encodeURIComponent(formattedTitle)}`;
+      let link = `op/${id}/${encodeURIComponent(formattedTitle)}`;
       return link;
     }
     
@@ -448,7 +423,7 @@ function formatString(input) {
         document.getElementById("search-result").innerHTML = "";
     
         document.querySelector('#opportunity-feeds').innerHTML = `<img src="${imageSrc}" class="img-fluid d-block mx-auto my-5" alt="loading..." />`;
-        fetch('/search-events')
+        fetch('/search-opportunities')
         .then((r)=> {
             document.querySelector('#opportunity-feeds').innerHTML = '';
             document.querySelector('#pagination').innerHTML = '';
@@ -504,7 +479,7 @@ function formatString(input) {
       }
     
       // Construct the URL with the parameters
-      const url = `search-events?${urlParams.toString()}`
+      const url = `search-opportunities?${urlParams.toString()}`
     
        fetch(url).then((r)=> {
             document.querySelector('#opportunity-feeds').innerHTML = '';
@@ -535,46 +510,105 @@ function formatString(input) {
     
     }
     
+    
+    
+    //reusable toast function
+    function Toast(message, color) {
+      Toastify({
+        text: message,
+        duration: 3000,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+        style: {
+          background: color,
+        },
+      }).showToast();
+    }
+    
+    
+    //upvate post
+    function upvote(id) {
+      const data = { post_id: id };
+      let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      fetch('/upvote-post', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': '{{ csrf_token() }}' // Set the content type to JSON
+        },
+        body: JSON.stringify(data), // Convert the data to JSON
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json(); // Parse the response JSON
+        })
+        .then((responseData) => {
+          console.log(responseData);
+          Toast(responseData, 'linear-gradient(to right, #00b09b, #96c93d)');
+    
+        })
+        .catch((error) => {
+          console.error(error);
+          Toast(responseData, 'red');
+    
+        });
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**Display profile**/
     function displayResult(d, elem){
         d.data.map((o)=>{
         document.querySelector(elem)
         .innerHTML += `<div class='col-sm-12 mb-3'>
         <div class='px-3 py-3 border rounded feed-panel text-wrap w-100 position-relative'>
-
+    
             @auth
-        <div class='position-absolute custom-toggle-menu'>
-            <div class="dropdown">
-            <button class="btn btn-light shadow-sm p-0 border bg-white rounded-circle" 
-            style='width:40px; height:40px;' type="button" 
-            data-bs-toggle="dropdown" aria-expanded="false">
-
-            <span class="material-symbols-outlined align-middle">
-            keyboard_arrow_down
-            </span>
-            </button>
-            <ul class="dropdown-menu fs-9">
-                
-                <li><a class="dropdown-item" href="/admin-edit-event/${o.id}">Edit</a></li>
-
-                <li><a class="dropdown-item" href="/report/${o.id}">Report</a></li>
-            </ul>
+            <div class='position-absolute custom-toggle-menu'>
+                <div class="dropdown">
+                <button class="btn btn-light shadow-sm p-0 border bg-white rounded-circle" 
+                style='width:40px; height:40px;' type="button" 
+                data-bs-toggle="dropdown" aria-expanded="false">
+    
+                <span class="material-symbols-outlined align-middle">
+                keyboard_arrow_down
+                </span>
+                </button>
+                <ul class="dropdown-menu fs-9">
+                    
+                    <li><a class="dropdown-item" href="/admin-edit-opportunity/${o.id}">Edit</a></li>
+    
+                    <li><a class="dropdown-item" href="/report/${o.id}">Report</a></li>
+                </ul>
+                </div>
             </div>
-        </div>
-        @endauth
-
-            <a class='text-decoration-none text-gray' href='${pageLink(o.title, o.id)}'>
-                <h6 class='fw-bold m-0 mb-1 pe-5'>${o.title}</h6>
+            @endauth
+    
+            <a class='text-decoration-none text-dark' href='${pageLink(o.title, o.id)}'>
+            <h6 class='fw-bold m-0 mb-1 pe-5'>${o.title}</h6>
             </a>
-            <p class="m-0 mb-2 d-block fs-9 text-sm text-secondary">
-            Posted on: ${formatDate(o.created_at)}
-            </p>
-
+    
+            <ul class="list-unstyled my-2  d-block fs-9 text-sm text-secondary">
+            <li class='d-inline-block me-3'>
+                Posted on: ${formatDate(o.created_at)}
+            </li>
+            </ul>
+    
             <div class="overflow-hidden truncate">
-            <p class='m-0 mb-2 md-block fs-9 text-sm text-secondary'>${truncateText(o.description, 200)}</p>
+            <p class='m-0 mb-2 fs-9 text-secondary'>${truncateText(o.description, 200)}</p>
             </div>
-
-            <ul class="m-0 mb-2 d-block p-0 label-list">
+            <ul class="mb-2 d-block p-0 label-list">
             ${
                 generateListItems(o.continent)
             }
@@ -587,42 +621,27 @@ function formatString(input) {
             ${
                 generateListItems(o.category)
             }
+    
+            <p class='my-2 fs-9'>Deadline: ${
+            o.deadline
+                ? `<span class=''>${getDaysLeft(o.deadline)}</span>`
+                : "<span class=''>Unspecified</span>"
+            }</p>
             </ul>
-
-            <div class='row fs-9'>
-                <div class='col-sm-4'>
-                    <div class='my-2'>
-                        <span class="material-symbols-outlined align-middle">
-                        face
-                        </span>
-                        ${formatString(o.event_type)}
-                    </div>
-                </div>
-
-                <div class='col-sm-8'>
-                    <div class='my-2'>
-                        <span class='' style='color:#457b9d'>
-                            <span class="material-symbols-outlined align-middle">
-                                pin_drop
-                            </span>
-                        ${((o.location == null)? '' : o.location)}
-                        </span>
-                    </div>
-                </div>
+    
+            <div class="d-flex justify-content-end fs-9">
+    
+            @auth
+            <div class=''>
+                <button class='me-2 text-decoration-none border-0 btn px-2 py-2'>
+                    <span class="material-symbols-outlined">
+                    bookmark_add
+                    </span>
+                </button>
             </div>
-
-            <div class='mt-2'>
-                ${
-                o.event_date
-                    ? `<p class='m-0 fs-9'>${getDaysLeft(o.event_date)}</p>`
-                    : ""
-                }
-            </div>
-
-            
-           
-
-            <div class="d-flex justify-content-end">
+            @endauth
+    
+    
             <div class='position-relative'>
             <div class="position-absolute share-panel border rounded d-none">
                 <ul class='m-0 p-0 fs-9'>
@@ -639,14 +658,16 @@ function formatString(input) {
                         target="_blank"><img width="30" src="{{asset('img/gif/icons8-linkedin.gif')}}" alt="linkedin"> LinkedIn</a></li>
                 </ul>
             </div>
-            <button class='me-3 text-decoration-none bprder-0 btn fs-9 px-2 py-2' onClick="this.previousElementSibling.classList.toggle('d-none')">
+            <button class='me-2 text-decoration-none border-0 btn px-2 py-2' onClick="this.previousElementSibling.classList.toggle('d-none')">
                 <span class="material-symbols-outlined align-middle">
                     share
                 </span>
             </button>
             </div>
             <div class=''>
-                <a class='text-decoration-none bprder-0 btn fs-9 px-2 py-2' href='${pageLink(o.title, o.id)}'>Read More</a>
+                <a  class='me-2 text-decoration-none border-0 btn px-2 py-2' href='${pageLink(o.title, o.id)}'>
+                    Read more
+                </a>
             </div>
             </div>
         </div>
@@ -775,6 +796,7 @@ function formatString(input) {
     initializeSelect('continent', 'selectedContinents', 'outputContinentsList');
     
     </script>
+    
     
     </x-guest-layout>
     

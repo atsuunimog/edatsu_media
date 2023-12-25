@@ -30,6 +30,10 @@
         <meta name="keywords" content="Tech media, Entrepreneurial opportunities, Tech news, Events updates, Business innovations, Technology trends, Startup ventures, Innovation events, Entrepreneurship news, Technology insights, Business networking, Startup resources, Tech updates, Entrepreneurial ecosystem, Business conferences">
         <meta name="robots" content="index, follow">
         <link rel="canonical" href="https://media.edatsu.com/">
+
+        <!--font awesome icons-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
         {{-- google icons --}}
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
@@ -37,16 +41,19 @@
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     
         <!-- Poppins Fonts -->
-        {{-- <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet"> --}}
-
-        <!--mont serrat font-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+        <!--alert notification-->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    
 
-        <link href={{asset('css/style-01.css')}} rel="stylesheet">
+        <!--mont serrat font-->
+        {{-- <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> --}}
+
+        <link href={{asset('css/style-02.css')}} rel="stylesheet">
         <!-- Scripts -->
         {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
         <!-- Google tag (gtag.js) -->
@@ -61,7 +68,7 @@
     <body>
         @include('layouts.header')
         <div class="container-fluid">
-            {{ $slot }}
+        {{ $slot }}
         @include('layouts.social-footer')
         </div>
         @include('layouts.footer')

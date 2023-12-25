@@ -122,14 +122,23 @@ function processCountries($countriesString) {
                 </div>
                 <!--main content-->
 
-                <!--add disqus here-->
-                <div id="disqus_thread" class="mt-5"></div>
-                <!--add disqus here-->
+              
             </div>
         </div>
 
         <div class="col-sm-4">
-            <div class=" bg-white mb-3">
+
+            <div class="px-3 py-3 border rounded mb-3 bg-white">
+                <p class="fs-9">
+                    Hi, 
+                    <a href='https://twitter.com/unimog2' target='_blank'>I'm Atsu Dominic</a>
+                    , and I manage posts at Edatsu Media. I strive to keep you up-to-date with the latest in tech, entrepreneurial opportunities, and ☕️ keep you informed about the latest entrepreneurial events. Your support means the world to us! 💙 #StayInformed #TechEnthusiast
+                </p>
+                <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="atsudominic" data-color="#FFDD00" data-emoji="☕"  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+            </div>
+
+
+            <div class=" bg-white mb-3 border rounded">
                 <!--side content-->
                 <!--google ads-->            
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7365396698208751"
@@ -148,39 +157,11 @@ function processCountries($countriesString) {
                 <!--side content-->
             </div>
 
-             <!--aside-->
-             <div class=" mb-3 bg-white">
-                <a href="https://kol.jumia.com/api/click/link/d85c6dd6-5eec-47e9-b103-577be07cf3f6/0c7c436a-7891-435c-a9fc-3881f7125b11">
-                <img src="{{asset('img/ads_img/oraimo_stores.png')}}" width="100%" class='img-fluid' alt="oraimo">
-                </a>
-            </div>
-            <!--aside-->
-
         </div>
     </div>
     </div>
 
  
-  
-<script>
-    /**
-    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-    /*
-    var disqus_config = function () {
-    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    */
-    (function() { // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
-    s.src = 'https://media-edatsu-com.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
 @include('components/fixed_mobile_menu')
 </x-guest-layout>
     

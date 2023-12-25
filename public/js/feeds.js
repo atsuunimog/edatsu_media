@@ -30,25 +30,22 @@ const handleData = (data, singleFeed, feeder_url = '') => {
   feeds.forEach(feed => {
     // Display each feed item in the UI
 
+    console.log(feed.images);
+
     const dateMarkup = feed.date ? `<p class="text-secondary fs-9 p-0 m-0 my-2">Posted on: ${feed.date}</p>` : '';
     const feedMarkup = `
       <div class="px-3 py-3 bg-white border rounded mb-3">
-        <h6 class="fw-bold">${feed.title}</h6>
-        ${dateMarkup}
-        <p class="p-0 m-0 my-2 fs-9 text-secondary d-block">
-        ${feed.description}
-        </p>
-        <p class="p-0 m-0 fw-bold link-color">
-          <span class="material-symbols-outlined align-middle">full_coverage</span>
-          ${feed.domain_name}
-        </p>
-        <div class="d-flex justify-content-end">
-          <div>
-            <a href="${feed.link}" target="_blank" class="text-decoration-none btn p-0 fs-9 px-3 py-1 mb-2">
-              Read more
-            </a>
-          </div>
-        </div>
+          <a href="${feed.link}" target="_blank" class="text-decoration-none text-dark fw-bold">
+              <h6 class="fw-bold inline-block custom-title m-0">${feed.title}</h6>
+          </a>
+          ${dateMarkup}
+          <p class="p-0 m-0 fs-9 text-secondary d-block">
+          ${feed.description}
+          </p>
+          <p class="p-0 m-0 mt-2 fw-bold link-color fs-9">
+            <span class="material-symbols-outlined align-middle">full_coverage</span>
+            ${feed.domain_name}
+          </p>
       </div>
     `;
 

@@ -1,750 +1,199 @@
 <x-guest-layout>
-<div class="row d-sm-none d-md-none d-lg-none">
-    <div class="col-sm-12 text-center">
-        <div class="py-5">
-            <!--logo-->
-            <a href='./'>
-            <img src="{{ asset('img/logo/trans/logo_trans_1.png')}}" width="90" class="img-fluid" alt="logo">
-            </a>
-            <!--logo-->
-            <h1 class='fw-bold mb-3'>Opportunities</h1>
-            <p class=''>Discover the Latest Opportunities in Africa</p>
-        </div>  
+
+<div class="row banner position-relative border-0">
+    <div class="overlay d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10">
+                    <div class="py-3 text-center">
+                        <p class="m-0 p-0 fw-bold custom-link-highlight">
+                            Edatsu Media
+                        </P>
+                        <h1 class="text-light fw-bold mb-3 p-0">
+                            Information, Opportunities & Networking
+                        </h1>
+                        <p class="m-0 p-0 text-light">
+                            Unlock a world of insights & Opportunities
+                        </P>
+                    </div>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+        </div>
     </div>
 </div>
 
-
-{{-- @include('components/custom_nav') --}}
-
-<div class="container">
-
-
-<!--body-->
-<div class="row">
-    <div class="col-sm-3 col-12">
-    <!--trending-->
-    {{-- <div class="py-3 px-3 bg-white mb-3 border rounded d-none d-sm-block d-md-block d-lg-block">
-        <h5 class="fw-bold m-0 mb-3">
-            <span class="material-symbols-outlined align-middle ">
-                local_fire_department
-            </span>
-            Trending 
-        </h5>
-        <p class="fs-9">Top trending Opportunites</p>
-    </div> --}}
-    <!--trending-->
-
-    <!--aside-->
-    <div class=" mb-3 bg-white d-none d-sm-block d-md-block d-lg-block">
-        <a href="https://kol.jumia.com/api/click/link/d85c6dd6-5eec-47e9-b103-577be07cf3f6/0c7c436a-7891-435c-a9fc-3881f7125b11">
-        <img src="{{asset('img/ads_img/oraimo_stores.png')}}" width="100%" class='img-fluid' alt="oraimo">
-        </a>
-    </div>
-    <!--aside-->
-    </div>
-
-    <div class="col-sm-6 col-12">
-
-    <!--news filter-->
-        <form class="" method="GET" id="search_keyword" onsubmit='submitSearchQuery()'>
-            <div class="row">
-                <div class="col-sm-9 col-12">
-                    <div class='mb-3'>
-                    <input type='text' class="form-control py-3 fs-9 text-secondary" name="search_keyword" placeholder="Search Keywords" id="keyword">
-                    </div>
-                </div>
-                <div class="col-sm-3 col-12">
-                    <div class='mb-3'>
-                    <button class="text-decoration-none btn btn-dark border-0 px-4 py-3 shadow-sm w-100">Search</button>
-                    </div>
-                </div>
-            </div>
-
-            <div  class="py-3 px-3 border mb-3 bg-white rounded d-flex justify-content-between">
-                <span class="fs-9 text-dark d-block">
-                Use filters to improve search
-                </span>
-                <span class="material-symbols-outlined cursor d-block align-middle" 
-                style='cursor:pointer' id="filter-toggle" onclick="toggleContent()">
-                toggle_off
-                </span>
-            </div>
-
-            <div  id="filter-panel" class="bg-white border rounded px-3 py-3 mb-3 d-none">
-            <span class="fs-9 text-primary d-block my-3">
-                <span class="material-symbols-outlined align-middle">
-                    info
-                </span>
-                All search filter values are optional
-            </span>
-            <div class="row">
-                <div class="col-sm-6">
-                    <select class="form-select py-3 mb-3 text-secondary fs-9" id="event_status" name="event_status"  aria-label="Select News">
-                        <option value="">All Opportunites</option>
-                        <option value="on_going">Ongoing</option>
-                        <option value="up_coming">Upcoming</option>
-                    </select>
-                </div>
-                <div class="col-sm-6">
-                    <select class="form-select py-3 mb-3 text-secondary fs-9" id="category">
-                        @include('components.categorylist')
-                    </select>
-                    <input type="hidden" name="category" id="selectedCategories" readonly>
-                    <div id="outputCategoryList"></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <select class="form-select py-3 mb-3 text-secondary fs-9" id="date_posted" name="date_posted" aria-label="Select News">
-                        <option value="">Date Posted</option>
-                        <option value="one_day">24 hours Ago</option>
-                        <option value="one_week">1 Week Ago</option>
-                        <option value="two_weeks">2 Weeks Ago</option>
-                        <option value="one_month">1 Month Ago</option>
-                    </select>
-                </div>
-                <div class="col-sm-6">
-                    <select class="form-select py-3 mb-3 text-secondary fs-9" id="region" name="region" aria-label="Select News">
-                        <option value="">Select Region</option>
-                        <option value="north_africa">North Africa</option>
-                        <option value="west_africa">West Africa</option>
-                        <option value="central_africa">Central Africa</option>
-                        <option value="east_africa">East Africa</option>
-                        <option value="southern_africa">Southern Africa</option>
-                        <option value="sahel_region">Sahel Region</option>
-                    </select>
-                    <input type="hidden" name="region" id="selectedRegions" readonly>
-                    <div id="outputRegionsList"></div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-6">
-                    <select class="form-select py-3 mb-3 text-secondary fs-9" id="country" >
-                        @include('components.countrylist')
-                    </select>
-                    <input type="hidden" name="country" id="selectedCountries" readonly>
-                    <div id="outputCountriesList"></div>
-                </div>
-
-                <div class="col-sm-6">
-                    <select class="form-select py-3 mb-3 text-secondary fs-9" id="continent" >
-                        <option value="">Select Continent</option>
-                        <option value="global">Global</option>
-                        <option value="africa">Africa</option>
-                        <option value="antarctica">Antarctica</option>
-                        <option value="asia">Asia</option>
-                        <option value="europe">Europe</option>
-                        <option value="north_america">North America</option>
-                        <option value="australia">Australia (or Oceania/Australasia)</option>
-                        <option value="south_america">South America</option>
-                    </select>
-                    <input type="hidden" name="continent" id="selectedContinents" readonly>
-                    <div id="outputContinentsList"></div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-6">
-                    <select class="form-select py-3 mb-3 text-secondary fs-9" name="month" aria-label="Select News">
-                        <option value="">Select Month</option>
-                        <option value="january">January</option>
-                        <option value="february">February</option>
-                        <option value="march">March</option>
-                        <option value="april">April</option>
-                        <option value="may">May</option>
-                        <option value="june">June</option>
-                        <option value="july">July</option>
-                        <option value="august">August</option>
-                        <option value="september">September</option>
-                        <option value="october">October</option>
-                        <option value="november">November</option>
-                        <option value="december">December</option>
-                    </select>
-                </div>
-
-                <div class="col-sm-6">
-                    <select class="form-select py-3 mb-3 text-secondary fs-9" name="year" aria-label="Select News">
-                        <option value="">Year</option>
-                        @php
-                            $currentYear = date("Y");
-                        @endphp
-                        @for ($i = $currentYear; $i <= $currentYear + 5; $i++)
-                            <option value="{{ $i }}">{{ $i }}</option>
-                        @endfor
-                    </select>
-                </div>
-            </div>
-            <button class="text-decoration-none btn btn-dark border-0 px-4 py-3 shadow-sm w-100">Search</button>
-            </div>
-        </form>
-        <!--news filter-->
-
-        <div class="alert alert-info fs-9 d-flex border-0 align-items-center" role="alert">
-            <p class='m-0'>
-            <span class="material-symbols-outlined align-middle">
-            info
-            </span>
-            </p>
-            <p class='m-0 fs-9 px-3'>
-            <strong>Feedback</strong>
-            <span class='d-block'>To share your thoughts, no how we can improve your experience, send us your feedback</span>
-            <a href={{route('feedback')}} class='btn btn-dark inline-block fs-9 my-1'>Send feedback</a>
-            </p>
-        </div>
-        
-        <!--main content-->
+<div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <span id="search-result"></span>
-                <span id="filter-entries"></span>
-                <div id="opportunity-feeds"></div>
-                <div id="pagination"></div>
+                <div class="px-3 py-5 my-3  text-center">
+                    <h3 class="fw-bold mb-1">Top Media Feeds</h3>
+                    <p class="text-secondary fw-300">
+                        In the fast-paced realms of entrepreneurship, staying well-informed is not just an advantage—it's a necessity. Our platform stands out as the ultimate resource for entrepreneurs, offering a meticulously curated daily news feed sourced from the top tech and finance websites worldwide.
+                    </p>
+                    <button class="btn btn-lg custom-btn-highlight text-light fw-bold px-5 border-0 py-3 mt-3">
+                        Get Started
+                    </button>
+                </div>
             </div>
         </div>
-        <!--main content-->
     </div>
-    <div class="col-sm-3 col-12">
+</div>
 
-    <!--aside-->
-    {{-- <div class="px-3 py-3 border rounded mb-3 bg-white">
-        <small class="text-secondary d-block mb-3">Advertisement</small>
-        <a href="https://kol.jumia.com/api/click/link/d85c6dd6-5eec-47e9-b103-577be07cf3f6/0c7c436a-7891-435c-a9fc-3881f7125b11">
-        <img src="{{asset('img/ads_img/oraimo_stores.png')}}" width="100%" class='img-fluid' alt="oraimo">
-        </a>
-    </div> --}}
-    <!--aside-->
-      
-    <!--aside-->
-    <div class='px-3 py-3 rounded border mb-3 bg-white'>
-        <!--logo-->
-        <a href='./'>
-        <img src="{{ asset('img/logo/trans/logo_trans_1.png')}}" width="90" class="img-fluid d-block mx-auto" alt="logo">
-        </a>
-        <!--logo-->
-        <h5 class='fw-bold m-0 mb-3'>Submit Opportunities</h5>
-        <p class='fs-9 text-secondary'>
-         Submit tech and entrepreneurial opportunities. It's free.
-        </p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSd-1Nwy3SUnsjvseBtjmQQSxTEobuMDu2_CXWPMDpxWz2n4mQ/viewform?usp=sf_link" 
-        target="_blank"
-        class='btn btn-dark w-100 fs-9 py-3 my-3'>Submit</a>
+{{-- <div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="px-3  text-center">
+                    <p class="text-secondary">
+                        Logo's of different media channels
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
-    <!--aside-->
-
-<!--aside-->
-{{-- <div class='px-3 py-3 rounded border mb-3 bg-white d-none'>
-    <!--logo-->
-    <p class='fw-bold m-0 mb-2'>Trending</p>
-    <p class='m-0 fs-9 text-secondary'>
-        Let's unlock opportunities together! Share helpful tech and entrepreneurial prospects. 
-        Collaboration amplifies our impact
-    </p>
 </div> --}}
-<!--aside-->
 
-<!--aside-->
-<div class="bg-white">
-    <!--google ads-->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7365396698208751"
-    crossorigin="anonymous"></script>
-<!-- Square Ads -->
-<ins class="adsbygoogle"
-    style="display:block"
-    data-ad-client="ca-pub-7365396698208751"
-    data-ad-slot="1848837203"
-    data-ad-format="auto"
-    data-full-width-responsive="true"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-    <!--google ads-->
-  </div>
-  <!--aside-->
-
-    </div>
-</div>
-</div>
-<!--body-->
-
-
-
-@include('components/fixed_mobile_menu')
-
-<script id="dsq-count-scr" src="https://media-edatsu-com.disqus.com/count.js" async></script>
-
-<script>
-
-function removeUnderscore(str) {
-  if (typeof str !== 'string') {return str;}
-  return str.replace(/_/g, ' ');
-}
-
-const imageSrc = '{{ asset('img/gif/cube_loader.gif') }}';
-
-//fetch api to access data 
-window.addEventListener("load", function(){
-    //reset disqus comment 
-    DISQUSWIDGETS.getCount({reset: true});
-
-    document.querySelector('#opportunity-feeds').innerHTML = `<img src="${imageSrc}" class="img-fluid d-block mx-auto my-5" alt="loading..." />`;
-    fetch('/search-opportunities')
-    .then((r)=> {
-        document.querySelector('#opportunity-feeds').innerHTML = '';
-        return r.json();
-    })
-    .then((d)=>{
-        /**display pagination**/
-        if(d.total > 10){
-            displayPagination(d, "#pagination");
-        }
-        /**display profile**/
-        displayResult(d,"#opportunity-feeds");   
-    })
-    .catch((e)=> console.log(e));
-})
-
-function formatDate(inputDate) {
-  const date = new Date(inputDate);
-  // Format day with suffix (e.g., "1st", "2nd", "3rd", "4th", etc.)
-  const day = date.getDate();
-  const dayWithSuffix = day + (
-    (day === 1 || day === 21 || day === 31) ? "st" :
-    (day === 2 || day === 22) ? "nd" :
-    (day === 3 || day === 23) ? "rd" :
-    "th"
-  );
-  // Format month using its name
-  const monthNames = [
-    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-  ];
-  const month = monthNames[date.getMonth()];
-  // Format year
-  const year = date.getFullYear();
-  // Concatenate the formatted parts to get the final formatted date
-  const formattedDate = `${dayWithSuffix}, ${month} ${year}`;
-  return formattedDate;
-}
-
-/**truncate text**/
-function truncateText(text, limit) {
-  // Remove HTML tags from the text using a regular expression
-  const withoutTags = text.replace(/<\/?[^>]+(>|$)/g, '');
-  // Truncate the text to the specified limit
-  const truncatedText = withoutTags.substring(0, limit);
-  // Add "..." at the end if the original text exceeds the limit
-  if (withoutTags.length > limit) {
-    return truncatedText + '...';
-  }
-  return truncatedText;
-}
-
-//return page url 
-function pageLink(title, id) {
-  // Convert title to lowercase and replace spaces with hyphens
-  const formattedTitle = title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-zA-Z0-9'-]/g, '').replace(/--+/g, '-').replace(/^-|-$/g, '').trim();
-  
-  // Implement the logic to generate the post link
-  let link = `op/${id}/${encodeURIComponent(formattedTitle)}`;
-  return link;
-}
-
-
-
-
-function getDaysLeft(deadline) {
-  const deadlineTimestamp = new Date(deadline).getTime();
-  const nowTimestamp = Date.now();
-  const secondsLeft = Math.floor((deadlineTimestamp - nowTimestamp) / 1000);
-
-  if (secondsLeft <= 0) {
-    return "<span style='color: #c1121f;'>Expired</span>";
-  } else {
-    const daysLeft = Math.floor(secondsLeft / (60 * 60 * 24));
-    if (daysLeft === 0) {
-      return "<span style='color: #c1121f;'>Last day</span>";
-    } else if (daysLeft === 1) {
-      return "<span style='color: #c1121f;'>1 Day Left</span>";
-    } else {
-      const daysText = daysLeft + (daysLeft > 1 ? ' days' : ' day');
-      if (daysLeft > 7) {
-        return "<span style='color: #2a9d8f;'>" + daysText + " Left</span>";
-      } else {
-        return "<span style='color: #c1121f;'>" + daysText + " Left</span>";
-      }
-    }
-  }
-}
-
-function generateListItems(data) {
-  // Check if 'data' is a non-empty string
-  if (typeof data === 'string' && data.trim() !== '') {
-    // Split 'data' by commas to get individual items
-    const items = data.split(',');
-
-    // Generate list items for each item and join them together
-    const listItems = items
-      .map((item) => {
-        // Convert 'item' to title case
-        const titleCasedItem = item
-          .trim()
-          .replace(/_/g, ' ')
-          .replace(/\w\S*/g, (word) => word.charAt(0).toUpperCase() + word.slice(1));
-
-        // Create and return the list item as a string
-        return `<li class="list-item"><span class="data-labels">${titleCasedItem}</span></li>`;
-      })
-      .join('');
-
-    // Return the concatenated list items
-    return listItems;
-  } else {
-    // Return an empty string if 'data' is not a valid string
-    return '';
-  }
-}
-
-
-/**
- * clear search filters
- * */
-
-function clearFilters(){
-     // Clear the search keyword input
-     document.getElementById("keyword").value = "";
-
-    // Clear the selected option in each select element
-    var selectElements = document.getElementsByTagName("select");
-    for (var i = 0; i < selectElements.length; i++) {
-        selectElements[i].selectedIndex = 0;
-    }
-
-    // Clear the output divs for regions, countries, and continents
-    document.getElementById("outputRegionsList").innerHTML = "";
-    document.getElementById("outputCountriesList").innerHTML = "";
-    document.getElementById("outputContinentsList").innerHTML = "";
-
-    // Clear the hidden input fields for regions, countries, and continents
-    document.getElementById("selectedRegions").value = "";
-    document.getElementById("selectedCountries").value = "";
-    document.getElementById("selectedContinents").value = "";
-
-    document.getElementById('filter-entries').innerHTML = "";
-    document.getElementById("search-result").innerHTML = "";
-
-    document.querySelector('#opportunity-feeds').innerHTML = `<img src="${imageSrc}" class="img-fluid d-block mx-auto my-5" alt="loading..." />`;
-    fetch('/search-opportunities')
-    .then((r)=> {
-        document.querySelector('#opportunity-feeds').innerHTML = '';
-        document.querySelector('#pagination').innerHTML = '';
-        return r.json();
-    })
-    .then((d)=>{
-        /**display pagination**/
-        if(d.total > 10){
-            displayPagination(d, "#pagination");
-        }
-        /**display profile**/
-        displayResult(d,"#opportunity-feeds");   
-    })
-    .catch((e)=> console.log(e));
-}
-
-/**
- * Submit search Query
-    */
-
-function submitSearchQuery(){
-   document.getElementById("pagination").innerHTML = "";
-   event.preventDefault();
-   let search_form = document.getElementById("search_keyword");
-   let form_data = new FormData(search_form);
-
-    // Create a URLSearchParams object and append the FormData entries
-  const urlParams = new URLSearchParams();
-  for (const [key, value] of form_data.entries()) {
-    urlParams.append(key, value);
-  }
-
-// Check if any of the values in urlParams is not empty
-const nonEmptyValuesSet = new Set();
-
-for (const value of urlParams.values()) {
-  if (value !== "") {
-    nonEmptyValuesSet.add(value);
-  }
-}
-
-const nonEmptyValue = Array.from(nonEmptyValuesSet);
-document.getElementById('filter-entries').innerHTML = "";
-
-  //set output if search quries are set
-  if(nonEmptyValue.length > 0){
-    document.getElementById('filter-entries').innerHTML ="<span class='d-inline-block mb-3 me-1'>Filters: <span>";
-    for (let i = 0; i < nonEmptyValue.length; i++) {
-        const value = nonEmptyValue[i];
-        document.getElementById('filter-entries').innerHTML += `<span class='fs-9 d-inline-block me-3 text-secondary'> ${removeUnderscore(value)}</span>`;
-    }
-    document.getElementById('filter-entries').innerHTML += `<button class='btn btn-dark fs-8 mb-1' onclick='clearFilters()'>Clear filter</button>`;
-  }
-
-  // Construct the URL with the parameters
-  const url = `search-opportunities?${urlParams.toString()}`
-
-   fetch(url).then((r)=> {
-        document.querySelector('#opportunity-feeds').innerHTML = '';
-        // console.log(r);
-        return r.json();
-    })
-    .then((d)=>{
-        console.log(d);
-        /**display profile**/
-
-        if(nonEmptyValue.length > 0){
-            document.getElementById("search-result").innerHTML =   `<span class='d-block fs-9 mb-3'>${d.total} result found</span>`;
-        }else{
-            document.getElementById("search-result").innerHTML = '';
-        }
-
-        displayResult(d,"#opportunity-feeds");   
-        if(d.total > 10){
-            /**display pagination**/
-            displayPagination(d, "#pagination", url);
-        }else if(d.total > 0){
-            document.getElementById("pagination").innerHTML = "";
-        }else{
-            document.getElementById("pagination").innerHTML = "<h4 class='fw-bold text-center my-5'>Oops... No content found!</h4>";
-        }
-    })
-    .catch((e)=> console.log(e));
-
-}
-
-/**Display profile**/
-function displayResult(d, elem){
-    d.data.map((o)=>{
-    document.querySelector(elem)
-    .innerHTML += `<div class='col-sm-12 mb-3'>
-    <div class='px-3 py-3 border rounded feed-panel text-wrap w-100'>
-        <a class='text-decoration-none text-gray' href='${pageLink(o.title, o.id)}#disqus_thread'>
-        <h6 class='fw-bold m-0 mb-1 p-0'>${o.title}</h6>
-        </a>
-
-        <ul class="list-unstyled my-2  d-block fs-9 text-sm text-secondary">
-        <li class='d-inline-block me-3'>
-            Posted on: ${formatDate(o.created_at)}
-        </li>
-        <li class='d-inline-block '> 
-        Deadline:
-        ${
-        o.deadline
-            ? `<span class=''>${getDaysLeft(o.deadline)}</span>`
-            : "<span class=''>Unspecified</span>"
-        }
-        </li>
-        </ul>
-
-        <div class="overflow-hidden truncate">
-        <p class='m-0 mb-2 fs-9 text-secondary'>${truncateText(o.description, 200)}</p>
-        </div>
-        <ul class="mb-2 d-block p-0 label-list">
-        ${
-            generateListItems(o.continent)
-        }
-        ${
-            generateListItems(o.region)
-        }
-        ${
-            generateListItems(o.country)
-        }
-        ${
-            generateListItems(o.category)
-        }
-
-
-
-        
-        </ul>
-       
-        <div class="d-flex justify-content-end fs-9">
-   
-
-        <div class=''>
-            <button class='me-2 text-decoration-none border-0 btn px-2 py-2'>
-                <span class="material-symbols-outlined">
-                bookmark_add
-                </span>
-            </button>
-        </div>
-
-        <div class=''>
-            <button class='me-2 text-decoration-none border-0 btn px-2 py-2'>
-                <span class="material-symbols-outlined">
-                thumb_up
-                </span>
-            </button>
-        </div>
-
-        <div class='position-relative'>
-        <div class="position-absolute share-panel border rounded d-none">
-            <ul class='m-0 p-0 fs-9'>
-                <li><a class='text-decoration-none text-dark' href="https://api.whatsapp.com/send?text=https://media.edatsu.com/${pageLink(o.title, o.id)}"
-                    target="_blank"><img width="30" src="{{asset('img/gif/icons8-whatsapp.gif')}}" alt="whatsapp"> WhatsApp</a></li>
-
-                <li><a class='text-decoration-none text-dark' href="https://t.me/share/url?url=https://media.edatsu.com/${pageLink(o.title, o.id)}"
-                    target="_blank"><img width="30" src="{{asset('img/gif/icons8-telegram.gif')}}" alt="telegram"> Telegram</a></li>
-                
-                <li><a class='text-decoration-none text-dark' href="https://twitter.com/intent/tweet?url=https://media.edatsu.com/${pageLink(o.title, o.id)}"
-                    target="_blank"><img width="30" src="{{asset('img/gif/icons8-twitter.gif')}}" alt="twitter"> Twitter</a></li>
-                
-                <li><a class='text-decoration-none text-dark' href="https://www.linkedin.com/sharing/share-offsite/?url=https://media.edatsu.com/${pageLink(o.title, o.id)}"
-                    target="_blank"><img width="30" src="{{asset('img/gif/icons8-linkedin.gif')}}" alt="linkedin"> LinkedIn</a></li>
-            </ul>
-        </div>
-        <button class='me-2 text-decoration-none border-0 btn px-2 py-2' onClick="this.previousElementSibling.classList.toggle('d-none')">
-            <span class="material-symbols-outlined align-middle">
-                share
-            </span>
-        </button>
-        </div>
-        <div class=''>
-            <button class='me-2 text-decoration-none border-0 btn px-2 py-2' href='${pageLink(o.title, o.id)}'>
-                <span class="material-symbols-outlined">
-                arrow_forward
-                </span>
-            </button>
-        </div>
+<div class="container-fluid">
+    <div class="container">
+        <div class="row d-flex align-items-center">
+            <div class="col-sm-8">
+                <div class="px-4 py-4 rounded">
+                    <p>
+                        <strong class="d-block mb-2">Time Efficiency:</strong>
+                        <span class="text-secondary fw-300">Say goodbye to scouring multiple websites for relevant information. Our service consolidates everything you need into a single, easily digestible daily news feed, saving you precious time.</span>
+                    </p>
+                    <p>
+                        <strong class="d-block mb-2">Global Perspective:</strong>
+                        <span class="text-secondary fw-300">As an entrepreneur, it's crucial to have a global perspective. Our curated content spans the world, providing you with insights from diverse markets and helping you make informed decisions on a global scale.</span>
+                    </p>
+                    <p class="mb-0">
+                        <strong class="d-block mb-2">Up-to-Date Information:</strong>
+                        <span class="text-secondary fw-300">Don't miss out on critical updates. Our team is dedicated to delivering the freshest news, ensuring you stay ahead of the competition with real-time information.</span>
+                    </p>                    
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <img src="{{ asset('img/defaults/growth.png')}}" width="500" class="img-fluid rounded d-block mx-auto">
+            </div>
         </div>
     </div>
-    </div>`;
-        })
-}
+</div>
 
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="px-3 py-5 my-3  text-center">
+                    <h3 class="fw-bold mb-1">Opportunities</h3>
+                    <p class="text-secondary">
+                        In the fast-paced realms of entrepreneurship, staying well-informed is not just an advantage—it's a necessity. Our platform stands out as the ultimate resource for entrepreneurs, offering a meticulously curated daily news feed sourced from the top tech and finance websites worldwide.
+                    </p>
+                    <button class="btn btn-lg custom-btn-highlight text-light fw-bold px-5 border-0 py-3 mt-3">
+                        Get Started
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-/**display pagination**/
-function displayPagination(d, elem){
-d.links.map((p)=>{
-    // let active = "#FCCD29";
-    let active_bg =  (p.active)? "#FB5607" : '';
-    let active_txt = (p.active)? "#252422" : '';
-    console.log(p);
-        if(p.url !== null){
-        document.querySelector(elem)
-        .innerHTML +=  ` <a id='${p.url}' class='btn btn-dark border-0 me-2 mb-2 px-3  text-light' 
-        style='background-color:${active_bg}; color:${active_txt}'
-        onclick='callPagination(this.id);'>${p.label}</button> `;
-        }  
-})
-}
-
-
-/***call pagination**/
-function callPagination(url){
-    document.querySelector('#opportunity-feeds').innerHTML = "<i class='d-block mb-3'>Oops! No content found</i>";
-    if(url == 'null'){
-        return false;
-    }else{
-        document.querySelector('#opportunity-feeds').innerHTML =   `<img src="${imageSrc}" class="img-fluid d-block mx-auto my-5" alt="loading..." />`;
-        fetch(url)
-        .then((r)=> {
-            document.querySelector('#opportunity-feeds').innerHTML = '';
-            document.querySelector('#pagination').innerHTML = '';
-            return  r.json();
-        })
-        .then((d)=>{
-            /**display pagination**/
-            console.log(d);
-            displayPagination(d, "#pagination");
-            /**display profile**/
-            displayResult(d,"#opportunity-feeds");   
-        })
-        .catch((e)=> console.log(e));
-    }
-}
-
-
-//toggle search filter 
-function toggleContent() {
-  console.log('click');
-  var element = document.getElementById("filter-toggle");
-  var toggle_btn = document.getElementById("filter-panel");
-  toggle_btn.classList.toggle('d-none');
-  console.log(element.innerHTML);
-  if (element.innerHTML.trim() === "toggle_off") {
-    // console.log('toggle-on');
-    element.innerHTML = "toggle_on";
-  } else {
-    // console.log('toggle-off')
-    element.innerHTML = "toggle_off";
-  }
-}
-
-
-/**select multiple options tags**/
-function initializeSelect(selectId, inputId, outputId) {
-    const selectElement = document.getElementById(selectId);
-    const inputField = document.getElementById(inputId);
-    const outputList = document.getElementById(outputId);
-
-
-    function updateInputField() {
-        console.log('works');
-        const selectedOptions = Array.from(selectElement.selectedOptions).map(option => option.value);
-        const existingValues = inputField.value.split(',').map(value => value.trim());
-        const uniqueValues = [...new Set([...existingValues, ...selectedOptions])];
-        inputField.value = uniqueValues.filter(Boolean).join(', ');
-        updateOutputList(uniqueValues);
-    }
-
-    function updateOutputList(values) {
-        outputList.innerHTML = '';
-
-        values.forEach(value => {
-            const trimmedValue = value.trim();
-
-            if (trimmedValue !== '') {
-                const listItem = document.createElement('div');
-                listItem.classList.add('filter-label');
-                listItem.textContent = trimmedValue.replaceAll('_', ' ');
-
-                const deleteButton = document.createElement('button');
-                deleteButton.classList.add('filter-label-delete');
-                deleteButton.textContent = 'x';
-                deleteButton.addEventListener('click', () => {
-                    removeItem(trimmedValue);
-                    listItem.remove();
-                });
-
-                listItem.appendChild(deleteButton);
-                outputList.appendChild(listItem);
-            }
-        });
-    }
-
-    function removeItem(value) {
-        const existingValues = inputField.value.split(',').map(val => val.trim());
-        const updatedValues = existingValues.filter(val => val !== value);
-        inputField.value = updatedValues.join(', ');
-        updateOutputList(updatedValues);
-
-        // Set the selectId to a default option
-        selectElement.selectedIndex = 0;
-    }
-
-    selectElement.addEventListener('change', updateInputField);
-}
-
-// Example usage
-initializeSelect('category', 'selectedCategories', 'outputCategoryList');
-initializeSelect('region', 'selectedRegions', 'outputRegionsList');
-initializeSelect('country', 'selectedCountries', 'outputCountriesList');
-initializeSelect('continent', 'selectedContinents', 'outputContinentsList');
-
-
-
-
-</script>
-
-
+<div class="container-fluid">
+    <div class="container">
+        <div class="row d-flex d-flex align-items-center">
+            <div class="col-sm-4">
+                <img src="{{ asset('img/defaults/globe.png')}}" width="500" class="img-fluid rounded d-block mx-auto">
+            </div>
+            <div class="col-sm-8">
+                <div class="px-4 py-4 rounded">
+                    <p>
+                        <strong class="d-block mb-2">Time Efficiency:</strong>
+                        <span class="text-secondary">Say goodbye to scouring multiple websites for relevant information. Our service consolidates everything you need into a single, easily digestible daily news feed, saving you precious time.</span>
+                    </p>
+                    <p>
+                        <strong class="d-block mb-2">Global Perspective:</strong>
+                        <span class="text-secondary">As an entrepreneur, it's crucial to have a global perspective. Our curated content spans the world, providing you with insights from diverse markets and helping you make informed decisions on a global scale.</span>
+                    </p>
+                    <p class="mb-0">
+                        <strong class="d-block mb-2">Up-to-Date Information:</strong>
+                        <span class="text-secondary">Don't miss out on critical updates. Our team is dedicated to delivering the freshest news, ensuring you stay ahead of the competition with real-time information.</span>
+                    </p>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="container">
+        <div class="row d-flex align-items-center">
+            <div class="col-sm-12">
+                <div class="px-3 py-5 my-3  text-center">
+                    <h3 class="fw-bold mb-1">Events</h3>
+                    <p class="text-secondary">
+                        In the fast-paced realms of entrepreneurship, staying well-informed 
+                        is not just an advantage—it's a necessity. Our platform stands out as 
+                        the ultimate resource for entrepreneurs, offering a meticulously curated 
+                        daily news feed sourced from the top tech and finance websites worldwide.
+                    </p>
+                    <button class="btn btn-lg custom-btn-highlight text-light fw-bold px-5 border-0 py-3 mt-3">
+                        Get Started
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="px-4 py-4 rounded">
+                    <p>
+                        <strong class="d-block mb-2">Time Efficiency:</strong>
+                        <span class="text-secondary">Say goodbye to scouring multiple websites for relevant information. Our service consolidates everything you need into a single, easily digestible daily news feed, saving you precious time.</span>
+                    </p>
+                    <p>
+                        <strong class="d-block mb-2">Global Perspective:</strong>
+                        <span class="text-secondary">As an entrepreneur, it's crucial to have a global perspective. Our curated content spans the world, providing you with insights from diverse markets and helping you make informed decisions on a global scale.</span>
+                    </p>
+                    <p class="mb-0">
+                        <strong class="d-block mb-2">Up-to-Date Information:</strong>
+                        <span class="text-secondary">Don't miss out on critical updates. Our team is dedicated to delivering the freshest news, ensuring you stay ahead of the competition with real-time information.</span>
+                    </p>                    
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <img src="{{ asset('img/defaults/mega_phone.png')}}" width="400" 
+                class="img-fluid rounded d-block mx-auto">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row footer-banner position-relative border-0">
+    <div class="overlay d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10">
+                    <div class="py-3 px-3 text-center">
+                        <h1 class="text-light fw-bold mb-2 p-0">
+                            Tailored for Entrepreneurs
+                        </h1>
+                        <p class="m-0 p-0 text-light">
+                            Unlock a world of exclusive content, breaking news on 
+                            technology, finance insights, exciting opportunities, and upcoming events. 
+                            Don't miss out on the latest trends and valuable information. Subscribe now
+                        </P>
+                        <button class="btn btn-lg custom-bg-highlight text-light fw-bold px-5 border-0 py-3 mt-3">
+                            Subscribe
+                        </button>
+                    </div>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+        </div>
+    </div>
+</div>
 </x-guest-layout>

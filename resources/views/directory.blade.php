@@ -68,7 +68,7 @@
 
                         <ul class="my-2 p-0 list-inline">
                             <li class="list-inline-item"><i class="icon ion-android-globe align-middle" style='font-size:1.1em;'></i> 
-                                {{ucwords(str_replace("_", " ", $posts->region));}}
+                                {{ucwords(str_replace("_", " ", $posts->region))}}
                             </li>
                             <li class="list-inline-item"><i class="icon ion-android-pin align-middle" style='font-size:1.1em;'></i> {{$posts->country}}</li>
                         </ul>

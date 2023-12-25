@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg header mb-3 fs-9">
+<nav class="navbar navbar-expand-lg header border-0 m-0 fs-9 custom-title">
     <div class="container">
         <!--logo-->
         <a href="https://media.edatsu.com">
@@ -16,61 +16,60 @@
           </form>
         <ul class="navbar-nav mb-2 mb-lg-0 ">
           <li class="nav-item">
-            <a href="{{ url('news-feed') }}" class="nav-link text-decoration-none me-3  text-light {{ getHighlightClass('/news-feed', 'brand-link', 'text-secondary') }}">
+            <a href="{{ url('news-feed') }}" class="nav-link text-decoration-none me-3  text-light {{ getHighlightClass('/news-feed', 'custom-link-highlight', 'text-secondary') }}">
               News Feed
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/') }}" class="nav-link text-decoration-none  me-3 text-light {{ getHighlightClass('/', 'brand-link', 'text-secondary') }}">
+            <a href="{{ url('/opportunities') }}" class="nav-link  text-decoration-none  me-3 text-light {{ getHighlightClass('/opportunities', 'custom-link-highlight', 'text-secondary') }}">
               Opportunities
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('events') }}" class="nav-link text-decoration-none me-3 text-light {{ getHighlightClass('/events', 'brand-link', 'text-secondary') }}">
+            <a href="{{ url('events') }}" class="nav-link  text-decoration-none me-3 text-light {{ getHighlightClass('/events', 'custom-link-highlight', 'text-secondary') }}">
             Discover Events
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="{{ url('subscribe') }}" class="nav-link text-decoration-none me-3 text-light {{ getHighlightClass('/subscribe', 'brand-link', 'text-secondary') }}">
-            Subscribe
+            <a href="{{ url('subscribe') }}" class="nav-link text-decoration-none me-3 text-light {{ getHighlightClass('/subscribe', 'custom-link-highlight', 'text-secondary') }}">
+            
+              <span class="material-symbols-outlined align-middle">
+                mark_email_unread
+              </span>
+
+              Subscribe
             </a>
           </li>
 
+
           @if (Auth::check())
             @auth
-            <li class="nav-item me-3">
-              <a href="{{ url('/dashboard') }}" class="nav-link text-decoration-none text-light">
-               {{ Auth::user()->name}}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ Auth::user()->name}}
               </a>
-            </li>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li> 
             @endauth
           @else
             <li class="nav-item">
-              <a class="btn brand-color border-0 px-3 inline-block fs-9 mt-1 me-3" 
+              <a class="btn custom-bg-highlight text-light border-0 shadow-sm py-2 px-4 inline-block fs-9 mt-1 me-3 fw-bold" 
               href="{{ route('login') }}" >
               Login</a>
             </li>
     
             <li class="nav-item">
-              <a class="btn brand-color border-0 px-3 inline-block fs-9 mt-1" href="{{ route('subscriber-register') }}" >
-              Sign Up</a>
-              {{-- <a class="btn brand-color border-0 px-3 inline-block fs-9 mt-1" href="{{ route('admin-register') }}" >
-                Admin Sign up</a> --}}
+              <a class="btn custom-bg-highlight text-light border-0 px-4 shadow-sm py-2 inline-block fs-9 mt-1 fw-bold" href="{{ route('subscriber-register') }}" >
+              Sign Up
+              </a>
             </li>
           @endif
-          {{-- <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Support
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li> 
-          --}}
         </ul>
       </div>
       </div>

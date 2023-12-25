@@ -1,0 +1,106 @@
+{
+"name": "Hemba Recruiter",
+"short_name": "Hemba Recruiter",
+"start_url": ".",
+"scope": "/",
+"display": "standalone",
+"background_color": "#fccd29",
+"theme_color": "#fccd29",
+"description": "Find & Hire Top Talents",
+"icons": [
+    {
+        "src": "/hemba_icons/android-icon-48x48.png",
+        "sizes": "48x48",
+        "type": "image/png"
+    },
+    {
+        "src": "/hemba_icons/android-icon-72x72.png",
+        "sizes": "72x72",
+        "type": "image/png"
+    },
+    {
+        "src": "/hemba_icons/android-icon-96x96.png",
+        "sizes": "96x96",
+        "type": "image/png"
+    },
+    {
+        "src": "/hemba_icons/android-icon-144x144.png",
+        "sizes": "144x144",
+        "type": "image/png"
+    },
+    {
+        "src": "/hemba_icons/android-icon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+    }, 
+    {
+        "src": "/hemba_icons/hemba_logo.png",
+        "type": "image/png",
+        "sizes": "500x500",
+        "purpose": "maskable"
+    }
+]
+}
+
+SCREENSHOTS PRE INSTALLING INFO
+
+//add screen shots for desktop preview
+ref url : https://web.dev/patterns/web-apps/richer-install-ui
+"screenshots": [
+    {
+        "src": "source/image1.gif",
+        "sizes": "640x320",
+        "type": "image/gif",
+        "form_factor": "wide",
+        "label": "Wonder Widgets"
+    }
+]
+
+The form_factor indicates to the browser whether the screenshot should appear on desktop (wide) 
+or mobile environments (narrow).
+
+INSTALLATION
+
+// This variable will save the event for later use.
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevents the default mini-infobar or install dialog from appearing on mobile
+  e.preventDefault();
+  // Save the event because you'll need to trigger it later.
+  deferredPrompt = e;
+  // Show your customized install prompt for your PWA
+  // Your own UI doesn't have to be a single element, you
+  // can have buttons in different locations, or wait to prompt
+  // as part of a critical journey.
+  showInAppInstallPromotion();
+});
+
+//ONCLICK INSTALL
+// Gather the data from your custom install UI event listener
+installButton.addEventListener('click', async () => {
+  // deferredPrompt is a global variable we've been using in the sample to capture the `beforeinstallevent`
+  deferredPrompt.prompt();
+  // Find out whether the user confirmed the installation or not
+  const { outcome } = await deferredPrompt.userChoice;
+  // The deferredPrompt can only be used once.
+  deferredPrompt = null;
+  // Act on the user's choice
+  if (outcome === 'accepted') {
+    console.log('User accepted the install prompt.');
+  } else if (outcome === 'dismissed') {
+    console.log('User dismissed the install prompt');
+  }
+});
+
+
+
+*IMPORTANT : 
+Chrome and Edge on iOS and iPadOS do not support PWA installation, so the beforeinstallprompt event can't fire. In this case, the only option is to open the PWA using Safari, where it is installable from the share, add to the home screen menu.
+
+{/* <h5 className="fw-bold">🚀 Why Install?</h5>
+<ul className="m-0 p-0">
+<li><span className="fs-8">✨ <em className="fw-bold">Lightning-Fast</em>: Say goodbye to sluggish loading times! Our PWA ensures swift access to your favorite features with just a tap.</span></li>
+<li><span className="fs-8">✨ <em className="fw-bold">Offline Access</em>: No internet? No problem! Enjoy seamless functionality even when you're offline.</span></li>
+<li><span className="fs-8">✨ <em className="fw-bold">Space-Saving</em>: Bid farewell to cluttered storage! Our PWA takes up minimal space on your device, freeing it up for what matters most.</span></li>
+<li><span className="fs-8">✨ <em className="fw-bold">Instant Updates</em>: Stay ahead of the curve with automatic updates. No more waiting – you'll always have the latest and greatest at your fingertips.</span></li>
+</ul> */}

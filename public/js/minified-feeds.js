@@ -1,6 +1,6 @@
 const showLoadingIndicator=()=>{let e=`<img src="${imageSrc}" class="img-fluid d-block mx-auto my-5" alt="loading..." />`;document.querySelector("#news-feed").innerHTML=e},fetchData=async(e=1)=>{try{showLoadingIndicator();let t=await fetch(`/feeds?page=${e}`),n=await t.json();return n}catch(o){throw console.error("Error fetching data:",o),o}},handleData=(e,t,n="")=>{let o=e.data,a=document.querySelector("#news-feed");a.innerHTML="",o.forEach(e=>{let t=e.date?`<p class="text-secondary fs-9 p-0 m-0 my-2">Posted on: ${e.date}</p>`:"",n=`
       <div class="px-3 py-3 bg-white border rounded mb-3">
-        <h5 class="fw-bold">${e.title}</h5>
+        <h6 class="fw-bold">${e.title}</h6>
         ${t}
         <p class="p-0 m-0 my-2 fs-9 text-secondary d-block">
         ${e.description}

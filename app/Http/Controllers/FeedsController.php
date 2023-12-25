@@ -33,6 +33,7 @@ class FeedsController extends Controller
     
     public function fetchFeeds(Request $request)
     {
+
         $feeds = [];
     
         if ($request->has("feeder") && $request->feeder !== null) {
@@ -46,8 +47,10 @@ class FeedsController extends Controller
                 "https://techpoint.africa/feed/",
                 "https://techcabal.com/feed/",
                 "https://technext24.com/feed/",
-                "https://www.techcityng.com/feed/",
+                "https://techbuild.africa/feed/",
                 "https://www.benjamindada.com/rss/",
+                "https://nairametrics.com/feed/",
+                "https://businessday.ng/feed/"
             ];
             Cache::forget('feeds_data'); // Clear the cached data
         }
@@ -68,12 +71,15 @@ class FeedsController extends Controller
             foreach ($feeds as $url) {
                 $promises[] = $client->getAsync($url);
             }
+
+            // return response()->json(['data' => $promises]);
     
-            $responses = Promise\unwrap($promises);
+            $responses = Promise\Utils::unwrap($promises);
     
             foreach ($responses as $response) {
                 if ($response->getStatusCode() !== 200) {
                     continue;
+                    //send erorr message to admin = $response->getStatusCode();
                 }
     
                 try {

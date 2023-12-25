@@ -7,11 +7,11 @@ use App\Http\Controllers\Event;
 use App\Http\Controllers\App;
 use App\Http\Controllers\Directory;
 use App\Http\Controllers\FeedsController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
-// use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +25,9 @@ use Illuminate\Support\Str;
 */
 
 Route::get('/', [App::class, 'displayOpp']);
+Route::get('/opportunities', function(){
+    return view('opportunities');
+});
 Route::get('/opp-feeds', [App::class, 'getOppFeed']);
 Route::get('/event-feeds', [App::class, 'getEventFeed']);
 Route::get('/events', [App::class, 'displayEvents']);
@@ -40,6 +43,11 @@ Route::get('/feedback',  function(){return view('feedback');})->name('feedback')
 
 /**Login access control */
 Route::get('/dashboard', [Dashboard::class, "accessControl"]);
+
+/**Public Routes */
+Route::post('/upvote-post', [PostController::class, 'upvote']);
+Route::get('/report/{id}', [PostController::class, 'report']);
+
 
 /**admin routes */
 Route::middleware(['auth', 'role:admin'])->group(function(){

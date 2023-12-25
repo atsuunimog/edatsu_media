@@ -1,3 +1,24 @@
+TODO
+-Change UI/UX : Target finance.yahoo.com/  **news/opportunity/event/community/resources hub
+
+-Sign up: 
+-Email notification for labels
+-Get instant push notification 
+-Notification push reminder for event and q opportunity 
+-add bookmark
+-SEO
+-PWA
+
+Installable: 
+-Start conversation around news (Forum)
+-summarize news with open AI
+
+
+Mobile App: 
+-Notification tool for events and opportunity 
+sync with calender
+
+
 SOFTWARE DEVELOPMENT
 -PWA Features: 
 
