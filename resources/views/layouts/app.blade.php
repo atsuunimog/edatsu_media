@@ -31,8 +31,10 @@
         <meta name="robots" content="index, follow">
         <link rel="canonical" href="https://media.edatsu.com/">
 
-        <!--font awesome icons-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@700&family=Montserrat:wght@300;400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
         {{-- google icons --}}
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -45,8 +47,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
         <!--alert notification-->
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>    
 
         <!--mont serrat font-->
         {{-- <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -69,7 +70,7 @@
         @if(Auth::user()->role == 'admin')
             @include('layouts.admin_navigation')
         @else
-            @include('layouts.subscriber_navigation')
+            @include('layouts.subscriber_header')
         @endif
 
         <div class="container-fluid">

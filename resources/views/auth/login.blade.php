@@ -6,8 +6,8 @@
         {{-- <div class="border px-3 py-3"></div> --}}
     </div>
     <div class="col-sm-4">
-        <div class="border px-3 py-3 rounded my-5 bg-white">
-            <h3 class='fw-bold mb-3'>Login</h3>
+        <div class="px-3 py-3 my-5">
+            <h2 class='fw-bold mb-3 custom-title-garamond'>Login</h2>
 
             <!--login form-->
             <x-auth-session-status class="mb-4" :status="session('status')" />

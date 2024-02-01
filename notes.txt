@@ -1,3 +1,14 @@
+REVENUE
+Broadcasting Events & Opportunites with internal tools like hootsuite
+Ticketing For events. 
+Open Micro Blogging for freelancers (subscription model)
+Advertising
+Adsense
+patreon supporters feature to replace patreon in nigeria
+Creators: Content creators get paid on subscription
+Promoters: Like marketers help companies or business promote their events or opportunity for a fee
+
+
 TODO
 -Change UI/UX : Target finance.yahoo.com/  **news/opportunity/event/community/resources hub
 

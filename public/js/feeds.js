@@ -1,3 +1,16 @@
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  }
+});
+
+
 const showLoadingIndicator = () => {
     const loadingMarkup = `<img src="${imageSrc}" class="img-fluid d-block mx-auto my-5" alt="loading..." />`;
     document.querySelector("#news-feed").innerHTML = loadingMarkup;
@@ -19,6 +32,48 @@ const showLoadingIndicator = () => {
   }
 };
 
+// bookmark feed
+async function bookmarkFeed(obj, e) {
+  e.preventDefault();
+  try {
+    // Get the CSRF token value from the meta tag
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    const response = await fetch('/bookmark-feed', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': csrfToken, 
+        // Include the CSRF token in the headers
+      },
+      body: JSON.stringify({ url: obj.dataset.link }),
+    });
+
+    // For example, you can log the response:
+    const result = await response.json();
+
+    if(result.success == true){
+      // use toast to post message
+      Toast.fire({
+        icon: "success",
+        title: result.message
+      });
+    }else{
+      Toast.fire({
+        icon: "warning",
+        title: result.message
+      });
+    }
+
+    console.log(result);
+
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+
+
+
 // Function to handle the fetched data and update the UI
 const handleData = (data, singleFeed, feeder_url = '') => {
   const feeds = data.data; // Array of feed items
@@ -30,25 +85,49 @@ const handleData = (data, singleFeed, feeder_url = '') => {
   feeds.forEach(feed => {
     // Display each feed item in the UI
 
-    console.log(feed.images);
-
-    const dateMarkup = feed.date ? `<p class="text-secondary fs-9 p-0 m-0 my-2">Posted on: ${feed.date}</p>` : '';
+    const dateMarkup = feed.date ? `<p class="fs-8 p-0 m-0 my-2">Posted on: ${feed.date}</p>` : '';
     const feedMarkup = `
-      <div class="px-3 py-3 bg-white border rounded mb-3">
+      <div class="ps-3 py-3 bg-white border rounded mb-3 pe-5  position-relative">
+
+      <div class='position-absolute custom-toggle-menu'>
+        <div class="dropdown">
+          <button class="btn btn-light shadow-sm p-0 border bg-white rounded-circle
+          d-flex align-items-center justify-content-center" 
+            style='width:40px; height:40px;' type="button" 
+            data-bs-toggle="dropdown" aria-expanded="false">
+
+            <span class="material-symbols-outlined">
+              list
+            </span>
+          </button>
+          <ul class="dropdown-menu fs-9">
+              
+              <li class="">
+                <a class="dropdown-item d-flex align-items-center justify-content-between" data-link=${feed.link}" onClick="bookmarkFeed(this, event)">
+                  <span>Bookmark</span>
+                  <span class='material-symbols-outlined align-middle me-2'>
+                  bookmark
+                  </span>
+                </a>
+              </li>
+
+          </ul>
+        </div>
+      </div>
+
           <a href="${feed.link}" target="_blank" class="text-decoration-none text-dark fw-bold">
-              <h6 class="fw-bold inline-block custom-title m-0">${feed.title}</h6>
+              <h6 class="fw-bold inline-block m-0">${feed.title}</h6>
           </a>
           ${dateMarkup}
           <p class="p-0 m-0 fs-9 text-secondary d-block">
           ${feed.description}
           </p>
-          <p class="p-0 m-0 mt-2 fw-bold link-color fs-9">
+          <p class="p-0 m-0 mt-3 fw-bold link-color fs-9">
             <span class="material-symbols-outlined align-middle">full_coverage</span>
             ${feed.domain_name}
           </p>
       </div>
     `;
-
     newsFeedElement.innerHTML += feedMarkup;
   });
 

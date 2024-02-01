@@ -13,6 +13,7 @@ use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Psr7\Uri;
 use Exception;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 
@@ -30,6 +31,9 @@ class FeedsController extends Controller
     public function displayFeeds(){
         return view('feeds');
     }
+
+
+
     
     public function fetchFeeds(Request $request)
     {

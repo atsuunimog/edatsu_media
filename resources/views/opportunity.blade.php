@@ -180,8 +180,8 @@
                             </p>
                            
                             <div class="overflow-hidden truncate mb-2">
-                               <p class='m-0 fs-9 text-secondary'> {!! $truncated_text = Str::limit(strip_tags($posts->description), 200); !!}</p>
-                                {{-- <span class='text-truncate bg-danger' style='min-width:500px;'>{!! $posts->description !!}</span> --}}
+                            <p class='m-0 fs-9 text-secondary'> {!! $truncated_text = Str::limit(strip_tags($posts->description), 200); !!}</p>
+                            {{-- <span class='text-truncate bg-danger' style='min-width:500px;'>{!! $posts->description !!}</span> --}}
                             </div>
                             
                             <ul class="mb-2 p-0 label-list">

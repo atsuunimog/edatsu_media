@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
+use App\Http\Controllers\SubscriberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,11 +27,12 @@ use Illuminate\Support\Str;
 
 Route::get('/', [App::class, 'displayOpp']);
 Route::get('/opportunities', function(){
-    return view('opportunities');
-});
+return view('opportunities');
+})->name('oppty');
+
 Route::get('/opp-feeds', [App::class, 'getOppFeed']);
 Route::get('/event-feeds', [App::class, 'getEventFeed']);
-Route::get('/events', [App::class, 'displayEvents']);
+Route::get('/events', [App::class, 'displayEvents'])->name("events");
 Route::get('/feeds', [FeedsController::class, 'fetchFeeds'])->name("find.feeds");
 Route::get('/news-feed', [FeedsController::class, 'displayFeeds'])->name("daily.feeds");
 Route::get('op/{id}/{title}', [App::class, 'readOpportunity'])->name('read.blog');
@@ -38,16 +40,16 @@ Route::get('ev/{id}/{title}', [App::class, 'readEvent'])->name('read.ev');
 Route::get('/search-opportunities', [App::class, 'searchOpportunities']);
 Route::get('/search-events', [App::class, 'searchEvents']);
 
-Route::get('/subscribe', function(){return view('subscribe');});
+Route::get('/subscribe', function(){return view('subscribe');})->name("subscribe");
 Route::get('/feedback',  function(){return view('feedback');})->name('feedback');
+Route::post('/bookmark-feed', [SubscriberController::class, 'bookmarkFeed']);
 
 /**Login access control */
 Route::get('/dashboard', [Dashboard::class, "accessControl"]);
 
 /**Public Routes */
 Route::post('/upvote-post', [PostController::class, 'upvote']);
-Route::get('/report/{id}', [PostController::class, 'report']);
-
+Route::get('/report/{id}',  [PostController::class, 'report']);
 
 /**admin routes */
 Route::middleware(['auth', 'role:admin'])->group(function(){
@@ -73,12 +75,11 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
 
 /**subscriber routes */
 Route::middleware(['auth', 'role:subscriber'])->group(function(){
-    Route::get('/subscriber-dashboard', function(){
-    return view('subscriber.dashboard');
-    })->name('subscriber.dashboard');
+    Route::get('/subscriber-dashboard', [SubscriberController::class, 'index'])->name('subscriber.dashboard');
+    Route::get('/bookmark', [SubscriberController::class, 'bookmark'])->name("subscriber.bookmark");
 });
 
-/**profile routes */
+/**general profile settings routes */
 Route::middleware('auth')->group(function () {
     Route::get('/profile',   [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

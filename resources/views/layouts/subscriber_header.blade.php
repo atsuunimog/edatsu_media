@@ -31,7 +31,7 @@
             </a>
           </li>
 
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="{{ url('subscribe') }}" class="nav-link text-decoration-none me-3 text-light {{ getHighlightClass('/subscribe', 'custom-link-highlight', 'text-secondary') }}">
             
               <span class="material-symbols-outlined align-middle">
@@ -40,24 +40,37 @@
 
               Subscribe
             </a>
-          </li>
+          </li> --}}
 
 
           @if (Auth::check())
             @auth
-            <li class="nav-item me-3">
-              <div class="btn-group">
-                  <a href="{{ url('/dashboard') }}" class="nav-link text-decoration-none text-light">
-                    {{ Auth::user()->name}}
-                   </a>
-                <button class="btn p-0 m-0 text-light border-0 dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                  <span class="visually-hidden">Toggle Dropdown</span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Logout</a></li>
-                </ul>
-              </div>
-            </li>
+            
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ Auth::user()->name}}
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item fs-9" href="{{route('subscriber.dashboard')}}">Dashboard</a></li>
+                <li>
+                    <!-- Authentication -->
+                    
+                    <form method="POST" action="{{ route('logout') }}">
+                      @csrf
+                      <x-responsive-nav-link :href="route('logout')"
+                      class="dropdown-item fs-9" 
+                              onclick="event.preventDefault();
+                                          this.closest('form').submit();">
+                          {{ __('Log Out') }}
+                      </x-responsive-nav-link>
+                    </form>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li><span class='text-secondary fs-8 px-3'>&copy; edatsu media</s></li>
+              </ul>
+            </li> 
+           
 
             
             @endauth
@@ -75,20 +88,7 @@
                 Admin Sign up</a> --}}
             </li>
           @endif
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Support
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li>
-                Logout
-              </li>
-              <li><hr class="dropdown-divider"></li>
-              <li><span class='text-secondary fs-9'>&copy; edatsu media</s></li>
-            </ul>
-          </li> 
-         
+          
         </ul>
       </div>
       </div>

@@ -574,7 +574,6 @@
         .innerHTML += `<div class='col-sm-12 mb-3'>
         <div class='px-3 py-3 border rounded feed-panel text-wrap w-100 position-relative'>
     
-            @auth
             <div class='position-absolute custom-toggle-menu'>
                 <div class="dropdown">
                 <button class="btn btn-light shadow-sm p-0 border bg-white rounded-circle" 
@@ -593,7 +592,6 @@
                 </ul>
                 </div>
             </div>
-            @endauth
     
             <a class='text-decoration-none text-dark' href='${pageLink(o.title, o.id)}'>
             <h6 class='fw-bold m-0 mb-1 pe-5'>${o.title}</h6>
