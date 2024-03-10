@@ -1,4 +1,4 @@
-<section  class="border-bottom bg-white border rounded mb-3 py-3 px-3">
+{{-- <section  class="border-bottom bg-white border rounded mb-3 py-3 px-3">
     <header>
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400 fs-9">
             {{ __('Once your account is deleted, all of its resources and 
@@ -69,4 +69,4 @@
     </div>
 
 
-</section>
+</section> --}}

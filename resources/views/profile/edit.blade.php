@@ -23,11 +23,12 @@
                 @include('profile.partials.update-password-form')
             </div>
 
-            <div class="my-3">
+            {{-- <div class="my-3">
                 <p class="fw-bold">Delete Account</p>
                 @include('profile.partials.delete-user-form')
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>
+@include('layouts/login_footer')
 </x-app-layout>

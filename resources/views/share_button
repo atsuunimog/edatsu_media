@@ -1,0 +1,22 @@
+            <div class='position-relative'>
+            <div class="position-absolute share-panel border rounded d-none">
+                <ul class='m-0 p-0 fs-9'>
+                    <li><a class='text-decoration-none text-dark' href="https://api.whatsapp.com/send?text=https://media.edatsu.com/${pageLink(o.title, o.id)}"
+                        target="_blank"><img width="30" src="{{asset('img/gif/icons8-whatsapp.gif')}}" alt="whatsapp"> WhatsApp</a></li>
+    
+                    <li><a class='text-decoration-none text-dark' href="https://t.me/share/url?url=https://media.edatsu.com/${pageLink(o.title, o.id)}"
+                        target="_blank"><img width="30" src="{{asset('img/gif/icons8-telegram.gif')}}" alt="telegram"> Telegram</a></li>
+                    
+                    <li><a class='text-decoration-none text-dark' href="https://twitter.com/intent/tweet?url=https://media.edatsu.com/${pageLink(o.title, o.id)}"
+                        target="_blank"><img width="30" src="{{asset('img/gif/icons8-twitter.gif')}}" alt="twitter"> Twitter</a></li>
+                    
+                    <li><a class='text-decoration-none text-dark' href="https://www.linkedin.com/sharing/share-offsite/?url=https://media.edatsu.com/${pageLink(o.title, o.id)}"
+                        target="_blank"><img width="30" src="{{asset('img/gif/icons8-linkedin.gif')}}" alt="linkedin"> LinkedIn</a></li>
+                </ul>
+            </div>
+            <button class='me-2 text-decoration-none border-0 btn px-2 py-2' onClick="this.previousElementSibling.classList.toggle('d-none')">
+                <span class="material-symbols-outlined align-middle">
+                    share
+                </span>
+            </button>
+            </div>

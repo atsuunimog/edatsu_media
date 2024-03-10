@@ -2,14 +2,13 @@
     <div class="row d-sm-none d-md-none d-lg-none">
         <div class="col-sm-12 text-center">
             <div class="py-5">
-               <h1 class='fw-bold'>Event</h1>
-               <p class=''>
-               Event Details
-               </p>
+                <h1 class='fw-bold'>Event</h1>
+                <p class=''>
+                Event Details
+                </p>
             </div>  
         </div>
     </div>
-
  @php
      
 function processDates($inputString) {
@@ -69,7 +68,7 @@ function processDates($inputString) {
                     @isset( $ev_posts->region)
                     <li class="mb-2">
                         <span class='data-labels'>
-                            {{ucwords(str_replace("_", " ", $ev_posts->region));}}
+                            {{ucwords(str_replace("_", " ", $ev_posts->region))}}
                         </span>
                     </li>
                     @endisset
@@ -77,7 +76,7 @@ function processDates($inputString) {
                     @isset( $ev_posts->country)
                     <li class="mb-2">
                         <span class='data-labels'>
-                            {{ucwords(str_replace("_", " ", $ev_posts->country));}}
+                            {{ucwords(str_replace("_", " ", $ev_posts->country))}}
                         </span>
                     </li>
                     @endisset

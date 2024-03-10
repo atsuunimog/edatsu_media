@@ -188,8 +188,9 @@ ul.share-icons > li .icon {color:black;}
 .data-labels{
     background-color:#F2F2F2;
    font-size:.8em;
+   color:gray;
    padding:5px 15px;
-   border:1px solid gray;
+   /* border:1px solid gray; */
    border-radius:10px;
    /* border:1px solid gray; */
 }

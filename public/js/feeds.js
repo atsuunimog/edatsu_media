@@ -45,7 +45,7 @@ async function bookmarkFeed(obj, e) {
         'X-CSRF-TOKEN': csrfToken, 
         // Include the CSRF token in the headers
       },
-      body: JSON.stringify({ url: obj.dataset.link }),
+      body: JSON.stringify({ url: obj.dataset.link, title : obj.dataset.title}),
     });
 
     // For example, you can log the response:
@@ -58,16 +58,43 @@ async function bookmarkFeed(obj, e) {
         title: result.message
       });
     }else{
+      console.log(result); 
+
+      //handle multi error messages
+      var output = '';
+      if(typeof result.message == 'object' && result.message !== null){
+
+        // console.log('working');
+        for (let prop in result.message) {
+          if (result.message.hasOwnProperty(prop)) {
+            if (Array.isArray(result.message[prop])) {
+              result.message[prop].forEach((item) => {
+                // Perform operations on each item in the array
+                output += item + "<br>";
+              });
+            } else {
+              output += result.message[prop];
+            }
+          }
+        }
+
+        Toast.fire({
+          icon: "error",
+          title: output
+        }); 
+    }else{
+      //
       Toast.fire({
-        icon: "warning",
+        icon: "error",
         title: result.message
       });
     }
 
-    console.log(result);
+    }
 
   } catch (err) {
     console.log(err);
+    
   }
 }
 
@@ -82,44 +109,47 @@ const handleData = (data, singleFeed, feeder_url = '') => {
   const newsFeedElement = document.querySelector("#news-feed");
   newsFeedElement.innerHTML = '';
 
+//TOGGLE BOOMKARK UI ICON
+//   <div class='position-absolute custom-toggle-menu'>
+//   <div class="dropdown">
+//     <button class="btn btn-light shadow-sm p-0 border bg-white rounded-circle
+//     d-flex align-items-center justify-content-center" 
+//       style='width:40px; height:40px;' type="button" 
+//       data-bs-toggle="dropdown" aria-expanded="false">
+
+//       <span class="material-symbols-outlined">
+//         list
+//       </span>
+//     </button>
+//     <ul class="dropdown-menu fs-9">
+        
+//         <li class="">
+//           <a class="dropdown-item d-flex align-items-center justify-content-between" data-title="${feed.title}" data-link="${feed.link}" onClick="bookmarkFeed(this, event)">
+//             <span>Bookmark</span>
+//             <span class='material-symbols-outlined align-middle me-2'>
+//             bookmark
+//             </span>
+//           </a>
+//         </li>
+
+//     </ul>
+//   </div>
+// </div>
+
   feeds.forEach(feed => {
     // Display each feed item in the UI
 
     const dateMarkup = feed.date ? `<p class="fs-8 p-0 m-0 my-2">Posted on: ${feed.date}</p>` : '';
     const feedMarkup = `
-      <div class="ps-3 py-3 bg-white border rounded mb-3 pe-5  position-relative">
+      <div class="ps-3 py-3 bg-white border rounded mb-4 pe-5  position-relative">
 
-      <div class='position-absolute custom-toggle-menu'>
-        <div class="dropdown">
-          <button class="btn btn-light shadow-sm p-0 border bg-white rounded-circle
-          d-flex align-items-center justify-content-center" 
-            style='width:40px; height:40px;' type="button" 
-            data-bs-toggle="dropdown" aria-expanded="false">
 
-            <span class="material-symbols-outlined">
-              list
-            </span>
-          </button>
-          <ul class="dropdown-menu fs-9">
-              
-              <li class="">
-                <a class="dropdown-item d-flex align-items-center justify-content-between" data-link=${feed.link}" onClick="bookmarkFeed(this, event)">
-                  <span>Bookmark</span>
-                  <span class='material-symbols-outlined align-middle me-2'>
-                  bookmark
-                  </span>
-                </a>
-              </li>
-
-          </ul>
-        </div>
-      </div>
 
           <a href="${feed.link}" target="_blank" class="text-decoration-none text-dark fw-bold">
-              <h6 class="fw-bold inline-block m-0">${feed.title}</h6>
+          <h5 class="fw-bold inline-block m-0 pe-5" style="font-size:1em;">${feed.title}</h5>
           </a>
           ${dateMarkup}
-          <p class="p-0 m-0 fs-9 text-secondary d-block">
+          <p class="p-0 m-0 fs-8 text-secondary d-block">
           ${feed.description}
           </p>
           <p class="p-0 m-0 mt-3 fw-bold link-color fs-9">
@@ -177,7 +207,7 @@ const fetchAndHandleData = async (page = 1) => {
     const errorMarkup = `
       <div class="px-3 py-3 bg-white border rounded mb-3 text-center">
         <h5 class="fw-bold">Oops! Something went wrong</h5>
-        <p class="text-secondary fs-9">Try refreshing your feeds or checking your internet connection</p>
+        <p class="text-secondary fs-9 my-2">Try refreshing your feeds or checking your internet connection</p>
         <button class="btn btn-dark px-4 fw-bold" onClick='window.location.reload()'>Refresh Feed</button>
       </div>
     `;

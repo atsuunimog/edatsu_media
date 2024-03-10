@@ -61,16 +61,22 @@
 </form>
 <!--news filter-->
 
-<div class="alert alert-info fs-9 d-flex  align-items-center border-0" role="alert">
+<div class="alert alert-warning fs-9 d-flex border-0 align-items-center rounded-0" role="alert">
   <p class='m-0'>
   <span class="material-symbols-outlined align-middle">
   info
   </span>
   </p>
-  <p class='m-0 px-3 fs-9'>
-  We have restricted the number of visible channel feeds at a time. Use the channel filter to find channels.
+  <p class='m-0 fs-9 px-3'>
+      <span class='d-block'>How should we improve this service? 
+      <a class="text-decoration-none fw-bold" href={{route('feedback')}}>
+          Send Feedback
+      </a>
   </p>
 </div>
+
+<h3 class="m-0 fw-bold mb-3 text-secondary">News Feed</h3>
+
 
 {{-- <a href="https://kol.jumia.com/api/click/link/d85c6dd6-5eec-47e9-b103-577be07cf3f6/2ff2cad3-caeb-4f66-9ca2-eb53ff24190f">
   <img src="https://kol.jumia.com/banners/YOZIEcc1lB0Omt0fkjsZoLZ6OMxQ5X9dzyVA2Iin.jpg" 
@@ -112,9 +118,10 @@
     </a>
     <!--logo-->
     <h5 class='fw-bold m-0 mb-3'>Submit Opportunities</h5>
-    <p class='fs-9 text-secondary'>
-      Submit tech and entrepreneurial opportunities. It's free.
-    </p>
+    <p class='fs-8 text-secondary'>
+      Submit tech and entrepreneurial opportunities; while we accept only a limited number of posts each week, our service is free. 
+      Please read our <a href="" class="fw-bold text-primary text-decoration-none">terms and conditions</a> to understand the criteria for your submission
+  </p>
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSd-1Nwy3SUnsjvseBtjmQQSxTEobuMDu2_CXWPMDpxWz2n4mQ/viewform?usp=sf_link" 
     target="_blank"
     class='btn btn-dark w-100 fs-9 py-3 my-3'>Submit</a>

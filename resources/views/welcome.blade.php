@@ -10,10 +10,10 @@
                             Edatsu Media
                         </P>
                         <h1 class="text-light fw-bold mb-3 p-0 custom-title-garamond">
-                            Information, Opportunities & Networking
+                            Technology, Entrepreneurship & Opportunites
                         </h1>
                         <p class="m-0 p-0 text-light">
-                            Unlock a world of insights & Opportunities
+                            Information & Networking
                         </P>
                     </div>
                 </div>

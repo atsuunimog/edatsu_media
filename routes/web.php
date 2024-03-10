@@ -25,7 +25,13 @@ use App\Http\Controllers\SubscriberController;
 |
 */
 
-Route::get('/', [App::class, 'displayOpp']);
+// Route::get('/', [App::class, 'displayOpp']);
+
+Route::get('/', function(){
+    return view('opportunities');
+    })->name('oppty');
+    
+
 Route::get('/opportunities', function(){
 return view('opportunities');
 })->name('oppty');
@@ -43,6 +49,7 @@ Route::get('/search-events', [App::class, 'searchEvents']);
 Route::get('/subscribe', function(){return view('subscribe');})->name("subscribe");
 Route::get('/feedback',  function(){return view('feedback');})->name('feedback');
 Route::post('/bookmark-feed', [SubscriberController::class, 'bookmarkFeed']);
+Route::post('/bookmark-opportunity', [Opportunity::class, 'bookmarkOpportunity']);
 
 /**Login access control */
 Route::get('/dashboard', [Dashboard::class, "accessControl"]);
@@ -77,6 +84,8 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
 Route::middleware(['auth', 'role:subscriber'])->group(function(){
     Route::get('/subscriber-dashboard', [SubscriberController::class, 'index'])->name('subscriber.dashboard');
     Route::get('/bookmark', [SubscriberController::class, 'bookmark'])->name("subscriber.bookmark");
+    Route::get('/fetch-general-bookmark', [SubscriberController::class, 'listBookmark'] );
+    Route::post('/remove-bookmark-feed', [SubscriberController::class, 'removeBookmark']);
 });
 
 /**general profile settings routes */
