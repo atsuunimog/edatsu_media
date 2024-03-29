@@ -1,6 +1,25 @@
-TODO
--Change UI/UX : Target finance.yahoo.com/  **news/opportunity/event/community/resources hub
+CI/CD
 
+TODO
+-mailing list: 
+    registered users
+    general users
+-Bookmarking
+    -Opportunites 
+    -Events
+
+-add push notification
+-add share button
+---------------------------------------
+
+-change categorization
+-add images
+-improve search filter
+
+-add global region
+
+
+-Change UI/UX : Target finance.yahoo.com/  **news/opportunity/event/community/resources hub
 -Sign up: 
 -Email notification for labels
 -Get instant push notification 
