@@ -173,7 +173,7 @@
                 </p>
             </div>
 
-            <h3 class="m-0 fw-bold mb-3 text-secondary">Opportunitiesxx</h3>
+            <h3 class="m-0 fw-bold mb-3 text-secondary">Opportunitiesxxl</h3>
 
 
             <div class="row">
