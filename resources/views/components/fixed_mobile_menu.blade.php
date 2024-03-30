@@ -21,6 +21,7 @@
                 full_coverage
                 </span>
                 </a>
+                <span class="d-block fs-8 text-uppercase">NEWS</span>
             </div>
             <div class="col-3">
                 <a href="{{ url('/') }}" class="text-decoration-none {{ getHighlightClass('/', 'text-light-orange fw-bold', 'text-light') }}">
@@ -28,6 +29,7 @@
                 wb_sunny
                 </span>
                 </a>
+                <span class="d-block fs-8 text-uppercase">Oppty</span>
             </div>
             <div class="col-3">
                 <a href="{{ url('events') }}" class="text-decoration-none {{ getHighlightClass('/events', 'text-light-orange fw-bold', 'text-light') }}">
@@ -35,17 +37,25 @@
                 event_available
                 </span>
                 </a>
+                <span class="d-block fs-8 text-uppercase">Events</span>
             </div>
             <div class="col-3">
                 <!--alert indicator-->
                 <div class='position-relative'>
+                    @auth
+                    <div class="login-indicator"></div>
+                    @endauth
+
+                    @guest
                     <div class="alert-indicator"></div>
+                    @endguest
                     <!--alert indicator-->
-                    <a href="{{ url('subscribe') }}" class="text-decoration-none {{ getHighlightClass('/subscribe', 'text-light-orange fw-bold', 'text-light') }}">
-                    <span class="material-symbols-outlined align-middle" style='font-size:1.5em;'>
-                    mail
-                    </span>
+                    <a href="{{ url('login') }}" class="text-decoration-none {{ getHighlightClass('/subscribe', 'text-light-orange fw-bold', 'text-light') }}">
+                        <span class="material-symbols-outlined align-middle" style='font-size:1.5em;'>
+                        person
+                        </span>
                     </a>
+                    <span class="d-block fs-8 text-uppercase">{{Auth::check() ? "online" : "offline"}}</span>
                 </div>
             </div>
         </div>

@@ -50,6 +50,17 @@ ul.menu-list li:nth-child(4){
  .brand-link{
     color:#ffd60a !important;
  }
+
+ /**reset summernote**/
+/* Hide the double caret arrow image */
+.note-btn-group button.dropdown-toggle::after {
+display: none;
+}
+
+/* Optional: adjust padding to maintain button size */
+.note-btn-group button.dropdown-toggle {
+padding-right: 8px; /* Adjust as needed */
+}
  
  /* ul.menu-list li> a{transition:.5s;}
  ul.menu-list li> a:hover{
@@ -258,7 +269,16 @@ ul.label-list{
 .alert-indicator{
     width:10px;
     height:10px;
-    background-color:red;
+    background-color:#FF0000;
+    position:absolute;
+    right:5px;
+    border-radius:100%;
+}
+
+.login-indicator{
+    width:10px;
+    height:10px;
+    background-color: #00FF00;
     position:absolute;
     right:5px;
     border-radius:100%;

@@ -52,13 +52,14 @@ class SubscriberController extends Controller
         /**list bookmark */
         public function listBookmark(Request $request) {
             // $perPage = $request->query('perPage', 5); // Number of items per page, default is 5
+            $user_id = Auth::user()->id;
             $bookmark_feeds = Bookmark::where('post_type', 'oppo-type')
             ->where('general_bookmarks.deleted', '<>', 1)
+            ->where("user_id", $user_id)
             ->leftJoin('opportunity', 'general_bookmarks.post_id', '=', 'opportunity.id')
             ->orderBy('general_bookmarks.id', 'desc')
             ->paginate(5);
 
-        
             return response()->json(['data_feeds' => $bookmark_feeds]);
         }
 

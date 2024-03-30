@@ -112,7 +112,7 @@ function removeBookmark(obj) {
        console.log(data); // Handle the response data
        if(data.status == 'success'){
                 Toast.fire({
-                icon: "success",
+                icon: "warning",
                 title: data.message
                 }); 
             }else if(d.status == 'warning'){
