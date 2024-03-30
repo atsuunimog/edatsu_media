@@ -55,7 +55,7 @@ function processCountries($countriesString) {
             <div class="px-3 py-3 bg-white rounded border mb-3">
                 <!--main content-->
                 <h5 class='fw-bold m-0 mb-1'>{{$opp_posts->title}}</h5>
-                <span class="mb-2 d-block text-sm text-secondary fs-9">Posted on: {{ date('D, M Y', strtotime($opp_posts->created_at))}}</span>
+                <span class="mb-2 d-block text-sm text-dark fs-9">Posted on: {{ date('D, M Y', strtotime($opp_posts->created_at))}}</span>
                 <p class='m-0'>{!! $opp_posts->description !!}</p>
 
                 <ul class="m-0 p-0 label-list mb-2">
@@ -129,12 +129,24 @@ function processCountries($countriesString) {
         <div class="col-sm-4">
 
             <div class="px-3 py-3 border rounded mb-3 bg-white">
+                <p class="fw-bold mb-0">Hey there!</p>
                 <p class="fs-9">
-                    Hi, 
-                    <a href='https://twitter.com/unimog2' target='_blank'>I'm Atsu Dominic</a>
-                    , and I manage posts at Edatsu Media. I strive to keep you up-to-date with the latest in tech, entrepreneurial opportunities, and ☕️ keep you informed about the latest entrepreneurial events. Your support means the world to us! 💙 #StayInformed #TechEnthusiast
+                    If you've found value in the insightful articles, useful resources, and uplifting events shared on Edatsu Media, consider showing your support! Your contribution helps fuel the dedication and passion of our talented authors, enabling us to continue providing invaluable support to businesses like yours.
                 </p>
-                <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="atsudominic" data-color="#FFDD00" data-emoji="☕"  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+                <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="atsudominic" data-color="#FFDD00" data-emoji="☕"  data-font="Cookie" data-text="Support the Author" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+            </div>
+
+            <div class="px-3 py-3 border rounded mb-3 bg-white">
+                <p class="fw-bold mb-0">Dear Valued Community</p>
+                <p class="fs-9">
+                    By supporting us on Patreon, you not only help us sustain and grow our platform but also become an integral part of our journey towards creating something truly special. Your contributions directly impact our ability to enhance features, develop new content, and maintain the high quality of service you've come to expect.
+                </p>
+                <a href="https://www.patreon.com/bePatron?u=7842396" 
+                class="text-decoration-none btn btn-sm rounded border fw-bold px-4" 
+                data-patreon-widget-type="become-patron-button">
+                <img width="30" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACZUlEQVR4nO2UPYvUQByHF18uFr4i9trJoqjYmOxeZpNskskmm02yl+K+gMIh9wU8sBNBsL7GTgQFGxErOS3FQkSbA4srPb1MZmbPSou/xLsrFJHN7kwWjzzwNCkyv4fZTaNRU1NTs6/Z9tKLI3dhheOFtREero/w8Nuu6zvP0lvbdnxB6KHKZRP+Zpl3UCcxuDN8y90hjCNzkzcjnKKZB2yF4THuJE/HHc7/1EmefEHp0ZkEUDs9x5zkI3cSmEbmJB+oOzhbaQC3otPcjj9NO57vaScbI5yeqSQArl4/zOz4NbdjEGo3WgOEDkkP4Ha8LHy8vSOz4yWpAcUfjnajTdaNQIbUGnzNMD4uLYBb8TKzIpCqGd2UFsDM8BWzBiBVM3wpJSDvpieoOfjBzOIQeVIz/F7qZzRuALXCK8wMoQpzw78k/gY6oU+NEKqQmIEnPIAY/UVq9KEKidFfFB5AO4FFO32oRKNvCg/IzLBJOwFU4RYKzgsPAIwVigJOUQBS1QMGzXROeEBBjvzHFPkgVd1/NPb4sgFZ21/IdR9kSvVeIi0AGrcPkPneu1zvgQyJ7r0vzpAWUEDaPZzP90CGme7ZpcZPElCQt7z7edsDwd4rPX7SAEjTg3kbvxA2vuU9L95ZWcCviGY6RzT3AWlhmMas5T7cQOjIROOnCdgjV/FSpmFCNAxlzDSckWvujYmHiwooYG3/VKa5d4nmbhLNhX/rfCaqc4cidHLq8aICfvvMqo6WqfZKpjqrmeo823W1eEY0Vy39mawyYCYodcCMUeobmDFKfQMzRvnfb6CmpqampjEmPwGJluhB13jPawAAAABJRU5ErkJggg==">
+                &nbsp; Become a member
+                </a>
             </div>
 
 
