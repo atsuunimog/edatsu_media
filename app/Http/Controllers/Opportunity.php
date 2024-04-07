@@ -14,7 +14,7 @@ class Opportunity extends Controller
 {
     //
     function show(){
-        $opp_posts = Oppty::where('deleted', 0)->orderByDesc('id')->paginate(10);
+        $opp_posts = Oppty::where('deleted', 0)->orderByDesc('id')->limit(5)->get();
         return view("admin.opportunity_page", ["opp_posts" => $opp_posts]);
     }
 

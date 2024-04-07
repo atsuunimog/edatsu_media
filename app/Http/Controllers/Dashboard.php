@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Events;
 use App\Models\Oppty;
+use App\Models\User;
 
 class Dashboard extends Controller
 {
@@ -16,10 +17,14 @@ class Dashboard extends Controller
                 //display total number of events and opp posted
                 $total_oppty = Oppty::all();
                 $total_events = Events::all();
+                
+                $all_users = User::where('role', '=', 'subscriber')->count();
+
                 return view('admin.dashboard', 
                     [
-                    'total_events'=> count($total_events),
-                    'total_oppty' => count($total_oppty)
+                        'total_events'=> count($total_events),
+                        'total_oppty' => count($total_oppty),
+                        'total_users' => $all_users
                     ]
                 );
             }elseif(Auth::user()->role == 'subscriber'){
@@ -33,6 +38,16 @@ class Dashboard extends Controller
             return redirect('/');
         }
     }
+
+
+    //Display All users 
+    public function allUsers(Request $request){
+
+        return view('admin.users'); 
+
+    }
+
+
 
 }
 

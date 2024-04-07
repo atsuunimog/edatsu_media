@@ -54,6 +54,9 @@
                     @endif
         
                     <input type="submit" value="Login" class="btn btn-dark py-3 rounded w-100 d-block mt-3 mb-3 border-0 px-5">
+                   
+                    <span class="d-block my-3 fs-9">Not a member yet?  <a href="{{route('subscriber-register')}}" class="text-decoration-none">Sign up for free
+                    </a></span>
                 </div>
             </form>
             <!--login form-->

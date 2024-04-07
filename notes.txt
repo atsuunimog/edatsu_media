@@ -1,6 +1,7 @@
 CI/CD
 
 TODO
+-welcome page on login
 -mailing list: 
     registered users
     general users
@@ -9,7 +10,16 @@ TODO
     -Events
 
 -add push notification
+    -open signal 
+
+-Calender Notification for dates
+
+
 -add share button
+-feedback button
+-disqus chat button
+
+-Add Place for publishers & subscription handles. 
 ---------------------------------------
 
 -change categorization

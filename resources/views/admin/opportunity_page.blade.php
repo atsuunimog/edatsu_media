@@ -1,48 +1,46 @@
 <x-app-layout>
-    <!--banner-->
-    <div class="px border row">
-        <div class="col-sm-12">
-            <div class="px-3 py-5">
-                <h3 class="fw-bold text-center">Post Opportunities</h3>
-            </div>
-        </div>
-    </div>
-    <!--banner-->
-
+<div class="container">
     <div class="row">
-        <div class="col-sm-2">
+        <div class="col-sm-3">
             <!--menu list-->
             @include('layouts.admin_side_menu')
              <!--menu list-->
         </div>
 
-        <div class="col-sm-5">
-            <!--content-->
-                    <!--page alert notice-->
-                    @if(isset($edits))
-                    <div class="alert alert-warning my-3">
-                        <span class='d-block mb-2'>You're currently in edit mode</span>
-                        <a href="{{route('admin.opp')}}" class="btn btn-dark fw-bold">Create new post</a>
-                    </div>
-                    @endif
+        <div class="col-sm-6">
 
-                    <!--post form-->
-                    <div class="px-3 pb-3 bg-white my-3">
+        
+            <!--banner-->
+            <div class="px-3 py-3 rounded border text-center bg-white my-3">
+                    <h2 class="fw-bold  custom-title-garamond m-0 p-0 py-3">Post Opportunites</h2>
+            </div>
+            <!--banner-->
+
+            <!--content-->
+                        <!--page alert notice-->
+                        @if(isset($edits))
+                        <div class="alert alert-warning my-3">
+                            <span class='d-block mb-2 fs-9'>You're currently in edit mode</span>
+                            <a href="{{route('admin.opp')}}" class="btn btn-dark fw-bold fs-9 px-4">Create new post</a>
+                        </div>
+                        @endif
+
                         @if($errors->any())
                                 @foreach($errors->all() as $err)
-                                <div class='alert alert-danger'>
+                                <div class='alert alert-danger fs-9'>
                                     {{$err}}
                                 </div>
                                 @endforeach
                         @endif
 
                         @if (session('status'))
-                            <div class="alert alert-success">
+                            <div class="alert alert-success fs-9">
                                 {{ session('status') }}
                             </div>
                         @endif
 
-                        <h5 class='fw-bold mb-3'>Create Opportunities</h5>
+                    <!--post form-->
+                    <div class="px-3  bg-white my-3 py-3 rounded border">
                         <form 
                         @if(isset($edits))
                         action="{{route('admin.update.opp', ['id'=> $edits[0]->id])}}" 
@@ -145,59 +143,40 @@
                                 </div>
                             </div>
 
-                            <button class="btn btn-dark py-3 w-100 d-block">Create Opportunity</button>
+                            <button class="btn btn-dark py-3 w-100 d-block fw-bold">Create</button>
                         </form>
                     </div>
                     <!---post form-->
                 </div>
-                <div class="col-sm-5">
-                    <!--search filter-->
-                    <form class="pt-3" method="GET" id="search_keyword" onsubmit='submitSearchQuery()'>
-                        <div class="row">
-                            <div class="col-sm-9 col-12">
-                                <div class='mb-3'>
-                                <input type='text' class="form-control py-3 fs-9 text-secondary" name="search_keyword" placeholder="Search Keywords" id="keyword">
-                                </div>
-                            </div>
-                            <div class="col-sm-3 col-12">
-                                <div class='mb-3'>
-                                <button class="text-decoration-none btn btn-dark border-0 px-4 py-3 shadow-sm w-100">Search</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
 
-                        <!--post content-->
-                    <div class="row">
-                        @foreach($opp_posts as $posts)
-                            <div class='col-sm-12 mb-3'>
-                            <div class='px-3 pt-3 border rounded mb-3'>
-                                <p class='fw-bold m-0 p-0'>{{$posts->title}}</p>
-                
-                                <a class='d-block text-decoration-none fs-9 mb-3' 
-                                target="_blank"
-                                href='{{$posts->source_url}}'>{{$posts->source_url}}</a>
-    
-                                <ul class='list-inline'>
-                                    <li class='list-inline-item'><a class='btn btn-dark fs-9  px-3 text-decoration-none' href='{{route('admin.edit.opp', ['id'=> $posts->id])}}'>Edit</a></li>
-                                    <li class='list-inline-item'><a class='btn btn-dark fs-9  px-3 text-decoration-none' href='{{route('admin.delete.opp', ['id'=> $posts->id])}}'>Delete</a></li>
-                                    <li class='list-inline-item'>views {{$posts->views}}</li>
-                                </ul>
-                            </div>
-                        @endforeach
-    
-                        <!--pagination-->
-                        <div class="row">
-                            <div class="col-sm-12">
-                            {{$opp_posts->links()}}
-                            </div>
-                        </div>
-                        <!--pagination-->
+
+                <div class="col-sm-3">
+                <!--see all --post-->
+                <div class=" bg-white px-3 py-3 my-3 border rounded">
+                    <a href="" class="text-dark">Manage Posts</a>
+                </div>
+                <!--see all --post-->
+
+                <!--post content-->
+                <div class="row">
+                @foreach($opp_posts as $posts)
+                    <div class='col-sm-12 mb-3'>
+                    <div class='px-3 pt-3 border rounded mb-3 bg-white'>
+                        <p class='fw-bold m-0 mb-3 p-0 fs-8'>{{$posts->title}}</p>
+
+                        <ul class='list-inline fs-8'>
+                            <li class='list-inline-item'><a class='btn btn-dark fs-9  px-3 text-decoration-none' href='{{route('admin.edit.opp', ['id'=> $posts->id])}}'>Edit</a></li>
+                            <li class='list-inline-item'><a class='btn btn-dark fs-9  px-3 text-decoration-none' href='{{route('admin.delete.opp', ['id'=> $posts->id])}}'>Delete</a></li>
+                            <li class='list-inline-item'>views {{$posts->views}}</li>
+                        </ul>
                     </div>
+                @endforeach
+                </div>
                     <!--side menu-->
                 </div>
             <!--content-->
     </div>
+</div>
 </x-app-layout>
 <script>
     //summernote  

@@ -76,11 +76,14 @@
     </head>
     <body>
         @if(Auth::check())
-            @include('layouts.subscriber_header')
+            @if(Auth::user()->role == 'admin')
+                @include('layouts.admin_navigation')
+            @else
+                @include('layouts.subscriber_header')
+            @endif
         @else
             @include('layouts.header')
         @endif
-        
         <div class="container-fluid">
         {{ $slot }}
         @include('layouts.social-footer')

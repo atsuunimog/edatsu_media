@@ -60,7 +60,10 @@ Route::get('/report/{id}',  [PostController::class, 'report']);
 
 /**admin routes */
 Route::middleware(['auth', 'role:admin'])->group(function(){
+    //generic routes
     Route::get('/admin-dashboard', [Dashboard::class, "accessControl"])->name('admin.dashboard');
+    Route::get('/all-users', [Dashboard::class, "allUsers"])->name('admin.users');
+
 
     //handle events
     Route::get('/admin-post-event', [Event::class, "show"])->name('admin.ev');
