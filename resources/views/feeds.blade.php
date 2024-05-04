@@ -1,20 +1,4 @@
 <x-guest-layout>
-  <div class="row d-sm-none d-md-none d-lg-none">
-    <div class="col-sm-12 text-center">
-        <div class="py-5">
-            <!--logo-->
-              <a href='./'>
-              <img src="{{ asset('img/logo/trans/logo_trans_1.png')}}" width="90" class="img-fluid" alt="logo">
-              </a>
-            <!--logo-->
-           <h1 class='fw-bold mb-3'>Daily News Feed</h1>
-           <p class=''>
-            Stay Up-to-Date with the Latest News!
-          </p>
-        </div>  
-    </div>
-</div>
-
 <div class="container">
 
 <div class="row">

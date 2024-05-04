@@ -1,6 +1,6 @@
 <!--mobile menu-->
 {{-- d-sm-none d-md-none d-lg-none --}}
-<div class="fixed-footer-bar rounded text-center d-sm-none d-md-none d-lg-none">
+<div class="fixed-footer-bar rounded text-center d-sm-none d-md-none d-lg-none shadow-sm">
      <!--mail notification-->
      <div id="subscription-alert" class="subscription-alert alert alert-warning position-absolute alert-dismissible fade show">
             <h5 class='fw-bold'>Subscribe</h5>
@@ -16,28 +16,28 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-3">
-                <a href="{{ url('news-feed') }}" class="text-decoration-none {{ getHighlightClass('/news-feed', 'text-light-orange fw-bold', 'text-light') }}">
-                <span class="material-symbols-outlined align-middle" style='font-size:1.5em;'>
-                full_coverage
-                </span>
+                <a href="{{ url('news-feed') }}" class="btn w-100 px-0 d-block text-center text-decoration-none {{ getHighlightClass('/news-feed', 'text-light-orange fw-bold', 'text-light') }}">
+                    <span class="material-symbols-outlined align-middle mb-1 d-block" style='font-size:1.5em;'>
+                    full_coverage
+                    </span>
+                    <span class="d-block fs-8 text-uppercase fw-bold mx-auto">News</span>
                 </a>
-                <span class="d-block fs-8 text-uppercase">NEWS</span>
             </div>
             <div class="col-3">
-                <a href="{{ url('/') }}" class="text-decoration-none {{ getHighlightClass('/', 'text-light-orange fw-bold', 'text-light') }}">
-                <span class="material-symbols-outlined align-middle" style='font-size:1.5em;'>
-                wb_sunny
-                </span>
+                <a href="{{ url('/') }}" class="btn w-100 px-0 d-block text-center text-decoration-none {{ getHighlightClass('/', 'text-light-orange fw-bold', 'text-light') }}">
+                    <span class="material-symbols-outlined align-middle mb-1 d-block" style='font-size:1.5em;'>
+                    wb_sunny
+                    </span>
+                    <span class="d-block fs-8 text-uppercase fw-bold mx-auto">Oppty</span>
                 </a>
-                <span class="d-block fs-8 text-uppercase">Oppty</span>
             </div>
             <div class="col-3">
-                <a href="{{ url('events') }}" class="text-decoration-none {{ getHighlightClass('/events', 'text-light-orange fw-bold', 'text-light') }}">
-                <span class="material-symbols-outlined align-middle" style='font-size:1.5em;'>
-                event_available
-                </span>
+                <a href="{{ url('events') }}" class="btn w-100 px-0 d-block text-center text-decoration-none {{ getHighlightClass('/events', 'text-light-orange fw-bold', 'text-light') }}">
+                    <span class="material-symbols-outlined align-middle mb-1 d-block" style='font-size:1.5em;'>
+                    event_available
+                    </span>
+                    <span class="d-block fs-8 text-uppercase fw-bold mx-auto">Events</span>
                 </a>
-                <span class="d-block fs-8 text-uppercase">Events</span>
             </div>
             <div class="col-3">
                 <!--alert indicator-->
@@ -50,12 +50,12 @@
                     <div class="alert-indicator"></div>
                     @endguest
                     <!--alert indicator-->
-                    <a href="{{ url('login') }}" class="text-decoration-none {{ getHighlightClass('/subscribe', 'text-light-orange fw-bold', 'text-light') }}">
-                        <span class="material-symbols-outlined align-middle" style='font-size:1.5em;'>
+                    <a href="{{ url('login') }}" class="btn w-100 px-0 d-block text-center text-decoration-none {{ getHighlightClass('/subscribe', 'text-light-orange fw-bold', 'text-light') }}">
+                        <span class="material-symbols-outlined align-middle mb-1 d-block" style='font-size:1.5em;'>
                         person
                         </span>
+                    <span class="d-block fs-8 text-uppercase fw-bold mx-auto">{{Auth::check() ? "online" : "offline"}}</span>
                     </a>
-                    <span class="d-block fs-8 text-uppercase">{{Auth::check() ? "online" : "offline"}}</span>
                 </div>
             </div>
         </div>

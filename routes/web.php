@@ -50,6 +50,7 @@ Route::get('/subscribe', function(){return view('subscribe');})->name("subscribe
 Route::get('/feedback',  function(){return view('feedback');})->name('feedback');
 Route::post('/bookmark-feed', [SubscriberController::class, 'bookmarkFeed']);
 Route::post('/bookmark-opportunity', [Opportunity::class, 'bookmarkOpportunity']);
+Route::post('/bookmark-event', [Event::class, 'bookmarkEvent']);
 
 /**Login access control */
 Route::get('/dashboard', [Dashboard::class, "accessControl"]);
@@ -87,7 +88,9 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
 Route::middleware(['auth', 'role:subscriber'])->group(function(){
     Route::get('/subscriber-dashboard', [SubscriberController::class, 'index'])->name('subscriber.dashboard');
     Route::get('/bookmark', [SubscriberController::class, 'bookmark'])->name("subscriber.bookmark");
-    Route::get('/fetch-general-bookmark', [SubscriberController::class, 'listBookmark'] );
+    Route::get('/fetch-opportunity-bookmark', [SubscriberController::class, 'listBookmarkedOpportunites'] );
+    Route::get('/fetch-event-bookmark', [SubscriberController::class, 'listBookmarkedEvents']);
+    Route::get('/fetch-bookmark', [SubscriberController::class, 'fetchAllBookmark']);
     Route::post('/remove-bookmark-feed', [SubscriberController::class, 'removeBookmark']);
 });
 

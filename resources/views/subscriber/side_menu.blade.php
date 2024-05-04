@@ -1,6 +1,6 @@
 <div class="my-3 fs-9">
     <ul class="list-group">
-        <a href={{route("subscriber.dashboard")}} class="text-decoration-none">
+        <a href="{{route("subscriber.dashboard")}}" class="text-decoration-none">
             <li class="d-inline-block d-flex justify-content-between list-group-item">
                 <div>
                     <span class="material-symbols-outlined align-middle">
@@ -22,7 +22,7 @@
             </li>
         </a> --}}
 
-        {{-- <a href={{route("subscriber.dashboard")}} class="text-decoration-none">
+        <!-- <a href="{{route("subscriber.dashboard")}}" class="text-decoration-none">
             <li class="d-inline-block d-flex justify-content-between list-group-item">
                 <div>
                     <span class="material-symbols-outlined align-middle">
@@ -31,9 +31,9 @@
                 </div>
                 <div>Notification</div>
             </li>
-        </a> --}}
+        </a>  -->
 
-        <a href={{route("subscriber.bookmark")}} class="text-decoration-none">
+        <a href="{{route("subscriber.bookmark")}}" class="text-decoration-none">
             <li class="d-inline-block d-flex justify-content-between list-group-item">
                 <div>
                     <span class="material-symbols-outlined align-middle">
@@ -44,7 +44,7 @@
             </li>
         </a>
 
-        <a href={{route("profile.edit")}} class="text-decoration-none">
+        <a href="{{route("profile.edit")}}" class="text-decoration-none">
             <li class="d-inline-block d-flex justify-content-between list-group-item">
                 <div>
                     <span class="material-symbols-outlined align-middle">
@@ -55,7 +55,7 @@
             </li>
         </a>
 
-        <a href={{route("logout")}} class="text-decoration-none"
+        <a href="{{route("logout")}}" class="text-decoration-none"
         onclick="event.preventDefault();   this.children[0].submit()">
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
@@ -66,10 +66,10 @@
                     </span>
                 </div>
                 <div>
-                    Logout
+                    <span class="fw-bold text-danger">Logout</span>
                 </div>
             </li>
             </form>
         </a>
-      </ul>
+    </ul>
 </div>
