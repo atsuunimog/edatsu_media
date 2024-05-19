@@ -28,9 +28,19 @@ use App\Http\Controllers\SubscriberController;
 // Route::get('/', [App::class, 'displayOpp']);
 
 Route::get('/', function(){
-    return view('opportunities');
-    })->name('oppty');
-    
+return view('opportunities');
+})->name('oppty');
+
+
+//CLEAR-CACHE
+Route::get('/xclean', function() {
+    $exitCode1 = Artisan::call('cache:clear');
+    $exitCode2 = Artisan::call('view:clear');
+    $exitCode3 = Artisan::call('route:clear');
+    $exitCode4 = Artisan::call('config:cache');
+    dd('CACHE-CLEARED, VIEW-CLEARED, ROUTE-CLEARED & CONFIG-CACHED WAS SUCCESSFUL!');
+});
+
 
 Route::get('/opportunities', function(){
 return view('opportunities');
