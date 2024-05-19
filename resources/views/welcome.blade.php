@@ -31,7 +31,7 @@
                     <p class="text-secondary">
                         Our news feed application offers a host of benefits by bringing all your news sources into one centralized platform. Enjoy the efficiency of streamlined information access, saving valuable time and eliminating the need to navigate through multiple apps or websites. 
                     </p>
-                    <a href={{route('daily.feeds')}} class="btn shadow-sm btn-lg custom-btn-highlight text-light fw-bold px-5 border-0 py-3 mt-3">
+                    <a href="{{route('daily.feeds')}}" class="btn shadow-sm btn-lg custom-btn-highlight text-light fw-bold px-5 border-0 py-3 mt-3">
                         Get Started
                     </a>
                 </div>

@@ -28,9 +28,8 @@
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }, 
-        "files": [
-            "app/Helpers/date_helper.php", 
-            "app/Helpers/active_links.php"
+        "files": [ 
+            "app/Helpers/utils.php"
           ]
     },
     "autoload-dev": {

@@ -5,7 +5,11 @@
         </p>
     </header>
 
-    <form id="send-verification" method="post" action="{{ route('verification.send') }}">
+
+    <div class="row">
+        <div class="col-sm-6">
+            <!---xxxxx--->
+            <form id="send-verification" method="post" action="{{ route('verification.send') }}">
         @csrf
     </form>
 
@@ -15,13 +19,13 @@
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-5 shadow-none mb-2 border fs-9 w-50 form-control" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+            <x-text-input id="name" name="name" type="text" class="mt-1 block shadow-none mb-2 border fs-9 form-control" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
         <div>
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-5 shadow-none mb-2 border fs-9 w-50 form-control" :value="old('email', $user->email)" required autocomplete="username" />
+            <x-text-input id="email" name="email" type="email" class="mt-1 block shadow-none mb-2 border fs-9 form-control" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2 " :messages="$errors->get('email')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
@@ -57,4 +61,14 @@
             @endif
         </div>
     </form>
+            <!---xxxxx--->
+        </div>
+        <div class="col-sm-6">
+
+        </div>
+    </div>
+
+
+
+    
 </section>

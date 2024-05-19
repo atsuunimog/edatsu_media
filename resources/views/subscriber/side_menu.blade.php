@@ -1,4 +1,4 @@
-<div class="my-3 fs-9">
+<div class="my-3 fs-9 dd-sm-block d-md-block d-lg-block">
     <ul class="list-group">
         <a href="{{route("subscriber.dashboard")}}" class="text-decoration-none">
             <li class="d-inline-block d-flex justify-content-between list-group-item">

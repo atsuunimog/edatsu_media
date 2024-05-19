@@ -140,59 +140,50 @@ class Opportunity extends Controller
 
         if(Auth::check()){
 
-            $post_id = $request->post('id'); 
+            $opp_id = $request->post('id'); 
             $user_id = $request->user()->id;
-            $type = $request->post('type'); 
-            $url = $request->post('url');
             
             //validate entries 
             $validator = Validator::make($request->all(), [
                 'id' => 'required|integer', 
                 "type" => "required",
-                "url" => 'required'
             ]);
 
             //handle validation errors
             if($validator->fails()){
-                return response()->json(['status' => 'error', 'message'=> 'Oops! Something went wrong']);
+                return response()->json(
+                    ['status' => 'error', 'message'=> 'Oops! Something went wrong']
+                );
             }
 
             //init bookmark
             $bookmark = new Bookmark;
 
             //check if post_id already exist in database. 
-            if($bookmark->where('post_id', $post_id)
+            if($bookmark->where('opportunity_id', $opp_id)
             ->where('user_id', $user_id)
-            ->where('post_type', $type)
             ->exists()){
-
                 //check if its removed, if removed, update deleted to 0 to add it back
-                $is_deleted = $bookmark->where('post_id', $post_id)
+                $is_deleted = $bookmark->where('opportunity_id', $opp_id)
                 ->where('user_id', $user_id)
-                ->where('post_type', $type)
                 ->where('deleted', 1);
-
 
                 if($is_deleted->count() > 0){
                     //update record
-                 $restore_bookmark = $bookmark->where('post_id', $post_id)
+                    $restore_bookmark = $bookmark->where('opportunity_id', $opp_id)
                     ->where('user_id', $user_id)
-                    ->where('post_type', $type)
                     ->update(['deleted' => 0]);
 
                     if($restore_bookmark > 0){
                         return response()->json(['status' => 'success', 'message' => "Bookmarked"]);
                     }
                 }
-
                 return response()->json(['status' => 'error', 'message'=> 'Already Bookmarked']);
             }
 
             //save data...
             $bookmark->user_id = $user_id;
-            $bookmark->post_id = $post_id;
-            $bookmark->post_type = $type;
-            $bookmark->post_url = $url;
+            $bookmark->opportunity_id = $opp_id;
             $bookmark->save();
 
             return response()->json(['status' => 'success', 'message' => "Bookmarked"]);

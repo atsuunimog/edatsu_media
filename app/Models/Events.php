@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Bookmark;
 
 class Events extends Model
 {
@@ -23,5 +24,9 @@ class Events extends Model
         'region', 
         'country'
     ];
+
+    public function bookmark(){
+        return $this->hasMany(Bookmark::class);
+    }
 
 }

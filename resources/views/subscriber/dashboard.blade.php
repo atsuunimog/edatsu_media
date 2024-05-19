@@ -11,9 +11,32 @@
                 </div>
                 <!--banner-->
                 <div class="my-3 fs-9 text-secondary py-3">
-                    Hi, {{Auth::user()->name}}, you can now save opportunities to your
-                     <a href={{route('subscriber.bookmark')}} class="fw-bold text-decoration-none">bookmark</a>
+                   <p class="m-0">Hi, <strong>{{Auth::user()->name}}</strong>,</p> 
                 </div>
+                <!--subsection-->
+                <div class="row">
+                    <div class="col-6 col-sm-6">
+                        <a href="{{route('subscriber.bookmark')}}" class="text-decoration-none text-dark">
+                        <div class="border bg-white px-3 py-3 mb-3 rounded text-center">
+                            <span class="material-symbols-outlined" style="font-size:2em;">
+                            collections_bookmark
+                            </span>
+                            <span class="d-block">Bookmark</span>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-sm-6 ">
+                        <a href="{{route('profile.edit')}}" class="mb-3 text-decoration-none text-dark">
+                        <div class="border bg-white px-3 py-3 rounded text-center mb-3">
+                            <span class="material-symbols-outlined" style="font-size:2em;">
+                            settings
+                            </span>
+                            <span class="d-block">Settings</span>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <!--subsection-->
             </div>
         </div>
     </div>

@@ -1,4 +1,28 @@
+FOCUS 
+    - Business technology News
+    - Primary Market Nigeria (Africa General)
+    - Automation
+    - Op eds
+
+MONETIZATION
+Auctioned Ads 
+subscription model - Bloggers
+support-wallet (buy me a coffee)
+user owned page to auction ads
+custom theme => sell users paid themes for their pages
+social media posting automation
+publication tools - AI Scrapping
+paid events notifications
+event ticketing
+user analytics
+open source => Plugin integration (allow developers to sell tools to help 
+publishers);
+Integration with other publication tools (inter operability);
+
+
 CI/CD
+
+
 
 TODO
 -welcome page on login

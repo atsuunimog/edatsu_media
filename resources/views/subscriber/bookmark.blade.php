@@ -15,7 +15,7 @@
                 
                 <!--section-->
                 <div class="row">
-                 <div class="col-sm-8">
+                 <div class="col-sm-8 order-2 order-sm-1">
                 <!--page content-->
                 <div id="content-data">
                 </div>
@@ -27,10 +27,11 @@
 
 
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-4 order-1 order-sm-2">
                         <!--sidebar-->
                         <ul class="list-unstyled">
-                            {{-- <li>
+                            {{-- 
+                            <li>
                                 <button class="btn d-flex align-items-center bg-white border rounded-0 fs-8 w-100 py-2 mb-3">
                                     <div class='pe-3'>
                                         <span class="material-symbols-outlined align-middle">
@@ -39,9 +40,10 @@
                                     </div>
                                     <div>News Feed</div>
                                 </button>
-                            </li> --}}
+                            </li> 
+                            --}}
                             <li>
-                                <button onclick="toggleContentView(this)"
+                                <button id="oppo-type" onclick="toggleContentView(this)"
                                 data-title="Collections"
                                 data-url = "/fetch-bookmark";
                                 class="btn bg-white border rounded-0 fs-8 w-100 py-2 mb-3 d-flex align-items-center">
@@ -100,11 +102,30 @@ const Toast = Swal.mixin({
   }
 });
 
-window.addEventListener("load", function(){
-    fetchPageData("/fetch-bookmark", "content-data", "pagination-data")
-    document.getElementById("page-title").innerHTML = "Collection";
-})
 
+
+
+
+function pageLink(title, id, url_type) {
+        // Convert title to lowercase and replace spaces with hyphens
+        const formattedTitle = title
+        .toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(/[^a-zA-Z0-9'-]/g, '') // Allow letters, numbers, hyphens, and apostrophes
+        .replace(/--+/g, '-')
+        .replace(/^-|-$/g, '')
+        .trim();
+        
+        // Implement the logic to generate the post link
+        let link = `${url_type}/${id}/${encodeURIComponent(formattedTitle)}`;
+        return link;
+      }
+
+
+
+window.addEventListener("load", function(){
+    document.getElementById("oppo-type").click();
+})
 
 /**
  * swith title view and content view
@@ -114,7 +135,6 @@ function toggleContentView(obj){
     document.getElementById("page-title").innerHTML = page_title;
     fetchPageData(obj.dataset.url, "content-data", "pagination-data")
 }
-
 
 
 /**remove bookmark**/
@@ -138,10 +158,10 @@ function removeBookmark(obj) {
        return response.json(); // Assuming the response is JSON, adjust accordingly if not
    })
    .then(data => {
-       console.log(data); // Handle the response data
+       //console.log(data); // Handle the response data
        if(data.status == 'success'){
                 Toast.fire({
-                icon: "warning",
+                icon: "info",
                 title: data.message
                 }); 
             }else if(d.status == 'warning'){
@@ -165,12 +185,16 @@ function removeBookmark(obj) {
 /**handle pagination**/
 function handlePaginate(obj){
     let url = obj.dataset.url;
+    //console.log(url);
     fetchPageData(url, "content-data", "pagination-data");
 }
 
 
 /**init page data**/
 function fetchPageData(url, content_id, pagination_id){
+    // console.log(url);
+    // console.log(content_id);
+
     let content_data =  document.getElementById(content_id);
     let pagination_data = document.getElementById(pagination_id);
     content_data.innerHTML = '';
@@ -183,21 +207,27 @@ function fetchPageData(url, content_id, pagination_id){
             return response.json();
         })
         .then(data => {
-            console.log(data);
-            let page_data =  data.data_feeds.data;
-    
-            //console.log(page_data);
+
+        let page_data =  data.data_feeds.data;
+
             page_data.map((data)=>{
-                var type = (data.post_type == 'event-type')? 'Event':'Opportunity';
+
+                let page_title  = (data.opportunity)? data.opportunity.title : data.event.title;
+                let type        = (data.opportunity)? 'opportunity' : 'event';
+                let url_type    = (data.opportunity)? 'op' : 'ev';
+                let page_id     = (data.opportunity)? data.opportunity.id : data.event.id;
+                let bookmark_id =  data.id;
+
+
                 content_data.innerHTML += `
                 <div class='d-flex align-items-center mb-3 fs-8 bg-white border py-2 pe-3 py-1'>
                     <div class='w-100 px-3'>
-                    <a href='${data.post_url}' class='text-decoration-none text-dark' target='_blank'>
-                        ${data.title}
-                        <span class='badge rounded-pill text-bg-dark'>${type}</span>
+                    <a href='${pageLink(page_title, page_id, url_type)}' class='text-decoration-none text-dark' target='_blank'>
+                        ${page_title}
+                        <span style="width:100px" class='badge border rounded-0 mt-2 py-1 bg-light text-dark text-uppercase d-block'>${type}</span>
                     </a>
                     </div>
-                    <div class="btn border-0 shadow-none" id="${data.post_id}" onClick="removeBookmark(this)">
+                    <div class="btn border-0 shadow-none" id="${bookmark_id}" onClick="removeBookmark(this)">
                         <span class="material-symbols-outlined align-middle text-danger">
                         cancel
                         </span>
@@ -206,19 +236,22 @@ function fetchPageData(url, content_id, pagination_id){
                 `;
             })
 
-            let pagination = data.data_feeds.links;
-            pagination.map((data)=>{
-                console.log(data); 
-                if(data.url !== null){
-                    $active_style = (data.active)? 'bg-warning text-dark' : 'bg-dark';
-                    pagination_data.innerHTML += `
-                    <button class="btn btn-dark rounded-0 border-0 fs-9 mb-2 ${$active_style}" data-url="${data.url}" onClick="handlePaginate(this)">
-                        ${data.label}
-                    </button>
-                    `;
-                }
-            })
-            // console.log(pagination);
+
+            if(page_data.length > 0){
+                let pagination = data.data_feeds.links;
+                pagination.map((data)=>{
+                    if(data.url !== null){
+                        $active_style = (data.active)? 'bg-warning text-dark' : 'bg-dark';
+                        pagination_data.innerHTML += `
+                        <button class="btn btn-dark rounded-0 border-0 fs-9 mb-2 ${$active_style}" data-url="${data.url}" onClick="handlePaginate(this)">
+                            ${data.label}
+                        </button>
+                        `;
+                    }
+                })
+            }else{
+                pagination_data.innerHTML = '<div class="bg-white border py-3 px-3 fs-8">Ops! No content found</div>';
+            }
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);

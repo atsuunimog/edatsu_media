@@ -11,7 +11,7 @@ class Bookmark extends Model
 {
     use HasFactory;
 
-    protected $table = "general_bookmarks";
+    protected $table = "bookmarks";
 
     protected $fillable = [
         'user_id',
@@ -19,13 +19,12 @@ class Bookmark extends Model
         'post_type',
     ];
 
-    // public function opportunity(){
-    //     return $this->belongsTo(Oppty::class, 'post_id', 'id');
-    // }
-    
+    public function opportunity(){
+        return $this->belongsTo(Oppty::class, 'opportunity_id', );
+    }
 
     public function event(){
-        $this->belongsTo(Events::class, 'post_id', 'id');
+        return $this->belongsTo(Events::class, 'event_id');
     }
 
     

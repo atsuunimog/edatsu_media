@@ -1,0 +1,3 @@
+https://laravel.com/docs/5.0/eloquent#relationships
+https://laravel.com/docs/11.x/queries
+https://laravel.com/docs/11.x/pagination#paginator-instance-methods

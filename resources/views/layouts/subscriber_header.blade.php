@@ -4,10 +4,15 @@
         <a href="https://media.edatsu.com">
         <img src="{{ asset('img/logo/trans/logo_trans_4.png')}}" width="50" class="img-fluid" alt="logo">
         </a>
+
         <!--logo-->
-      <button class="navbar-toggler d-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler  border-0" style="box-shadow:none !important;" type="button" data-bs-toggle="collapse" 
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="material-symbols-outlined text-light">
+        menu
+        </span>
       </button>
+
       <div class="collapse navbar-collapse " id="navbarSupportedContent">
         <div class="d-flex justify-content-between w-100">
         <form class="d-flex" role="search">
@@ -49,7 +54,7 @@
 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                {{ Auth::user()->name}}
+              {{truncateText(Auth::user()->name, 10)}}
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item fs-9" href="{{route('subscriber.dashboard')}}">Dashboard</a></li>

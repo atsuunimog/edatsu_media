@@ -9,7 +9,7 @@ class Oppty extends Model
 {
     use HasFactory;
 
-    protected $table = "opportunity";
+    protected $table = "opportunities";
 
     protected $fillable = [
         'u_id',
@@ -24,5 +24,9 @@ class Oppty extends Model
         'continent'
     ];
 
+    
+    public function bookmark(){
+        return $this->hasMany(Bookmark::class);
+    }
 
 }

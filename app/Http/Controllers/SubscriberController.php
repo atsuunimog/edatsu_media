@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Bookmark;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class SubscriberController extends Controller
 {
@@ -53,28 +54,28 @@ class SubscriberController extends Controller
         /**list all bookmarked opportunities */
         public function listBookmarkedOpportunites(Request $request) {
             $user_id = Auth::user()->id;
-            $bookmark_feeds = Bookmark::where('general_bookmarks.deleted', '<>', 1)
-            ->where("general_bookmarks.user_id", $user_id)
-            ->leftJoin('opportunity', 'general_bookmarks.post_id', 'opportunity.id')
-            ->where("post_type", "oppo-type")
-            ->orderBy('general_bookmarks.id', 'desc')
-            ->paginate(5);
-        
-            return response()->json(['data_feeds' => $bookmark_feeds]);
+
+            $opportunities = Bookmark::with('opportunity')
+            ->where('user_id', $user_id)
+            ->where('deleted', 0)
+            ->where('opportunity_id', '<>', null)
+            ->orderBy('id', 'desc')->paginate('5');
+  
+            return response()->json(['data_feeds' => $opportunities]);
         }
 
 
         /**list all bookmarked events */
         public function listBookmarkedEvents(Request $request) {
             $user_id = Auth::user()->id;
-            $bookmark_feeds = Bookmark::where('general_bookmarks.deleted', '<>', 1)
-            ->where("general_bookmarks.user_id", $user_id)
-            ->leftJoin('events', 'general_bookmarks.post_id', 'events.id')
-            ->where("post_type", "event-type")
-            ->orderBy('general_bookmarks.id', 'desc')
-            ->paginate(5);
-        
-            return response()->json(['data_feeds' => $bookmark_feeds]);
+
+            $events = Bookmark::with('event')
+            ->where('user_id', $user_id)
+            ->where('deleted', 0)
+            ->where('event_id', '<>', null)
+            ->orderBy('id', 'desc')->paginate('5');
+
+            return response()->json(['data_feeds' => $events]);
         }
 
         /**
@@ -82,27 +83,52 @@ class SubscriberController extends Controller
          */
 
         public function fetchAllBookmark(){
-            
             $user_id = Auth::user()->id;
-            
-            $bookmark_feeds = Bookmark::where('general_bookmarks.deleted', '<>', 1)
-            ->where("user_id", $user_id)
-            ->leftJoin('events', 'events.id', 'general_bookmarks.post_id')
-            ->leftJoin('opportunity', 'opportunity.id', 'general_bookmarks.post_id')
-            ->where(function($query) {
-                $query->where('post_type', 'oppo-type')->orWhere('post_type', 'event-type');
-            })
-            ->orderBy('general_bookmarks.id', 'desc')
-            ->paginate(5);
 
-            return response()->json(['data_feeds' => $bookmark_feeds]);
+            /**ELOQUENT DB QUERY**/
+            $bookmarks = Bookmark::with('opportunity', 'event')
+            ->where('user_id', $user_id)
+            ->where('deleted', 0)
+            ->orderBy('id', 'desc')->paginate('5');
+
+            // Fetch bookmarked opportunities
+            // $opportunities = DB::table('bookmarks')
+            // ->join('opportunities', 'bookmarks.opportunity_id', '=', 'opportunities.id')
+            // ->select('bookmarks.id AS bookmark_id', 'bookmarks.*', 'opportunities.*')
+            // ->where('bookmarks.deleted', 0)
+            // ->where('user_id', $user_id)
+            // ->orderBy('bookmarks.id', 'desc')
+            // ->get();
+
+            // Fetch bookmarked events
+            // $events = DB::table('bookmarks')
+            // ->join('events', 'bookmarks.event_id', '=', 'events.id')
+            // ->select('bookmarks.id AS event_id', 'bookmarks.*', 'events.*')
+            // ->where('bookmarks.deleted', 0)
+            // ->where('user_id', $user_id)
+            // ->orderBy('bookmarks.id', 'desc')
+            // ->get();
+
+            // Merge the opportunities and events into a single collection
+            // $allBookmarks = $opportunities->merge($events);
+
+            // // Paginate the combined collection
+            // $bookmarks = new LengthAwarePaginator(
+            //     $allBookmarks->forPage(request()->page, 5),
+            //     $allBookmarks->count(),
+            //     5,
+            //     request()->page,
+            //     ['path' => request()->url()]
+            // );
+
+            return response()->json(['data_feeds' => $bookmarks]);
         }
 
         /**remove bookmark */
         public function removeBookmark(Request $request){
             $id = $request->post('id'); 
             $user_id = Auth::user()->id;
-            $delete_bookmark = Bookmark::where('post_id', $id)
+            $delete_bookmark = Bookmark::where('id', $id)
             ->where('user_id', $user_id)->update(['deleted' => 1]);
             if($delete_bookmark > 0){
                 return response()->json(['status' => 'success', 'message' => 'Bookmark Removed']);
@@ -111,5 +137,4 @@ class SubscriberController extends Controller
             }
         }
 
-   
 }
