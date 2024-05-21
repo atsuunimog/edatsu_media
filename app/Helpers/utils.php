@@ -28,8 +28,10 @@ function get_days_left($deadline) {
 function truncateText($text, $char){
     if(strlen($text) > 10){
         $truncated_text = substr($text, 0, $char);
-    }
         return $truncated_text.'...';
+    }else{
+        return $text;
+    }
 }
 
 

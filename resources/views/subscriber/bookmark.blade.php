@@ -142,7 +142,7 @@ function removeBookmark(obj) {
    obj.parentNode.classList.toggle("d-none");
    let id = obj.id;
    let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-   fetch('/remove-bookmark-feed/', {
+   fetch('/remove-bookmark-feed', {
        method: 'POST',
        headers: {
            'Content-Type': 'application/json',

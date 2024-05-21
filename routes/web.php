@@ -32,7 +32,7 @@ return view('opportunities');
 })->name('oppty');
 
 
-//CLEAR-CACHE
+//clean Caches
 Route::get('/xclean', function() {
     $exitCode1 = Artisan::call('cache:clear');
     $exitCode2 = Artisan::call('view:clear');
