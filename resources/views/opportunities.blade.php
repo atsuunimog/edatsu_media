@@ -4,6 +4,27 @@
     <div class="row">
     
         <div class="col-sm-8 col-12 mt-3">
+
+        <!--exprimental-->
+        <!-- <div class="container mb-3">
+            <div class="row">
+                <div class="col-sm-2">
+                    <span class="material-symbols-outlined d-block mx-auto" 
+                    style="font-size:3em;">
+                    experiment
+                    </span>
+                </div>
+                <div class="col-sm-10">
+                    <div class="px-3 py-2r ">
+                        <p class="fs-8 text-seconary">
+                        This is a beta version, featuring experimental functionalities. As we refine the platform, you may experience changes in features and performance. We appreciate your patience and feedback during this testing phase. 
+                        Your input will help us improve the user experience in future updates.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!--exprimental-->
     
         <!--news filter-->
             <form class="" method="GET" id="search_keyword" onsubmit='submitSearchQuery()'>
@@ -161,14 +182,6 @@
                 <div class="col-sm-12">
                     <span id="search-result"></span>
                     <span id="filter-entries"></span>
-
-                    <!--jumia ads-->
-                    <a href="https://kol.jumia.com/api/click/link/d85c6dd6-5eec-47e9-b103-577be07cf3f6/4449924d-e0d9-4112-8649-e46d63f3ec2e">
-                        <img class="img-fluid mb-3" src="https://kol.jumia.com/banners/DRjT50lBVNMDnxbPXREenna4JETrAsSrK2ARJMlV.jpg" 
-                        alt="ORAIMO OFFICIAL STORE"/>
-                    </a>
-                    <!--jumia ads-->
-
                     <div id="opportunity-feeds"></div>
                     <div id="pagination"></div>
                 </div>

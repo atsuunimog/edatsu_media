@@ -385,10 +385,21 @@ const Toast = Swal.mixin({
       
       /**Display profile**/
       function displayResult(d, elem){
+
           d.data.map((o)=>{
+          var default_img = o.cover_img ? o.cover_img : 'default.png'
           document.querySelector(elem)
-          .innerHTML += `<div class='col-sm-12 mb-4'>
-          <div class='px-3 py-3 border rounded feed-panel text-wrap w-100 position-relative'>
+          .innerHTML += `
+          <div class='container border rounded feed-panel text-wrap w-100 position-relative mb-4'>
+          <div class='row'>
+          <div class='col-sm-3 col-3'>
+            <div class='py-3'>
+            <img src='storage/uploads/channels/${default_img}' alt="${default_img}" class='img-fluid rounded shadow-sm'/>
+            </div>
+          </div>
+
+          <div class='col-sm-9 col-9'>
+          <div class='py-3'>
       
               <div class='position-absolute custom-toggle-menu'>
                   <div class="dropdown">
@@ -401,9 +412,7 @@ const Toast = Swal.mixin({
                   </span>
                   </button>
                   <ul class="dropdown-menu fs-9">
-                      
-                     
-  
+
                       <li class="dropdown-item d-flex align-items-center  
                           text-decoration-none justify-content-between" 
                           data-id="${o.id}" 
@@ -424,7 +433,7 @@ const Toast = Swal.mixin({
               </div>
       
               <a  class="text-decoration-none text-dark fw-bold" href='${pageLink(o.title, o.id)}'>
-              <h5 class="fw-bold inline-block m-0 pe-5" style="font-size:1em;">${o.title}</h5>
+              <h5 class="fw-bold inline-block m-0 pe-3" style="font-size:1em;">${o.title}</h5>
               </a>
       
               <ul class="list-unstyled my-2  d-block fs-8 text-sm">
@@ -433,34 +442,39 @@ const Toast = Swal.mixin({
                   </li>
               </ul>
       
-              <div class="overflow-hidden truncate">
+              <div class="overflow-hidden truncate d-none d-sm-block">
               <p class="p-0 m-0 fs-8 m-0 text-secondary d-block">${truncateText(o.description, 200)}</p>
               </div>
   
-              <p class='my-2 fs-8 text-uppercase fw-bold'>Deadline: ${
+              <p class='m-0 mt-2 fs-8 text-uppercase fw-bold'>Deadline: ${
               o.deadline
                   ? `${getDaysLeft(o.deadline)}`
                   : "<span class='fw-bold'>Unspecified</span>"
               }</p>
-  
-              <ul class="block p-0 mt-3 label-list mb-0">
-              ${
-                  generateListItems(o.continent)
-              }
-              ${
-                  generateListItems(o.region)
-              }
-              ${
-                  generateListItems(o.country)
-              }
-              ${
-                  generateListItems(o.category)
-              }
-              </ul>
+       
+          </div>
+          </div>
           </div>
           </div>`;
               })
       }
+
+
+
+      // <ul class="block p-0 mt-3 label-list mb-0">
+      // ${
+      //     generateListItems(o.continent)
+      // }
+      // ${
+      //     generateListItems(o.region)
+      // }
+      // ${
+      //     generateListItems(o.country)
+      // }
+      // ${
+      //     generateListItems(o.category)
+      // }
+      // </ul>
       
       
       /**display pagination**/

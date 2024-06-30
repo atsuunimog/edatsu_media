@@ -14,10 +14,12 @@ class Oppty extends Model
     protected $fillable = [
         'u_id',
         'user_role',
+        'cover_img',
         'title',
         'description',
         'deadline',
         'source_url',
+        'direct_link',
         'category',
         'region', 
         'country',

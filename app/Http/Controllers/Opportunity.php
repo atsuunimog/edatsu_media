@@ -27,7 +27,7 @@ class Opportunity extends Controller
 
 
 
-    function store(Request $request){
+    function store(Request $request, $id=''){
 
         //validate the data 
         $request->validate([
@@ -41,6 +41,22 @@ class Opportunity extends Controller
             'category' => 'nullable|string',
         ]);
 
+
+        $op = ($id)? Oppty::find($id) : new Oppty();
+
+           /**
+         * check if request has file 
+         */
+        if($request->hasFile('cover_img')){
+            if($request->file('cover_img')->isValid()){
+                $file = $request->file('cover_img');
+                $originalFileName = $file->getClientOriginalName();
+                $file->storeAs('public/uploads/channels', $originalFileName);
+                $op->cover_img = $originalFileName;
+            }
+        }
+        
+
         //capture values 
         $title = $request->title;
         $description = $request->description;
@@ -50,6 +66,8 @@ class Opportunity extends Controller
         $continent = $request->continent;  
         $deadline = $request->deadline;
         $category = $request->category;
+        $direct_link = $request->direct_link;
+
 
         //prevent users from backdating job post
         $current_date = Carbon::now();  
@@ -60,68 +78,69 @@ class Opportunity extends Controller
         }
 
         //store the data in the data base
-        Oppty::create([
-            'u_id' => $request->user()->id,
-            'user_role' => $request->user()->role,
-            'title' => $title,
-            'description'=> $description,
-            'deadline'=> $request->deadline,
-            'source_url' => $reference,
-            'category' => $category,
-            'regions'=> $region,
-            'country'=> $country,
-            'continent'=> $continent
-        ]);
+        $op->u_id = $request->user()->id;
+        $op->user_role = $request->user()->role;
+        $op->title = $title;
+        $op->description = $description;
+        $op->deadline = $request->deadline;
+        $op->source_url = $reference;
+        $op->direct_link = $direct_link;
+        $op->category = $category;
+        $op->region = $region;
+        $op->country = $country;
+        $op->continent = $continent;
+        
+        $op->save();
 
         return redirect('admin-post-opportunity')->with('status', 'Post Successful!');
     }
 
     /**update database */
-    function update(Request $request, $id){
-        //capture values 
-        $title = $request->title;
-        $description = $request->description;
-        $reference = $request->reference;
-        $category = $request->category;
-        $region = $request->region;
-        $country = $request->country;  
-        $continent = $request->continent;
-        $deadline = $request->deadline;
+    // function update(Request $request, $id){
+    //     //capture values 
+    //     $title = $request->title;
+    //     $description = $request->description;
+    //     $reference = $request->reference;
+    //     $category = $request->category;
+    //     $region = $request->region;
+    //     $country = $request->country;  
+    //     $continent = $request->continent;
+    //     $deadline = $request->deadline;
       
-        //validate the data 
-        $request->validate([
-            'title' => ['required', 'max:191'],
-            'description'=> ['required'],
-            'reference'=> ['required', 'url', 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', 'active_url'],
-        ]);
+    //     //validate the data 
+    //     $request->validate([
+    //         'title' => ['required', 'max:191'],
+    //         'description'=> ['required'],
+    //         'reference'=> ['required', 'url', 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', 'active_url'],
+    //     ]);
 
-        //prevent users from backdating job post
-        $current_date = Carbon::now();  
-        $deadline = Carbon::parse($request->deadline);
+    //     //prevent users from backdating job post
+    //     $current_date = Carbon::now();  
+    //     $deadline = Carbon::parse($request->deadline);
 
-        if (!$deadline->greaterThanOrEqualTo($current_date)) {
-        return back()->withErrors(["error_msg"=>"Invalid date"])->withInput($request->input());
-        }
+    //     if (!$deadline->greaterThanOrEqualTo($current_date)) {
+    //     return back()->withErrors(["error_msg"=>"Invalid date"])->withInput($request->input());
+    //     }
 
-        //store the data in the data base
-        Oppty::where('id', $id)
-        ->where('u_id', $request->user()->id)
-        ->update
-        ([
-            'u_id' => $request->user()->id,
-            'user_role' => $request->user()->role,
-            'title' => $title,
-            'description'=> $description,
-            'deadline' => $request->deadline,
-            'source_url' => $reference,
-            'category' => $category,
-            'region'=> $region,
-            'country'=> $country,
-            'continent'=> $continent
-        ]);
+    //     //store the data in the data base
+    //     Oppty::where('id', $id)
+    //     ->where('u_id', $request->user()->id)
+    //     ->update
+    //     ([
+    //         'u_id' => $request->user()->id,
+    //         'user_role' => $request->user()->role,
+    //         'title' => $title,
+    //         'description'=> $description,
+    //         'deadline' => $request->deadline,
+    //         'source_url' => $reference,
+    //         'category' => $category,
+    //         'region'=> $region,
+    //         'country'=> $country,
+    //         'continent'=> $continent
+    //     ]);
 
-        return redirect('admin-post-opportunity')->with('status', 'Post Updated!');
-    }
+    //     return redirect('admin-post-opportunity')->with('status', 'Post Updated!');
+    // }
 
     /**delete database */
     function delete(Request $request, $id){

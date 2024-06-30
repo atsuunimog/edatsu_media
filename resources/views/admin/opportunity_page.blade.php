@@ -47,8 +47,14 @@
                         @else
                         action="{{route('admin.store')}}" 
                         @endif
-                        method="POST">
+                        method="POST"  enctype="multipart/form-data">
                             @csrf
+
+                            <div class="mb-3">
+                                <label class='mb-2'>Image:</label>
+                                <input type="file" class="form-control" name="cover_img">
+                            </div>
+
                             <div class="mb-3">
                                 <label class='mb-2'>Title</label>
                                 <input type="text" name="title" class="form-control" 
@@ -73,10 +79,12 @@
                                 <span class='d-block text-secondary mb-2 fs-9'>Provide a link to learn more or apply for this opportunity</span>
                                 <input type="text" name="reference" class="form-control" 
                                 placeholder="Enter source url"  value="{{ isset($edits[0]->source_url)? $edits[0]->source_url : old('reference')}}">
-                                {{-- <small class='my-1 d-block text-danger'>
-                                Optional in future: allow business to cerate events page to apply directly on the platform. Use a url shortner or 
-                                improve the url validation to accept querys
-                                </small> --}}
+                            </div>
+
+                            <div class="mb-3">
+                                <label class=''>Link to Apply Directly</label>
+                                <input type="text" name="direct_link" class="form-control" 
+                                placeholder="Enter source url"  value="{{ isset($edits[0]->direct_link)? $edits[0]->direct_link : old('direct_link')}}">
                             </div>
 
                             <div class="row">
@@ -130,6 +138,7 @@
                                             <option value="">Select Continent</option>
                                             <option value="global">Global</option>
                                             <option value="africa">Africa</option>
+                                            <option value="middle-east">Middle East</option>
                                             <option value="antarctica">Antarctica</option>
                                             <option value="asia">Asia</option>
                                             <option value="europe">Europe</option>

@@ -103,7 +103,7 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::get('/admin-post-opportunity', [Opportunity::class, "show"])->name('admin.opp');
     Route::get('/admin-post-feeds-category', [FeedsChannel::class, "showFeedsCategory"])->name('admin.feeds.category');
     Route::get('/admin-edit-opportunity/{id}', [Opportunity::class, "edit"])->name('admin.edit.opp');
-    Route::post('/admin-update-opportunity/{id}', [Opportunity::class, "update"])->name('admin.update.opp');
+    Route::post('/admin-update-opportunity/{id}', [Opportunity::class, "store"])->name('admin.update.opp');
     Route::post('/admin-store-opportunity', [Opportunity::class, "store"])->name('admin.store');
 
 

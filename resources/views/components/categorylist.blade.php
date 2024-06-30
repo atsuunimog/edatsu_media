@@ -1,6 +1,7 @@
 <option value="">Select Category</option> 
 <option value="business_entrepreneurship">Business & Entrepreneurship</option>
 <option value="technology_innovation">Technology & Innovation</option>
+<option value="funding_and_grants">Funding & Grants</option>
 <option value="arts_entertainment">Arts & Entertainment</option>
 <option value="education_learning">Education & Learning</option>
 <option value="health_wellness">Health & Wellness</option>
