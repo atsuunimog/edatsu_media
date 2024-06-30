@@ -69,7 +69,7 @@
           class="img-fluid rounded d-block mx-auto">  
       </div>
       <div class="col-sm-9 col-9">
-          <p class="fw-bold m-0 p-0">{{$ch->channel_name}}</p>
+          <p class="fw-bold m-0 p-0 mb-2">{{$ch->channel_name}}</p>
           <div class="d-none d-sm-block" style="font-size:.9em; min-height:80px;">{!! truncateTextByWords($ch->channel_description, 30)!!}</div>
           <form class="d-flex justify-content-end w-100">
             <input disabled type="hidden" class="d-block" name="feeder" value="{{$ch->channel_url}}"/>
