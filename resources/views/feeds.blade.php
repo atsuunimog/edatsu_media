@@ -73,7 +73,7 @@
           <div style="font-size:.9em; min-height:80px;">{!! truncateTextByWords($ch->channel_description, 30)!!}</div>
           <form class="d-flex justify-content-end w-100">
             <input disabled type="hidden" class="d-block" name="feeder" value="{{$ch->channel_url}}"/>
-            <button class="btn btn-light fw-bold shadow-sm fs-9 px-3 d-block" data-url="{{$ch->channel_url}}" id="{{$ch->id}}" onClick="generateNewsFeed(this)">Latest News</button>
+            <button class="btn btn-white border fw-bold fs-9 px-3 d-block" data-url="{{$ch->channel_url}}" id="{{$ch->id}}" onClick="generateNewsFeed(this)">Latest News</button>
           </form>
       </div>
   </div>
