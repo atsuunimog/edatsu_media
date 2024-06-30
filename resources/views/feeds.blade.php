@@ -64,13 +64,13 @@
 @foreach($channels as $ch)
 <div class="container">
   <div class="row border rounded mb-3 bg-white px-3 py-3" id="feed-panel-{{$ch->id}}">
-      <div class="col-sm-3">
-          <img  src="{{asset('storage/uploads/channels/'.$ch->channel_image)}}"
-          class="rounded d-block mx-auto" style="max-width:150px; max-height:150px;">  
+      <div class="col-sm-3 col-3">
+          <img alt="{{$ch->channel_name.' image'}}" src="{{asset('storage/uploads/channels/'.$ch->channel_image)}}"
+          class="img-fluid rounded d-block mx-auto">  
       </div>
-      <div class="col-sm-9">
+      <div class="col-sm-9 col-9">
           <p class="fw-bold m-0 p-0">{{$ch->channel_name}}</p>
-          <div style="font-size:.9em; min-height:80px; overflow:hidde;">{!! truncateTextByWords($ch->channel_description, 30)!!}</div>
+          <div style="font-size:.9em; min-height:80px;">{!! truncateTextByWords($ch->channel_description, 30)!!}</div>
           <form class="d-flex justify-content-end w-100">
             <input disabled type="hidden" class="d-block" name="feeder" value="{{$ch->channel_url}}"/>
             <button class="btn btn-light fw-bold shadow-sm fs-9 px-3 d-block" data-url="{{$ch->channel_url}}" id="{{$ch->id}}" onClick="generateNewsFeed(this)">Latest News</button>
