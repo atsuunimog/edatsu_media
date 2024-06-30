@@ -28,6 +28,15 @@ use App\Http\Controllers\FeedsChannel;
 
 // Route::get('/', [App::class, 'displayOpp']);
 
+Route::get('/create-storage-link', function () {
+    try {
+        Artisan::call('storage:link');
+        echo "Storage link created successfully!";
+    } catch (\Exception $e) {
+        echo "Error creating storage link: " . $e->getMessage();
+    }
+});
+
 Route::get('/', function(){
 return view('opportunities');
 })->name('oppty');
