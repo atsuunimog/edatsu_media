@@ -102,12 +102,13 @@ async function bookmarkFeed(obj, e) {
 
 
 // Function to handle the fetched data and update the UI
-const handleData = (data, singleFeed, feeder_url = '') => {
+const handleData = (data, elem, singleFeed, feeder_url = '') => {
   const feeds = data.data; // Array of feed items
 
   // Process and display the feed items
-  const newsFeedElement = document.querySelector("#news-feed");
-  newsFeedElement.innerHTML = '';
+  // const newsFeedElement = document.querySelector("#news-feed");
+  //newsFeedElement.innerHTML = '';
+  elem.innerHTML = '';
 
 //TOGGLE BOOMKARK UI ICON
 //   <div class='position-absolute custom-toggle-menu'>
@@ -116,13 +117,11 @@ const handleData = (data, singleFeed, feeder_url = '') => {
 //     d-flex align-items-center justify-content-center" 
 //       style='width:40px; height:40px;' type="button" 
 //       data-bs-toggle="dropdown" aria-expanded="false">
-
 //       <span class="material-symbols-outlined">
 //         list
 //       </span>
 //     </button>
 //     <ul class="dropdown-menu fs-9">
-        
 //         <li class="">
 //           <a class="dropdown-item d-flex align-items-center justify-content-between" data-title="${feed.title}" data-link="${feed.link}" onClick="bookmarkFeed(this, event)">
 //             <span>Bookmark</span>
@@ -131,7 +130,6 @@ const handleData = (data, singleFeed, feeder_url = '') => {
 //             </span>
 //           </a>
 //         </li>
-
 //     </ul>
 //   </div>
 // </div>
@@ -142,8 +140,6 @@ const handleData = (data, singleFeed, feeder_url = '') => {
     const dateMarkup = feed.date ? `<p class="fs-8 p-0 m-0 my-2">Posted on: ${feed.date}</p>` : '';
     const feedMarkup = `
       <div class="ps-3 py-3 bg-white border rounded mb-4 pe-5  position-relative">
-
-
 
           <a href="${feed.link}" target="_blank" class="text-decoration-none text-dark fw-bold">
           <h5 class="fw-bold inline-block m-0 pe-5" style="font-size:1em;">${feed.title}</h5>
@@ -158,7 +154,7 @@ const handleData = (data, singleFeed, feeder_url = '') => {
           </p>
       </div>
     `;
-    newsFeedElement.innerHTML += feedMarkup;
+    elem.innerHTML += feedMarkup;
   });
 
   // Handle pagination links
@@ -260,6 +256,58 @@ const nextSingleFeed = async (page = 1, feeder_url) => {
     document.querySelector("#news-feed").innerHTML = errorMarkup;
   }
 };
+
+
+
+/**
+ * fetch single feed toggle button
+ */
+
+async function generateNewsFeed(obj, page = 1) {
+  event.preventDefault();
+  //showLoadingIndicator(); 
+  var feeder_container = document.getElementById('feed-panel-' + obj.id);
+
+  // Remove all previously added "Hello world" elements
+  var existingPanels = document.getElementsByClassName('feed-data');
+
+ // console.log(existingPanels); return false;
+  if(existingPanels.length > 0){
+    for(i = 0; i < existingPanels.length; i++){
+      existingPanels[i].remove();
+    }
+  }
+
+  var feed_panel = document.createElement('div');
+  feed_panel.setAttribute('class', 'feed-data');
+  
+  //feed_panel.innerHTML = 
+
+  // Add the new "Hello world" element after the feeder_container
+  feeder_container.after(feed_panel);
+
+  try {
+
+    selectedValue = obj.dataset.url;
+    const response = await fetch(`/feeds?page=${page}&feeder=${selectedValue}`);
+    const data = await response.json();
+    // Handle data 
+    handleData(data, feed_panel, 1, selectedValue);
+    
+    // Handle the data as needed
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    const errorMarkup = `
+      <div class="px-3 py-3 bg-white border rounded mb-3 text-center">
+        <h5 class="fw-bold">Oops! Something went wrong</h5>
+        <p class="text-secondary fs-9">Try refreshing your feeds or checking your internet connection</p>
+        <button class="btn btn-dark px-4 fw-bold" onClick='window.location.reload()'>Refresh Feed</button>
+      </div>
+    `;
+    document.querySelector("#news-feed").innerHTML = errorMarkup;
+  }
+}
+
 
 /**
  * get single feed

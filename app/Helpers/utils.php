@@ -35,10 +35,49 @@ function truncateText($text, $char){
 }
 
 
+/**truncate per words */
+function truncateTextByWords($text, $maxWords) {
+    // Remove extra spaces and trim the text
+    $cleanedText = trim(preg_replace('/\s+/', ' ', $text));
+
+    // Split the cleaned text into an array of words
+    $words = explode(' ', $cleanedText);
+
+    // Check if the word count exceeds the maximum allowed words
+    if (count($words) > $maxWords) {
+        // Slice the array to keep only the first $maxWords words
+        $truncatedWords = array_slice($words, 0, $maxWords);
+
+        // Join the truncated words back together with spaces
+        $truncatedText = implode(' ', $truncatedWords);
+
+        return $truncatedText . '...';
+    } else {
+        return $text;
+    }
+}
+
+
+
+
 
 function getHighlightClass($targetPath, $active_style, $default_style) {
     $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     return ($currentPath === $targetPath) ? $active_style : $default_style;
+}
+
+//format to readable text
+function convertToTitleCase($inputString) {
+    // Split the input string by underscores
+    $words = explode('_', $inputString);
+
+    // Capitalize the first letter of each word
+    $titleCaseWords = array_map('ucfirst', $words);
+
+    // Join the words back together with spaces
+    $titleCaseString = implode(' ', $titleCaseWords);
+
+    return $titleCaseString;
 }
 
 

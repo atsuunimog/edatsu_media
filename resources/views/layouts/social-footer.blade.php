@@ -25,16 +25,16 @@
                         <i class="fa-brands fa-tiktok text-info"></i>
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="#" target="_blank">
                         <i class="fa-brands fa-x-twitter text-info"></i>
                     </a>
-                </li>
-                <li>
+                </li> -->
+                <!-- <li>
                     <a href="https://www.youtube.com/channel/UCwIxkgCrdzsL3ApDjVgRLCQ" target="_blank">
                         <i class="fa-brands fa-youtube text-info"></i>
                     </a>
-                </li> 
+                </li>  -->
                
               </ul>
             </div>

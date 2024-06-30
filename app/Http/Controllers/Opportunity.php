@@ -24,6 +24,9 @@ class Opportunity extends Controller
         return view("admin.opportunity_page", ["opp_posts" => $opp_posts, "edits"=> $edits]);
     }
 
+
+
+
     function store(Request $request){
 
         //validate the data 
@@ -31,7 +34,7 @@ class Opportunity extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'reference' => 'required|url|max:255',
-            'region' => 'nullable|string',
+            'regions' => 'nullable|string',
             'country' => 'nullable|string',
             'continent' => 'nullable|string',
             'deadline' => 'nullable|date', // Adjust this rule based on your date format
@@ -65,7 +68,7 @@ class Opportunity extends Controller
             'deadline'=> $request->deadline,
             'source_url' => $reference,
             'category' => $category,
-            'region'=> $region,
+            'regions'=> $region,
             'country'=> $country,
             'continent'=> $continent
         ]);

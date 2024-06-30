@@ -1,11 +1,25 @@
+WEEKLY TODO
+categorize news feed...
+make edatsu media PWA
+make edatsu media intallable
+enable push notification
+add images to opportunities
+mailing list
+create spotify channel & start.
+clean code base/create ci/cd pipline / create container for easy sharing
+
 FOCUS 
     - Business technology News
     - Primary Market Nigeria (Africa General)
     - Automation
     - Op eds
 
+**add country flags to quickly identify post
+** add apply directly link
+
 MONETIZATION
 Auctioned Ads 
+generate simple events page (template)
 subscription model - Bloggers
 support-wallet (buy me a coffee)
 user owned page to auction ads

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FeedsChannel;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -29,9 +30,9 @@ class FeedsController extends Controller
     }
 
     public function displayFeeds(){
-        return view('feeds');
+        $feeds = FeedsChannel::all()->where('is_deleted', 0);
+        return view('feeds', ['channels' => $feeds]);
     }
-
 
 
     

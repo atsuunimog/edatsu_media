@@ -7,7 +7,7 @@
 
 <!--news filter-->
 {{-- action="{{route('find.feeds')}}" --}}
-<form onsubmit="fetchSingleFeed()">
+<!-- <form onsubmit="fetchSingleFeed()">
 <div class="row">
   <div class="col-sm-9">
     <select class="form-select py-3 mb-3" name="feeder" aria-label="Select News">
@@ -42,7 +42,7 @@
     <button class="text-decoration-none btn btn-dark border-0 px-4 py-3 mb-3 shadow-sm w-100">Filter</button>
   </div>
 </div>
-</form>
+</form> -->
 <!--news filter-->
 
 <div class="alert alert-warning fs-9 d-flex border-0 align-items-center rounded-0" role="alert">
@@ -61,16 +61,28 @@
 
 <h3 class="m-0 fw-bold mb-3 text-secondary">News Feed</h3>
 
-
-{{-- <a href="https://kol.jumia.com/api/click/link/d85c6dd6-5eec-47e9-b103-577be07cf3f6/2ff2cad3-caeb-4f66-9ca2-eb53ff24190f">
-  <img src="https://kol.jumia.com/banners/YOZIEcc1lB0Omt0fkjsZoLZ6OMxQ5X9dzyVA2Iin.jpg" 
-  class="mb-3 img-fluid rounded"
-  width="100%"
-  alt="MOBILE ACCESSORIES"/></a> --}}
+@foreach($channels as $ch)
+<div class="container">
+  <div class="row border rounded mb-3 bg-white px-3 py-3" id="feed-panel-{{$ch->id}}">
+      <div class="col-sm-3">
+          <img  src="{{asset('storage/uploads/channels/'.$ch->channel_image)}}"
+          class="rounded d-block mx-auto" style="max-width:150px; max-height:150px;">  
+      </div>
+      <div class="col-sm-9">
+          <p class="fw-bold m-0 p-0">{{$ch->channel_name}}</p>
+          <div style="font-size:.9em; min-height:80px; overflow:hidde;">{!! truncateTextByWords($ch->channel_description, 30)!!}</div>
+          <form class="d-flex justify-content-end w-100">
+            <input disabled type="hidden" class="d-block" name="feeder" value="{{$ch->channel_url}}"/>
+            <button class="btn btn-light fw-bold shadow-sm fs-9 px-3 d-block" data-url="{{$ch->channel_url}}" id="{{$ch->id}}" onClick="generateNewsFeed(this)">Latest News</button>
+          </form>
+      </div>
+  </div>
+</div>
+@endforeach
   
 
-<div id="news-feed" class="mb-3"></div>
-<div id="pagination-container"></div>
+<!-- <div id="news-feed" class="mb-3"></div>
+<div id="pagination-container"></div> -->
 
 <!--content-->
 </div>
@@ -153,6 +165,8 @@
 </div>
 
 @include('components/fixed_mobile_menu')
+
+
 
 <script>
   const imageSrc = '{{ asset('img/gif/cube_loader.gif') }}';

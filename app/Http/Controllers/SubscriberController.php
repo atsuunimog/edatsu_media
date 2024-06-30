@@ -8,6 +8,7 @@ use App\Models\Bookmark;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Models\Profile;
 
 class SubscriberController extends Controller
 {
@@ -19,6 +20,116 @@ class SubscriberController extends Controller
         function bookmark(){
             return view('subscriber.bookmark');
         }
+
+        /**
+         * calculate profile completion percentile
+         */
+        public function calculateDataCompletionPercentage($userId)
+        {
+            $candidate = Profile::where('user_id', $userId)->first();
+        
+            if ($candidate) {
+                $candidateData = $candidate->toArray();
+                $totalFields   = count($candidateData);
+                $filledFields  = 0;
+                
+                foreach ($candidateData as $field => $value) {
+                    if (!empty($value)) {
+                        $filledFields++;
+                    }
+                }
+                
+                $completionPercentage = round(($filledFields / $totalFields) * 100);
+                
+                return $completionPercentage;
+            }
+            
+            return 0;
+        }
+
+        /**
+         * initialize profile
+         */
+
+        public function initProfile(Request $request){
+            $user_id = $request->user()->id;
+            $data_count = $this->calculateDataCompletionPercentage($user_id);
+            $profile_data = Profile::where("user_id", $user_id)->first();
+            return view('subscriber.profile', ['data_count' => $data_count, 'profile_data' => $profile_data]);
+        }
+
+
+        /**
+         * update profile
+         */
+        public function updateProfile(Request $request)
+        {
+            $this->validateInput($request);
+            $user_id = $request->user()->id;
+            // $this->calculateDataCompletionPercentage($user_id);
+
+            // Check if the ID already exists in the database
+            $existingCandidate =  Profile::where('user_id', $user_id)->first();
+
+
+            if ($existingCandidate !== null) {
+                //store cv if exist
+
+                //store certifications if exist
+                // if ($request->hasFile("certifications")){
+                //     $certification_path  = $this->storeFiles($request, "certifications", ['pdf', 'doc', 'docx', 'txt', 'rtf', 'csv']);
+                // }else{
+                //      //get old image and update store it in database
+                //      $certification_path = Candidate::select('certifications')->where('user_id', $request->user()->id)->first();
+                //      $certification_path  = ( $certification_path  == null)? '' :  $certification_path->certifications;
+                // }
+
+                //update data
+                Profile::where('user_id', $user_id)
+                ->update([
+                    'profile_picture' => $request->input('profile_picture'),
+                    'full_name' => $request->input('full_name'),
+                    'about' => $request->input('about'),
+                    'linkedin_profile' => $request->input('linkedin_profile'),
+                    'email' => $request->input('email'),
+                    'phone_no' => $request->input('phone_no'),
+                    'location' => $request->input('location'),
+                    'gender' => $request->input('gender'),
+                    'date_of_birth' => $request->input('date_of_birth'),
+                ]);
+
+                return redirect()->back()->with('status', 'Profile updated!');
+
+            }else{
+
+                //store cv if exist
+                //  if ($request->hasFile("certifications")){
+                //     $certification_path = $this->storeFiles($request, "certifications", ['pdf', 'doc', 'docx', 'txt', 'rtf', 'csv']);
+                // }else{
+                //     $certification_path = "";
+                // }
+
+                Profile::create([
+                    'user_id' => $user_id,
+                    'profile_picture' => $request->input('profile_picture'),
+                    'full_name' => $request->input('full_name'),
+                    'about' => $request->input('about'),
+                    'linkedin_profile' => $request->input('linkedin_profile'),
+                    'email' => $request->input('email'),
+                    'phone_no' => $request->input('phone_no'),
+                    'location' => $request->input('location'),
+                    'gender' => $request->input('gender'),
+                    'date_of_birth' => $request->input('date_of_birth'),
+                ]);
+
+                return redirect()->back()->with('status', 'Profile stored!');
+            }
+        }
+
+
+
+
+
 
         //bookmarking
         public function bookmarkFeed(Request $request){

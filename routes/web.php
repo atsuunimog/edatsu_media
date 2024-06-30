@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
 use App\Http\Controllers\SubscriberController;
+use App\Http\Controllers\FeedsChannel;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,7 +76,6 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::get('/admin-dashboard', [Dashboard::class, "accessControl"])->name('admin.dashboard');
     Route::get('/all-users', [Dashboard::class, "allUsers"])->name('admin.users');
 
-
     //handle events
     Route::get('/admin-post-event', [Event::class, "show"])->name('admin.ev');
     Route::get('/admin-edit-event/{id}', [Event::class, "edit"])->name('admin.edit.ev');
@@ -83,11 +83,21 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::post('/admin-store-event', [Event::class, "store"])->name('admin.store.ev');
     Route::get('/admin-delete-event/{id}', [Event::class, "delete"])->name('admin.delete.ev');
 
+    //handle channels
+    Route::post('/admin-update-channel/{id}', [FeedsChannel::class, "store"])->name('admin.update.channel');
+    Route::get('/admin-delete-channel/{id}', [FeedsChannel::class, "delete"])->name('admin.delete.channel');
+    Route::get('/admin-edit-channel/{id}', [FeedsChannel::class, "edit"])->name('admin.edit.channel');
+    Route::post('/admin-store-channel', [FeedsChannel::class, "store"])->name('admin.store.channel');
+
+
     //handle opportunities 
     Route::get('/admin-post-opportunity', [Opportunity::class, "show"])->name('admin.opp');
+    Route::get('/admin-post-feeds-category', [FeedsChannel::class, "showFeedsCategory"])->name('admin.feeds.category');
     Route::get('/admin-edit-opportunity/{id}', [Opportunity::class, "edit"])->name('admin.edit.opp');
     Route::post('/admin-update-opportunity/{id}', [Opportunity::class, "update"])->name('admin.update.opp');
     Route::post('/admin-store-opportunity', [Opportunity::class, "store"])->name('admin.store');
+
+
     Route::get('/admin-delete-opportunity/{id}', [Opportunity::class, "delete"])->name('admin.delete.opp');
 
     //handle business directory
@@ -102,13 +112,15 @@ Route::middleware(['auth', 'role:subscriber'])->group(function(){
     Route::get('/fetch-event-bookmark', [SubscriberController::class, 'listBookmarkedEvents']);
     Route::get('/fetch-bookmark', [SubscriberController::class, 'fetchAllBookmark']);
     Route::post('/remove-bookmark-feed', [SubscriberController::class, 'removeBookmark']);
+    Route::get('/profile', [SubscriberController::class, 'initProfile'])->name('subscriber.profile');
+    Route::post('/subscriber/update-profile', [SubscriberController::class, 'updateProfile'])->name('subscriber.update-profile');
 });
 
 /**general profile settings routes */
 Route::middleware('auth')->group(function () {
-    Route::get('/profile',   [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile',[ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/settings',   [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/settings', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/settings',[ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__.'/auth.php';
