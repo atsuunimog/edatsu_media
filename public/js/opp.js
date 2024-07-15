@@ -390,15 +390,15 @@ const Toast = Swal.mixin({
           var default_img = o.cover_img ? o.cover_img : 'default.png'
           document.querySelector(elem)
           .innerHTML += `
-          <div class='container border rounded feed-panel text-wrap w-100 position-relative mb-4'>
+          <div class='container-fluid border rounded feed-panel text-wrap w-100 position-relative mb-4'>
           <div class='row'>
-          <div class='col-sm-3 col-3'>
+          <div class='col-sm-3 col-5'>
             <div class='py-3'>
             <img src='storage/uploads/channels/${default_img}' alt="${default_img}" class='img-fluid rounded shadow-sm'/>
             </div>
           </div>
 
-          <div class='col-sm-9 col-9'>
+          <div class='col-sm-9 col-7'>
           <div class='py-3'>
       
               <div class='position-absolute custom-toggle-menu'>
@@ -433,7 +433,7 @@ const Toast = Swal.mixin({
               </div>
       
               <a  class="text-decoration-none text-dark fw-bold" href='${pageLink(o.title, o.id)}'>
-              <h5 class="fw-bold inline-block m-0 pe-3" style="font-size:1em;">${o.title}</h5>
+              <h5 class="fw-bold inline-block m-0" style="font-size:1em;">${o.title}</h5>
               </a>
       
               <ul class="list-unstyled my-2  d-block fs-8 text-sm">
@@ -451,6 +451,22 @@ const Toast = Swal.mixin({
                   ? `${getDaysLeft(o.deadline)}`
                   : "<span class='fw-bold'>Unspecified</span>"
               }</p>
+
+
+               <ul class="display-inline-block list-unstyled fs-9">
+                      <li class="d-inline-block d-flex" 
+                          data-id="${o.id}" 
+                          data-title="${o.title}" 
+                          data-type="oppo-type"
+                          data-url="${pageLink(o.title, o.id)}" onClick="Bookmark(this)">
+                          <div>Bookmark</div>
+                          <div>
+                              <span class='material-symbols-outlined align-middle me-2'>
+                              bookmark
+                              </span>
+                          </div>
+                      </li>
+                  </ul>
        
           </div>
           </div>
