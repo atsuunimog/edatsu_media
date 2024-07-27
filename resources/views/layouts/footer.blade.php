@@ -65,7 +65,30 @@
 </footer>
 </div>
 </nav>
+
+<!--smooth scroll-->
+<a href="#main">
+<div class="smooth-scroll rounded bg-dark text-light d-flex align-items-center shadow-sm">
+    <span class="material-symbols-outlined">
+    arrow_upward
+    </span>
+</div>
+</a>
+<!--smooth scroll-->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script src="js/main.js"></script>
+<script>
+    // JavaScript for smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
 </body>

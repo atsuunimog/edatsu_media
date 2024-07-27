@@ -57,7 +57,7 @@ const Toast = Swal.mixin({
         // Format year
         const year = date.getFullYear();
         // Concatenate the formatted parts to get the final formatted date
-        const formattedDate = `${dayWithSuffix}, ${month} ${year}`;
+        const formattedDate = `${dayWithSuffix} ${month} ${year}`;
         return formattedDate;
       }
       
@@ -347,51 +347,16 @@ const Toast = Swal.mixin({
       }
       
       
-      // @if(Auth::check())
-      //                     @if(Auth::user()->role == 'admin')
-      //                     <li class="dropdown-item">
-      //                         <a class="d-flex align-items-center 
-      //                         text-decoration-none justify-content-between" href="/admin-edit-opportunity/${o.id}">
-      //                         <div>Edit</div>
-      //                         <div>
-      //                             <span class='material-symbols-outlined align-middle me-2'>
-      //                             edit_note
-      //                             </span>
-      //                         </div>
-      //                         </a>
-      //                     </li>
-      //                     @endif 
-      //                 @endif
-  
-      //                 <li class="dropdown-item d-flex align-items-center 
-      //                     text-decoration-none justify-content-between" data-bs-toggle="modal" data-bs-target="#exampleModal" >
-      //                     <div>Report</div>
-      //                     <div>
-      //                         <span class='material-symbols-outlined align-middle me-2'>
-      //                         flag
-      //                         </span>
-      //                     </div>
-      //                 </li>
-      
-      
-      //                 <li class="dropdown-item d-flex align-items-center justify-content-between">
-      //                     <div>Share</div>
-      //                     <div>
-      //                         <span class='material-symbols-outlined align-middle me-2'>
-      //                         share
-      //                         </span>
-      //                     </div>
-      //                 </li>
-      
-      /**Display profile**/
       function displayResult(d, elem){
 
           d.data.map((o)=>{
           var default_img = o.cover_img ? o.cover_img : 'default.png'
           document.querySelector(elem)
+
           .innerHTML += `
           <div class='container-fluid border rounded feed-panel text-wrap w-100 position-relative mb-4'>
           <div class='row'>
+
           <div class='col-sm-3 col-5'>
             <div class='py-3'>
             <img src='storage/uploads/channels/${default_img}' alt="${default_img}" class='img-fluid rounded shadow-sm'/>
@@ -399,51 +364,19 @@ const Toast = Swal.mixin({
           </div>
 
           <div class='col-sm-9 col-7'>
-          <div class='py-3'>
-      
-              <div class='position-absolute custom-toggle-menu'>
-                  <div class="dropdown">
-                  <button class="btn btn-light shadow-sm p-0 border bg-white rounded-circle" 
-                  style='width:40px; height:40px;' type="button" 
-                  data-bs-toggle="dropdown" aria-expanded="false">
-      
-                  <span class="material-symbols-outlined align-middle">
-                  list
-                  </span>
-                  </button>
-                  <ul class="dropdown-menu fs-9">
-
-                      <li class="dropdown-item d-flex align-items-center  
-                          text-decoration-none justify-content-between" 
-                          data-id="${o.id}" 
-                          data-title="${o.title}" 
-                          data-type="oppo-type"
-                          data-url="${pageLink(o.title, o.id)}" onClick="Bookmark(this)">
-                          <div>Bookmark</div>
-                          <div>
-                              <span class='material-symbols-outlined align-middle me-2'>
-                              bookmark
-                              </span>
-                          </div>
-                      </li>
-  
-  
-                  </ul>
-                  </div>
-              </div>
-      
+              <div class='py-3'>
               <a  class="text-decoration-none text-dark fw-bold" href='${pageLink(o.title, o.id)}'>
-              <h5 class="fw-bold inline-block m-0" style="font-size:1em;">${o.title}</h5>
+                <h3 class="fw-bold inline-block m-0 p-0" style="font-size:1em;">${o.title}</h3>
               </a>
       
-              <ul class="list-unstyled my-2  d-block fs-8 text-sm">
-                  <li class="p-0 m-0 my-2">
+              <ul class="list-unstyled m-0 mt-2 p-0 d-block fs-8 text-sm">
+                  <li class="p-0 m-0">
                       Posted on: ${formatDate(o.created_at)}
                   </li>
               </ul>
       
               <div class="overflow-hidden truncate d-none d-sm-block">
-              <p class="p-0 m-0 fs-8 m-0 text-secondary d-block">${truncateText(o.description, 200)}</p>
+              <p class="p-0 m-0 mt-2 fs-8 text-secondary d-block">${truncateText(o.description, 200)}</p>
               </div>
   
               <p class='m-0 mt-2 fs-8 text-uppercase fw-bold'>Deadline: ${
@@ -452,22 +385,49 @@ const Toast = Swal.mixin({
                   : "<span class='fw-bold'>Unspecified</span>"
               }</p>
 
+              <div class="d-flex justify-content-end">
 
-               <ul class="display-inline-block list-unstyled fs-9">
-                      <li class="d-inline-block d-flex" 
+                  <div class="content-btn-holder px-3">
+                    <div class='position-relative'>
+                        <div class="position-absolute share-panel border rounded fs-8 d-none">
+                            <ul>
+                                <li><a class='text-decoration-none text-dark' href="https://api.whatsapp.com/send?text={{route('read.blog', ['id'=> $opp_posts->id, 'title'=> Str::slug($opp_posts->title, '-')])}}"
+                                    target="_blank"><img width="30" src="img/gif/icons8-whatsapp.gif" alt="whatsapp"> WhatsApp</a>
+                                </li>
+                                <li><a class='text-decoration-none text-dark' href="https://t.me/share/url?url={{route('read.blog', ['id'=> $opp_posts->id, 'title'=> Str::slug($opp_posts->title, '-')])}}"
+                                    target="_blank"><img width="30" src="img/gif/icons8-telegram.gif" alt="telegram"> Telegram</a>
+                                </li>            
+                                <li><a class='text-decoration-none text-dark' href="https://www.linkedin.com/sharing/share-offsite/?url={{route('read.blog', ['id'=> $opp_posts->id, 'title'=> Str::slug($opp_posts->title, '-')])}}"
+                                    target="_blank"><img width="30" src="img/gif/icons8-linkedin.gif" alt="linkedin"> LinkedIn</a>
+                                </li>      
+                                <li><a class='text-decoration-none text-dark' href="https://twitter.com/intent/tweet?url={{route('read.blog', ['id'=> $opp_posts->id, 'title'=> Str::slug($opp_posts->title, '-')])}}"
+                                    target="_blank"><img width="30" src="img/gif/icons8-twitter.gif" alt="twitter"> Twitter</a>
+                                </li>
+                            </ul>                            
+                        </div>
+                        <button class='btn' onClick="console.log(this.previousElementSibling.classList.toggle('d-none'))">
+                            <span class="material-symbols-outlined align-middle">
+                            share
+                            </span>
+                        </button>
+                    </div>
+                  </div>
+
+                  <div class="content-btn-holder px-3">
+                    <button class="btn" 
                           data-id="${o.id}" 
                           data-title="${o.title}" 
                           data-type="oppo-type"
                           data-url="${pageLink(o.title, o.id)}" onClick="Bookmark(this)">
-                          <div>Bookmark</div>
                           <div>
-                              <span class='material-symbols-outlined align-middle me-2'>
+                              <span class='material-symbols-outlined align-middle'>
                               bookmark
                               </span>
                           </div>
-                      </li>
-                  </ul>
-       
+                    </button>
+                  </div>
+              </div>
+          </div>
           </div>
           </div>
           </div>

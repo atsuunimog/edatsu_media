@@ -15,15 +15,15 @@
     <!--mail notification-->
     <div class="container-fluid">
         <div class="row">
-            <div class="col-3">
+            <!-- <div class="col-3">
                 <a href="{{ url('news-feed') }}" class="btn w-100 px-0 d-block text-center text-decoration-none {{ getHighlightClass('/news-feed', 'text-light-orange fw-bold', 'text-light') }}">
                     <span class="material-symbols-outlined align-middle mb-1 d-block" style='font-size:1.5em;'>
                     full_coverage
                     </span>
                     <span class="d-block fs-8 text-uppercase fw-bold mx-auto">News</span>
                 </a>
-            </div>
-            <div class="col-3">
+            </div> -->
+            <div class="col-4">
                 <a href="{{ url('/') }}" class="btn w-100 px-0 d-block text-center text-decoration-none {{ getHighlightClass('/', 'text-light-orange fw-bold', 'text-light') }}">
                     <span class="material-symbols-outlined align-middle mb-1 d-block" style='font-size:1.5em;'>
                     wb_sunny
@@ -31,7 +31,7 @@
                     <span class="d-block fs-8 text-uppercase fw-bold mx-auto">Oppty</span>
                 </a>
             </div>
-            <div class="col-3">
+            <div class="col-4">
                 <a href="{{ url('events') }}" class="btn w-100 px-0 d-block text-center text-decoration-none {{ getHighlightClass('/events', 'text-light-orange fw-bold', 'text-light') }}">
                     <span class="material-symbols-outlined align-middle mb-1 d-block" style='font-size:1.5em;'>
                     event_available
@@ -39,7 +39,7 @@
                     <span class="d-block fs-8 text-uppercase fw-bold mx-auto">Events</span>
                 </a>
             </div>
-            <div class="col-3">
+            <div class="col-4">
                 <!--alert indicator-->
                 <div class='position-relative'>
                     @auth

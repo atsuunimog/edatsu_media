@@ -12,16 +12,18 @@
 
       <div class="collapse navbar-collapse " id="navbarSupportedContent">
         <div class="d-flex justify-content-between w-100">
+
         <form class="d-flex" role="search">
             {{-- <input class="form-control me-2 border-0 fs-9" type="search" placeholder="Search" aria-label="Search"> --}}
             {{-- <button class="btn btn-outline-light" type="submit">Search</button> --}}
-          </form>
+        </form>
+
         <ul class="navbar-nav mb-2 mb-lg-0 ">
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="{{ url('news-feed') }}" class="nav-link text-decoration-none me-3  text-light {{ getHighlightClass('/news-feed', 'custom-link-highlight', 'text-secondary') }}">
               News Feed
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a href="{{ url('/opportunities') }}" class="nav-link  text-decoration-none  me-3 text-light {{ getHighlightClass('/opportunities', 'custom-link-highlight', 'text-secondary') }}">
               Opportunities
@@ -51,11 +53,13 @@
               <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {{truncateText(Auth::user()->name, 10)}}
               </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <ul class="dropdown-menu fs-9">
+                  <li><a class="dropdown-item" href="#">Profile</a></li>
+                  <li><a class="dropdown-item" href="#">Bookmark</a></li>
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">edatsu inc</a>
+                  </li>
               </ul>
             </li> 
             @endauth

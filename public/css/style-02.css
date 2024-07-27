@@ -320,3 +320,19 @@ ul.label-list{
 .fw-300{
     font-weight: 300 !important;
 }
+
+.smooth-scroll{
+    color:white;
+    position:fixed; 
+    bottom:30px; 
+    right:15px;
+    padding:15px;
+    cursor:pointer;
+}
+
+ /* Media query for smaller screens */
+ @media (max-width: 600px) {
+    .smooth-scroll{
+        bottom:120px; 
+    }
+}
