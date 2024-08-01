@@ -43,13 +43,16 @@ return view('opportunities');
 
 
 //clean Caches
-Route::get('/xclean', function() {
-    $exitCode1 = Artisan::call('cache:clear');
-    $exitCode2 = Artisan::call('view:clear');
-    $exitCode3 = Artisan::call('route:clear');
-    $exitCode4 = Artisan::call('config:cache');
+Route::get('/clean', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+    Artisan::call('route:clear');
+    Artisan::call('config:cache');
+    Artisan::call('sitemap:generate');
     dd('CACHE-CLEARED, VIEW-CLEARED, ROUTE-CLEARED & CONFIG-CACHED WAS SUCCESSFUL!');
 });
+
+//generate sitemap
 
 
 Route::get('/opportunities', function(){
