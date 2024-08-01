@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="application-name" content="Edatsu Media">
-        <link rel="icon" type="image/png" sizes="192x192" href="{{asset('/img/icons/icon-192x192.png')}}">
+        <link rel="icon" type="image/png" sizes="192x192" href="{{asset('img/icons/icon-192x192.png')}}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="apple-touch-icon" sizes="57x57" href="{{asset('img/icons/apple-icon-57x57.png')}}">
@@ -25,7 +25,7 @@
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
 
-        <title>Edatsu Media | Tech, Entrepreneurial Opportunities, News, and Events</title>
+        <title>Edatsu Media | Discover Global Opportunities & Events</title>
         <meta name="description" content="Stay updated on the latest in technology, explore entrepreneurial opportunities, and stay informed with the latest news and events. Join us on an exciting journey at the forefront of innovation and business.">
         <meta name="keywords" content="Tech media, Entrepreneurial opportunities, Tech news, Events updates, Business innovations, Technology trends, Startup ventures, Innovation events, Entrepreneurship news, Technology insights, Business networking, Startup resources, Tech updates, Entrepreneurial ecosystem, Business conferences">
         <meta name="robots" content="index, follow">

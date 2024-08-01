@@ -20,7 +20,6 @@
         <div class='fs-9'>
         <ul class='list-unstyled'>
             <li><a class='text-light text-decoration-none mb-1 d-inline-block' href="{{url('advertise')}}">Advertise</a></li>
-            <li><a class='text-light text-decoration-none mb-1 d-inline-block' href="{{url('careers')}}">Careers</a></li>
             <li><a class='text-light text-decoration-none mb-1 d-inline-block' href="{{url('feedback')}}">Feedback</a></li>
         </ul>
         </div>
@@ -34,8 +33,8 @@
             <li><a class='text-light text-decoration-none mb-1 d-inline-block' href="{{url('terms')}}">Terms Of Use</a></li>
             <li><a class='text-light text-decoration-none mb-1 d-inline-block' href="{{url('sitemap')}}">Sitemap</a></li>
             <li><a class='text-light text-decoration-none mb-1 d-inline-block' href="{{url('privacy-policy')}}">Privacy Policy</a></li>
-            <li><a class='text-light text-decoration-none mb-1 d-inline-block' href="{{url('credits')}}">Credits</a></li>
-            <li><a class='text-light text-decoration-none mb-1 d-inline-block' href="{{url('change-log')}}">Change log</a></li>
+            <!-- <li><a class='text-light text-decoration-none mb-1 d-inline-block' href="{{url('credits')}}">Credits</a></li> -->
+            <!-- <li><a class='text-light text-decoration-none mb-1 d-inline-block' href="{{url('change-log')}}">Change log</a> <span class="badge bg-danger fw-bold py-1">Coming Soon</span></li> -->
         </ul>
         </div>
     </div>

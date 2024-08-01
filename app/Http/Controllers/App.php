@@ -14,7 +14,10 @@ class App extends Controller
         //add view counter
         Oppty::where('id', $id)->increment('views');
         $opp_posts = Oppty::where('id', $id)->first();
-        return view("opp-view", ["opp_posts" => $opp_posts]);
+
+        // var_dump($opp_posts); 
+
+        return view("opp-view",compact('opp_posts'));
     }
 
     //display events 

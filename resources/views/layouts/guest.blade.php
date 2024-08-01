@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="application-name" content="Edatsu Media">
-        <link rel="icon" type="image/png" sizes="192x192" href="{{asset('/img/icons/icon-192x192.png')}}">
+        <link rel="icon" type="image/png" sizes="192x192" href="{{asset('img/icons/icon-192x192.png')}}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="apple-touch-icon" sizes="57x57" href="{{asset('img/icons/apple-icon-57x57.png')}}">
@@ -24,35 +24,35 @@
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
-
-        <title>Edatsu Media | Tech, Entrepreneurial Opportunities, News, and Events</title>
-        <meta name="description" content="Stay updated on the latest in technology, explore entrepreneurial opportunities, and stay informed with the latest news and events. Join us on an exciting journey at the forefront of innovation and business.">
-        <meta name="keywords" content="Tech media, Entrepreneurial opportunities, Tech news, Events updates, Business innovations, Technology trends, Startup ventures, Innovation events, Entrepreneurship news, Technology insights, Business networking, Startup resources, Tech updates, Entrepreneurial ecosystem, Business conferences">
+        <title>@yield('meta_title', 'Discover Global Opportunities & Events | Edatsu Media')</title>
+        <meta name="description" content="@yield('meta_description', 'Discover funding opportunities, grants, and growth-focused events for entrepreneurs. Your one-stop platform to connect with resources that accelerate business success and innovation')">
+        <meta name="keywords" content="@yield('meta_keywords', 'entrepreneur funding, business grants, startup events, entrepreneurship resources, business growth opportunities, startup financing, networking events, small business grants, entrepreneur community, business development resources, startup accelerators, venture capital connections, business pitch events, innovation funding, entrepreneur workshops')">
         <meta name="robots" content="index, follow">
-        <link rel="canonical" href="https://media.edatsu.com/">
-
+        <link rel="canonical" href="{{dynamicCanon(url()->current())}}">
+        <!--facebook open graph-->
+        <meta property="og:url"                content="{{dynamicCanon(url()->current())}}" />
+        <meta property="og:type"               content="website" />
+        <meta property="og:title"              content="@yield('meta_title', 'Discover Global Opportunities & Events | Edatsu Media')" />
+        <meta property="og:description"        content="@yield('meta_description', 'Discover funding opportunities, grants, and growth-focused events for entrepreneurs. Your one-stop platform to connect with resources that accelerate business success and innovation')" />
+        <meta property="og:image"              content="{{asset('img/edatsu_logo/e_media_open_graph.png')}}" />
+        <!--twitter open graph-->
+        <meta name="twitter:card" content="@yield('blog_image', '')">
+        <meta name="twitter:site" content="{{dynamicCanon(url()->current())}}">
+        <meta name="twitter:title" content="@yield('meta_title', 'Discover Global Opportunities & Events | Edatsu Media')">
+        <meta name="twitter:description" content="@yield('meta_description', 'Discover funding opportunities, grants, and growth-focused events for entrepreneurs. Your one-stop platform to connect with resources that accelerate business success and innovation')">
+        <meta name="twitter:image" content="{{asset('img/edatsu_logo/e_media_open_graph.png')}}">
         <!--font awesome icons-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
         {{-- google icons --}}
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" 
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@700&family=Montserrat:wght@300;400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
         <!--alert notification-->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        
-        <!--mont serrat font-->
-        {{-- <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> --}}
-
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
         <link href={{asset('css/style-02.css')}} rel="stylesheet">
         <!-- Scripts -->
         {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
@@ -64,7 +64,6 @@
             gtag('js', new Date());
             gtag('config', 'G-1YPZVXB93H');
         </script>
-
         <!--microsoft clarity-->
         <script type="text/javascript">
             (function(c,l,a,r,i,t,y){

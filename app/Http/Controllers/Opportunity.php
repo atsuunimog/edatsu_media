@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Opportunity extends Controller
 {
-    //
+    //...
     function show(){
         $opp_posts = Oppty::where('deleted', 0)->orderByDesc('id')->limit(5)->get();
         return view("admin.opportunity_page", ["opp_posts" => $opp_posts]);
@@ -24,12 +24,24 @@ class Opportunity extends Controller
         return view("admin.opportunity_page", ["opp_posts" => $opp_posts, "edits"=> $edits]);
     }
 
-
-
+    function createSlug($title) {
+        // Convert to lowercase
+        $slug = strtolower($title);
+        
+        // Replace non-alphanumeric characters with hyphens
+        $slug = preg_replace('/[^a-z0-9-]/', '-', $slug);
+        
+        // Remove consecutive hyphens
+        $slug = preg_replace('/-+/', '-', $slug);
+        
+        // Trim hyphens from the beginning and end
+        $slug = trim($slug, '-');
+        
+        return $slug;
+    }
 
     function store(Request $request, $id=''){
-
-        //validate the data 
+        //validate the data...
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
@@ -39,12 +51,13 @@ class Opportunity extends Controller
             'continent' => 'nullable|string',
             'deadline' => 'nullable|date', // Adjust this rule based on your date format
             'category' => 'nullable|string',
+            'meta_description' => 'nullable|string', 
+            'meta_keywords' => 'nullable|string'
         ]);
-
 
         $op = ($id)? Oppty::find($id) : new Oppty();
 
-           /**
+        /**
          * check if request has file 
          */
         if($request->hasFile('cover_img')){
@@ -56,9 +69,9 @@ class Opportunity extends Controller
             }
         }
         
-
         //capture values 
         $title = $request->title;
+        $slug  = $this->createSlug($title);
         $description = $request->description;
         $reference = $request->reference;
         $region = $request->region;
@@ -67,7 +80,8 @@ class Opportunity extends Controller
         $deadline = $request->deadline;
         $category = $request->category;
         $direct_link = $request->direct_link;
-
+        $meta_description = $request->meta_description;
+        $meta_keywords = $request->meta_keywords;
 
         //prevent users from backdating job post
         $current_date = Carbon::now();  
@@ -81,6 +95,7 @@ class Opportunity extends Controller
         $op->u_id = $request->user()->id;
         $op->user_role = $request->user()->role;
         $op->title = $title;
+        $op->slug  = $slug;
         $op->description = $description;
         $op->deadline = $request->deadline;
         $op->source_url = $reference;
@@ -89,7 +104,9 @@ class Opportunity extends Controller
         $op->region = $region;
         $op->country = $country;
         $op->continent = $continent;
-        
+        $op->meta_description = $meta_description;
+        $op->meta_keywords = $meta_keywords;
+
         $op->save();
 
         return redirect('admin-post-opportunity')->with('status', 'Post Successful!');
@@ -106,7 +123,7 @@ class Opportunity extends Controller
     //     $country = $request->country;  
     //     $continent = $request->continent;
     //     $deadline = $request->deadline;
-      
+
     //     //validate the data 
     //     $request->validate([
     //         'title' => ['required', 'max:191'],

@@ -9,20 +9,24 @@
                 <li>
                     <a  href="https://www.facebook.com/edatsu_media" target="_blank">
                         <i class="fa-brands fa-facebook-f text-info"></i>
+                        <span class="sr-only">Facebook</span>
                     </a>
                 </li>
                 <li>
                     <a href="https://www.instagram.com/edatsu_media/" target="_blank">
                         <i class="fa-brands fa-instagram text-info"></i>
+                        <span class="sr-only">Instagram</span>
                     </a>
                 </li>
                 <li><a href="https://www.linkedin.com/company/101360928/" target="_blank">
                     <i class="fa-brands fa-linkedin-in text-info"></i>
+                    <span class="sr-only">Linkedin</span>
                 </a>
                 </li>
                 <li>
                     <a href="https://www.tiktok.com/@edatsu_inc" target="_blank">
                         <i class="fa-brands fa-tiktok text-info"></i>
+                        <span class="sr-only">Tiktok</span>
                     </a>
                 </li>
                 <!-- <li>

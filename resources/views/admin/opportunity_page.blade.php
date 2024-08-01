@@ -8,11 +8,9 @@
         </div>
 
         <div class="col-sm-6">
-
-        
             <!--banner-->
             <div class="px-3 py-3 rounded border text-center bg-white my-3">
-                    <h2 class="fw-bold  custom-title-garamond m-0 p-0 py-3">Post Opportunites</h2>
+                <h2 class="fw-bold  custom-title-garamond m-0 p-0 py-3">Post Opportunites</h2>
             </div>
             <!--banner-->
 
@@ -149,6 +147,20 @@
                                         <input type="hidden" name="continent" id="selectedContinents" value="{{ isset($edits[0]->continent)? $edits[0]->continent : old('continent')}}" readonly>
                                         <div id="outputContinentsList"></div>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                <label>Meta Description</label>
+                                <textarea name="meta_description" class='form-control' id="meta_description" rows="3">{{ isset($edits[0]->meta_description)? $edits[0]->meta_description : old('meta_description')}}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                <label>Meta Keywords</label>
+                                <input type="text" name="meta_keywords" class='form-control' id="meta_keywords" value="{{ isset($edits[0]->meta_keywords)? $edits[0]->meta_keywords : old('meta_keywords')}}"  />
                                 </div>
                             </div>
 

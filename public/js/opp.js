@@ -19,13 +19,15 @@ const Toast = Swal.mixin({
       //fetch api to access data 
       window.addEventListener("load", function(){
           //reset disqus comment 
-          DISQUSWIDGETS.getCount({reset: true});
+         // DISQUSWIDGETS.getCount({reset: true});
       
           document.querySelector('#opportunity-feeds').innerHTML = `<img src="${imageSrc}" class="img-fluid d-block mx-auto my-5" alt="loading..." />`;
+          
           fetch('/search-opportunities')
           .then((r)=> {
               document.querySelector('#opportunity-feeds').innerHTML = '';
               return r.json();
+              // console.log(r);
           })
           .then((d)=>{
               /**display pagination**/
@@ -297,62 +299,120 @@ const Toast = Swal.mixin({
       
       
       
-      /**@argument Bookmark**/    
-      function Bookmark(obj){
-          let id      = obj.dataset.id;
-          let type    = obj.dataset.type;
-          let url     = obj.dataset.url;
-  
-          let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-          fetch('/bookmark-opportunity', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',
-                  'X-CSRF-Token': csrfToken
-              },
-              body: JSON.stringify(
-                      {
-                          id: id,
-                          type: type,
-                          url: url
-                      }
-                  )
-          })
-          .then((r)=> {
-              if (!r.ok) {
-                  throw new Error('Network response was not ok');
-              }
-              return r.json();
-          })
-          .then((d)=>{
-              console.log(d);
-              if(d.status == 'success'){
-                  Toast.fire({
-                  icon: "success",
-                  title: d.message
-                  }); 
-              }else if(d.status == 'warning'){
-                  Toast.fire({
-                  icon: "warning",
-                  title: d.message
-                  }); 
-              }else{
-                  Toast.fire({
-                  icon: "error",
-                  title: d.message
-                  }); 
-              }
-          })
-          .catch((e)=> console.log(e));
-      }
-      
-      
-      function displayResult(d, elem){
+    /**@argument Bookmark**/    
+    function Bookmark(obj){
+        let id      = obj.dataset.id;
+        let type    = obj.dataset.type;
+        let url     = obj.dataset.url;
 
+        let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        fetch('/bookmark-opportunity', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': csrfToken
+            },
+            body: JSON.stringify(
+                    {
+                        id: id,
+                        type: type,
+                        url: url
+                    }
+                )
+        })
+        .then((r)=> {
+            if (!r.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return r.json();
+        })
+        .then((d)=>{
+            console.log(d);
+            if(d.status == 'success'){
+                Toast.fire({
+                icon: "success",
+                title: d.message
+                }); 
+            }else if(d.status == 'warning'){
+                Toast.fire({
+                icon: "warning",
+                title: d.message
+                }); 
+            }else{
+                Toast.fire({
+                icon: "error",
+                title: d.message
+                }); 
+            }
+        })
+        .catch((e)=> console.log(e));
+    }
+
+    //share links 
+    function createSharingLinks(postId, postTitle) {
+        const sluggedTitle = postTitle.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
+        const postUrl = encodeURIComponent(`https://yourdomain.com/read/blog/${postId}/${sluggedTitle}`);
+    
+        const sharingPlatforms = [
+            {
+                name: 'WhatsApp',
+                url: `https://api.whatsapp.com/send?text=${postUrl}`,
+                icon: 'img/gif/icons8-whatsapp.gif'
+            },
+            {
+                name: 'Telegram',
+                url: `https://t.me/share/url?url=${postUrl}`,
+                icon: 'img/gif/icons8-telegram.gif'
+            },
+            {
+                name: 'LinkedIn',
+                url: `https://www.linkedin.com/sharing/share-offsite/?url=${postUrl}`,
+                icon: 'img/gif/icons8-linkedin.gif'
+            },
+            {
+                name: 'Twitter',
+                url: `https://twitter.com/intent/tweet?url=${postUrl}`,
+                icon: 'img/gif/icons8-twitter.gif'
+            }
+        ];
+    
+        const ul = document.createElement('ul');
+    
+        sharingPlatforms.forEach(platform => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.className = 'text-decoration-none text-dark';
+            a.href = platform.url;
+            a.target = '_blank';
+    
+            const img = document.createElement('img');
+            img.width = 30;
+            img.src = platform.icon;
+            img.alt = platform.name.toLowerCase();
+    
+            a.appendChild(img);
+            a.appendChild(document.createTextNode(` ${platform.name}`));
+            li.appendChild(a);
+            ul.appendChild(li);
+        });
+    
+        return ul;
+    }
+
+    function toggleShare(obj){
+      const title = obj.dataset.title;
+      const id = obj.dataset.id;
+      obj.previousElementSibling.classList.toggle('d-none');
+      const sharingLinksContainer = obj.previousElementSibling;
+      sharingLinksContainer.innerHTML = '';
+      const sharingLinks = createSharingLinks(id, title);
+      sharingLinksContainer.appendChild(sharingLinks);
+    }
+      
+    function displayResult(d, elem){ 
           d.data.map((o)=>{
           var default_img = o.cover_img ? o.cover_img : 'default.png'
           document.querySelector(elem)
-
           .innerHTML += `
           <div class='container-fluid border rounded feed-panel text-wrap w-100 position-relative mb-4'>
           <div class='row'>
@@ -366,7 +426,7 @@ const Toast = Swal.mixin({
           <div class='col-sm-9 col-7'>
               <div class='py-3'>
               <a  class="text-decoration-none text-dark fw-bold" href='${pageLink(o.title, o.id)}'>
-                <h3 class="fw-bold inline-block m-0 p-0" style="font-size:1em;">${o.title}</h3>
+                <h2 class="fw-bold inline-block m-0 p-0" style="font-size:1em;">${o.title}</h2>
               </a>
       
               <ul class="list-unstyled m-0 mt-2 p-0 d-block fs-8 text-sm">
@@ -389,23 +449,9 @@ const Toast = Swal.mixin({
 
                   <div class="content-btn-holder px-3">
                     <div class='position-relative'>
-                        <div class="position-absolute share-panel border rounded fs-8 d-none">
-                            <ul>
-                                <li><a class='text-decoration-none text-dark' href="https://api.whatsapp.com/send?text={{route('read.blog', ['id'=> $opp_posts->id, 'title'=> Str::slug($opp_posts->title, '-')])}}"
-                                    target="_blank"><img width="30" src="img/gif/icons8-whatsapp.gif" alt="whatsapp"> WhatsApp</a>
-                                </li>
-                                <li><a class='text-decoration-none text-dark' href="https://t.me/share/url?url={{route('read.blog', ['id'=> $opp_posts->id, 'title'=> Str::slug($opp_posts->title, '-')])}}"
-                                    target="_blank"><img width="30" src="img/gif/icons8-telegram.gif" alt="telegram"> Telegram</a>
-                                </li>            
-                                <li><a class='text-decoration-none text-dark' href="https://www.linkedin.com/sharing/share-offsite/?url={{route('read.blog', ['id'=> $opp_posts->id, 'title'=> Str::slug($opp_posts->title, '-')])}}"
-                                    target="_blank"><img width="30" src="img/gif/icons8-linkedin.gif" alt="linkedin"> LinkedIn</a>
-                                </li>      
-                                <li><a class='text-decoration-none text-dark' href="https://twitter.com/intent/tweet?url={{route('read.blog', ['id'=> $opp_posts->id, 'title'=> Str::slug($opp_posts->title, '-')])}}"
-                                    target="_blank"><img width="30" src="img/gif/icons8-twitter.gif" alt="twitter"> Twitter</a>
-                                </li>
-                            </ul>                            
+                        <div id="sharing-links-container" class="position-absolute share-panel border rounded fs-8 d-none">              
                         </div>
-                        <button class='btn' onClick="console.log(this.previousElementSibling.classList.toggle('d-none'))">
+                        <button class='btn' data-title='${o.title}' data-id='${o.id}' onClick="toggleShare(this)">
                             <span class="material-symbols-outlined align-middle">
                             share
                             </span>
@@ -432,29 +478,13 @@ const Toast = Swal.mixin({
           </div>
           </div>
           </div>`;
-              })
-      }
 
+          })
 
-
-      // <ul class="block p-0 mt-3 label-list mb-0">
-      // ${
-      //     generateListItems(o.continent)
-      // }
-      // ${
-      //     generateListItems(o.region)
-      // }
-      // ${
-      //     generateListItems(o.country)
-      // }
-      // ${
-      //     generateListItems(o.category)
-      // }
-      // </ul>
+    }
       
-      
-      /**display pagination**/
-      function displayPagination(d, elem){
+    /**display pagination**/
+    function displayPagination(d, elem){
       d.links.map((p)=>{
           // let active = "#FCCD29";
           let active_bg =  (p.active)? "#FB5607" : '';
@@ -467,49 +497,47 @@ const Toast = Swal.mixin({
               onclick='callPagination(this.id);'>${p.label}</button> `;
               }  
       })
-      }
+    }
       
-      
-      /***call pagination**/
-      function callPagination(url){
-          document.querySelector('#opportunity-feeds').innerHTML = "<i class='d-block mb-3'>Oops! No content found</i>";
-          if(url == 'null'){
-              return false;
-          }else{
-              document.querySelector('#opportunity-feeds').innerHTML =   `<img src="${imageSrc}" class="img-fluid d-block mx-auto my-5" alt="loading..." />`;
-              fetch(url)
-              .then((r)=> {
-                  document.querySelector('#opportunity-feeds').innerHTML = '';
-                  document.querySelector('#pagination').innerHTML = '';
-                  return  r.json();
-              })
-              .then((d)=>{
-                  /**display pagination**/
-                  console.log(d);
-                  displayPagination(d, "#pagination");
-                  /**display profile**/
-                  displayResult(d,"#opportunity-feeds");   
-              })
-              .catch((e)=> console.log(e));
-          }
-      }
-      
-      
-      //toggle search filter 
-      function toggleContent() {
-        console.log('click');
-        var element = document.getElementById("filter-toggle");
-        var toggle_btn = document.getElementById("filter-panel");
-        toggle_btn.classList.toggle('d-none');
-        console.log(element.innerHTML);
-        if (element.innerHTML.trim() === "toggle_off") {
-          // console.log('toggle-on');
-          element.innerHTML = "toggle_on";
-        } else {
-          // console.log('toggle-off')
-          element.innerHTML = "toggle_off";
+    /***call pagination**/
+    function callPagination(url){
+        document.querySelector('#opportunity-feeds').innerHTML = "<i class='d-block mb-3'>Oops! No content found</i>";
+        if(url == 'null'){
+            return false;
+        }else{
+            document.querySelector('#opportunity-feeds').innerHTML =   `<img src="${imageSrc}" class="img-fluid d-block mx-auto my-5" alt="loading..." />`;
+            fetch(url)
+            .then((r)=> {
+                document.querySelector('#opportunity-feeds').innerHTML = '';
+                document.querySelector('#pagination').innerHTML = '';
+                return  r.json();
+            })
+            .then((d)=>{
+                /**display pagination**/
+                console.log(d);
+                displayPagination(d, "#pagination");
+                /**display profile**/
+                displayResult(d,"#opportunity-feeds");   
+            })
+            .catch((e)=> console.log(e));
         }
+    }
+
+    //toggle search filter 
+    function toggleContent() {
+      console.log('click');
+      var element = document.getElementById("filter-toggle");
+      var toggle_btn = document.getElementById("filter-panel");
+      toggle_btn.classList.toggle('d-none');
+      console.log(element.innerHTML);
+      if (element.innerHTML.trim() === "toggle_off") {
+        // console.log('toggle-on');
+        element.innerHTML = "toggle_on";
+      } else {
+        // console.log('toggle-off')
+        element.innerHTML = "toggle_off";
       }
+    }
       
       
       /**select multiple options tags**/
