@@ -62,8 +62,8 @@ class GenerateSitemap extends Command
                 ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
                 ->setPriority(1.0));
         }
-        
-        $sitemap->writeToFile(public_path('sitemap.xml'));
+
+        $sitemap->writeToFile(public_path('./sitemap.xml'));
 
         $this->info('Sitemap has been generated!');
     }
