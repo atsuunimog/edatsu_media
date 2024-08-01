@@ -55,7 +55,7 @@ class GenerateSitemap extends Command
         $currentdate = Carbon::now();
 
         // Add dynamic pages (e.g., blog posts)
-        $posts = Oppty::where('deadline', '>=', $currentdate)->get();
+        $posts = Oppty::where('deadline', '>=', $currentdate)->where('slug', '!=', '')->get();
         foreach ($posts as $post) {
             $sitemap->add(Url::create("/opp/{$post->id}/{$post->slug}")
                 ->setLastModificationDate($post->updated_at)
