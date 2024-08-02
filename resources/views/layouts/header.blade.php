@@ -29,11 +29,12 @@
               Opportunities
             </a>
           </li>
-          <li class="nav-item">
+          
+          <!-- <li class="nav-item">
             <a href="{{ url('events') }}" class="nav-link  text-decoration-none me-3 text-light {{ getHighlightClass('/events', 'custom-link-highlight', 'text-secondary') }}">
             Discover Events
             </a>
-          </li>
+          </li> -->
 
           {{-- <li class="nav-item">
             <a href="{{ url('subscribe') }}" class="nav-link text-decoration-none me-3 text-light {{ getHighlightClass('/subscribe', 'custom-link-highlight', 'text-secondary') }}">

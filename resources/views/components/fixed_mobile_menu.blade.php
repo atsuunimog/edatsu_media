@@ -23,7 +23,7 @@
                     <span class="d-block fs-8 text-uppercase fw-bold mx-auto">News</span>
                 </a>
             </div> -->
-            <div class="col-4">
+            <div class="col-6">
                 <a href="{{ url('/') }}" class="btn w-100 px-0 d-block text-center text-decoration-none {{ getHighlightClass('/', 'text-light-orange fw-bold', 'text-light') }}">
                     <span class="material-symbols-outlined align-middle mb-1 d-block" style='font-size:1.5em;'>
                     wb_sunny
@@ -31,15 +31,15 @@
                     <span class="d-block fs-8 text-uppercase fw-bold mx-auto">Oppty</span>
                 </a>
             </div>
-            <div class="col-4">
+            <!-- <div class="col-4">
                 <a href="{{ url('events') }}" class="btn w-100 px-0 d-block text-center text-decoration-none {{ getHighlightClass('/events', 'text-light-orange fw-bold', 'text-light') }}">
                     <span class="material-symbols-outlined align-middle mb-1 d-block" style='font-size:1.5em;'>
                     event_available
                     </span>
                     <span class="d-block fs-8 text-uppercase fw-bold mx-auto">Events</span>
                 </a>
-            </div>
-            <div class="col-4">
+            </div> -->
+            <div class="col-6">
                 <!--alert indicator-->
                 <div class='position-relative'>
                     @auth
@@ -54,7 +54,7 @@
                         <span class="material-symbols-outlined align-middle mb-1 d-block" style='font-size:1.5em;'>
                         person
                         </span>
-                    <span class="d-block fs-8 text-uppercase fw-bold mx-auto">{{Auth::check() ? "online" : "offline"}}</span>
+                    <span class="d-block fs-8 text-uppercase fw-bold mx-auto">{{Auth::check() ? "online" : "login"}}</span>
                     </a>
                 </div>
             </div>
