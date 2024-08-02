@@ -57,7 +57,7 @@ class GenerateSitemap extends Command
         // Add dynamic pages (e.g., blog posts)
         $posts = Oppty::where('deadline', '>=', $currentdate)->where('slug', '!=', '')->get();
         foreach ($posts as $post) {
-            $sitemap->add(Url::create("/opp/{$post->id}/{$post->slug}")
+            $sitemap->add(Url::create("/op/{$post->id}/{$post->slug}")
                 ->setLastModificationDate($post->updated_at)
                 ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
                 ->setPriority(1.0));

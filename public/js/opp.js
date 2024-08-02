@@ -198,10 +198,10 @@ const Toast = Swal.mixin({
           */
       
       function submitSearchQuery(){
-         document.getElementById("pagination").innerHTML = "";
-         event.preventDefault();
-         let search_form = document.getElementById("search_keyword");
-         let form_data = new FormData(search_form);
+        document.getElementById("pagination").innerHTML = "";
+        event.preventDefault();
+        let search_form = document.getElementById("search_keyword");
+        let form_data = new FormData(search_form);
       
           // Create a URLSearchParams object and append the FormData entries
         const urlParams = new URLSearchParams();
