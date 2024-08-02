@@ -351,7 +351,7 @@ const Toast = Swal.mixin({
     //share links 
     function createSharingLinks(postId, postTitle) {
         const sluggedTitle = postTitle.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
-        const postUrl = encodeURIComponent(`https://yourdomain.com/read/blog/${postId}/${sluggedTitle}`);
+        const postUrl = encodeURIComponent(`https://media.edatsu.com/op/${postId}/${sluggedTitle}`);
     
         const sharingPlatforms = [
             {
