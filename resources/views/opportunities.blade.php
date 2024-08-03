@@ -1,5 +1,5 @@
 <x-guest-layout >
-    <div class="container">
+    <div class="container-fluid container-lg  container-sm">
     <!--body-->
     <div class="row">
         <div class="col-sm-8 col-12 mt-3">
@@ -137,9 +137,7 @@
                 </div>
             </form>
             <!--news filter-->
-
-            <h1 class="m-0 fw-bold my-4 text-dark" id="main">Opportunities</h1>
-
+            
             <!--sign up banner-->
             <a href="subscriber-register">
                 <div class="my-3">

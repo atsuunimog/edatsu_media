@@ -8,16 +8,28 @@ mailing list
 create spotify channel & start.
 clean code base/create ci/cd pipline / create container for easy sharing
 
+
 FOCUS 
     - Business technology News
     - Primary Market Nigeria (Africa General)
     - Automation
     - Op eds
 
-**add country flags to quickly identify post
+** add country flags to quickly identify post
 ** add apply directly link
 
 MONETIZATION
+Equityzen model
+Users can sell their business
+Create a how to page for businesses to use or integrate solutions to their platoform.
+    -use how to for youtube videos
+    -For every business solution you write aboout, partner with a vendor to solve this problems eg. IP protection or business registeration
+    also add a resource hub for tools for businesses 
+
+C-Space concept: Let companies pay for feedback from users to improve their products and sevices.
+Montors programme (consultation for pay)
+free business directory. Collect all business information, and use it to market to business sectors.
+e-commerce for enterpise solutions.
 Auctioned Ads 
 generate simple events page (template)
 subscription model - Bloggers
@@ -27,11 +39,16 @@ custom theme => sell users paid themes for their pages
 social media posting automation
 publication tools - AI Scrapping
 paid events notifications
-event ticketing
+event ticketing/Networking
 user analytics
 open source => Plugin integration (allow developers to sell tools to help 
 publishers);
 Integration with other publication tools (inter operability);
+
+ALT PRODUCTS
+1. E-commerce
+2. Reseller app
+
 
 
 CI/CD
@@ -190,4 +207,43 @@ Regularly update the app with new features, improvements, and bug fixes.
 Gather user feedback and analyze app usage.
 Plan and implement updates and enhancements based on user needs.
 Consider scaling the app and optimizing its performance as user traffic grows.
+
+
+
+
+-Do server side rendering for content feeds. when there is fresh 
+content, the page should autoload. 
+-add smooth scroll effect for mobile. 
+-improve pagination look and pagination behavior on mobile.
+-use skeleton loaders. 
+-make search filters fixed at the top of the page. 
+-improve the loading of contents
+-hash images to make each upload unique
+-compress image for site speed. 
+-add has for css and js files after each update
+-smooth scroll arrow should slide in from left on scroll.
+-add terms for publishing Opportunites
+-all published post should be drafted before preview.
+
+
+about
+terms
+privacy
+help
+advertise
+point email 
+add tawkto
+
+todo
+loaders 
+pagination
+make scroll to top side in after length
+
+
+better CI/CD pipeline Laravel
+
+404 page not found 
+500 server error pages 
+
+add minified css and js
 
