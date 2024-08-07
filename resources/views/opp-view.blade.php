@@ -24,7 +24,8 @@
                 <h1 id="main" class='fw-bold m-0 mb-3'>{{$opp_posts->title}}</h1>
                 <p class="m-0 mb-2 d-block text-sm text-dark fs-9">Posted on: {{ date('D, M Y', strtotime($opp_posts->created_at))}}</p>
                 @if($opp_posts->cover_img != '')
-                <img src="{{asset('storage/uploads/channels/'.$opp_posts->cover_img)}}" class="img-fluid" alt="image_home">
+                <img src="{{asset('storage/uploads/channels/'.$opp_posts->cover_img)}}" 
+                width="800px" height="800px" class="img-fluid" alt="image_home">
                 @endif
                 <div class="row my-3">
                     <div class="col-sm-4">
@@ -125,66 +126,33 @@
         </div>
 
         <div class="col-sm-4">
-        <!--subscribe-->
-        <div id="mc_embed_shell">
-        <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
-        <div id="mc_embed_signup" class="py-3 border rounded mb-3 bg-white">
-            <form action="https://edatsu.us18.list-manage.com/subscribe/post?u=ce5edb3afeca14d1d47a046bf&amp;id=873d67a43e&amp;f_id=007d96e6f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-                <div id="mc_embed_signup_scroll"><h2>Subscribe</h2>
-                    <p class="fs-9">
-                    Receive weekly emails about global tech and business opportunities, directly in your inbox
-                    </p>
-                    <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
-                    <div class="fs-9"><label for="mce-FNAME">First Name <span class="asterisk">*</span></label>
-                        <input type="text" name="FNAME" class="required text form-control w-100" id="mce-FNAME" required="" value="">
-                    </div>
-                    <div class="fs-9"><label for="mce-LNAME">Last Name <span class="asterisk">*</span></label>
-                        <input type="text" name="LNAME" class="required text form-control" id="mce-LNAME" required="" value="">
-                    </div>
-                    <div class="fs-9"><label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label>
-                        <input type="email" name="EMAIL" class="required email form-control" id="mce-EMAIL" required="" value="">
-                    </div>
-                    <div hidden=""><input type="hidden" name="tags" value="2120500"></div>
-                    <div id="mce-responses" class="clear foot">
-                        <div class="response" id="mce-error-response" style="display: none;"></div>
-                        <div class="response" id="mce-success-response" style="display: none;"></div>
-                    </div>
-                    <div aria-hidden="true" >
-                        {{-- /* real people should not fill this in and expect good things - do not remove this or risk form bot signups */ --}}
-                        <input type="hidden" name="b_ce5edb3afeca14d1d47a046bf_873d67a43e" tabindex="-1" value="">
-                    </div>
-                    <div class="optionalParent">
-                        <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="fw-bold btn border-0 py-3 btn-dark w-100 d-block mx-auto" value="Subscribe">
-                    </div>
-                </div>
-            </form>
-        </div>
-        <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script><script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[0]='EMAIL';ftypes[0]='email';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);</script></div>
-        <!--subscribe-->
+        
+        @include('components/subscription_box')
 
-        <!-- <div class="px-3 py-3 border rounded mb-3 bg-white">
-            <p class="fw-bold mb-0">Hey there!</p>
-            <p class="fs-9">
-                If you've found value in the insightful articles, useful resources, and uplifting events shared on Edatsu Media, consider showing your support! Your contribution helps fuel the dedication and passion of our talented authors, enabling us to continue providing invaluable support to businesses like yours.
-            </p>
-            <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="atsudominic" data-color="#FFDD00" data-emoji="☕"  data-font="Cookie" data-text="Support the Author" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
-        </div> -->
+ <!--custom ads-->
+ <a href="https://cart.hostinger.com/pay/41d249ec-3cf3-4b85-b256-73c594037852?_ga=GA1.3.942352702.1711283207" target="_blank" class="d-block my-3">
+    <img src="{{asset('img/defaults/hosting_banner_cloud.png')}}" class="img-fluid border" width="800px" height="800px" />
+    </a>
+    <!--custom ads-->
 
-        <div class="mb-3">
-            <!--google ads-->            
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7365396698208751"
-            crossorigin="anonymous"></script>
-            <ins class="adsbygoogle"
-            style="display:block"
-            data-ad-client="ca-pub-7365396698208751"
-            data-ad-slot="1501242178"
-            data-ad-format="auto"
-            data-full-width-responsive="true"></ins>
-            <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            <!--google ads-->
-        </div>
+    <!--aside-->
+    <div class="mb-3" style="width:100%; height:800px">
+        <!--google ads-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7365396698208751"
+        crossorigin="anonymous"></script>
+    <!-- Square Ads -->
+    <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-7365396698208751"
+        data-ad-slot="1848837203"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+        <!--google ads-->
+    </div>
+    <!--aside-->
     </div>
 </div>
 </div>

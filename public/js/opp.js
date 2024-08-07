@@ -419,7 +419,7 @@ const Toast = Swal.mixin({
 
           <div class='col-sm-3 col-5'>
             <div class='py-3'>
-            <img src='storage/uploads/channels/${default_img}' alt="${default_img}" class='img-fluid rounded shadow-sm'/>
+            <img src='storage/uploads/channels/${default_img}' width='800px' height='800px' alt="${default_img}" class='img-fluid rounded shadow-sm'/>
             </div>
           </div>
 

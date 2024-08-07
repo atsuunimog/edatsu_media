@@ -7,17 +7,17 @@
             <p class="mb-0 p-0 fs-9">
             Receive weekly emails about global tech and business opportunities, directly in your inbox
             </p>
-            <div class="mc-field-group">
+            <div class="">
             <label for="mce-FNAME">First Name <span class="asterisk">*</span></label>
-                <input type="text" name="FNAME" class=" text form-control" id="mce-FNAME" value="">
+                <input type="text" name="FNAME" class=" text form-control w-100" id="mce-FNAME" value="">
             </div>
             
-            <div class="mc-field-group">
+            <div class="">
             <label for="mce-LNAME">Last Name <span class="asterisk">*</span></label>
                 <input type="text" name="LNAME" class=" text form-control" id="mce-LNAME" value="">
             </div>
 
-            <div class="mc-field-group"><label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label>
+            <div class=""><label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label>
             <input type="email" name="EMAIL" class="required email form-control" id="mce-EMAIL" value="" required="">
             
         

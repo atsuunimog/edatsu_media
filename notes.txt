@@ -224,6 +224,8 @@ content, the page should autoload.
 -smooth scroll arrow should slide in from left on scroll.
 -add terms for publishing Opportunites
 -all published post should be drafted before preview.
+-fix views count
+-add image cropper for added tools
 
 
 about

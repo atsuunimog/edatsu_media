@@ -176,10 +176,14 @@
 
     @include('components/subscription_box')
 
-    @include('components/submit_opp_form')
+    <!--custom ads-->
+    <a href="https://cart.hostinger.com/pay/852ad684-6352-4a43-b1ae-42747759f3cb?_ga=GA1.3.942352702.1711283207" target="_blank" class="d-block my-3">
+    <img src="{{asset('img/defaults/hosting_banner_web.png')}}" class="img-fluid border" width="800px" height="800px" />
+    </a>
+    <!--custom ads-->
 
     <!--aside-->
-    <div class="mb-3">
+    <div class="mb-3" style="width:100%; height:800px">
         <!--google ads-->
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7365396698208751"
         crossorigin="anonymous"></script>

@@ -19,8 +19,11 @@
         <h4 class="m-0 mb-2 p-0 fw-bold text-secondary">Quick Links</h4>
         <div class='fs-9'>
         <ul class='list-unstyled'>
+            <!-- <li><a class='text-light text-decoration-none mb-1 d-inline-block' href="{{url('platforms')}}">Platforms</a></li> -->
             <li><a class='text-light text-decoration-none mb-1 d-inline-block' href="{{url('advertise')}}">Advertise</a></li>
-            <li><a class='text-light text-decoration-none mb-1 d-inline-block' href="{{url('feedback')}}">Feedback</a></li>
+            <!-- <li><a class='text-light text-decoration-none mb-1 d-inline-block' href="{{url('feedback')}}">Feedback</a></li> -->
+            <li><a class='text-light text-decoration-none mb-1 d-inline-block' href="{{url('subscribe')}}">Subscribe</a></li>
+
         </ul>
         </div>
     </div>
@@ -31,7 +34,7 @@
         <ul class='list-unstyled'>
             <li><a class='text-light text-decoration-none mb-1 d-inline-block' href="{{url('about-us')}}">About</a></li>
             <li><a class='text-light text-decoration-none mb-1 d-inline-block' href="{{url('terms')}}">Terms Of Use</a></li>
-            <li><a class='text-light text-decoration-none mb-1 d-inline-block' href="{{url('sitemap')}}">Sitemap</a></li>
+            <li><a class='text-light text-decoration-none mb-1 d-inline-block' href="{{url('sitemap.xml')}}">Sitemap</a></li>
             <li><a class='text-light text-decoration-none mb-1 d-inline-block' href="{{url('privacy-policy')}}">Privacy Policy</a></li>
             <!-- <li><a class='text-light text-decoration-none mb-1 d-inline-block' href="{{url('credits')}}">Credits</a></li> -->
             <!-- <li><a class='text-light text-decoration-none mb-1 d-inline-block' href="{{url('change-log')}}">Change log</a> <span class="badge bg-danger fw-bold py-1">Coming Soon</span></li> -->

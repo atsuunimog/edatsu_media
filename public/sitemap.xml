@@ -2,32 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
     <url>
         <loc>http://localhost/about</loc>
-        <lastmod>2024-08-01T20:42:14+00:00</lastmod>
+        <lastmod>2024-08-06T22:29:51+00:00</lastmod>
 
             </url>
     <url>
         <loc>http://localhost/terms</loc>
-        <lastmod>2024-08-01T20:42:14+00:00</lastmod>
+        <lastmod>2024-08-06T22:29:51+00:00</lastmod>
 
             </url>
     <url>
         <loc>http://localhost/advertise</loc>
-        <lastmod>2024-08-01T20:42:14+00:00</lastmod>
+        <lastmod>2024-08-06T22:29:51+00:00</lastmod>
 
             </url>
     <url>
         <loc>http://localhost/privacy</loc>
-        <lastmod>2024-08-01T20:42:14+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://localhost/opp/8</loc>
-        <lastmod>2023-04-29T03:49:56+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://localhost/opp/221</loc>
-        <lastmod>2024-08-01T18:53:01+00:00</lastmod>
+        <lastmod>2024-08-06T22:29:51+00:00</lastmod>
 
             </url>
 </urlset>

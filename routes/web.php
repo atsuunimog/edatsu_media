@@ -26,38 +26,35 @@ use App\Http\Controllers\FeedsChannel;
 |
 */
 
-// Route::get('/', [App::class, 'displayOpp']);
+// Route::get('/create-storage-link', function () {
+//     try {
+//         Artisan::call('storage:link');
+//         echo "Storage link created successfully!";
+//     } catch (\Exception $e) {
+//         echo "Error creating storage link: " . $e->getMessage();
+//     }
+// });
 
-Route::get('/create-storage-link', function () {
-    try {
-        Artisan::call('storage:link');
-        echo "Storage link created successfully!";
-    } catch (\Exception $e) {
-        echo "Error creating storage link: " . $e->getMessage();
-    }
-});
-
-Route::get('/', function(){
-return view('opportunities');
-})->name('oppty');
-
+Route::get('/', function(){return view('opportunities');})->name('oppty');
+Route::get('/subscribe', function(){return view('subscribe');})->name("subscribe");
+Route::get('/feedback',  function(){return view('feedback');})->name('feedback');
+Route::get('/opportunities', function(){return view('opportunities');})->name('oppty');
+Route::get('/advertise', function(){return view('advertise');})->name('advertise');
+Route::get('/platforms', function(){return view('platforms');})->name('platforms');
+Route::get('/about-us', function(){return view('about');})->name('about');
+Route::get('/terms', function(){return view('terms');})->name('terms');
+Route::get('/privacy-policy', function(){return view('privacy');})->name('privacy');
+Route::get('/help', function(){return view('help');})->name('help');
 
 //clean Caches
 Route::get('/clean', function() {
-    Artisan::call('cache:clear');
-    Artisan::call('view:clear');
-    Artisan::call('route:clear');
-    Artisan::call('config:cache');
-    Artisan::call('sitemap:generate');
-    dd('CACHE-CLEARED, VIEW-CLEARED, ROUTE-CLEARED & CONFIG-CACHED WAS SUCCESSFUL!');
+Artisan::call('cache:clear');
+Artisan::call('view:clear');
+Artisan::call('route:clear');
+Artisan::call('config:cache');
+Artisan::call('sitemap:generate');
+dd('CACHE-CLEARED, VIEW-CLEARED, ROUTE-CLEARED & CONFIG-CACHED & GENERATE SITEMAP WAS SUCCESSFUL!');
 });
-
-//generate sitemap
-
-
-Route::get('/opportunities', function(){
-return view('opportunities');
-})->name('oppty');
 
 Route::get('/opp-feeds', [App::class, 'getOppFeed']);
 Route::get('/event-feeds', [App::class, 'getEventFeed']);
@@ -69,8 +66,6 @@ Route::get('ev/{id}/{title}', [App::class, 'readEvent'])->name('read.ev');
 Route::get('/search-opportunities', [App::class, 'searchOpportunities']);
 Route::get('/search-events', [App::class, 'searchEvents']);
 
-Route::get('/subscribe', function(){return view('subscribe');})->name("subscribe");
-Route::get('/feedback',  function(){return view('feedback');})->name('feedback');
 Route::post('/bookmark-feed', [SubscriberController::class, 'bookmarkFeed']);
 Route::post('/bookmark-opportunity', [Opportunity::class, 'bookmarkOpportunity']);
 Route::post('/bookmark-event', [Event::class, 'bookmarkEvent']);
@@ -108,7 +103,6 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::get('/admin-edit-opportunity/{id}', [Opportunity::class, "edit"])->name('admin.edit.opp');
     Route::post('/admin-update-opportunity/{id}', [Opportunity::class, "store"])->name('admin.update.opp');
     Route::post('/admin-store-opportunity', [Opportunity::class, "store"])->name('admin.store');
-
 
     Route::get('/admin-delete-opportunity/{id}', [Opportunity::class, "delete"])->name('admin.delete.opp');
 
