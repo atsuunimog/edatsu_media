@@ -139,7 +139,7 @@
             <!--news filter-->
             
             <!--sign up banner-->
-            <a href="subscriber-register">
+            <a id="main" href="subscriber-register" >
                 <div class="my-3">
                 <img src="img/ads_img/sign_up_banner.jpg" alt="signup-banner" class="img-fluid">
                 </div>
