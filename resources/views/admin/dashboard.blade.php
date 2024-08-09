@@ -9,8 +9,8 @@
         <div class="col-sm-9">
 
             <!--banner-->
-            <div class="px-3 py-3 rounded border text-center bg-white my-3">
-                <h2 class="fw-bold  custom-title-garamond m-0 p-0 py-3">Admin Dashboard</h2>
+            <div class="px-3 py-2 rounded border text-center bg-white my-3">
+                <h2 class="fw-bold m-0 p-0 py-3">Admin Dashboard</h2>
             </div>
             <!--banner-->
 
@@ -40,12 +40,12 @@
                         <span class='d-block fs-9 text-secondary'>Opportunites</span>
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <!-- <div class="col-sm-3">
                     <div class="px-3 py-3 borer rounded text-center border my-3 bg-white">
                         <h3 class='fw-bold m-0'>{{$total_events}}</h3>
                         <span class='d-block fs-9 text-secondary'>Events</span>
                     </div>
-                </div>
+                </div> -->
             </div>
             <!--dashboard panel-->
         </div>

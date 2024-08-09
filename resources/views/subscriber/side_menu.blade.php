@@ -11,7 +11,7 @@
             </li>
         </a>
 
-        <a href="{{route("subscriber.profile")}}" class="text-decoration-none">
+        <!-- <a href="{{route("subscriber.profile")}}" class="text-decoration-none">
             <li class="d-inline-block d-flex justify-content-between list-group-item">
                 <div>
                     <span class="material-symbols-outlined align-middle">
@@ -20,7 +20,7 @@
                 </div>
                 <div>Profile</div>
             </li>
-        </a> 
+        </a>  -->
 
         <!-- <a href="{{route("subscriber.dashboard")}}" class="text-decoration-none">
             <li class="d-inline-block d-flex justify-content-between list-group-item">

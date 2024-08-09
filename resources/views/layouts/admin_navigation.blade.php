@@ -15,21 +15,21 @@
             {{-- <button class="btn btn-outline-light" type="submit">Search</button> --}}
           </form>
         <ul class="navbar-nav mb-2 mb-lg-0 ">
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="{{ url('news-feed') }}" class="nav-link text-decoration-none me-3  text-light {{ getHighlightClass('/news-feed', 'custom-link-highlight', 'text-secondary') }}">
               News Feed
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a href="{{ url('/opportunities') }}" class="nav-link  text-decoration-none  me-3 text-light {{ getHighlightClass('/opportunities', 'custom-link-highlight', 'text-secondary') }}">
               Opportunities
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="{{ url('events') }}" class="nav-link  text-decoration-none me-3 text-light {{ getHighlightClass('/events', 'custom-link-highlight', 'text-secondary') }}">
             Discover Events
             </a>
-          </li>
+          </li> -->
 
           {{-- <li class="nav-item">
             <a href="{{ url('subscribe') }}" class="nav-link text-decoration-none me-3 text-light {{ getHighlightClass('/subscribe', 'custom-link-highlight', 'text-secondary') }}">

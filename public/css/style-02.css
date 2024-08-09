@@ -128,6 +128,19 @@ padding-right: 8px; /* Adjust as needed */
     border:0px; 
 }
 
+.admin-side-menu li > a {text-decoration: none; color:#252422;}
+.custom-collapse-menu {
+    display: none;
+}
+
+.custom-collapse-menu.show {
+    display: block;
+}
+
+.custom-collapse-toggle.active i {
+    transform: rotate(180deg);
+}
+
 /* .bg-green{
     background-color:#FB5607;
     

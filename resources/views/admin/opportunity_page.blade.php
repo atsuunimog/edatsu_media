@@ -7,10 +7,10 @@
              <!--menu list-->
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-sm-9">
             <!--banner-->
-            <div class="px-3 py-3 rounded border text-center bg-white my-3">
-                <h2 class="fw-bold  custom-title-garamond m-0 p-0 py-3">Post Opportunites</h2>
+            <div class="px-3 py-2 rounded border text-center bg-white my-3">
+                <h2 class="fw-bold m-0 p-0 py-3">Opportunities</h2>
             </div>
             <!--banner-->
 
@@ -168,32 +168,6 @@
                         </form>
                     </div>
                     <!---post form-->
-                </div>
-
-
-                <div class="col-sm-3">
-                <!--see all --post-->
-                <div class=" bg-white px-3 py-3 my-3 border rounded">
-                    <a href="" class="text-dark">Manage Posts</a>
-                </div>
-                <!--see all --post-->
-
-                <!--post content-->
-                <div class="row">
-                @foreach($opp_posts as $posts)
-                    <div class='col-sm-12 mb-3'>
-                    <div class='px-3 pt-3 border rounded mb-3 bg-white'>
-                        <p class='fw-bold m-0 mb-3 p-0 fs-8'>{{$posts->title}}</p>
-
-                        <ul class='list-inline fs-8'>
-                            <li class='list-inline-item'><a class='btn btn-dark fs-9  px-3 text-decoration-none' href='{{route('admin.edit.opp', ['id'=> $posts->id])}}'>Edit</a></li>
-                            <li class='list-inline-item'><a class='btn btn-dark fs-9  px-3 text-decoration-none' href='{{route('admin.delete.opp', ['id'=> $posts->id])}}'>Delete</a></li>
-                            <li class='list-inline-item'>views {{$posts->views}}</li>
-                        </ul>
-                    </div>
-                @endforeach
-                </div>
-                    <!--side menu-->
                 </div>
             <!--content-->
     </div>

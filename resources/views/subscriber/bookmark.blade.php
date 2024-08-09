@@ -15,7 +15,7 @@
                 
                 <!--section-->
                 <div class="row">
-                 <div class="col-sm-8 order-2 order-sm-1">
+                <div class="col-sm-8 order-2 order-sm-1">
                 <!--page content-->
                 <div id="content-data">
                 </div>
@@ -68,7 +68,7 @@
                                     <div>Opportunites</div>
                                 </button>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <button  onclick="toggleContentView(this)"
                                 data-title="Events"
                                 data-url = "/fetch-event-bookmark";
@@ -80,7 +80,7 @@
                                     </div>
                                     <div>Events</div>
                                 </button>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </div>

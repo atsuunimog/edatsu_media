@@ -120,6 +120,21 @@
             </div>
             <!--caveat-->
 
+            <!--ads-->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7365396698208751"
+     crossorigin="anonymous"></script>
+<!-- Edatsu Media Horizontal Bar -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7365396698208751"
+     data-ad-slot="5575131787"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+            <!--ads-->
+
             <!--slider for related content-->
 
             <!--slider for related content-->
