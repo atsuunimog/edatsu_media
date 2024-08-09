@@ -117,23 +117,25 @@
                     Edatsu Media is focused on aggregating helpful business information and hereby declares that it is not directly affiliated or associated with any events, awards, sponsorships, or competitions unless explicitly stated otherwise. While we strive to provide accurate and up-to-date information, any references or mentions of such events, awards, sponsorships, or competitions within our content are purely for informational purposes and should not be construed as endorsement or sponsorship by Edatsu Media. 
                     </p>
                 </div>
+
+                <!--ads-->
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7365396698208751"
+                crossorigin="anonymous"></script>
+                <!-- Edatsu Media Horizontal Bar -->
+                <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-7365396698208751"
+                data-ad-slot="5575131787"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+                <!--ads-->
             </div>
             <!--caveat-->
 
-            <!--ads-->
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7365396698208751"
-     crossorigin="anonymous"></script>
-<!-- Edatsu Media Horizontal Bar -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-7365396698208751"
-     data-ad-slot="5575131787"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-            <!--ads-->
+
 
             <!--slider for related content-->
 
