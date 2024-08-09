@@ -165,7 +165,7 @@
                                 <div class="col-6">
                                 <label>Post Type</label>
                                     <select class="form-select" name="post_type">
-                                        <option>Select Post Type</option>
+                                        <option value="">Select Post Type</option>
                                         <option value="article">Article</option>
                                         <option value="sponsored">Sponsored</option>
                                     </select>
