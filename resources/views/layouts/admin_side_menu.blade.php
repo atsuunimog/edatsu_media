@@ -6,12 +6,11 @@
         <a href="#" class="custom-collapse-toggle text-decoration-none">Posts <i class="fas fa-caret-right"></i></a>
         <ul class="custom-collapse-menu fs-9">
             <li class=''><a href="{{route('admin.opp')}}" class='text-decoration-none'>Opportunites</a></li>
-            <li class=''><a href="{{route('admin.opp')}}" class='text-decoration-none'>All Posts</a></li>
+            <li class=''><a href="{{route('admin.all_opp_post')}}" class='text-decoration-none'>All Posts</a></li>
             <!-- <li class=''><a href="{{route('admin.ev')}}" class='text-decoration-none'>Events</a></li> -->
-            <li class=''><a href="{{route('admin.ev')}}" class='text-decoration-none'>Post Types</a></li>
-            <li class=''><a href="{{route('admin.ev')}}" class='text-decoration-none'>Categories</a></li>
+            <!-- <li class=''><a href="{{route('admin.ev')}}" class='text-decoration-none'>Categories</a></li>
             <li class=''><a href="{{route('admin.ev')}}" class='text-decoration-none'>Brand Labels</a></li>
-            <li class=''><a href="{{route('admin.ev')}}" class='text-decoration-none'>Tags</a></li>
+            <li class=''><a href="{{route('admin.ev')}}" class='text-decoration-none'>Tags</a></li> -->
         </ul>
     </li>
     <!-- <li class='list-group-item'><a href="{{route('admin.directory')}}" class='text-decoration-none'>Business Directory</a></li> -->

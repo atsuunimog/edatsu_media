@@ -409,9 +409,25 @@ const Toast = Swal.mixin({
       sharingLinksContainer.appendChild(sharingLinks);
     }
       
+
+/**bookmark button */
+
+{/* <button class="btn" 
+data-id="${o.id}" 
+data-title="${o.title}" 
+data-type="oppo-type"
+data-url="${pageLink(o.title, o.id)}" onClick="Bookmark(this)">
+<div>
+    <span class='material-symbols-outlined align-middle'>
+    bookmark
+    </span>
+</div>
+</button> */}
+
     function displayResult(d, elem){ 
           d.data.map((o)=>{
           var default_img = o.cover_img ? o.cover_img : 'default.png'
+          var post_type = o.post_type?  `<span class='badge fw-normal badge text-bg-danger rounded'>${o.post_type.charAt(0).toUpperCase() + o.post_type.slice(1)}</span>` : '';
           document.querySelector(elem)
           .innerHTML += `
           <div class='container-fluid border rounded feed-panel text-wrap w-100 position-relative mb-4'>
@@ -434,6 +450,8 @@ const Toast = Swal.mixin({
                       Posted on: ${formatDate(o.created_at)}
                   </li>
               </ul>
+
+              ${post_type}
       
               <div class="overflow-hidden truncate d-none d-sm-block">
               <p class="p-0 m-0 mt-2 fs-8 text-secondary d-block">${truncateText(o.description, 200)}</p>
@@ -446,6 +464,9 @@ const Toast = Swal.mixin({
               }</p>
 
               <div class="d-flex justify-content-end">
+                  <div class="content-btn-holder px-3">
+
+                  </div>
 
                   <div class="content-btn-holder px-3">
                     <div class='position-relative'>
@@ -458,20 +479,7 @@ const Toast = Swal.mixin({
                         </button>
                     </div>
                   </div>
-
-                  <div class="content-btn-holder px-3">
-                    <button class="btn" 
-                          data-id="${o.id}" 
-                          data-title="${o.title}" 
-                          data-type="oppo-type"
-                          data-url="${pageLink(o.title, o.id)}" onClick="Bookmark(this)">
-                          <div>
-                              <span class='material-symbols-outlined align-middle'>
-                              bookmark
-                              </span>
-                          </div>
-                    </button>
-                  </div>
+                  
               </div>
           </div>
           </div>

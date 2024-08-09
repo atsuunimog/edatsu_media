@@ -52,7 +52,8 @@ class Opportunity extends Controller
             'deadline' => 'nullable|date', // Adjust this rule based on your date format
             'category' => 'nullable|string',
             'meta_description' => 'nullable|string', 
-            'meta_keywords' => 'nullable|string'
+            'meta_keywords' => 'nullable|string',
+            'post_type' => 'nullable|string'
         ]);
 
         $op = ($id)? Oppty::find($id) : new Oppty();
@@ -82,6 +83,7 @@ class Opportunity extends Controller
         $direct_link = $request->direct_link;
         $meta_description = $request->meta_description;
         $meta_keywords = $request->meta_keywords;
+        $post_type = $request->post_type;
 
         //prevent users from backdating job post
         $current_date = Carbon::now();  
@@ -106,6 +108,7 @@ class Opportunity extends Controller
         $op->continent = $continent;
         $op->meta_description = $meta_description;
         $op->meta_keywords = $meta_keywords;
+        $op->post_type = $post_type;
 
         $op->save();
 
@@ -175,7 +178,7 @@ class Opportunity extends Controller
      * bookmark opportunity
      */
 
-     public function bookmarkOpportunity(Request $request){
+    public function bookmarkOpportunity(Request $request){
 
         if(Auth::check()){
 
@@ -234,7 +237,36 @@ class Opportunity extends Controller
      }
 
 
+     /**
+      * display all opportunities 
+      */
+    public function fetchAllOpportunities()
+    {
+        $allOppty = Oppty::orderBy('id', 'desc')
+            ->get()
+            ->map(function($oppty) {
+                $current_date = Carbon::now();
+                $status = ($current_date > $oppty->deadline) ? 'Expired' : 'Active';
+                
+                return [
+                    'id' => $oppty->id,
+                    'title' => $oppty->title,
+                    'views' => $oppty->views,
+                    'created_at' => $oppty->created_at->format('Y-m-d'),
+                    'deadline' => $oppty->deadline,
+                    'status' => $status,
+                    // Add any other fields you need
+                ];
+            });
+    
+        return response()->json(['data' => $allOppty]);
+    }
 
+
+    public function showOpportunities(){
+      
+        return view('admin.allOppty'); 
+    }
 
 
 }

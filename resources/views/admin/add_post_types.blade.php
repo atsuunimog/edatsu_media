@@ -158,17 +158,9 @@
                             </div>
 
                             <div class="row mb-3">
-                                <div class="col-6">
+                                <div class="col-12">
                                 <label>Meta Keywords</label>
                                 <input type="text" name="meta_keywords" class='form-control' id="meta_keywords" value="{{ isset($edits[0]->meta_keywords)? $edits[0]->meta_keywords : old('meta_keywords')}}"  />
-                                </div>
-                                <div class="col-6">
-                                <label>Post Type</label>
-                                    <select class="form-select" name="post_type">
-                                        <option>Select Post Type</option>
-                                        <option value="article">Article</option>
-                                        <option value="sponsored">Sponsored</option>
-                                    </select>
                                 </div>
                             </div>
 

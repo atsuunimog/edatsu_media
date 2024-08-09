@@ -89,6 +89,11 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::post('/admin-update-event/{id}', [Event::class, "update"])->name('admin.update.ev');
     Route::post('/admin-store-event', [Event::class, "store"])->name('admin.store.ev');
     Route::get('/admin-delete-event/{id}', [Event::class, "delete"])->name('admin.delete.ev');
+    // Route::get('/post-types', [Opportunity::class, 'CreatePostTypes'])->name('admin.post-types');
+    Route::get('/all-opp-post', [Opportunity::class, 'showOpportunities'])->name('admin.all_opp_post');
+    Route::get('/fetch-all-opp', [Opportunity::class, 'fetchAllOpportunities']);
+    // Route::get('/post-types', [Opportunity::class, 'CreatePostTypes'])->name('admin.post-types');
+    // Route::get('/post-types', [Opportunity::class, 'CreatePostTypes'])->name('admin.post-types');
 
     //handle channels
     Route::post('/admin-update-channel/{id}', [FeedsChannel::class, "store"])->name('admin.update.channel');
