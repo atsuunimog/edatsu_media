@@ -163,18 +163,11 @@
             <!--caveat-->
             <!--main content-->
         </div>
-
     <div class="col-sm-4 col-12">
 
-    <!--sign up banner-->
-    <a href="subscriber-register">
-        <div class="my-3">
-        <img src="img/ads_img/sign_up_banner.jpg" alt="signup-banner" class="img-fluid">
-        </div>
-    </a>
-    <!--sign up banner-->
-
+    <div class="my-3">
     @include('components/subscription_box')
+    </div>
 
     <!--custom ads-->
     <a href="https://cart.hostinger.com/pay/852ad684-6352-4a43-b1ae-42747759f3cb?_ga=GA1.3.942352702.1711283207" target="_blank" class="d-block my-3">
@@ -183,7 +176,7 @@
     <!--custom ads-->
 
     <!--aside-->
-    <div class="mb-3" style="width:100%; height:800px">
+    <div class="mb-3 border rounded px-3 py-3" style="width:100%; height:800px">
         <!--google ads-->
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7365396698208751"
         crossorigin="anonymous"></script>
@@ -198,6 +191,7 @@
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
         <!--google ads-->
+    <span class="d-block mt-2 fs-8">Ads</span>
     </div>
     <!--aside-->
     </div>
