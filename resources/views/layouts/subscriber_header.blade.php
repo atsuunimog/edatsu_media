@@ -81,7 +81,7 @@
             
             @endauth
           @else
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="btn custom-bg-highlight text-light border-0 shadow-sm py-2 px-4 inline-block fs-9 mt-1 me-3 fw-bold" 
               href="{{ route('login') }}" >
               Login</a>
@@ -90,9 +90,7 @@
             <li class="nav-item">
               <a class="btn custom-bg-highlight text-light border-0 px-4 shadow-sm py-2 inline-block fs-9 mt-1 fw-bold" href="{{ route('subscriber-register') }}" >
               Sign Up</a>
-              {{-- <a class="btn brand-color border-0 px-3 inline-block fs-9 mt-1" href="{{ route('admin-register') }}" >
-                Admin Sign up</a> --}}
-            </li>
+            </li> -->
           @endif
           
         </ul>
